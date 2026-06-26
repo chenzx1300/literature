@@ -1,0 +1,2060 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>robotics 最新论文 | Journal Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #1e3a5f;
+      --primary-light: #2d5a87;
+      --accent: #00b4d8;
+      --accent-soft: #90e0ef;
+      --bg: #f0f4f8;
+      --surface: #ffffff;
+      --text: #1a2332;
+      --text-muted: #5c6f7e;
+      --text-light: #8fa4b8;
+      --border: #e2e8f0;
+      --tag-bg: #e8f4f8;
+      --tag-text: #0077b6;
+      --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+      --shadow-lg: 0 4px 24px rgba(0,0,0,0.08);
+    }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ===== HEADER ===== */
+    .site-header {
+      background: linear-gradient(135deg, #0d1b2a 0%, #1b3a5c 50%, #1e5090 100%);
+      color: #fff;
+      padding: 2.5rem 1.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .site-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(0,180,216,0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0,180,216,0.1) 0%, transparent 40%);
+      pointer-events: none;
+    }
+    .site-header .inner {
+      max-width: 960px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-soft);
+      margin-bottom: 0.6rem;
+      opacity: 0.9;
+    }
+    .site-header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.01em;
+    }
+    .subtitle {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 1.8rem;
+    }
+    .stats-bar {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+    .stat-value {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem 3rem;
+    }
+
+    /* ===== TOPIC SUMMARY BAR ===== */
+    .topic-bar {
+      background: var(--surface);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .topic-bar-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 0.85rem;
+    }
+    .topic-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .topic-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      border: 1px solid rgba(0,119,182,0.15);
+      transition: all 0.2s;
+    }
+    .topic-chip:hover {
+      background: var(--accent-soft);
+      color: var(--primary);
+    }
+    .topic-chip .count {
+      background: rgba(0,119,182,0.12);
+      border-radius: 10px;
+      padding: 0 0.35rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--primary-light);
+    }
+
+    /* ===== TABS ===== */
+    .tabs-wrapper {
+      background: var(--surface);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .tabs-header {
+      display: flex;
+      overflow-x: auto;
+      border-bottom: 2px solid var(--border);
+      background: #fafcfd;
+      scrollbar-width: none;
+    }
+    .tabs-header::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      flex: 0 0 auto;
+      padding: 1rem 1.4rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .tab-btn:hover { color: var(--primary); }
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      background: #fff;
+    }
+    .tab-btn .tab-name { font-size: 0.82rem; }
+    .tab-btn .tab-meta {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--text-light);
+    }
+    .tab-btn.active .tab-meta { color: var(--accent-soft); }
+
+    .tab-panel {
+      display: none;
+      padding: 0;
+    }
+    .tab-panel.active { display: block; }
+
+    /* ===== JOURNAL INFO BAR ===== */
+    .journal-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      background: linear-gradient(135deg, #f8fbff 0%, #f0f7ff 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .journal-info-left .journal-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+    .journal-info-left .journal-name a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .journal-info-left .journal-name a:hover { text-decoration: underline; }
+    .journal-meta {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .meta-tag {
+      font-size: 0.7rem;
+      background: #e0eef7;
+      color: #3a7ca5;
+      padding: 0.15rem 0.55rem;
+      border-radius: 12px;
+      font-weight: 500;
+    }
+    .journal-sjif {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+      color: #fff;
+      border-radius: 12px;
+      padding: 0.5rem 1rem;
+      min-width: 4.5rem;
+    }
+    .sjif-label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.6);
+    }
+    .sjif-value {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.1;
+    }
+    .journal-keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      padding: 0.6rem 1.5rem;
+      background: #f8fafd;
+      border-top: 1px solid var(--border);
+    }
+    .journal-summary {
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, #f0f7ff 0%, #e8f4f8 100%);
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--text);
+      line-height: 1.6;
+      border-left: 4px solid var(--accent);
+    }
+    .kw-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 14px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      background: linear-gradient(135deg, #e8f4f8 0%, #ddeeff 100%);
+      color: var(--primary);
+      border: 1px solid rgba(0,119,182,0.15);
+    }
+    .kw-chip .kw-count {
+      background: var(--accent);
+      color: #fff;
+      border-radius: 8px;
+      padding: 0 0.3rem;
+      font-size: 0.62rem;
+      font-weight: 700;
+    }
+
+    /* ===== PAPER LIST ===== */
+    .paper-list { list-style: none; }
+    .paper-item {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .paper-item:last-child { border-bottom: none; }
+    .paper-item:hover { background: #fafcff; }
+    .paper-num {
+      padding: 1.4rem 0.5rem 1.4rem 1.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-align: center;
+      opacity: 0.7;
+    }
+    .paper-body {
+      padding: 1.25rem 1.5rem 1.25rem 0.5rem;
+    }
+    .paper-title {
+      font-size: 0.93rem;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 0.35rem;
+    }
+    .paper-title a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .paper-title a:hover { color: var(--accent); text-decoration: underline; }
+    .paper-authors {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+    .paper-meta {
+      font-size: 0.72rem;
+      color: var(--text-light);
+      margin-bottom: 0.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1rem;
+    }
+    .paper-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+    .paper-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-bottom: 0.4rem;
+    }
+    .paper-tag {
+      font-size: 0.68rem;
+      background: #eef2f7;
+      color: #5a6c7d;
+      padding: 0.1rem 0.5rem;
+      border-radius: 8px;
+    }
+    /* 真实 author keywords — 蓝色系区分 */
+    .paper-tag.paper-kw {
+      background: #e3f0ff;
+      color: #1a5a8a;
+      border: 1px solid #a8d4f0;
+    }
+    .paper-abstract {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      background: #f8fafd;
+      border-radius: 8px;
+      padding: 0.6rem 0.85rem;
+      margin-top: 0.5rem;
+      line-height: 1.6;
+      border-left: 3px solid var(--accent-soft);
+    }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: var(--text-light);
+      font-size: 0.75rem;
+    }
+    .site-footer a { color: var(--accent); text-decoration: none; }
+    .site-footer a:hover { text-decoration: underline; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      .site-header h1 { font-size: 1.4rem; }
+      .site-header { padding: 2rem 1rem 1.5rem; }
+      .stats-bar { gap: 1.5rem; }
+      .stat-value { font-size: 1.3rem; }
+      .tab-btn { padding: 0.85rem 1rem; font-size: 0.78rem; }
+      .paper-item { grid-template-columns: 2.5rem 1fr; }
+      .paper-num { padding: 1.2rem 0.3rem 1.2rem 1rem; }
+      .paper-body { padding: 1rem 1rem 1rem 0.3rem; }
+    }
+
+    /* ===== ANALYTICS SECTION ===== */
+    .analytics {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1.25rem 1rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    /* ---- Section Title ---- */
+    .analytics-section-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 0.25rem;
+    }
+
+    /* ---- Overview Stats Bar ---- */
+    .analytics-overview {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.3rem;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .stat-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-1px);
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+      border-radius: 12px 12px 0 0;
+    }
+    .stat-card .sc-icon {
+      font-size: 1.2rem;
+      margin-bottom: 0.2rem;
+      opacity: 0.7;
+    }
+    .stat-card .sc-value {
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1;
+    }
+    .stat-card.metric-primary .sc-value { font-size: 2.4rem; }
+    .stat-card.metric-secondary .sc-value { font-size: 1.8rem; color: var(--primary-light); }
+    .stat-card.metric-tertiary .sc-value { font-size: 1.4rem; color: var(--accent); }
+    .stat-card.metric-small .sc-value { font-size: 1.1rem; color: var(--text-muted); }
+    .stat-card .sc-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .stat-card .sc-sublabel {
+      font-size: 0.65rem;
+      color: var(--text-light);
+      margin-top: -0.1rem;
+    }
+
+    /* ---- Two-column layout for side-by-side widgets ---- */
+    .analytics-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .analytics-col-wide {
+      grid-column: 1 / -1;
+    }
+
+    /* ---- Widget Card ---- */
+    .widget-card {
+      background: var(--surface);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 0.9rem 1.25rem;
+    }
+    .widget-card .widget-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.6rem;
+    }
+    .widget-card .widget-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+    }
+    .widget-card .widget-badge {
+      font-size: 0.62rem;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      padding: 0.15rem 0.5rem;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    /* ---- Research Topics Horizontal Bars ---- */
+    .topic-bar-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.45rem;
+    }
+    .topic-bar-item:last-child { margin-bottom: 0; }
+    .topic-bar-name {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text);
+      min-width: 90px;
+      max-width: 140px;
+      white-space: normal;
+      overflow: visible;
+      text-overflow: clip;
+      line-height: 1.3;
+      word-break: break-word;
+    }
+    .topic-bar-track {
+      flex: 1;
+      height: 22px;
+      background: var(--bg);
+      border-radius: 11px;
+      overflow: hidden;
+      position: relative;
+    }
+    .topic-bar-fill {
+      height: 100%;
+      border-radius: 11px;
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent-soft) 100%);
+      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 0.5rem;
+      min-width: 2rem;
+    }
+    .topic-bar-fill span {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+    .topic-bar-pct {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      min-width: 2.5rem;
+      text-align: right;
+    }
+
+    /* ---- Author Rank Cards ---- */
+    .author-rank-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .author-rank-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.45rem 0.6rem;
+      border-radius: 8px;
+      background: var(--bg);
+      transition: background 0.2s;
+    }
+    .author-rank-item:hover { background: #e8f4f8; }
+    .author-rank-item.rank-1 { background: #fffbf0; border: 1px solid #f0d060; }
+    .author-rank-item.rank-2 { background: #f8f8f8; border: 1px solid #d0d0d0; }
+    .author-rank-item.rank-3 { background: #fff8f0; border: 1px solid #e0c080; }
+
+    .author-medal {
+      font-size: 1.25rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .author-rank-info { flex: 1; min-width: 0; }
+    .author-rank-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .author-rank-meta {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.1rem;
+    }
+    .author-rank-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .author-rank-stat .ars-value {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .author-rank-stat .ars-label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-light);
+    }
+
+    /* ---- Universities ---- */
+    .uni-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .uni-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+      color: #fff;
+      border: 1px solid rgba(0,180,216,0.3);
+      transition: all 0.2s;
+    }
+    .uni-chip:hover {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--primary-light) 100%);
+      transform: translateY(-1px);
+    }
+    .uni-chip .uni-rank {
+      font-size: 0.6rem;
+      background: rgba(255,255,255,0.2);
+      border-radius: 8px;
+      padding: 0.05rem 0.35rem;
+      font-weight: 700;
+    }
+
+    /* ---- Trend Chart (Year Bars) ---- */
+    .trend-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.6rem;
+      height: 72px;
+      padding-bottom: 0;
+    }
+    .trend-bar-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      height: 100%;
+      position: relative;
+    }
+    .trend-bar-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .trend-bar-fill {
+      width: 80%;
+      max-width: 40px;
+      border-radius: 4px 4px 0 0;
+      background: linear-gradient(180deg, var(--accent) 0%, var(--accent-soft) 100%);
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .trend-bar-fill::after {
+      content: attr(data-count);
+      position: absolute;
+      top: -1.4rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    .trend-bar-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+      margin-top: 0.3rem;
+    }
+
+    /* ---- Analytics Responsive ---- */
+    @media (max-width: 768px) {
+      .analytics-overview {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .analytics-row {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 480px) {
+      .analytics-overview {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .stat-card { padding: 1rem 1rem; }
+      .stat-card .sc-value { font-size: 1.5rem; }
+      .topic-bar-name { min-width: 70px; max-width: 120px; font-size: 0.72rem; white-space: normal; }
+      .analytics { padding: 1rem 0.75rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <div class="eyebrow">🔬 Academic Journal Tracker</div>
+    <h1>robotics 领域顶级期刊最新论文</h1>
+    <div class="subtitle">Top SCI Journals — Latest Issues · CrossRef Data</div>
+    <div class="stats-bar">
+      <div class="stat">
+        <div class="stat-value">3</div>
+        <div class="stat-label">期刊</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">1429</div>
+        <div class="stat-label">论文</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">2026-06-26</div>
+        <div class="stat-label">更新</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- =========================================================
+     ANALYTICS SECTION — Pure HTML + CSS
+     Placeholders: <div class="stat-card metric-primary">
+      <div class="sc-icon">📄</div>
+      <div class="sc-value">1429</div>
+      <div class="sc-label">论文总数（近5年）</div>
+      <div class="sc-sublabel">Total Papers</div>
+    </div>
+<div class="stat-card metric-secondary">
+      <div class="sc-icon">⬆️</div>
+      <div class="sc-value">19239</div>
+      <div class="sc-label">引用总数</div>
+      <div class="sc-sublabel">Total Citations</div>
+    </div>
+<div class="stat-card metric-tertiary">
+      <div class="sc-icon">📊</div>
+      <div class="sc-value">13.5</div>
+      <div class="sc-label">篇均引用</div>
+      <div class="sc-sublabel">Avg Citations</div>
+    </div>
+<div class="stat-card metric-small">
+      <div class="sc-icon">📚</div>
+      <div class="sc-value">3</div>
+      <div class="sc-label">期刊数</div>
+      <div class="sc-sublabel">Journals</div>
+    </div> <div class="topic-bar-item">
+      <span class="topic-bar-name">Structural Analysis & FEM</span>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width: 100.0%">
+          <span>337</span>
+        </div>
+      </div>
+      <span class="topic-bar-pct">100%</span>
+    </div>
+<div class="topic-bar-item">
+      <span class="topic-bar-name">Sensors & Smart Structures</span>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width: 58.5%">
+          <span>197</span>
+        </div>
+      </div>
+      <span class="topic-bar-pct">58%</span>
+    </div>
+<div class="topic-bar-item">
+      <span class="topic-bar-name">Aerospace & Lightweight Design</span>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width: 36.5%">
+          <span>123</span>
+        </div>
+      </div>
+      <span class="topic-bar-pct">36%</span>
+    </div>
+<div class="topic-bar-item">
+      <span class="topic-bar-name">Durability & Environmental</span>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width: 25.5%">
+          <span>86</span>
+        </div>
+      </div>
+      <span class="topic-bar-pct">26%</span>
+    </div>
+<div class="topic-bar-item">
+      <span class="topic-bar-name">AI & Data-Driven Methods</span>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width: 23.1%">
+          <span>78</span>
+        </div>
+      </div>
+      <span class="topic-bar-pct">23%</span>
+    </div>
+<div class="topic-bar-item">
+      <span class="topic-bar-name">Mechanical Properties & Strength</span>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width: 20.8%">
+          <span>70</span>
+        </div>
+      </div>
+      <span class="topic-bar-pct">21%</span>
+    </div>
+                   <div class="author-rank-item rank-1">
+      <div class="author-medal">🥇</div>
+      <div class="author-rank-info">
+        <div class="author-rank-name">Antonio Bicchi</div>
+        <div class="author-rank-meta">IEEE Transactions on Robotics, Robotics and Computer-Integrated Manufacturing</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">13</div>
+        <div class="ars-label">篇</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">63</div>
+        <div class="ars-label">引</div>
+      </div>
+    </div>
+<div class="author-rank-item rank-2">
+      <div class="author-medal">🥈</div>
+      <div class="author-rank-info">
+        <div class="author-rank-name">Aude Billard</div>
+        <div class="author-rank-meta">IEEE Transactions on Robotics, Robotics and Computer-Integrated Manufacturing</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">11</div>
+        <div class="ars-label">篇</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">182</div>
+        <div class="ars-label">引</div>
+      </div>
+    </div>
+<div class="author-rank-item rank-3">
+      <div class="author-medal">🥉</div>
+      <div class="author-rank-info">
+        <div class="author-rank-name">Giorgio Grioli</div>
+        <div class="author-rank-meta">IEEE Transactions on Robotics, Robotics and Computer-Integrated Manufacturing</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">10</div>
+        <div class="ars-label">篇</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">56</div>
+        <div class="ars-label">引</div>
+      </div>
+    </div> <div class="author-rank-item rank-1">
+      <div class="author-medal">🥇</div>
+      <div class="author-rank-info">
+        <div class="author-rank-name">Marco Hutter</div>
+        <div class="author-rank-meta">IEEE Transactions on Robotics, Robotics and Computer-Integrated Manufacturing</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">7</div>
+        <div class="ars-label">篇</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">470</div>
+        <div class="ars-label">引</div>
+      </div>
+    </div>
+<div class="author-rank-item rank-2">
+      <div class="author-medal">🥈</div>
+      <div class="author-rank-info">
+        <div class="author-rank-name">Siyuan Feng</div>
+        <div class="author-rank-meta">IEEE Transactions on Robotics, Robotics and Computer-Integrated Manufacturing</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">3</div>
+        <div class="ars-label">篇</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">437</div>
+        <div class="ars-label">引</div>
+      </div>
+    </div>
+<div class="author-rank-item rank-3">
+      <div class="author-medal">🥉</div>
+      <div class="author-rank-info">
+        <div class="author-rank-name">Cheng Chi</div>
+        <div class="author-rank-meta">Robotics and Computer-Integrated Manufacturing</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">2</div>
+        <div class="ars-label">篇</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">437</div>
+        <div class="ars-label">引</div>
+      </div>
+    </div>
+                   <span class="uni-chip">
+      <span class="uni-rank">#1</span>
+      MIT · 32篇
+    </span>
+<span class="uni-chip">
+      <span class="uni-rank">#2</span>
+      ETH Zurich · 17篇
+    </span> <div class="trend-bars"><div class="trend-bar-col">
+      <div class="trend-bar-fill" style="height: 4px" data-count="25"></div>
+      <div class="trend-bar-label">2022</div>
+    </div><div class="trend-bar-col">
+      <div class="trend-bar-fill" style="height: 45px" data-count="257"></div>
+      <div class="trend-bar-label">2023</div>
+    </div><div class="trend-bar-col">
+      <div class="trend-bar-fill" style="height: 66px" data-count="373"></div>
+      <div class="trend-bar-label">2024</div>
+    </div><div class="trend-bar-col">
+      <div class="trend-bar-fill" style="height: 90px" data-count="507"></div>
+      <div class="trend-bar-label">2025</div>
+    </div><div class="trend-bar-col">
+      <div class="trend-bar-fill" style="height: 47px" data-count="267"></div>
+      <div class="trend-bar-label">2026</div>
+    </div></div>
+     ========================================================= -->
+
+<!-- =========================================================
+     ANALYTICS HTML STRUCTURE
+     ========================================================= -->
+<section class="analytics" id="analyticsSection">
+
+  <!-- Section Label -->
+  <div class="analytics-section-title">📈 数据分析 | Analytics</div>
+
+  <!-- 1. Overview Stats Bar -->
+  <div class="analytics-overview" id="analyticsOverview">
+<div class="stat-card metric-primary">
+      <div class="sc-icon">📄</div>
+      <div class="sc-value">1429</div>
+      <div class="sc-label">论文总数（近5年）</div>
+      <div class="sc-sublabel">Total Papers</div>
+    </div>
+<div class="stat-card metric-secondary">
+      <div class="sc-icon">⬆️</div>
+      <div class="sc-value">19239</div>
+      <div class="sc-label">引用总数</div>
+      <div class="sc-sublabel">Total Citations</div>
+    </div>
+<div class="stat-card metric-tertiary">
+      <div class="sc-icon">📊</div>
+      <div class="sc-value">13.5</div>
+      <div class="sc-label">篇均引用</div>
+      <div class="sc-sublabel">Avg Citations</div>
+    </div>
+<div class="stat-card metric-small">
+      <div class="sc-icon">📚</div>
+      <div class="sc-value">3</div>
+      <div class="sc-label">期刊数</div>
+      <div class="sc-sublabel">Journals</div>
+    </div>
+  </div>
+
+  <!-- 2. Research Topics + Trend Chart (side by side) -->
+  <div class="analytics-row">
+
+    <!-- Research Topics -->
+    <div class="widget-card">
+      <div class="widget-header">
+        <div class="widget-title">🧠 研究方向 | Research Topics</div>
+        <div class="widget-badge">Top 6</div>
+      </div>
+      <div class="topic-bars" id="topicBars">
+<div class="topic-bar-item">
+      <span class="topic-bar-name">Structural Analysis & FEM</span>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width: 100.0%">
+          <span>337</span>
+        </div>
+      </div>
+      <span class="topic-bar-pct">100%</span>
+    </div>
+<div class="topic-bar-item">
+      <span class="topic-bar-name">Sensors & Smart Structures</span>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width: 58.5%">
+          <span>197</span>
+        </div>
+      </div>
+      <span class="topic-bar-pct">58%</span>
+    </div>
+<div class="topic-bar-item">
+      <span class="topic-bar-name">Aerospace & Lightweight Design</span>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width: 36.5%">
+          <span>123</span>
+        </div>
+      </div>
+      <span class="topic-bar-pct">36%</span>
+    </div>
+<div class="topic-bar-item">
+      <span class="topic-bar-name">Durability & Environmental</span>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width: 25.5%">
+          <span>86</span>
+        </div>
+      </div>
+      <span class="topic-bar-pct">26%</span>
+    </div>
+<div class="topic-bar-item">
+      <span class="topic-bar-name">AI & Data-Driven Methods</span>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width: 23.1%">
+          <span>78</span>
+        </div>
+      </div>
+      <span class="topic-bar-pct">23%</span>
+    </div>
+<div class="topic-bar-item">
+      <span class="topic-bar-name">Mechanical Properties & Strength</span>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width: 20.8%">
+          <span>70</span>
+        </div>
+      </div>
+      <span class="topic-bar-pct">21%</span>
+    </div>
+      </div>
+    </div>
+
+    <!-- Research Trend -->
+    <div class="widget-card">
+      <div class="widget-header">
+        <div class="widget-title">📅 发表趋势 | Publication Trend</div>
+        <div class="widget-badge">Last 5 Yr</div>
+      </div>
+      <div class="trend-chart" id="trendChart">
+<div class="trend-bars"><div class="trend-bar-col">
+      <div class="trend-bar-fill" style="height: 4px" data-count="25"></div>
+      <div class="trend-bar-label">2022</div>
+    </div><div class="trend-bar-col">
+      <div class="trend-bar-fill" style="height: 45px" data-count="257"></div>
+      <div class="trend-bar-label">2023</div>
+    </div><div class="trend-bar-col">
+      <div class="trend-bar-fill" style="height: 66px" data-count="373"></div>
+      <div class="trend-bar-label">2024</div>
+    </div><div class="trend-bar-col">
+      <div class="trend-bar-fill" style="height: 90px" data-count="507"></div>
+      <div class="trend-bar-label">2025</div>
+    </div><div class="trend-bar-col">
+      <div class="trend-bar-fill" style="height: 47px" data-count="267"></div>
+      <div class="trend-bar-label">2026</div>
+    </div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 3. Top Authors by Publications + by Citations (side by side) -->
+  <div class="analytics-row">
+
+    <!-- Top Authors by Publications -->
+    <div class="widget-card">
+      <div class="widget-header">
+        <div class="widget-title">✍️ 高产作者 | By Publications</div>
+        <div class="widget-badge">Top 3</div>
+      </div>
+      <div class="author-rank-list" id="topAuthorsPub">
+<div class="author-rank-item rank-1">
+      <div class="author-medal">🥇</div>
+      <div class="author-rank-info">
+        <div class="author-rank-name">Antonio Bicchi</div>
+        <div class="author-rank-meta">IEEE Transactions on Robotics, Robotics and Computer-Integrated Manufacturing</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">13</div>
+        <div class="ars-label">篇</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">63</div>
+        <div class="ars-label">引</div>
+      </div>
+    </div>
+<div class="author-rank-item rank-2">
+      <div class="author-medal">🥈</div>
+      <div class="author-rank-info">
+        <div class="author-rank-name">Aude Billard</div>
+        <div class="author-rank-meta">IEEE Transactions on Robotics, Robotics and Computer-Integrated Manufacturing</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">11</div>
+        <div class="ars-label">篇</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">182</div>
+        <div class="ars-label">引</div>
+      </div>
+    </div>
+<div class="author-rank-item rank-3">
+      <div class="author-medal">🥉</div>
+      <div class="author-rank-info">
+        <div class="author-rank-name">Giorgio Grioli</div>
+        <div class="author-rank-meta">IEEE Transactions on Robotics, Robotics and Computer-Integrated Manufacturing</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">10</div>
+        <div class="ars-label">篇</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">56</div>
+        <div class="ars-label">引</div>
+      </div>
+    </div>
+      </div>
+    </div>
+
+    <!-- Top Authors by Citations -->
+    <div class="widget-card">
+      <div class="widget-header">
+        <div class="widget-title">📖 高引作者 | By Citations</div>
+        <div class="widget-badge">Top 3</div>
+      </div>
+      <div class="author-rank-list" id="topAuthorsCited">
+<div class="author-rank-item rank-1">
+      <div class="author-medal">🥇</div>
+      <div class="author-rank-info">
+        <div class="author-rank-name">Marco Hutter</div>
+        <div class="author-rank-meta">IEEE Transactions on Robotics, Robotics and Computer-Integrated Manufacturing</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">7</div>
+        <div class="ars-label">篇</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">470</div>
+        <div class="ars-label">引</div>
+      </div>
+    </div>
+<div class="author-rank-item rank-2">
+      <div class="author-medal">🥈</div>
+      <div class="author-rank-info">
+        <div class="author-rank-name">Siyuan Feng</div>
+        <div class="author-rank-meta">IEEE Transactions on Robotics, Robotics and Computer-Integrated Manufacturing</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">3</div>
+        <div class="ars-label">篇</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">437</div>
+        <div class="ars-label">引</div>
+      </div>
+    </div>
+<div class="author-rank-item rank-3">
+      <div class="author-medal">🥉</div>
+      <div class="author-rank-info">
+        <div class="author-rank-name">Cheng Chi</div>
+        <div class="author-rank-meta">Robotics and Computer-Integrated Manufacturing</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">2</div>
+        <div class="ars-label">篇</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">437</div>
+        <div class="ars-label">引</div>
+      </div>
+    </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 4. Top Universities -->
+  <div class="analytics-row">
+    <div class="widget-card analytics-col-wide">
+      <div class="widget-header">
+        <div class="widget-title">🏛️ 顶尖机构 | Top Universities</div>
+        <div class="widget-badge">Top 5</div>
+      </div>
+      <div class="uni-list" id="topUniversities">
+<span class="uni-chip">
+      <span class="uni-rank">#1</span>
+      MIT · 32篇
+    </span>
+<span class="uni-chip">
+      <span class="uni-rank">#2</span>
+      ETH Zurich · 17篇
+    </span>
+      </div>
+    </div>
+  </div>
+
+</section>
+<div class="container">
+
+  <!-- Journal Tabs -->
+  <div class="tabs-wrapper">
+    <div class="tabs-header" id="tabsHeader"><button class="tab-btn active" onclick="showTab(0)">
+  <span class="tab-name">IEEE Transactions on Rob…</span>
+  <span class="tab-meta">IEEE · 最新30篇（近5年1000篇）</span>
+</button>
+    <button class="tab-btn" onclick="showTab(1)">
+  <span class="tab-name">IEEE Transactions on Aut…</span>
+  <span class="tab-meta">IEEE · 最新0篇（近5年0篇）</span>
+</button>
+    <button class="tab-btn" onclick="showTab(2)">
+  <span class="tab-name">Robotics and Computer-In…</span>
+  <span class="tab-meta">Elsevier · 最新30篇（近5年429篇）</span>
+</button></div>
+    <div id="tabPanels"><div class="tab-panel active" id="panel-0">
+  <div class="journal-info">
+    <div class="journal-info-left">
+      <div class="journal-name">IEEE Transactions on Robotics</div>
+      <div class="journal-meta">
+        <span class="meta-tag">ISSN: 1552-3098</span>
+        <span class="meta-tag">Publisher: IEEE</span>
+        <span class="meta-tag">SJR: 8.4</span>
+        <span class="meta-tag">展示最新 30 篇（近5年共 1000 篇）</span>
+      </div>
+    </div>
+    <div class="journal-sjif">
+      <span class="sjif-label">SJR</span>
+      <span class="sjif-value">8.4</span>
+    </div>
+  </div><div class="journal-summary">【期刊定位】机器人学方法论旗舰期刊，聚焦机器人控制理论、运动规划与系统集成。【核心研究主题】研究核心集中于运动规划（约3%论文涉及），其次为模型预测控制、强化学习、路径规划等方向，整体研究覆盖面较广。【近几年发表热点】近年新兴热点包括：运动规划（3%近期）、模型预测控制（2%近期）、强化学习（2%近期），这些方向增长显著，值得关注。【发表规模】近5年共1000篇，年均约250篇，2026年同比-57%。</div>
+  <ul class="paper-list">
+<li class="paper-item">
+    <div class="paper-num">1</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3686277" target="_blank" rel="noopener">TensorTouch: Calibration of Tactile Sensors for High Resolution Stress Tensor and Deformation for Dexterous Manipulation</a></div>
+      <div class="paper-authors">Won Kyung Do, Matthew Strong, Aiden Swann, Boshu Lei, Monroe Kennedy</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 2107-2126 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">2</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2025.3645884" target="_blank" rel="noopener">Probabilistic Modeling and Control for Multi-UAV Search Over Uneven Terrain</a></div>
+      <div class="paper-authors">Luka Lanča, Karlo Jakac, Stefan Ivić</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 418-438 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">3</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3675526" target="_blank" rel="noopener">Hierarchical Multimodal Motion Control of Magnetic Pivot-Walking Millirobotic-Grippers for Autonomous Target Acquisition in Complex Terrains</a></div>
+      <div class="paper-authors">Ruhao Nie, Shihao Zhong, Yaozhen Hou, Zhiqiang Zheng, Qing Shi, Qiang Huang et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 1749-1768 (2026)</span>
+        <span>⬆️ Cited by: 2</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">4</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2025.3631817" target="_blank" rel="noopener">A MagsL-HUD Endoscopic System for Magnetic Compression Anastomosis Surgery in Unstructured Endoluminal Environment</a></div>
+      <div class="paper-authors">Yichong Sun, Yitian Xian, Ruoyu Xu, Wai Shing Chan, Hon Chi Yip, Philip Wai Yan Chiu et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 475-494 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">5</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3658292" target="_blank" rel="noopener">FilMBot: A High-Speed Soft Parallel Robotic Micromanipulator</a></div>
+      <div class="paper-authors">Jiangkun Yu, Houari Bettahar, Hakan Kandemir, Quan Zhou</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 1145-1157 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">6</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3663979" target="_blank" rel="noopener">Optimizing Human–Exoskeleton Physical Interaction Through Spatial Trajectory Adaptation</a></div>
+      <div class="paper-authors">Mohammad Shushtari, Livia Murray, Atusa Ghorbani Siavashani, Arash Arami</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 1485-1498 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">7</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2025.3636302" target="_blank" rel="noopener">DiffOG: Differentiable Policy Trajectory Optimization With Generalizability</a></div>
+      <div class="paper-authors">Zhengtong Xu, Zichen Miao, Qiang Qiu, Zhe Zhang, Yu She</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 204-223 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">8</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3686278" target="_blank" rel="noopener">Complete Autonomous Robotic Nasopharyngeal Swab System With Evaluation on a Stochastically Moving Phantom Head</a></div>
+      <div class="paper-authors">Peter Q. Lee, John S. Zelek, Katja Mombaur</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 2050-2067 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">9</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3706557" target="_blank" rel="noopener">Bundle Adjustment in the Eager Mode</a></div>
+      <div class="paper-authors">Zitong Zhan, Huan Xu, Zihang Fang, Xinpeng Wei, Yaoyu Hu, Chen Wang</div>
+      <div class="paper-meta">
+        <span>📖 pp. 1-19 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">10</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3688064" target="_blank" rel="noopener">Model-Free Magnetic Servoing for Pose Control of Capsule Robots</a></div>
+      <div class="paper-authors">Chang Liu, Xiaoyang Wu, Jiaole Wang, Shuang Song</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 2127-2145 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">11</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2025.3645962" target="_blank" rel="noopener">A Multifingered Robotic Hand With Fiber-Optic Force and Tactile Sensing for Remote Manipulation</a></div>
+      <div class="paper-authors">Jaehyun Yi, Wook Joon Chung, Jeongwon Lee, Hamza Muzammal, Jeonghun Park, Young Soo Park et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 509-524 (2026)</span>
+        <span>⬆️ Cited by: 1</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">12</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3653854" target="_blank" rel="noopener">A Rotation–Translation Decoupled Solution for Visual–Inertial Initialization and Online Spatial–Temporal Calibration</a></div>
+      <div class="paper-authors">Bo Xu, Zewen Xu, Yijia He, Zhanpeng Ouyang, Hao Wei, Yihong Wu et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 854-873 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">13</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3653783" target="_blank" rel="noopener">Physics-Informed Token Prediction-Based Dynamic Modeling and High-Speed Feedforward Tracking Control of Dielectric Elastomer Actuators</a></div>
+      <div class="paper-authors">Xingyu Chen, Xiaotian Shi, Peinan Yan, Jieji Ren, Guoying Gu, Jiang Zou</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 839-855 (2026)</span>
+        <span>⬆️ Cited by: 2</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">14</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3688100" target="_blank" rel="noopener">PS
+                    <sup>3</sup>
+                    N: Probabilistic Spiking Structured State-Space Networks for Event-Based Visual-Tactile Slip Detection</a></div>
+      <div class="paper-authors">Senlin Fang, Yilin Li, Peng Wu, Yiru Wang, Shu Zhang, Zihan Wang et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 2196-2214 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">15</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2025.3645885" target="_blank" rel="noopener">Traversability-Aware Legged Navigation by Learning From Real-World Visual Data</a></div>
+      <div class="paper-authors">Hongbo Zhang, Zhongyu Li, Xuanqi Zeng, Laura Smith, Kyle Stachowicz, Dhruv Shah et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 400-417 (2026)</span>
+        <span>⬆️ Cited by: 1</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">16</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3701576" target="_blank" rel="noopener">Cross-Behavior Learning with Object Flow Prediction for Robotic Manipulation</a></div>
+      <div class="paper-authors">Longrui Chen, David Russell, Yulei Qiu, Mehmet Dogar</div>
+      <div class="paper-meta">
+        <span>📖 pp. 1-17 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">17</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3686173" target="_blank" rel="noopener">AnyUser: Translating Sketched User Intent Into Domestic Robots</a></div>
+      <div class="paper-authors">Songyuan Yang, Huibin Tan, Kailun Yang, Wenjing Yang, Shaowu Yang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 1921-1941 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">18</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3677010" target="_blank" rel="noopener">Safe and Agile Transportation of Cable-Suspended Payload via Multiple Aerial Robots</a></div>
+      <div class="paper-authors">Yongchao Wang, Junjie Wang, Xiaobin Zhou, Tiankai Yang, Xin Zhou, Chao Xu et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 1804-1823 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">19</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3653884" target="_blank" rel="noopener">Hybrid Soft-Rigid Elbow Exosuit: Theory, Mechatronic Design, and Experimental Assessment</a></div>
+      <div class="paper-authors">Ali KhalilianMotamed Bonab, Cristian Camardella, Antonio Frisoli, Domenico Chiaradia</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 912-930 (2026)</span>
+        <span>⬆️ Cited by: 1</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">20</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3651678" target="_blank" rel="noopener">Safe MPC Alignment With Human Directional Feedback</a></div>
+      <div class="paper-authors">Zhixian Xie, Wenlong Zhang, Yi Ren, Zhaoran Wang, George J. Pappas, Wanxin Jin</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 750-769 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">21</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2025.3636344" target="_blank" rel="noopener">SDRS: Shape-Differentiable Robot Simulator</a></div>
+      <div class="paper-authors">Xiaohan Ye, Xifeng Gao, Kui Wu, Zherong Pan, Taku Komura</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 1309-1329 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">22</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3653859" target="_blank" rel="noopener">Strain-Based Shape and 3-D Force Estimation for Rod-Driven Continuum Robots With Stretch Sensors</a></div>
+      <div class="paper-authors">Peiyi Wang, Daniel Feliu-Talegon, Yuchen Sun, Zhexin Xie, Wenci Xin, Muhammad Sunny Nazeer et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 894-911 (2026)</span>
+        <span>⬆️ Cited by: 1</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">23</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3706570" target="_blank" rel="noopener">Learning Robot Safety from Sparse Human Feedback using Conformal Prediction</a></div>
+      <div class="paper-authors">Aaron O. Feldman, Joseph A. Vincent, Maximilian Adang, JunEn Low, Mac Schwager</div>
+      <div class="paper-meta">
+        <span>📖 pp. 1-20 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">24</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2025.3636819" target="_blank" rel="noopener">Temporal Transfer Learning for Traffic Optimization with Coarse-Grained Advisory Autonomy</a></div>
+      <div class="paper-authors">Jung-Hoon Cho, Sirui Li, Jeongyun Kim, Cathy Wu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 20-38 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">25</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3697171" target="_blank" rel="noopener">Pushing Physical Limits and Uncovering Motion Templates of Spine-Based Quadruped Locomotion via Reinforcement Learning</a></div>
+      <div class="paper-authors">Zhenshan Bing, Yulong Xiao, Yuhong Huang, Qing Shi, Long Cheng, Biao Hu et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 2305-2324 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">26</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3691220" target="_blank" rel="noopener">Analysis and Mitigation of Pose Estimation Uncertainty on SE(3) for Magnetic Localization</a></div>
+      <div class="paper-authors">Pingyu Xiang, Hongye Zhang, Yue Wang, Rong Xiong, Haojian Lu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 2178-2195 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">27</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3701316" target="_blank" rel="noopener">Parallel-Elastic Actuation with Reactive Latch Elevates Robotic Hopping Performance: Jump Height and Continuity</a></div>
+      <div class="paper-authors">Songnan Bai, Runze Ding, Song Li, Ruihan Jia, Ruobing Wang, Zhiyuan Zhang et al.</div>
+      <div class="paper-meta">
+        <span>📖 pp. 1-20 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">28</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3686241" target="_blank" rel="noopener">Stratified Topological Autonomy for Long-Range Coordination (STALC)</a></div>
+      <div class="paper-authors">Cora A. Duggan, Adam Goertz, Adam Polevoy, Mark Gonzales, Kevin C. Wolfe, Bradley Woosley et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 2269-2288 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">29</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3706565" target="_blank" rel="noopener">Parallel, Asymptotically Optimal Algorithms for Moving Target Traveling Salesman Problems</a></div>
+      <div class="paper-authors">Anoop Bhat, Geordan Gutow, Bhaskar Vundurthy, Zhongqiang Ren, Sivakumar Rathinam, Howie Choset</div>
+      <div class="paper-meta">
+        <span>📖 pp. 1-20 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">30</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3699433" target="_blank" rel="noopener">LiDAR Teach, Radar Repeat: Robust Cross-Modal Navigation in Degenerate and Varying Environments</a></div>
+      <div class="paper-authors">Renxiang Xiao, Yichen Chen, Yuanfan Zhang, Qianyi Shao, Yushuai Chen, Yuxuan Han et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 2500-2520 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+</ul>
+</div>
+<div class="tab-panel" id="panel-1">
+  <div class="journal-info">
+    <div class="journal-info-left">
+      <div class="journal-name">IEEE Transactions on Automation Science and Engineering</div>
+      <div class="journal-meta">
+        <span class="meta-tag">ISSN: 1937-4169</span>
+        <span class="meta-tag">Publisher: IEEE</span>
+        <span class="meta-tag">SJR: 5.6</span>
+        <span class="meta-tag">展示最新 0 篇（近5年共 0 篇）</span>
+      </div>
+    </div>
+    <div class="journal-sjif">
+      <span class="sjif-label">SJR</span>
+      <span class="sjif-value">5.6</span>
+    </div>
+  </div>
+  <ul class="paper-list">
+
+</ul>
+</div>
+<div class="tab-panel" id="panel-2">
+  <div class="journal-info">
+    <div class="journal-info-left">
+      <div class="journal-name">Robotics and Computer-Integrated Manufacturing</div>
+      <div class="journal-meta">
+        <span class="meta-tag">ISSN: 1741-3176</span>
+        <span class="meta-tag">Publisher: Elsevier</span>
+        <span class="meta-tag">SJR: 5.0</span>
+        <span class="meta-tag">展示最新 30 篇（近5年共 429 篇）</span>
+      </div>
+    </div>
+    <div class="journal-sjif">
+      <span class="sjif-label">SJR</span>
+      <span class="sjif-value">5.0</span>
+    </div>
+  </div><div class="journal-summary">【期刊定位】机器人学方法论旗舰期刊，聚焦机器人控制理论、运动规划与系统集成。【核心研究主题】研究核心集中于运动规划（约10%论文涉及），整体研究覆盖面较广。【近几年发表热点】近年新兴热点包括：运动规划（10%近期）、强化学习（6%近期）、模型预测控制（3%近期），这些方向增长显著，值得关注。【发表规模】近5年共429篇，年均约86篇，2026年同比-20%。</div>
+  <ul class="paper-list">
+<li class="paper-item">
+    <div class="paper-num">1</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261448584" target="_blank" rel="noopener">Designing standard library of manipulation skill-agents for Learning-from-Observation</a></div>
+      <div class="paper-authors">Jun Takamatsu, Daichi Saito, Katsushi Ikeuchi, Atsushi Kanehira, Kazuhiro Sasabuchi, Naoki Wake</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">To use new robot hardware, it is necessary to develop a control program tailored to the specific robot. Considering the reusability of software among robots is crucial for minimizing the effort involved in this process and maximizing software reuse a...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">2</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261455065" target="_blank" rel="noopener">EgoExo++: Integrating on-demand exocentric visuals with 2.5D ground surface estimation for interactive teleoperation of underwater ROVs</a></div>
+      <div class="paper-authors">Adnan Abdullah, Ruo Chen, Ioannis Rekleitis, Md Jahidul Islam</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">
+                    Underwater ROVs (Remotely Operated Vehicles) are indispensable for subsea exploration and task execution, yet typical teleoperation engines based on egocentric (first-person) video feeds restrict human operators’ field-of-view an...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">3</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261455368" target="_blank" rel="noopener">Particle importance analysis: A fast localization method under indeterminate magnetic sources</a></div>
+      <div class="paper-authors">Ruoyu Xu, Yichong Sun, Yimou Wu, Yehui Li, Zheng Li</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">For magnetically actuated robots driven by external magnetic sources (EMSs), rapid and stable localization of the internal permanent magnet (IPM) is essential for closed-loop control. Existing sensor-array-based localization methods require a fixed m...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">4</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261453998" target="_blank" rel="noopener">Energy-optimal linear quadratic tracking control for unmanned underwater vehicles in offshore aquaculture fish net-pen visual inspection</a></div>
+      <div class="paper-authors">Thein Than Tun, Loulin Huang, Mark Anthony Preece</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">
+                    Unmanned underwater vehicles (UUVs) have been deployed for fish net-pen visual inspection (FNVI) in offshore aquaculture. Limited energy capacity of onboard power supplies constrains the UUV’s working range and operating time. To...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">5</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261451003" target="_blank" rel="noopener">2Fast-2Lamaa: Large-scale lidar-inertial localization and mapping with continuous distance fields</a></div>
+      <div class="paper-authors">Cedric Le Gentil, Raphael Falque, Daniil Lisus, Timothy D. Barfoot</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">
+                    This paper introduces 2Fast-2Lamaa, a lidar-inertial state estimation framework for odometry, mapping, and localization. Its first key component is the optimization-based undistortion of lidar scans, which uses continuous IMU pre...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">6</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261459131" target="_blank" rel="noopener">Computational models of artificial and natural trust in robotics: A systematic review and operational guide</a></div>
+      <div class="paper-authors">Samuele Vinanzi, Marta Romeo, Angelo Cangelosi, Francesco Semeraro</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Trust forms the bedrock of successful human interactions, and its integration into human–robot collaboration remains a critical challenge. Contemporary research predominantly explores human trust in robotic systems, focusing on refining the appearanc...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">7</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261455067" target="_blank" rel="noopener">Parkour in the wild: Learning a general and extensible agile locomotion policy using multi-expert distillation and RL fine-tuning</a></div>
+      <div class="paper-authors">Nikita Rudin, Junzhe He, Joshua Aurand, Marco Hutter</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Legged robots are well-suited for navigating terrains inaccessible to wheeled robots, making them ideal for applications in search and rescue or space exploration. However, current control methods often struggle to generalize across diverse, unstruct...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">8</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261448230" target="_blank" rel="noopener">Linking exteroception and proprioception through improved contact modeling for soft growing robots</a></div>
+      <div class="paper-authors">Francesco Fuentes, Serigne Diagne, Zachary Kingston, Laura H. Blumenschein</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Passive deformation due to compliance is a commonly used benefit of soft robots, providing opportunities to achieve robust actuation with few active degrees of freedom. Soft growing robots in particular have shown promise in navigation of unstructure...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">9</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261447308" target="_blank" rel="noopener">TPT-Bench: A large-scale, long-term and robot-egocentric dataset for benchmarking target person tracking</a></div>
+      <div class="paper-authors">Hanjing Ye, Yu Zhan, Weixi Situ, Guangcheng Chen, Jingwen Yu, Ziqi Zhao et al.</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">
+                    Tracking a target person from robot-egocentric views is crucial for developing autonomous robots that provide continuous personalized assistance or collaboration in human–robot interaction (HRI) and Embodied AI. However, most exi...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">10</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261439925" target="_blank" rel="noopener">Control of the uncertain fully flexible link-joint robot manipulators: A free-drift adaptive fractional-order robust approach</a></div>
+      <div class="paper-authors">Seyed Jalal Aldin Hoseini, Mazda Moattari, Saeed Zaare</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">This paper presents a fast and low-vibration tracking control strategy for an uncertain fully flexible link-joint (FFLJ) robot manipulator. Due to the highly underactuated nature of the system, along with the presence of uncertainties and external di...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">11</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261444417" target="_blank" rel="noopener">A ground robot dataset for multi-sensor navigation in diverse environments</a></div>
+      <div class="paper-authors">Ban Li, Jianghui Geng, Pai Wang, Yuanxin Wu, Hui Cheng, Hang Shi</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">
+                    Reliable absolute positioning remains a challenge in autonomous ground robotics, particularly in complex and dynamic real-world environments. The fusion of drift-free global positioning and precise local positioning is essential ...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">12</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261436917" target="_blank" rel="noopener">Faster algorithms for growing collision-free convex polytopes in robot configuration space</a></div>
+      <div class="paper-authors">Peter Werner, Thomas Cohn, Rebecca H. Jiang, Tim Seyde, Max Simchowitz, Russ Tedrake et al.</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">
+                    We propose two novel algorithms for constructing convex probabilistically collision-free polytopes in robot configuration space. Finding these polytopes enables the application of stronger motion-planning frameworks such as traje...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">13</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261447305" target="_blank" rel="noopener">NavWareSet: A dataset of socially compliant and non-compliant robot navigation</a></div>
+      <div class="paper-authors">Johnata Brayan, Sihao Deng, Armando Alves Neto, Iaroslav Okunevich, Tomas Krajnik, Francois Bremond et al.</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">
+                    This paper presents
+                    NavWareSet
+                    , a novel dataset crafted to advance socially compliant robot navigation research. NavWareSet provides multi-modal recordings of both socially compliant and n...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">14</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261451002" target="_blank" rel="noopener">Actuator fault recovery with deep reinforcement learning in a linear model-based control framework: Application to a physical AUV</a></div>
+      <div class="paper-authors">Katell Lagattu, Ramy Alham, Thomas Chaffre, Eva Artusi, Paulo E. Santos, Gilles Le Chenadec et al.</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Actuator faults in autonomous mobile robotic systems pose significant challenges, especially in unpredictable environments where system reliability is paramount. Fault tolerant control (FTC) strategies, particularly those leveraging actuator redundan...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">15</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261443651" target="_blank" rel="noopener">Bioinspired multisegment knee exoskeletons with variable stiffness and kinematic compatibility</a></div>
+      <div class="paper-authors">Ming Xu, Zhihao Zhou, Wenjie Lou, Xiaolin Dai, Run Wang, Sunil K. Agrawal et al.</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">The knee joint plays a critical role in locomotion but is susceptible to overuse injuries, motivating the development of assistive exoskeletons. Current designs face a fundamental trade-off between achieving kinematic compatibility with the knee’s co...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">16</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261444046" target="_blank" rel="noopener">K2MUSE: A human lower-limb multimodal walking dataset spanning task and acquisition variability for rehabilitation robotics</a></div>
+      <div class="paper-authors">Jiwei Li, Bi Zhang, Xiaowei Tan, Wanxin Chen, Zhaoyuan Liu, Juanjuan Zhang et al.</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 1</span>
+      </div>
+      <div class="paper-abstract">
+                    The natural interaction and control performance of lower limb rehabilitation robots are closely linked to biomechanical information from various human locomotion activities. Multidimensional human motion data significantly deepen...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">17</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261441635" target="_blank" rel="noopener">Explicit force-based control strategies for compliant robot-assisted ultrasound imaging</a></div>
+      <div class="paper-authors">Adrian Piedra, R Brooke Jeffrey, Oussama Khatib</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">In this paper, we present a robotic ultrasound system that implements explicit contact force control and force-based full probe orientation optimization to achieve stable, responsive, and high-quality ultrasound imaging. Traditional robotic ultrasoun...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">18</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261441638" target="_blank" rel="noopener">Path planning and reinforcement learning-driven control of on-orbit free-flying multi-arm robots</a></div>
+      <div class="paper-authors">Álvaro Belmonte-Baeza, José Luis Ramón, Leonard Felicetti, Miguel Cazorla, Jorge Pomares</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">This paper presents a hybrid approach that integrates trajectory optimization (TO) and reinforcement learning (RL) for motion planning and control of free-flying multi-arm robots in on-orbit servicing scenarios. The proposed system integrates TO for ...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">19</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261441639" target="_blank" rel="noopener">Multiscale deformable objects manipulation via wavelet-decomposed boundary element method</a></div>
+      <div class="paper-authors">Junlei Hu, Dominic Jones, Majed Melibary, Jiannan Liu, Pietro Valdastri</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">
+                    Robotic deformable object manipulation (DOM) faces critical challenges in industrial and medical applications due to under-actuation, unpredictable deformation, and partial observability. Model-free methods often suffer from unst...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">20</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261442970" target="_blank" rel="noopener">Real-time position and orientation estimation in dual self-propelled swimmers using artificial lateral line systems with intermittent swimming strategy</a></div>
+      <div class="paper-authors">Ruosi Liu, Yufan Zhai, Qianming Huang, Zhenyu Ding, Yang Ding, Guangming Xie</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">In nature, fish leverage lateral lines to detect subtle variations in flow velocity and pressure. Inspired by this, artificial lateral line systems (ALLS) have been developed, with notable success in underwater target recognition and localization. Ho...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">21</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261433609" target="_blank" rel="noopener">Robot-assisted navigation with adaptive impedance and path planning for visually occluded users</a></div>
+      <div class="paper-authors">Idil Ozdamar, Doganay Sirintuna, Pietro Balatti, Luca Fortini, Younggeol Cho, Francisco J. Ruiz-Ruiz et al.</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">
+                    Considering the number of visually impaired individuals worldwide and the limited availability of assistance for safe navigation, there is a growing need for intelligent robotic systems that can provide reliable guidance. This ma...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">22</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261433048" target="_blank" rel="noopener">A manifold model predictive controller for agile pose trajectory tracking of an orbital space robot</a></div>
+      <div class="paper-authors">Shuai Wang, Haiyan Hu, Ju Chen, Xiaodong Song, Qiang Tian</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">The control of an orbital space robot is challenging due to the strong nonlinear dynamic coupling between the floating base spacecraft and the equipped manipulator. To address this problem effectively, this paper develops a geometric control framewor...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">23</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261427574" target="_blank" rel="noopener">Corrigendum to “Enabling to learn for force sensing: A coupling-decoupling under-actuated gripper with multiple-DoFs”</a></div>
+      <div class="paper-authors"></div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">24</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261431863" target="_blank" rel="noopener">Situationally-aware dynamics learning</a></div>
+      <div class="paper-authors">Alejandro Murillo-González, Lantao Liu</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">
+                    Autonomous robots operating in complex, unstructured environments face significant challenges due to latent, unobserved factors that obscure their understanding of both their internal state and the external world. Addressing this...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">25</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261432253" target="_blank" rel="noopener">Robotic perception and manipulation of deformable linear objects: A survey</a></div>
+      <div class="paper-authors">Alessio Caporali, Ignacio Cuiral-Zueco, Gonzalo López-Nicolás, Gianluca Palli</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">
+                    Deformable linear objects (DLOs) are widely encountered in everyday life, taking forms such as plastic tubes, wires, ropes, and cables. They are prevalent across diverse settings, including industrial, domestic, and medical envir...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">26</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261436484" target="_blank" rel="noopener">Can familiarization with a supernumerary robotic finger restore task-dependent cortico-autonomic coupling in first-time healthy users?</a></div>
+      <div class="paper-authors">Feryal A. Alskafi, Mohammad I. Awad, Faezeh Marzbanrad, Rateb Katmah, Sona Al Younis, Ahsan H. Khandoker et al.</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Supernumerary Robotic Fingers (SRFs) have proven their capabilities in enhancing manipulation and dexterity in precision tasks enabling multitasking in healthy individuals, while also playing a compensatory role for those with motor impairments. Howe...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">27</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261430763" target="_blank" rel="noopener">Cooperative task spaces for multi-arm manipulation control based on similarity transformations</a></div>
+      <div class="paper-authors">Tobias Löw, Cem Bilaloglu, Sylvain Calinon</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Many tasks in human environments require collaborative behavior between multiple kinematic chains, either to provide additional support for carrying big and bulky objects or to enable the dexterity that is required for in-hand manipulation. Since the...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">28</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649251412867" target="_blank" rel="noopener">Enhancing interpretability and interactivity in robot manipulation: A neurosymbolic approach</a></div>
+      <div class="paper-authors">Georgios Tziafas, Hamidreza Kasaei</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">In this paper, we present a neurosymbolic architecture for coupling language-guided visual reasoning with robot manipulation. A non-expert human user can prompt the robot using unconstrained natural language, providing a referring expression (REF), a...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">29</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261427801" target="_blank" rel="noopener">Screw impedance control for multi-contact interactions with hierarchically structured, bounded parameter matrices</a></div>
+      <div class="paper-authors">Yiming Chen, Xingwei Zhao, Yuhao Zhang, Chenzui Li, Fei Chen, Bo Tao et al.</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Multi-contact interaction remains a central challenge for precise robotic manipulation. This paper proposes a screw impedance control (SIC) framework based on screw theory that supports intuitive modeling of distributed, non-orthogonal interactions w...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">30</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261430363" target="_blank" rel="noopener">Robotic test tube rearrangement using combined reinforcement learning and motion planning in a closed loop</a></div>
+      <div class="paper-authors">Hao Chen, Yu Tang, Weiwei Wan, Masaki Matsushita, Jun Takahashi, Takeyuki Kotaka et al.</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">
+                    A combined reinforcement learning (RL) and motion planning framework is proposed in this paper to address a multi-class in-rack test tube rearrangement problem. The RL works at the task level to plan a sequence of swap actions wh...</div>
+    </div>
+  </li>
+</ul>
+</div></div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <p>数据来源 <a href="https://www.crossref.org" target="_blank">CrossRef API</a> · 生成时间 2026-06-26</p>
+  <p>Deployed on <a href="https://www.netlify.com" target="_blank">Netlify</a></p>
+</footer>
+
+<script>
+  function showTab(idx) {
+    document.querySelectorAll('.tab-btn').forEach((b, i) => {
+      b.classList.toggle('active', i === idx);
+    });
+    document.querySelectorAll('.tab-panel').forEach((p, i) => {
+      p.classList.toggle('active', i === idx);
+    });
+  }
+  // auto-open first tab
+  showTab(0);
+</script>
+
+</body>
+</html>
