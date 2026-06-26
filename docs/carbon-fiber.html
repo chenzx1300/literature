@@ -491,6 +491,10 @@
     .analytics-col-wide {
       grid-column: 1 / -1;
     }
+    /* 3-column layout for authors + universities row */
+    .analytics-row.authors-row {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
 
     /* ---- Widget Card ---- */
     .widget-card {
@@ -1072,8 +1076,9 @@
 
   </div>
 
-  <!-- 3. Top Authors by Publications + by Citations (side by side) -->
-  <div class="analytics-row">
+  <!-- 3. Authors + Universities (3 columns) -->
+  <div class="analytics-row authors-row">
+
 
     <!-- Top Authors by Publications -->
     <div class="widget-card">
@@ -1185,11 +1190,8 @@
       </div>
     </div>
 
-  </div>
-
-  <!-- 4. Top Universities -->
-  <div class="analytics-row">
-    <div class="widget-card analytics-col-wide">
+    <!-- Top Universities -->
+    <div class="widget-card">
       <div class="widget-header">
         <div class="widget-title">🏛️ 顶尖机构 | Top Universities</div>
         <div class="widget-badge">Top 5</div>
@@ -1205,6 +1207,7 @@
     </span>
       </div>
     </div>
+
   </div>
 
 </section>
