@@ -491,6 +491,10 @@
     .analytics-col-wide {
       grid-column: 1 / -1;
     }
+    /* 4-column layout for topics+trend+authors+uni */
+    .analytics-row.four-col {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
     /* 3-column layout for authors + universities row */
     .analytics-row.authors-row {
       grid-template-columns: 1fr 1fr 1fr;
@@ -768,204 +772,11 @@
 </header>
 
 <!-- =========================================================
-     ANALYTICS SECTION — Pure HTML + CSS
-     Placeholders: <div class="stat-card metric-primary">
-      <div class="sc-icon">📄</div>
-      <div class="sc-value">1429</div>
-      <div class="sc-label">论文总数（近5年）</div>
-      <div class="sc-sublabel">Total Papers</div>
-    </div>
-<div class="stat-card metric-secondary">
-      <div class="sc-icon">⬆️</div>
-      <div class="sc-value">19239</div>
-      <div class="sc-label">引用总数</div>
-      <div class="sc-sublabel">Total Citations</div>
-    </div>
-<div class="stat-card metric-tertiary">
-      <div class="sc-icon">📊</div>
-      <div class="sc-value">13.5</div>
-      <div class="sc-label">篇均引用</div>
-      <div class="sc-sublabel">Avg Citations</div>
-    </div>
-<div class="stat-card metric-small">
-      <div class="sc-icon">📚</div>
-      <div class="sc-value">3</div>
-      <div class="sc-label">期刊数</div>
-      <div class="sc-sublabel">Journals</div>
-    </div> <div class="topic-bar-item">
-      <span class="topic-bar-name">Structural Analysis & FEM</span>
-      <div class="topic-bar-track">
-        <div class="topic-bar-fill" style="width: 100.0%">
-          <span>337</span>
-        </div>
-      </div>
-      <span class="topic-bar-pct">100%</span>
-    </div>
-<div class="topic-bar-item">
-      <span class="topic-bar-name">Sensors & Smart Structures</span>
-      <div class="topic-bar-track">
-        <div class="topic-bar-fill" style="width: 58.5%">
-          <span>197</span>
-        </div>
-      </div>
-      <span class="topic-bar-pct">58%</span>
-    </div>
-<div class="topic-bar-item">
-      <span class="topic-bar-name">Aerospace & Lightweight Design</span>
-      <div class="topic-bar-track">
-        <div class="topic-bar-fill" style="width: 36.5%">
-          <span>123</span>
-        </div>
-      </div>
-      <span class="topic-bar-pct">36%</span>
-    </div>
-<div class="topic-bar-item">
-      <span class="topic-bar-name">Durability & Environmental</span>
-      <div class="topic-bar-track">
-        <div class="topic-bar-fill" style="width: 25.5%">
-          <span>86</span>
-        </div>
-      </div>
-      <span class="topic-bar-pct">26%</span>
-    </div>
-<div class="topic-bar-item">
-      <span class="topic-bar-name">AI & Data-Driven Methods</span>
-      <div class="topic-bar-track">
-        <div class="topic-bar-fill" style="width: 23.1%">
-          <span>78</span>
-        </div>
-      </div>
-      <span class="topic-bar-pct">23%</span>
-    </div>
-<div class="topic-bar-item">
-      <span class="topic-bar-name">Mechanical Properties & Strength</span>
-      <div class="topic-bar-track">
-        <div class="topic-bar-fill" style="width: 20.8%">
-          <span>70</span>
-        </div>
-      </div>
-      <span class="topic-bar-pct">21%</span>
-    </div>
-                   <div class="author-rank-item rank-1">
-      <div class="author-medal">🥇</div>
-      <div class="author-rank-info">
-        <div class="author-rank-name">Antonio Bicchi</div>
-        <div class="author-rank-meta">IEEE Transactions on Robotics, Robotics and Computer-Integrated Manufacturing</div>
-      </div>
-      <div class="author-rank-stat">
-        <div class="ars-value">13</div>
-        <div class="ars-label">篇</div>
-      </div>
-      <div class="author-rank-stat">
-        <div class="ars-value">63</div>
-        <div class="ars-label">引</div>
-      </div>
-    </div>
-<div class="author-rank-item rank-2">
-      <div class="author-medal">🥈</div>
-      <div class="author-rank-info">
-        <div class="author-rank-name">Aude Billard</div>
-        <div class="author-rank-meta">IEEE Transactions on Robotics, Robotics and Computer-Integrated Manufacturing</div>
-      </div>
-      <div class="author-rank-stat">
-        <div class="ars-value">11</div>
-        <div class="ars-label">篇</div>
-      </div>
-      <div class="author-rank-stat">
-        <div class="ars-value">182</div>
-        <div class="ars-label">引</div>
-      </div>
-    </div>
-<div class="author-rank-item rank-3">
-      <div class="author-medal">🥉</div>
-      <div class="author-rank-info">
-        <div class="author-rank-name">Giorgio Grioli</div>
-        <div class="author-rank-meta">IEEE Transactions on Robotics, Robotics and Computer-Integrated Manufacturing</div>
-      </div>
-      <div class="author-rank-stat">
-        <div class="ars-value">10</div>
-        <div class="ars-label">篇</div>
-      </div>
-      <div class="author-rank-stat">
-        <div class="ars-value">56</div>
-        <div class="ars-label">引</div>
-      </div>
-    </div> <div class="author-rank-item rank-1">
-      <div class="author-medal">🥇</div>
-      <div class="author-rank-info">
-        <div class="author-rank-name">Marco Hutter</div>
-        <div class="author-rank-meta">IEEE Transactions on Robotics, Robotics and Computer-Integrated Manufacturing</div>
-      </div>
-      <div class="author-rank-stat">
-        <div class="ars-value">7</div>
-        <div class="ars-label">篇</div>
-      </div>
-      <div class="author-rank-stat">
-        <div class="ars-value">470</div>
-        <div class="ars-label">引</div>
-      </div>
-    </div>
-<div class="author-rank-item rank-2">
-      <div class="author-medal">🥈</div>
-      <div class="author-rank-info">
-        <div class="author-rank-name">Siyuan Feng</div>
-        <div class="author-rank-meta">IEEE Transactions on Robotics, Robotics and Computer-Integrated Manufacturing</div>
-      </div>
-      <div class="author-rank-stat">
-        <div class="ars-value">3</div>
-        <div class="ars-label">篇</div>
-      </div>
-      <div class="author-rank-stat">
-        <div class="ars-value">437</div>
-        <div class="ars-label">引</div>
-      </div>
-    </div>
-<div class="author-rank-item rank-3">
-      <div class="author-medal">🥉</div>
-      <div class="author-rank-info">
-        <div class="author-rank-name">Cheng Chi</div>
-        <div class="author-rank-meta">Robotics and Computer-Integrated Manufacturing</div>
-      </div>
-      <div class="author-rank-stat">
-        <div class="ars-value">2</div>
-        <div class="ars-label">篇</div>
-      </div>
-      <div class="author-rank-stat">
-        <div class="ars-value">437</div>
-        <div class="ars-label">引</div>
-      </div>
-    </div>
-                   <span class="uni-chip">
-      <span class="uni-rank">#1</span>
-      MIT · 32篇
-    </span>
-<span class="uni-chip">
-      <span class="uni-rank">#2</span>
-      ETH Zurich · 17篇
-    </span> <div class="trend-bars"><div class="trend-bar-col">
-      <div class="trend-bar-fill" style="height: 4px" data-count="25"></div>
-      <div class="trend-bar-label">2022</div>
-    </div><div class="trend-bar-col">
-      <div class="trend-bar-fill" style="height: 45px" data-count="257"></div>
-      <div class="trend-bar-label">2023</div>
-    </div><div class="trend-bar-col">
-      <div class="trend-bar-fill" style="height: 66px" data-count="373"></div>
-      <div class="trend-bar-label">2024</div>
-    </div><div class="trend-bar-col">
-      <div class="trend-bar-fill" style="height: 90px" data-count="507"></div>
-      <div class="trend-bar-label">2025</div>
-    </div><div class="trend-bar-col">
-      <div class="trend-bar-fill" style="height: 47px" data-count="267"></div>
-      <div class="trend-bar-label">2026</div>
-    </div></div>
-     ========================================================= -->
-
-<!-- =========================================================
-     ANALYTICS HTML STRUCTURE
+     ANALYTICS HTML STRUCTURE — COMPACT 2-ROW LAYOUT
      ========================================================= -->
 <section class="analytics" id="analyticsSection">
 
-  <!-- 1. Overview Stats Bar -->
+  <!-- 1. Overview Stats (2x2 mini grid) -->
   <div class="analytics-overview" id="analyticsOverview">
 <div class="stat-card metric-primary">
       <div class="sc-icon">📄</div>
@@ -993,8 +804,8 @@
     </div>
   </div>
 
-  <!-- 2. Research Topics + Trend Chart (side by side) -->
-  <div class="analytics-row">
+  <!-- 2. Topics + Trend + Authors + Universities (4 columns) -->
+  <div class="analytics-row four-col">
 
     <!-- Research Topics -->
     <div class="widget-card">
@@ -1086,12 +897,6 @@
       </div>
     </div>
 
-  </div>
-
-  <!-- 3. Authors + Universities (3 columns) -->
-  <div class="analytics-row authors-row">
-
-
     <!-- Top Authors by Publications -->
     <div class="widget-card">
       <div class="widget-header">
@@ -1147,8 +952,8 @@
       </div>
     </div>
 
-    <!-- Top Authors by Citations -->
-    <div class="widget-card">
+    <!-- Top Authors by Citations + Universities -->
+    <div class="widget-card compact-authors">
       <div class="widget-header">
         <div class="widget-title">📖 高引作者 | By Citations</div>
         <div class="widget-badge">Top 3</div>
@@ -1200,13 +1005,8 @@
       </div>
     </div>
       </div>
-    </div>
-
-    <!-- Top Universities -->
-    <div class="widget-card">
-      <div class="widget-header">
+      <div class="widget-header" style="margin-top:0.6rem;">
         <div class="widget-title">🏛️ 顶尖机构 | Top Universities</div>
-        <div class="widget-badge">Top 5</div>
       </div>
       <div class="uni-list" id="topUniversities">
 <span class="uni-chip">
@@ -1223,6 +1023,7 @@
   </div>
 
 </section>
+
 <div class="container">
 
   <!-- Journal Tabs -->
