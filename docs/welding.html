@@ -495,13 +495,9 @@
     .analytics-row.four-col {
       grid-template-columns: 1fr 1fr 1fr 1fr;
     }
-    /* 2-column layout for authors row */
+    /* 3-column layout for authors + universities row */
     .analytics-row.authors-row {
-      grid-template-columns: 1fr 1fr;
-    }
-    /* Single-column full-width row for institutions panel */
-    .analytics-row.institutions-row {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
     }
 
     /* ---- Widget Card ---- */
@@ -510,8 +506,6 @@
       border-radius: 12px;
       box-shadow: var(--shadow);
       padding: 0.7rem 1rem;
-      display: flex;
-      flex-direction: column;
     }
     .widget-card .widget-header {
       display: flex;
@@ -649,8 +643,11 @@
       color: var(--text-light);
     }
 
-    /* ---- Universities (single-panel + tabs, minimalist) ---- */
-    .inst-card .widget-badge { display: none; } /* hide badge in inst panel */
+    /* ---- Institutions (single-panel + tabs, minimalist) ---- */
+    /* Single-column full-width row for institutions panel */
+    .analytics-row.institutions-row {
+      grid-template-columns: 1fr;
+    }
     .inst-tabs {
       display: flex;
       gap: 0.4rem;
@@ -722,75 +719,28 @@
       .inst-row { grid-template-columns: 1.2rem 1fr auto auto; }
       .ir-meta { display: none; }
     }
-    .uni-medal {
-      font-size: 1.4rem;
-      line-height: 1;
-      flex-shrink: 0;
-      filter: drop-shadow(0 1px 1px rgba(0,0,0,0.08));
-    }
-    .uni-info { flex: 1; min-width: 0; }
-    .uni-name {
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--primary);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      line-height: 1.2;
-    }
-    .uni-meta {
-      font-size: 0.66rem;
-      color: var(--text-muted);
-      margin-top: 0.1rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .uni-stat {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      flex-shrink: 0;
-      padding-left: 0.4rem;
-      border-left: 1px dashed rgba(0,0,0,0.08);
-    }
-    .uni-stat .us-value {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--accent);
-      line-height: 1;
-    }
-    .uni-stat .us-label {
-      font-size: 0.6rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-light);
-      margin-top: 0.1rem;
-    }
 
     /* ---- Trend Chart (Year Bars) ---- */
-    .trend-chart {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
     .trend-bars {
       display: flex;
       justify-content: space-around;
       gap: 0.5rem;
-      align-items: flex-end;
-      height: 130px;
+      height: 56px;
       padding: 0;
-      width: 100%;
     }
     .trend-bar-col {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: center;
       height: 100%;
+    }
+    .trend-bar-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
     }
     .trend-bar-fill {
       width: 80%;
@@ -799,20 +749,17 @@
       background: linear-gradient(180deg, var(--accent) 0%, var(--accent-soft) 100%);
       align-self: center;
       transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
     }
-    .trend-bar-fill::before {
+    .trend-bar-fill::after {
       content: attr(data-count);
-      position: absolute;
-      bottom: calc(100% + 0.25rem);
-      left: 50%;
-      transform: translateX(-50%);
       font-size: 0.65rem;
       font-weight: 700;
       color: var(--accent);
       white-space: nowrap;
+      margin-top: 0.2rem;
+      display: block;
+      text-align: center;
     }
-    .trend-bar-fill::after { content: none; }
     .trend-bar-label {
       font-size: 0.68rem;
       font-weight: 600;
@@ -991,7 +938,7 @@
 
   </div>
 
-  <!-- 3. Authors + Universities (3 columns) -->
+  <!-- 3. Authors (2 columns) -->
   <div class="analytics-row authors-row">
 
     <div class="widget-card">
@@ -1104,9 +1051,9 @@
 
   </div>
 
-  <!-- 4. Top Institutions (single panel + tabs) -->
+  <!-- 4. Top Institutions (single panel + tabs, full width) -->
   <div class="analytics-row institutions-row">
-    <div class="widget-card inst-card">
+<div class="widget-card inst-card">
       <div class="widget-header">
         <div class="widget-title">🏛️ 顶尖机构 | Top Institutions</div>
         <div class="widget-badge">Top 3</div>
@@ -1117,20 +1064,20 @@
         <button class="inst-tab" onclick="showInstTab(2)">🔬 研究所</button>
       </div>
       <div class="inst-pane active" data-pane="0">
-        <div class="inst-row"><span class="ir-rank">1</span><span class="ir-name">Beijing University of Technology</span><span class="ir-meta">北京工业大学</span><span class="ir-flag">🇨🇳</span><span class="ir-count">18 篇</span></div>
-        <div class="inst-row"><span class="ir-rank">2</span><span class="ir-name">Southwest Jiaotong University</span><span class="ir-meta">西南交通大学</span><span class="ir-flag">🇨🇳</span><span class="ir-count">16 篇</span></div>
-        <div class="inst-row"><span class="ir-rank">3</span><span class="ir-name">LUT University</span><span class="ir-meta">Lappeenranta-Lahti U. of Tech.</span><span class="ir-flag">🇫🇮</span><span class="ir-count">14 篇</span></div>
-      </div>
-      <div class="inst-pane" data-pane="1">
-        <div class="inst-row"><span class="ir-rank">1</span><span class="ir-name">Plasma Technology</span><span class="ir-meta">Thermal spraying</span><span class="ir-flag">🇺🇸</span><span class="ir-count">8 篇</span></div>
-        <div class="inst-row"><span class="ir-rank">2</span><span class="ir-name">China Energy Engineering Corp.</span><span class="ir-meta">中国能建</span><span class="ir-flag">🇨🇳</span><span class="ir-count">5 篇</span></div>
-        <div class="inst-row"><span class="ir-rank">3</span><span class="ir-name">General Motors</span><span class="ir-meta">Automotive OEM</span><span class="ir-flag">🇺🇸</span><span class="ir-count">5 篇</span></div>
-      </div>
-      <div class="inst-pane" data-pane="2">
-        <div class="inst-row"><span class="ir-rank">1</span><span class="ir-name">BAM</span><span class="ir-meta">Federal Institute for Materials Research</span><span class="ir-flag">🇩🇪</span><span class="ir-count">20 篇</span></div>
-        <div class="inst-row"><span class="ir-rank">2</span><span class="ir-name">CNRS</span><span class="ir-meta">Centre National de la Recherche</span><span class="ir-flag">🇫🇷</span><span class="ir-count">16 篇</span></div>
-        <div class="inst-row"><span class="ir-rank">3</span><span class="ir-name">PNNL</span><span class="ir-meta">Pacific Northwest National Lab</span><span class="ir-flag">🇺🇸</span><span class="ir-count">12 篇</span></div>
-      </div>
+          <div class="inst-row"><span class="ir-rank">1</span><span class="ir-name">Beijing University of Technology</span><span class="ir-meta">CN</span><span class="ir-flag">🌐</span><span class="ir-count">18 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">2</span><span class="ir-name">Southwest Jiaotong University</span><span class="ir-meta">CN</span><span class="ir-flag">🌐</span><span class="ir-count">16 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">3</span><span class="ir-name">Lappeenranta-Lahti University of Technology</span><span class="ir-meta">FI</span><span class="ir-flag">🌐</span><span class="ir-count">14 篇</span></div>
+        </div>
+        <div class="inst-pane" data-pane="1">
+          <div class="inst-row"><span class="ir-rank">1</span><span class="ir-name">Plasma Technology (United States)</span><span class="ir-meta">US</span><span class="ir-flag">🌐</span><span class="ir-count">8 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">2</span><span class="ir-name">China Energy Engineering Corporation (China)</span><span class="ir-meta">CN</span><span class="ir-flag">🌐</span><span class="ir-count">5 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">3</span><span class="ir-name">General Motors (United States)</span><span class="ir-meta">US</span><span class="ir-flag">🌐</span><span class="ir-count">5 篇</span></div>
+        </div>
+        <div class="inst-pane" data-pane="2">
+          <div class="inst-row"><span class="ir-rank">1</span><span class="ir-name">Federal Institute For Materials Research and Testing</span><span class="ir-meta">DE</span><span class="ir-flag">🌐</span><span class="ir-count">20 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">2</span><span class="ir-name">Centre National de la Recherche Scientifique</span><span class="ir-meta">FR</span><span class="ir-flag">🌐</span><span class="ir-count">16 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">3</span><span class="ir-name">Pacific Northwest National Laboratory</span><span class="ir-meta">US</span><span class="ir-flag">🌐</span><span class="ir-count">12 篇</span></div>
+        </div>
     </div>
   </div>
 
