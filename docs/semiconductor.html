@@ -37,7 +37,7 @@
     .site-header {
       background: linear-gradient(135deg, #0d1b2a 0%, #1b3a5c 50%, #1e5090 100%);
       color: #fff;
-      padding: 1.5rem 1.5rem 1.25rem;
+      padding: 1rem 1.5rem 0.9rem;
       position: relative;
       overflow: hidden;
     }
@@ -56,23 +56,23 @@
       position: relative;
     }
     .eyebrow {
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--accent-soft);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.35rem;
       opacity: 0.9;
     }
     .site-header h1 {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.2rem;
       letter-spacing: -0.01em;
     }
     .subtitle {
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       color: rgba(255,255,255,0.65);
-      margin-bottom: 1rem;
+      margin-bottom: 0.7rem;
     }
     .stats-bar {
       display: flex;
@@ -405,10 +405,10 @@
     .analytics {
       max-width: 960px;
       margin: 0 auto;
-      padding: 0.75rem 1rem 0.75rem;
+      padding: 0.5rem 1rem 0.5rem;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 0.5rem;
     }
 
     /* ---- Section Title ---- */
@@ -427,18 +427,18 @@
     .analytics-overview {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0.5rem;
+      gap: 0.4rem;
     }
 
     .stat-card {
       background: var(--surface);
       border-radius: 12px;
       box-shadow: var(--shadow);
-      padding: 0.85rem 1.1rem;
+      padding: 0.6rem 0.9rem;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 0.2rem;
+      gap: 0.15rem;
       position: relative;
       overflow: hidden;
       transition: box-shadow 0.2s, transform 0.2s;
@@ -451,13 +451,13 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 3px;
+      height: 2px;
       background: linear-gradient(90deg, var(--accent), var(--accent-soft));
       border-radius: 12px 12px 0 0;
     }
     .stat-card .sc-icon {
-      font-size: 1rem;
-      margin-bottom: 0.1rem;
+      font-size: 0.95rem;
+      margin-bottom: 0.05rem;
       opacity: 0.7;
     }
     .stat-card .sc-value {
@@ -465,28 +465,28 @@
       color: var(--primary);
       line-height: 1;
     }
-    .stat-card.metric-primary .sc-value { font-size: 1.75rem; }
-    .stat-card.metric-secondary .sc-value { font-size: 1.35rem; color: var(--primary-light); }
-    .stat-card.metric-tertiary .sc-value { font-size: 1.1rem; color: var(--accent); }
-    .stat-card.metric-small .sc-value { font-size: 0.9rem; color: var(--text-muted); }
+    .stat-card.metric-primary .sc-value { font-size: 1.6rem; }
+    .stat-card.metric-secondary .sc-value { font-size: 1.25rem; color: var(--primary-light); }
+    .stat-card.metric-tertiary .sc-value { font-size: 1rem; color: var(--accent); }
+    .stat-card.metric-small .sc-value { font-size: 0.85rem; color: var(--text-muted); }
     .stat-card .sc-label {
-      font-size: 0.62rem;
+      font-size: 0.6rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--text-muted);
       font-weight: 500;
     }
     .stat-card .sc-sublabel {
-      font-size: 0.58rem;
+      font-size: 0.55rem;
       color: var(--text-light);
-      margin-top: -0.1rem;
+      margin-top: -0.05rem;
     }
 
     /* ---- Two-column layout for side-by-side widgets ---- */
     .analytics-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.6rem;
+      gap: 0.5rem;
     }
     .analytics-col-wide {
       grid-column: 1 / -1;
@@ -505,13 +505,13 @@
       background: var(--surface);
       border-radius: 12px;
       box-shadow: var(--shadow);
-      padding: 0.9rem 1.25rem;
+      padding: 0.7rem 1rem;
     }
     .widget-card .widget-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
     .widget-card .widget-title {
       font-size: 0.68rem;
@@ -551,15 +551,15 @@
     }
     .topic-bar-track {
       flex: 1;
-      height: 12px;
+      height: 8px;
       background: var(--bg);
-      border-radius: 6px;
+      border-radius: 4px;
       overflow: hidden;
       position: relative;
     }
     .topic-bar-fill {
       height: 100%;
-      border-radius: 6px;
+      border-radius: 4px;
       background: linear-gradient(90deg, var(--accent) 0%, var(--accent-soft) 100%);
       transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
@@ -586,14 +586,14 @@
     .author-rank-list {
       display: flex;
       flex-direction: column;
-      gap: 0.2rem;
+      gap: 0.15rem;
     }
     .author-rank-item {
       display: flex;
       align-items: center;
-      gap: 0.4rem;
-      padding: 0.2rem 0.4rem;
-      border-radius: 5px;
+      gap: 0.35rem;
+      padding: 0.15rem 0.35rem;
+      border-radius: 4px;
       background: var(--bg);
       transition: background 0.2s;
     }
@@ -677,10 +677,10 @@
     /* ---- Trend Chart (Year Bars) ---- */
     .trend-bars {
       display: flex;
-      align-items: flex-end;
+      justify-content: space-around;
       gap: 0.5rem;
       height: 56px;
-      padding-bottom: 0;
+      padding: 0;
     }
     .trend-bar-col {
       flex: 1;
@@ -772,11 +772,11 @@
 </header>
 
 <!-- =========================================================
-     ANALYTICS HTML STRUCTURE — COMPACT 2-ROW LAYOUT
+     ANALYTICS HTML STRUCTURE
      ========================================================= -->
 <section class="analytics" id="analyticsSection">
 
-  <!-- 1. Overview Stats (2x2 mini grid) -->
+  <!-- 1. Overview Stats (4 columns) -->
   <div class="analytics-overview" id="analyticsOverview">
 <div class="stat-card metric-primary">
       <div class="sc-icon">📄</div>
@@ -804,10 +804,9 @@
     </div>
   </div>
 
-  <!-- 2. Topics + Trend + Authors + Universities (4 columns) -->
-  <div class="analytics-row four-col">
+  <!-- 2. Topics + Trend (2 columns) -->
+  <div class="analytics-row">
 
-    <!-- Research Topics -->
     <div class="widget-card">
       <div class="widget-header">
         <div class="widget-title">🧠 研究方向 | Research Topics</div>
@@ -871,7 +870,6 @@
       </div>
     </div>
 
-    <!-- Research Trend -->
     <div class="widget-card">
       <div class="widget-header">
         <div class="widget-title">📅 发表趋势 | Publication Trend</div>
@@ -897,7 +895,11 @@
       </div>
     </div>
 
-    <!-- Top Authors by Publications -->
+  </div>
+
+  <!-- 3. Authors + Universities (3 columns) -->
+  <div class="analytics-row authors-row">
+
     <div class="widget-card">
       <div class="widget-header">
         <div class="widget-title">✍️ 高产作者 | By Publications</div>
@@ -923,7 +925,7 @@
       <div class="author-medal">🥈</div>
       <div class="author-rank-info">
         <div class="author-rank-name">Jean-Pierre Raskin</div>
-        <div class="author-rank-meta">IEEE Electron Device Letters, IEEE Transactions on Electron Devices</div>
+        <div class="author-rank-meta">IEEE Transactions on Electron Devices, IEEE Electron Device Letters</div>
       </div>
       <div class="author-rank-stat">
         <div class="ars-value">13</div>
@@ -938,7 +940,7 @@
       <div class="author-medal">🥉</div>
       <div class="author-rank-info">
         <div class="author-rank-name">Youngkeun Park</div>
-        <div class="author-rank-meta">IEEE Electron Device Letters, IEEE Transactions on Electron Devices</div>
+        <div class="author-rank-meta">IEEE Transactions on Electron Devices, IEEE Electron Device Letters</div>
       </div>
       <div class="author-rank-stat">
         <div class="ars-value">12</div>
@@ -952,8 +954,7 @@
       </div>
     </div>
 
-    <!-- Top Authors by Citations + Universities -->
-    <div class="widget-card compact-authors">
+    <div class="widget-card">
       <div class="widget-header">
         <div class="widget-title">📖 高引作者 | By Citations</div>
         <div class="widget-badge">Top 3</div>
@@ -1005,8 +1006,12 @@
       </div>
     </div>
       </div>
-      <div class="widget-header" style="margin-top:0.6rem;">
+    </div>
+
+    <div class="widget-card">
+      <div class="widget-header">
         <div class="widget-title">🏛️ 顶尖机构 | Top Universities</div>
+        <div class="widget-badge">Top 5</div>
       </div>
       <div class="uni-list" id="topUniversities">
 <span class="uni-chip">
@@ -1023,6 +1028,7 @@
   </div>
 
 </section>
+
 
 <div class="container">
 
@@ -1060,30 +1066,6 @@
 <li class="paper-item">
     <div class="paper-num">1</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3691120" target="_blank" rel="noopener">Characterization of Low-Temperature Intrinsic Field-Effect Mobility With Contact Resistances in Amorphous InGaZnO Thin Film Transistors</a></div>
-      <div class="paper-authors">Haesung Kim, Ju Young Park, Seung Hyeop Han, Hyojin Yang, Yoon Jung Lee, Sung-Jin Choi et al.</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 73, No. 7, pp. 4341-4345 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">2</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3698066" target="_blank" rel="noopener">A 4.19-M Pixels Colloidal Quantum Dot-Based SWIR Image Sensor With High-Linearity Multistep Single-Slope ADCs</a></div>
-      <div class="paper-authors">Lixiang Han, Yihui Zhang, Hao Li, Junjie Chen, Yingxiang Liang, Yuanbo Zhang et al.</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 73, No. 7, pp. 4016-4022 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">3</div>
-    <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3696937" target="_blank" rel="noopener">Cryogenic Forming/Breakdown of HfO$_{x}$ for Reduced C2C Variability in Filamentary RRAM</a></div>
       <div class="paper-authors">Siddharth Kurup, Madhav Vadlamani, Fanuel Mammo, Abraham L. Weinstein, Michael A. Filler, Shimeng Yu et al.</div>
       <div class="paper-meta">
@@ -1094,12 +1076,36 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">4</div>
+    <div class="paper-num">2</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3697706" target="_blank" rel="noopener">Design and Realization of GaN-Based Trench-Gate MOSFETs Based on Graded Al-Composition AlGaN Channel Layer</a></div>
       <div class="paper-authors">Yan Guo, Zexiang Liu, Guokai Wang, Hui Guo, Yugang Zhou, Dunjun Chen et al.</div>
       <div class="paper-meta">
         <span>📖 Vol. 73, No. 7, pp. 4465-4469 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">3</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3689803" target="_blank" rel="noopener">Self-Powered Narrowband Perovskite Photodetector Using Photon Field Modulation Layer</a></div>
+      <div class="paper-authors">Sampati Rao Sridhar, Mohammad Adil Afroz, Ajay Kumar Sahu, Ankita Sengupta, Nilesh Kumar Jangir, Soumitra Satapathi et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 73, No. 7, pp. 4257-4262 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">4</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3698066" target="_blank" rel="noopener">A 4.19-M Pixels Colloidal Quantum Dot-Based SWIR Image Sensor With High-Linearity Multistep Single-Slope ADCs</a></div>
+      <div class="paper-authors">Lixiang Han, Yihui Zhang, Hao Li, Junjie Chen, Yingxiang Liang, Yuanbo Zhang et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 73, No. 7, pp. 4016-4022 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1120,10 +1126,10 @@
 <li class="paper-item">
     <div class="paper-num">6</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3689803" target="_blank" rel="noopener">Self-Powered Narrowband Perovskite Photodetector Using Photon Field Modulation Layer</a></div>
-      <div class="paper-authors">Sampati Rao Sridhar, Mohammad Adil Afroz, Ajay Kumar Sahu, Ankita Sengupta, Nilesh Kumar Jangir, Soumitra Satapathi et al.</div>
+      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3691120" target="_blank" rel="noopener">Characterization of Low-Temperature Intrinsic Field-Effect Mobility With Contact Resistances in Amorphous InGaZnO Thin Film Transistors</a></div>
+      <div class="paper-authors">Haesung Kim, Ju Young Park, Seung Hyeop Han, Hyojin Yang, Yoon Jung Lee, Sung-Jin Choi et al.</div>
       <div class="paper-meta">
-        <span>📖 Vol. 73, No. 7, pp. 4257-4262 (2026)</span>
+        <span>📖 Vol. 73, No. 7, pp. 4341-4345 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1131,30 +1137,6 @@
   </li>
 <li class="paper-item">
     <div class="paper-num">7</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3694028" target="_blank" rel="noopener">Unique Window ESD Failure in LDMOS--SCR and Its Implication on Power-to-Fail Scalability</a></div>
-      <div class="paper-authors">Kranthi Nagothu, Gianluca Boselli, K. K. Shreenidhaa, Shravya N. Raj, Mayank Shrivastava</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 73, No. 7, pp. 4224-4232 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">8</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3697283" target="_blank" rel="noopener">Comparative Study of Avalanche and Short-Circuit Reliability in 1.2-kV SiC MOSFETs</a></div>
-      <div class="paper-authors">Kazuhiro Suzuki, Hiroshi Yano, Noriyuki Iwamuro</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 73, No. 7, pp. 4074-4082 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">9</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3692756" target="_blank" rel="noopener">Breakdown Mechanisms of Vertical GaN Junction Field-Effect Transistors and Enhanced Figure of Merit Using Gradient Doping Channel</a></div>
       <div class="paper-authors">Daoyuan Li, Shenglei Zhao, Xiufeng Song, Naixuan Wang, Longyang Yu, Juan Gui et al.</div>
@@ -1166,7 +1148,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">10</div>
+    <div class="paper-num">8</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3693664" target="_blank" rel="noopener">Revised Carrier Transport Model Based on Depletion Region Boundary Dynamic Equilibrium for MWIR HgCdTe</a></div>
       <div class="paper-authors">Fuxing Dai, Fang Wang, Xiao Fu, Ruiqi Jiang, Xiao Zhuo, Liqi Zhu et al.</div>
@@ -1178,19 +1160,31 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">11</div>
+    <div class="paper-num">9</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3692761" target="_blank" rel="noopener">Accurate and Efficient Equivalent Circuit Modeling for Single-Port SAW Resonators</a></div>
-      <div class="paper-authors">Tinglun Ao, Chen Chen, Guopeng Hui, Haotian Liu, Minglei Li</div>
+      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3694028" target="_blank" rel="noopener">Unique Window ESD Failure in LDMOS--SCR and Its Implication on Power-to-Fail Scalability</a></div>
+      <div class="paper-authors">Kranthi Nagothu, Gianluca Boselli, K. K. Shreenidhaa, Shravya N. Raj, Mayank Shrivastava</div>
       <div class="paper-meta">
-        <span>📖 Vol. 73, No. 7, pp. 4199-4207 (2026)</span>
+        <span>📖 Vol. 73, No. 7, pp. 4224-4232 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">12</div>
+    <div class="paper-num">10</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3697283" target="_blank" rel="noopener">Comparative Study of Avalanche and Short-Circuit Reliability in 1.2-kV SiC MOSFETs</a></div>
+      <div class="paper-authors">Kazuhiro Suzuki, Hiroshi Yano, Noriyuki Iwamuro</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 73, No. 7, pp. 4074-4082 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">11</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3697157" target="_blank" rel="noopener">Scalable Organic-on-Oxide CMOS Inverters With Solution-Processed OTFTs for Low-Power Large-Area Integrated Circuits</a></div>
       <div class="paper-authors">Doil Kim, Zhengyang Hu, Simon Ogier, George Roberts, Xiaojun Guo</div>
@@ -1202,40 +1196,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">13</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3691694" target="_blank" rel="noopener">Modeling and Optimization of Novel Cs
-                    <sub>2</sub>
-                    AlBiCl
-                    <sub>6</sub>
-                    -Based Double Perovskite Solar Cells for Underwater Applications: A Comprehensive Study</a></div>
-      <div class="paper-authors">Rahul Kundara, Rikmantra Basu, Jaya Madan, Rahul Pandey</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 73, No. 7, pp. 4280-4286 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">14</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3694953" target="_blank" rel="noopener">CeO
-                    <sub>
-                      2–
-                      <i>x</i>
-                    </sub>
-                    /ZnO Heterojunction Photoelectric Synapse for Reservoir Computing and Physical Edge Intelligent Light Sensing Systems</a></div>
-      <div class="paper-authors">Haodong Chen, Tuo Li, Xiaofeng Zou, Haotian Meng, Chunyun Su, Chunwei Zhang et al.</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 73, No. 7, pp. 4083-4089 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">15</div>
+    <div class="paper-num">12</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3697708" target="_blank" rel="noopener">Enhancing HfO
                     <sub>2</sub>
@@ -1253,7 +1214,19 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">16</div>
+    <div class="paper-num">13</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3692761" target="_blank" rel="noopener">Accurate and Efficient Equivalent Circuit Modeling for Single-Port SAW Resonators</a></div>
+      <div class="paper-authors">Tinglun Ao, Chen Chen, Guopeng Hui, Haotian Liu, Minglei Li</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 73, No. 7, pp. 4199-4207 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">14</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3698813" target="_blank" rel="noopener">Effects of the Stress Between Substrate and GeTe Films in Phase-Change Material RF Switches</a></div>
       <div class="paper-authors">Xiaoshen Han, Libin Gao, Yao Ding, Fan He, Zhongshengxiang Yang, Hongwei Chen et al.</div>
@@ -1265,7 +1238,48 @@
     </div>
   </li>
 <li class="paper-item">
+    <div class="paper-num">15</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3694953" target="_blank" rel="noopener">CeO
+                    <sub>
+                      2–
+                      <i>x</i>
+                    </sub>
+                    /ZnO Heterojunction Photoelectric Synapse for Reservoir Computing and Physical Edge Intelligent Light Sensing Systems</a></div>
+      <div class="paper-authors">Haodong Chen, Tuo Li, Xiaofeng Zou, Haotian Meng, Chunyun Su, Chunwei Zhang et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 73, No. 7, pp. 4083-4089 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">16</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3692629" target="_blank" rel="noopener">Comprehensive Strain Study of Monolithic Nanosheet CFETs</a></div>
+      <div class="paper-authors">Ying-Qi Liu, Hung-Chun Chou, Tao Chou, Xuan-Hao Wu, Bo-Wei Huang, Chien-Te Tu et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 73, No. 7, pp. 4233-4240 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
     <div class="paper-num">17</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3698426" target="_blank" rel="noopener">The Study on High Forward Current Stress Degradation Mechanism of InP HBT Devices</a></div>
+      <div class="paper-authors">Yanghui Hu, Hongliang Lu, Silu Yan, Lin Cheng, Jiantao Qiao, Yuming Zhang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 73, No. 7, pp. 3931-3941 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">18</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3697703" target="_blank" rel="noopener">Defect Redistribution-Induced Leakage Degradation in
                     <i>β</i>
@@ -1283,24 +1297,12 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">18</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3692629" target="_blank" rel="noopener">Comprehensive Strain Study of Monolithic Nanosheet CFETs</a></div>
-      <div class="paper-authors">Ying-Qi Liu, Hung-Chun Chou, Tao Chou, Xuan-Hao Wu, Bo-Wei Huang, Chien-Te Tu et al.</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 73, No. 7, pp. 4233-4240 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
     <div class="paper-num">19</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3698426" target="_blank" rel="noopener">The Study on High Forward Current Stress Degradation Mechanism of InP HBT Devices</a></div>
-      <div class="paper-authors">Yanghui Hu, Hongliang Lu, Silu Yan, Lin Cheng, Jiantao Qiao, Yuming Zhang</div>
+      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3696595" target="_blank" rel="noopener">A Comparative Study on Current Spreading Layers in n-AlGaN to Enhance the Quantum Efficiency of Deep Ultraviolet Light-Emitting Diodes</a></div>
+      <div class="paper-authors">Hongyu Liu, Hansong Geng, Mingyue Lou, Bowei Yu, Zongyi Feng, Huaxin Shen et al.</div>
       <div class="paper-meta">
-        <span>📖 Vol. 73, No. 7, pp. 3931-3941 (2026)</span>
+        <span>📖 Vol. 73, No. 7, pp. 4316-4321 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1309,10 +1311,14 @@
 <li class="paper-item">
     <div class="paper-num">20</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3696595" target="_blank" rel="noopener">A Comparative Study on Current Spreading Layers in n-AlGaN to Enhance the Quantum Efficiency of Deep Ultraviolet Light-Emitting Diodes</a></div>
-      <div class="paper-authors">Hongyu Liu, Hansong Geng, Mingyue Lou, Bowei Yu, Zongyi Feng, Huaxin Shen et al.</div>
+      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3691694" target="_blank" rel="noopener">Modeling and Optimization of Novel Cs
+                    <sub>2</sub>
+                    AlBiCl
+                    <sub>6</sub>
+                    -Based Double Perovskite Solar Cells for Underwater Applications: A Comprehensive Study</a></div>
+      <div class="paper-authors">Rahul Kundara, Rikmantra Basu, Jaya Madan, Rahul Pandey</div>
       <div class="paper-meta">
-        <span>📖 Vol. 73, No. 7, pp. 4316-4321 (2026)</span>
+        <span>📖 Vol. 73, No. 7, pp. 4280-4286 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1381,10 +1387,10 @@
 <li class="paper-item">
     <div class="paper-num">26</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3700588" target="_blank" rel="noopener">Uniaxially Compressively Strained Ge (100)-OI p-MOSFET for High-Performance CFET</a></div>
-      <div class="paper-authors">Hyeongrak Lim, Seong Kwang Kim, Hojin Jeong, Jinha Lim, Songhyeon Kuk, Dae-Myeong Geum et al.</div>
+      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3695510" target="_blank" rel="noopener">Passivation Engineering for Recess-Free Enhancement Mode Ultrathin-Barrier AlGaN/GaN MIS-HEMT</a></div>
+      <div class="paper-authors">Jui-Sheng Wu, Chen-Hsi Tsai, You-Chen Weng, Edward Yi Chang</div>
       <div class="paper-meta">
-        <span>📖 Vol. 73, No. 7, pp. 4250-4256 (2026)</span>
+        <span>📖 Vol. 73, No. 7, pp. 3970-3976 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1405,10 +1411,14 @@
 <li class="paper-item">
     <div class="paper-num">28</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3695510" target="_blank" rel="noopener">Passivation Engineering for Recess-Free Enhancement Mode Ultrathin-Barrier AlGaN/GaN MIS-HEMT</a></div>
-      <div class="paper-authors">Jui-Sheng Wu, Chen-Hsi Tsai, You-Chen Weng, Edward Yi Chang</div>
+      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3693217" target="_blank" rel="noopener">In-Doped Ga
+                    <sub>2</sub>
+                    O
+                    <sub>3</sub>
+                    Solar-Blind Photodetectors Using Plasma-Enhanced Atomic Layer Deposition</a></div>
+      <div class="paper-authors">Siyi Zhu, Yujie Yang, Sizhe Li, Qiren Luo, Hao Wu, Qianqian Lin et al.</div>
       <div class="paper-meta">
-        <span>📖 Vol. 73, No. 7, pp. 3970-3976 (2026)</span>
+        <span>📖 Vol. 73, No. 7, pp. 4189-4198 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1429,14 +1439,10 @@
 <li class="paper-item">
     <div class="paper-num">30</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3693217" target="_blank" rel="noopener">In-Doped Ga
-                    <sub>2</sub>
-                    O
-                    <sub>3</sub>
-                    Solar-Blind Photodetectors Using Plasma-Enhanced Atomic Layer Deposition</a></div>
-      <div class="paper-authors">Siyi Zhu, Yujie Yang, Sizhe Li, Qiren Luo, Hao Wu, Qianqian Lin et al.</div>
+      <div class="paper-title"><a href="https://doi.org/10.1109/ted.2026.3700588" target="_blank" rel="noopener">Uniaxially Compressively Strained Ge (100)-OI p-MOSFET for High-Performance CFET</a></div>
+      <div class="paper-authors">Hyeongrak Lim, Seong Kwang Kim, Hojin Jeong, Jinha Lim, Songhyeon Kuk, Dae-Myeong Geum et al.</div>
       <div class="paper-meta">
-        <span>📖 Vol. 73, No. 7, pp. 4189-4198 (2026)</span>
+        <span>📖 Vol. 73, No. 7, pp. 4250-4256 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1476,6 +1482,18 @@
 <li class="paper-item">
     <div class="paper-num">2</div>
     <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3682574" target="_blank" rel="noopener">Corrections to “Semi-Classical Monte Carlo Simulation of Quantum Confinement Effects in Si Nanosheet and Fin FETs in Industry Standard Orientation”</a></div>
+      <div class="paper-authors">Uiho Lee, Jaeyeon Kim, Byoung Hak Hong, Wookhyun Kwon, Branch T. Archer, Leonard F. Register et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 47, No. 6, pp. 1253-1253 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">3</div>
+    <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3685167" target="_blank" rel="noopener">Zr-Based Contacts to n-Type AlN With Improved Performance for Power and High-Temperature Electronics</a></div>
       <div class="paper-authors">Zhongyunshen Zhu, Hridibrata Pal, Aditya Dev Varma, Masataka Imura, Hironori Okumura, Tomás Palacios</div>
       <div class="paper-meta">
@@ -1486,33 +1504,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">3</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3687403" target="_blank" rel="noopener">Demonstration of High-Performance Ultra-Wide Bandgap SrSnO
-                    <sub>3</sub>
-                    Top-Gated MOSFETs</a></div>
-      <div class="paper-authors">Junghyun Koo, Weideng Sun, Donghwan Kim, Hongseung Lee, Chengyu Zhu, Kiyoung Lee et al.</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 47, No. 6, pp. 1133-1136 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
     <div class="paper-num">4</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3685423" target="_blank" rel="noopener">Monolithic 3-D Integration of IAZO/Si-Based 2T0C DRAM With RRAM for Monte Carlo Dropconnect Neural Networks</a></div>
-      <div class="paper-authors">Lin Bao, Bowen Jiang, Jiaqi Zhao, Haisu Zhang, Yingtong Ji, Yingchen Ji et al.</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 47, No. 6, pp. 1237-1240 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">5</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3681483" target="_blank" rel="noopener">High-Temperature Performance of All-Diamond Solar-Blind UV Photodetector With BDD Electrodes</a></div>
       <div class="paper-authors">Yuanyang Gao, Zhengjie Tang, Dan Zhao, Fengqiu Jiang, Zhangcheng Liu, Yang Li et al.</div>
@@ -1524,12 +1516,26 @@
     </div>
   </li>
 <li class="paper-item">
+    <div class="paper-num">5</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3685423" target="_blank" rel="noopener">Monolithic 3-D Integration of IAZO/Si-Based 2T0C DRAM With RRAM for Monte Carlo Dropconnect Neural Networks</a></div>
+      <div class="paper-authors">Lin Bao, Bowen Jiang, Jiaqi Zhao, Haisu Zhang, Yingtong Ji, Yingchen Ji et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 47, No. 6, pp. 1237-1240 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
     <div class="paper-num">6</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3682574" target="_blank" rel="noopener">Corrections to “Semi-Classical Monte Carlo Simulation of Quantum Confinement Effects in Si Nanosheet and Fin FETs in Industry Standard Orientation”</a></div>
-      <div class="paper-authors">Uiho Lee, Jaeyeon Kim, Byoung Hak Hong, Wookhyun Kwon, Branch T. Archer, Leonard F. Register et al.</div>
+      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3687403" target="_blank" rel="noopener">Demonstration of High-Performance Ultra-Wide Bandgap SrSnO
+                    <sub>3</sub>
+                    Top-Gated MOSFETs</a></div>
+      <div class="paper-authors">Junghyun Koo, Weideng Sun, Donghwan Kim, Hongseung Lee, Chengyu Zhu, Kiyoung Lee et al.</div>
       <div class="paper-meta">
-        <span>📖 Vol. 47, No. 6, pp. 1253-1253 (2026)</span>
+        <span>📖 Vol. 47, No. 6, pp. 1133-1136 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1562,18 +1568,6 @@
 <li class="paper-item">
     <div class="paper-num">9</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3683787" target="_blank" rel="noopener">Low Loss and EMI Noise Split-Gate Trench IGBT With Self-Powered Voltage Source</a></div>
-      <div class="paper-authors">Lian Gan, Jinping Zhang, Zhengyu Lang, Bo Zhang</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 47, No. 6, pp. 1045-1048 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">10</div>
-    <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3681884" target="_blank" rel="noopener">On Effectiveness of Constriction Barrier in Nanotransistors</a></div>
       <div class="paper-authors">M. Ali Pourghaderi, Seunghyun Song, Yonghee Park, Jaehoon Jeong</div>
       <div class="paper-meta">
@@ -1584,7 +1578,31 @@
     </div>
   </li>
 <li class="paper-item">
+    <div class="paper-num">10</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3683787" target="_blank" rel="noopener">Low Loss and EMI Noise Split-Gate Trench IGBT With Self-Powered Voltage Source</a></div>
+      <div class="paper-authors">Lian Gan, Jinping Zhang, Zhengyu Lang, Bo Zhang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 47, No. 6, pp. 1045-1048 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
     <div class="paper-num">11</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3681941" target="_blank" rel="noopener">Wafer-Level Micromachined All-Glass Atomic Vapor Cells</a></div>
+      <div class="paper-authors">Zhenyu Hu, Qiaohui Yang, Taoyuan Zhu, Duo Pan, Zhiwei Li, Jingbiao Chen et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 47, No. 6, pp. 1197-1200 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">12</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3684114" target="_blank" rel="noopener">High-Pressure Deuterium Annealing Effect on HfO
                     <sub>2</sub>
@@ -1598,7 +1616,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">12</div>
+    <div class="paper-num">13</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3685179" target="_blank" rel="noopener">Parasitic PNP Punch-Through Suppression and
                     <i>BV</i>
@@ -1612,31 +1630,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">13</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3681941" target="_blank" rel="noopener">Wafer-Level Micromachined All-Glass Atomic Vapor Cells</a></div>
-      <div class="paper-authors">Zhenyu Hu, Qiaohui Yang, Taoyuan Zhu, Duo Pan, Zhiwei Li, Jingbiao Chen et al.</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 47, No. 6, pp. 1197-1200 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
     <div class="paper-num">14</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3690289" target="_blank" rel="noopener">Front Cover</a></div>
-      <div class="paper-authors"></div>
-      <div class="paper-meta">
-        <span>📖 Vol. 47, No. 6, pp. C1-C1 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">15</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3685598" target="_blank" rel="noopener">A Novel Frequency-Tunable Relativistic Magnetron With Angular Tuning</a></div>
       <div class="paper-authors">Bo Zhao, Suhang Song, Yanlin Deng, Renjie Cheng, Sidi Liu, Yiyun Wang et al.</div>
@@ -1648,31 +1642,19 @@
     </div>
   </li>
 <li class="paper-item">
+    <div class="paper-num">15</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3690289" target="_blank" rel="noopener">Front Cover</a></div>
+      <div class="paper-authors"></div>
+      <div class="paper-meta">
+        <span>📖 Vol. 47, No. 6, pp. C1-C1 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
     <div class="paper-num">16</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3685316" target="_blank" rel="noopener">2-T Embedded Flash Memory Using Standard 28-nm Logic CMOS Technology</a></div>
-      <div class="paper-authors">Jonghyun Ko, Jeseung Jeong, Jiseong Im, Kyung Min Lee, Kangwook Choi, Gyuweon Jung et al.</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 47, No. 6, pp. 1117-1120 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">17</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3683584" target="_blank" rel="noopener">A Reconfigurable Transistor Enabling Adaptive Computing at Cryogenic Temperatures</a></div>
-      <div class="paper-authors">Andreas Fuchsberger, Nikolas Knaller, Lukas Wind, Viktor Wahler, Daniele Nazzari, Walter M. Weber et al.</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 47, No. 6, pp. 1241-1244 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">18</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3690293" target="_blank" rel="noopener">Table of Contents</a></div>
       <div class="paper-authors"></div>
@@ -1684,12 +1666,36 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">19</div>
+    <div class="paper-num">17</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3684849" target="_blank" rel="noopener">Antiferroelectric-Based Memcapacitor and Strategy for Non-Destructive Read Operation by Endurance Recovery</a></div>
       <div class="paper-authors">C.-H. Liu, K.-Y. Hsiang, F.-S. Chang, M. Januar, Y.-T. Chang, C. W. Liu et al.</div>
       <div class="paper-meta">
         <span>📖 Vol. 47, No. 6, pp. 1101-1104 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">18</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3685316" target="_blank" rel="noopener">2-T Embedded Flash Memory Using Standard 28-nm Logic CMOS Technology</a></div>
+      <div class="paper-authors">Jonghyun Ko, Jeseung Jeong, Jiseong Im, Kyung Min Lee, Kangwook Choi, Gyuweon Jung et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 47, No. 6, pp. 1117-1120 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">19</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3683584" target="_blank" rel="noopener">A Reconfigurable Transistor Enabling Adaptive Computing at Cryogenic Temperatures</a></div>
+      <div class="paper-authors">Andreas Fuchsberger, Nikolas Knaller, Lukas Wind, Viktor Wahler, Daniele Nazzari, Walter M. Weber et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 47, No. 6, pp. 1241-1244 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1736,18 +1742,6 @@
 <li class="paper-item">
     <div class="paper-num">23</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3685176" target="_blank" rel="noopener">Thickness Scaling and Roughness-Induced Mobility Cliff in Ultra-Thin-Body MOSFETs</a></div>
-      <div class="paper-authors">Mir Md Fahimul Islam, In Huh, Jian-Yu Lin, Seokyeon Shin, Youngjoon Lee, Changwook Jeong et al.</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 47, No. 6, pp. 1149-1152 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">24</div>
-    <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3685266" target="_blank" rel="noopener">Suppressing Interface Traps Density of Top-Gate MoS
                     <sub>2</sub>
                     Transistor via H
@@ -1763,12 +1757,24 @@
     </div>
   </li>
 <li class="paper-item">
+    <div class="paper-num">24</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3685176" target="_blank" rel="noopener">Thickness Scaling and Roughness-Induced Mobility Cliff in Ultra-Thin-Body MOSFETs</a></div>
+      <div class="paper-authors">Mir Md Fahimul Islam, In Huh, Jian-Yu Lin, Seokyeon Shin, Youngjoon Lee, Changwook Jeong et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 47, No. 6, pp. 1149-1152 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
     <div class="paper-num">25</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3675266" target="_blank" rel="noopener">High-Efficiency X-Band AlGaN/GaN/AlN HEMTs With 64.2% PAE and 6.27 W/mm Continuous Wave Output Power Density</a></div>
-      <div class="paper-authors">Donghan Kim, Jeonghoon Choe, Sangmin Lee, Daniel Hou, Shahid Nawaz, Jung-Hee Lee et al.</div>
+      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3680336" target="_blank" rel="noopener">Stable On-Chip MLC RRAM With a Bitline Regulation-Free Analog MAC Scheme for High-Efficiency In-Memory Computing</a></div>
+      <div class="paper-authors">Zhen Kong, Jun Lan, Humiao Li, Zhengke Yang, Weirong Dong, Junjie He et al.</div>
       <div class="paper-meta">
-        <span>📖 Vol. 47, No. 6, pp. 1081-1084 (2026)</span>
+        <span>📖 Vol. 47, No. 6, pp. 1109-1112 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1791,10 +1797,10 @@
 <li class="paper-item">
     <div class="paper-num">27</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3680336" target="_blank" rel="noopener">Stable On-Chip MLC RRAM With a Bitline Regulation-Free Analog MAC Scheme for High-Efficiency In-Memory Computing</a></div>
-      <div class="paper-authors">Zhen Kong, Jun Lan, Humiao Li, Zhengke Yang, Weirong Dong, Junjie He et al.</div>
+      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3680067" target="_blank" rel="noopener">Frequency Tunable Impedance Transformer Based on Magnetostatic Wave Resonator</a></div>
+      <div class="paper-authors">Chin-Yu Chang, Shun Yao, Xingyu Du, Shuxian Wu, Roy H. Olsson</div>
       <div class="paper-meta">
-        <span>📖 Vol. 47, No. 6, pp. 1109-1112 (2026)</span>
+        <span>📖 Vol. 47, No. 6, pp. 1213-1216 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1803,10 +1809,10 @@
 <li class="paper-item">
     <div class="paper-num">28</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3685635" target="_blank" rel="noopener">Striving for High Mobility and Robust Stability in IGZO TFTs Through Strategic Microstructure and Oxygen Vacancy Regulation</a></div>
-      <div class="paper-authors">Hongfei Wu, Junyan Ren, Yuting Xiong, Ruohao Hong, Wangying Xu, Lingyan Liang et al.</div>
+      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3675266" target="_blank" rel="noopener">High-Efficiency X-Band AlGaN/GaN/AlN HEMTs With 64.2% PAE and 6.27 W/mm Continuous Wave Output Power Density</a></div>
+      <div class="paper-authors">Donghan Kim, Jeonghoon Choe, Sangmin Lee, Daniel Hou, Shahid Nawaz, Jung-Hee Lee et al.</div>
       <div class="paper-meta">
-        <span>📖 Vol. 47, No. 6, pp. 1145-1148 (2026)</span>
+        <span>📖 Vol. 47, No. 6, pp. 1081-1084 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1815,10 +1821,10 @@
 <li class="paper-item">
     <div class="paper-num">29</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3680067" target="_blank" rel="noopener">Frequency Tunable Impedance Transformer Based on Magnetostatic Wave Resonator</a></div>
-      <div class="paper-authors">Chin-Yu Chang, Shun Yao, Xingyu Du, Shuxian Wu, Roy H. Olsson</div>
+      <div class="paper-title"><a href="https://doi.org/10.1109/led.2026.3685635" target="_blank" rel="noopener">Striving for High Mobility and Robust Stability in IGZO TFTs Through Strategic Microstructure and Oxygen Vacancy Regulation</a></div>
+      <div class="paper-authors">Hongfei Wu, Junyan Ren, Yuting Xiong, Ruohao Hong, Wangying Xu, Lingyan Liang et al.</div>
       <div class="paper-meta">
-        <span>📖 Vol. 47, No. 6, pp. 1213-1216 (2026)</span>
+        <span>📖 Vol. 47, No. 6, pp. 1145-1148 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1858,10 +1864,10 @@
 <li class="paper-item">
     <div class="paper-num">1</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109383" target="_blank" rel="noopener">Comprehensive study of dynamic on-resistance in AlGaN/GaN MIS-HEMTs with partially recessed-gate</a></div>
-      <div class="paper-authors">Ye Liang, Ang Li, Yuhao Zhu, Yuanlei Zhang, Jiangmin Gu, Wen Liu</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109389" target="_blank" rel="noopener">Advanced physics-based modeling of TFETs: A comprehensive geometric and material perspective</a></div>
+      <div class="paper-authors">M. Villegas, P. Prócel, S. Guitarra, L.M. Prócel, L. Trojman</div>
       <div class="paper-meta">
-        <span>📖 Vol. 236, pp. 109383 (2026)</span>
+        <span>📖 Vol. 237, pp. 109389 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1869,30 +1875,6 @@
   </li>
 <li class="paper-item">
     <div class="paper-num">2</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109386" target="_blank" rel="noopener">Low-frequency negative capacitance in structures with nanocomposite FexOy films</a></div>
-      <div class="paper-authors">Anatoliy Evtukh, Anton Pylypov, Yaroslav Muryi, Olha Pylypova, Volodymyr Yukhimchuk, Serhii Antonin et al.</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 236, pp. 109386 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">3</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109388" target="_blank" rel="noopener">Static and small-signal channel transconductance comparison between SOI junction-based FinFETs and junctionless GAA FETs</a></div>
-      <div class="paper-authors">Ping-Ju Chiang, Tsung-Ying Kuo, Wan-Ting Lin, Chia-Chang Yang, Yao-Jen Lee, Wen-Teng Chang</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 236, pp. 109388 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">4</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109372" target="_blank" rel="noopener">MnFe2O4 nanoparticles for VOCs sensing application at low operating temperature</a></div>
       <div class="paper-authors">Juan Pablo Morán-Lázaro, Elienai Cruz-López, Aldo Palafox-Corona, Diego Armando Navarrete-Prieto</div>
@@ -1904,43 +1886,31 @@
     </div>
   </li>
 <li class="paper-item">
+    <div class="paper-num">3</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109386" target="_blank" rel="noopener">Low-frequency negative capacitance in structures with nanocomposite FexOy films</a></div>
+      <div class="paper-authors">Anatoliy Evtukh, Anton Pylypov, Yaroslav Muryi, Olha Pylypova, Volodymyr Yukhimchuk, Serhii Antonin et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 236, pp. 109386 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">4</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109383" target="_blank" rel="noopener">Comprehensive study of dynamic on-resistance in AlGaN/GaN MIS-HEMTs with partially recessed-gate</a></div>
+      <div class="paper-authors">Ye Liang, Ang Li, Yuhao Zhu, Yuanlei Zhang, Jiangmin Gu, Wen Liu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 236, pp. 109383 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
     <div class="paper-num">5</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109380" target="_blank" rel="noopener">Wide-range characterization of GaN HEMTs and its associated compact modeling procedure</a></div>
-      <div class="paper-authors">Salim Dahmani, Cyril Buttay, Bruno Allard, Xuyang Lu, Ke Li, Elhadji Adama Seck et al.</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 236, pp. 109380 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">6</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109381" target="_blank" rel="noopener">Wire resistance impact and compensation methods in analog switching 1R memristive crossbar arrays</a></div>
-      <div class="paper-authors">Eter Mgeladze, Po Yuen Ho, Richard Schroedter, Ronald Tetzlaff, Thomas Mikolajick, Stefan Slesazeck</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 236, pp. 109381 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">7</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109389" target="_blank" rel="noopener">Advanced physics-based modeling of TFETs: A comprehensive geometric and material perspective</a></div>
-      <div class="paper-authors">M. Villegas, P. Prócel, S. Guitarra, L.M. Prócel, L. Trojman</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 237, pp. 109389 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">8</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109379" target="_blank" rel="noopener">Band-edge injection electroluminescence at high temperatures in pn structures based on wide-bandgap semiconductors</a></div>
       <div class="paper-authors">A.M. Strel’chuk</div>
@@ -1952,12 +1922,48 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">9</div>
+    <div class="paper-num">6</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109388" target="_blank" rel="noopener">Static and small-signal channel transconductance comparison between SOI junction-based FinFETs and junctionless GAA FETs</a></div>
+      <div class="paper-authors">Ping-Ju Chiang, Tsung-Ying Kuo, Wan-Ting Lin, Chia-Chang Yang, Yao-Jen Lee, Wen-Teng Chang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 236, pp. 109388 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">7</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109380" target="_blank" rel="noopener">Wide-range characterization of GaN HEMTs and its associated compact modeling procedure</a></div>
+      <div class="paper-authors">Salim Dahmani, Cyril Buttay, Bruno Allard, Xuyang Lu, Ke Li, Elhadji Adama Seck et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 236, pp. 109380 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">8</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109382" target="_blank" rel="noopener">Interface-activated SrBiO₃/rGO nanoplatform for non-enzymatic electrochemical glucose detection</a></div>
       <div class="paper-authors">Zarmeem Fatima, Meznah M. Alanazi, Shaimaa A.M. Abdelmohsen, Hussain Sawwan, Waqas Ul Arifein, Abhinav Kumar et al.</div>
       <div class="paper-meta">
         <span>📖 Vol. 236, pp. 109382 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">9</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109381" target="_blank" rel="noopener">Wire resistance impact and compensation methods in analog switching 1R memristive crossbar arrays</a></div>
+      <div class="paper-authors">Eter Mgeladze, Po Yuen Ho, Richard Schroedter, Ronald Tetzlaff, Thomas Mikolajick, Stefan Slesazeck</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 236, pp. 109381 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1978,10 +1984,10 @@
 <li class="paper-item">
     <div class="paper-num">11</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109368" target="_blank" rel="noopener">Enhancement of IGZO TFT performance and reliability by controlling the N2/O2 annealing ambient</a></div>
-      <div class="paper-authors">Sangmin Hong, Ire Oh, Seungwoo Chu, Suji Choi, Jang-Kun Song, Yong-Sang Kim et al.</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109371" target="_blank" rel="noopener">Anomalous punch-through current behavior in GaN due to trap-assisted space charge limited conduction triggered by threading dislocations with an edge component</a></div>
+      <div class="paper-authors">Walter Gonçalez Filho, Matteo Borga, Albert Minj, Karen Geens, Deepthi Cingu, Urmimala Chatterjee et al.</div>
       <div class="paper-meta">
-        <span>📖 Vol. 235, pp. 109368 (2026)</span>
+        <span>📖 Vol. 235, pp. 109371 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -2002,6 +2008,18 @@
 <li class="paper-item">
     <div class="paper-num">13</div>
     <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109384" target="_blank" rel="noopener">Positive Bias Temperature Instability (PBTI) in n- and p-channel polysilicon thin-film transistors (TFTs) for high-voltage applications</a></div>
+      <div class="paper-authors">B. Kaczer, S.M.S. Faramarzi, L. Panarella, F. Berghmans, J. Franco, T. Grasser et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 236, pp. 109384 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">14</div>
+    <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109361" target="_blank" rel="noopener">Implementation of transient-tolerant memristor-based threshold logic gate unit cell</a></div>
       <div class="paper-authors">Won-Chul Lee, Solji Park, A-ryeong Lee, SeungYeon Kim, MinSik Park, Jeongin Yu et al.</div>
       <div class="paper-meta">
@@ -2012,24 +2030,12 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">14</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109371" target="_blank" rel="noopener">Anomalous punch-through current behavior in GaN due to trap-assisted space charge limited conduction triggered by threading dislocations with an edge component</a></div>
-      <div class="paper-authors">Walter Gonçalez Filho, Matteo Borga, Albert Minj, Karen Geens, Deepthi Cingu, Urmimala Chatterjee et al.</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 235, pp. 109371 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
     <div class="paper-num">15</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109384" target="_blank" rel="noopener">Positive Bias Temperature Instability (PBTI) in n- and p-channel polysilicon thin-film transistors (TFTs) for high-voltage applications</a></div>
-      <div class="paper-authors">B. Kaczer, S.M.S. Faramarzi, L. Panarella, F. Berghmans, J. Franco, T. Grasser et al.</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109368" target="_blank" rel="noopener">Enhancement of IGZO TFT performance and reliability by controlling the N2/O2 annealing ambient</a></div>
+      <div class="paper-authors">Sangmin Hong, Ire Oh, Seungwoo Chu, Suji Choi, Jang-Kun Song, Yong-Sang Kim et al.</div>
       <div class="paper-meta">
-        <span>📖 Vol. 236, pp. 109384 (2026)</span>
+        <span>📖 Vol. 235, pp. 109368 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -2050,10 +2056,10 @@
 <li class="paper-item">
     <div class="paper-num">17</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109358" target="_blank" rel="noopener">Analysis of spatial distribution of remnant polarization in inverted staggered a-IGZO/HZO ferroelectric thin-film transistor using capacitance-voltage characteristics</a></div>
-      <div class="paper-authors">Hwan Jin Kim, Hyojin Yang, Haesung Kim, Sejun Park, Ha-Neul Lee, Sung-Jin Choi et al.</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109359" target="_blank" rel="noopener">Fabrication and characterization of MnxZn(1-x)Oδ (x = 0.02, 0.04, 0.06, 0.08 &amp; 0.10) as a buffer layer for CZTS thin film solar cells</a></div>
+      <div class="paper-authors">Huda Abdullah, Muhammad Syazwan Akmal Zainal Abidin, Kang Jian Xian, Norshafadzila Mohammad Naim, Seri Mastura Mustaza, Abdul Rahman Mohmad et al.</div>
       <div class="paper-meta">
-        <span>📖 Vol. 235, pp. 109358 (2026)</span>
+        <span>📖 Vol. 235, pp. 109359 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -2062,10 +2068,10 @@
 <li class="paper-item">
     <div class="paper-num">18</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109359" target="_blank" rel="noopener">Fabrication and characterization of MnxZn(1-x)Oδ (x = 0.02, 0.04, 0.06, 0.08 &amp; 0.10) as a buffer layer for CZTS thin film solar cells</a></div>
-      <div class="paper-authors">Huda Abdullah, Muhammad Syazwan Akmal Zainal Abidin, Kang Jian Xian, Norshafadzila Mohammad Naim, Seri Mastura Mustaza, Abdul Rahman Mohmad et al.</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109358" target="_blank" rel="noopener">Analysis of spatial distribution of remnant polarization in inverted staggered a-IGZO/HZO ferroelectric thin-film transistor using capacitance-voltage characteristics</a></div>
+      <div class="paper-authors">Hwan Jin Kim, Hyojin Yang, Haesung Kim, Sejun Park, Ha-Neul Lee, Sung-Jin Choi et al.</div>
       <div class="paper-meta">
-        <span>📖 Vol. 235, pp. 109359 (2026)</span>
+        <span>📖 Vol. 235, pp. 109358 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -2098,10 +2104,10 @@
 <li class="paper-item">
     <div class="paper-num">21</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109346" target="_blank" rel="noopener">Mixed finite element method for device simulations</a></div>
-      <div class="paper-authors">Yingjia Gao, Naveen Kumar, Ross Williams, Andrei Shvarts, Łukasz Kaczmarczyk, Vihar Georgiev</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109347" target="_blank" rel="noopener">Numerical analysis of defects passivation for tungsten-doped indium oxide thin film transistors by using hydrogen peroxide as cosolvent in a supercritical fluid system</a></div>
+      <div class="paper-authors">Zeqiu Tang, Kai-Jhih Gan, Kuei-Shu Chang-Liao, Zefu Zhao, Jialong Xiang, Bojun Zhang et al.</div>
       <div class="paper-meta">
-        <span>📖 Vol. 234, pp. 109346 (2026)</span>
+        <span>📖 Vol. 234, pp. 109347 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -2122,10 +2128,10 @@
 <li class="paper-item">
     <div class="paper-num">23</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109345" target="_blank" rel="noopener">Assessment of dual-oxide options for LDMOS transistors in FinFET technology</a></div>
-      <div class="paper-authors">Alessandro Ruggieri, Lisa Tondelli, Luca Selmi</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109349" target="_blank" rel="noopener">A probabilistic compact model of ReRAM memories for accurate and high-performance simulation</a></div>
+      <div class="paper-authors">S. Guitarra, M. Gavilánez, J. Cevallos, A. Vélez</div>
       <div class="paper-meta">
-        <span>📖 Vol. 234, pp. 109345 (2026)</span>
+        <span>📖 Vol. 234, pp. 109349 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -2146,10 +2152,10 @@
 <li class="paper-item">
     <div class="paper-num">25</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109349" target="_blank" rel="noopener">A probabilistic compact model of ReRAM memories for accurate and high-performance simulation</a></div>
-      <div class="paper-authors">S. Guitarra, M. Gavilánez, J. Cevallos, A. Vélez</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109346" target="_blank" rel="noopener">Mixed finite element method for device simulations</a></div>
+      <div class="paper-authors">Yingjia Gao, Naveen Kumar, Ross Williams, Andrei Shvarts, Łukasz Kaczmarczyk, Vihar Georgiev</div>
       <div class="paper-meta">
-        <span>📖 Vol. 234, pp. 109349 (2026)</span>
+        <span>📖 Vol. 234, pp. 109346 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -2158,10 +2164,10 @@
 <li class="paper-item">
     <div class="paper-num">26</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109355" target="_blank" rel="noopener">Continual graph learning for physics-constrained CMOS transistor models</a></div>
-      <div class="paper-authors">Ziyao Yang, Keshari Nandan, Yu Cao</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109345" target="_blank" rel="noopener">Assessment of dual-oxide options for LDMOS transistors in FinFET technology</a></div>
+      <div class="paper-authors">Alessandro Ruggieri, Lisa Tondelli, Luca Selmi</div>
       <div class="paper-meta">
-        <span>📖 Vol. 234, pp. 109355 (2026)</span>
+        <span>📖 Vol. 234, pp. 109345 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -2170,10 +2176,10 @@
 <li class="paper-item">
     <div class="paper-num">27</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109347" target="_blank" rel="noopener">Numerical analysis of defects passivation for tungsten-doped indium oxide thin film transistors by using hydrogen peroxide as cosolvent in a supercritical fluid system</a></div>
-      <div class="paper-authors">Zeqiu Tang, Kai-Jhih Gan, Kuei-Shu Chang-Liao, Zefu Zhao, Jialong Xiang, Bojun Zhang et al.</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109355" target="_blank" rel="noopener">Continual graph learning for physics-constrained CMOS transistor models</a></div>
+      <div class="paper-authors">Ziyao Yang, Keshari Nandan, Yu Cao</div>
       <div class="paper-meta">
-        <span>📖 Vol. 234, pp. 109347 (2026)</span>
+        <span>📖 Vol. 234, pp. 109355 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -2194,11 +2200,11 @@
 <li class="paper-item">
     <div class="paper-num">29</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109387" target="_blank" rel="noopener">Impact of remote phonon scattering on carrier transport in monolayer MoS2 MOSFETs</a></div>
-      <div class="paper-authors">Marco Introna, Xiangyu Wu, Daire Cott, Zaoyang Lin, Pierre Morin, Pawan Kumar et al.</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109342" target="_blank" rel="noopener">Ag-Cu2O nano composite: A comprehensive study on Ag concentration effect on physical properties for a two-band laser detector</a></div>
+      <div class="paper-authors">Evan T. Salim, Rana O. Mahdi, Roaa A. Abbas, Zaid T. Salim, Subash C.B. Gopinath, Ahmed A. Al-Amiery</div>
       <div class="paper-meta">
-        <span>📖 pp. 109387 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
+        <span>📖 Vol. 234, pp. 109342 (2026)</span>
+        <span>⬆️ Cited by: 2</span>
       </div>
       
     </div>
@@ -2206,11 +2212,11 @@
 <li class="paper-item">
     <div class="paper-num">30</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109342" target="_blank" rel="noopener">Ag-Cu2O nano composite: A comprehensive study on Ag concentration effect on physical properties for a two-band laser detector</a></div>
-      <div class="paper-authors">Evan T. Salim, Rana O. Mahdi, Roaa A. Abbas, Zaid T. Salim, Subash C.B. Gopinath, Ahmed A. Al-Amiery</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.sse.2026.109387" target="_blank" rel="noopener">Impact of remote phonon scattering on carrier transport in monolayer MoS2 MOSFETs</a></div>
+      <div class="paper-authors">Marco Introna, Xiangyu Wu, Daire Cott, Zaoyang Lin, Pierre Morin, Pawan Kumar et al.</div>
       <div class="paper-meta">
-        <span>📖 Vol. 234, pp. 109342 (2026)</span>
-        <span>⬆️ Cited by: 2</span>
+        <span>📖 pp. 109387 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
       </div>
       
     </div>
