@@ -506,6 +506,8 @@
       border-radius: 12px;
       box-shadow: var(--shadow);
       padding: 0.7rem 1rem;
+      display: flex;
+      flex-direction: column;
     }
     .widget-card .widget-header {
       display: flex;
@@ -675,26 +677,28 @@
     }
 
     /* ---- Trend Chart (Year Bars) ---- */
+    .trend-chart {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     .trend-bars {
       display: flex;
       justify-content: space-around;
       gap: 0.5rem;
-      height: 56px;
+      align-items: flex-end;
+      height: 130px;
       padding: 0;
+      width: 100%;
     }
     .trend-bar-col {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
       height: 100%;
-    }
-    .trend-bar-label {
-      font-size: 0.68rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      white-space: nowrap;
     }
     .trend-bar-fill {
       width: 80%;
@@ -703,17 +707,20 @@
       background: linear-gradient(180deg, var(--accent) 0%, var(--accent-soft) 100%);
       align-self: center;
       transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
     }
-    .trend-bar-fill::after {
+    .trend-bar-fill::before {
       content: attr(data-count);
+      position: absolute;
+      bottom: calc(100% + 0.25rem);
+      left: 50%;
+      transform: translateX(-50%);
       font-size: 0.65rem;
       font-weight: 700;
       color: var(--accent);
       white-space: nowrap;
-      margin-top: 0.2rem;
-      display: block;
-      text-align: center;
     }
+    .trend-bar-fill::after { content: none; }
     .trend-bar-label {
       font-size: 0.68rem;
       font-weight: 600;
