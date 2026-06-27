@@ -772,11 +772,11 @@
 </header>
 
 <!-- =========================================================
-     ANALYTICS HTML STRUCTURE — COMPACT 2-ROW LAYOUT
+     ANALYTICS HTML STRUCTURE
      ========================================================= -->
 <section class="analytics" id="analyticsSection">
 
-  <!-- 1. Overview Stats (2x2 mini grid) -->
+  <!-- 1. Overview Stats (4 columns) -->
   <div class="analytics-overview" id="analyticsOverview">
 <div class="stat-card metric-primary">
       <div class="sc-icon">📄</div>
@@ -804,10 +804,9 @@
     </div>
   </div>
 
-  <!-- 2. Topics + Trend + Authors + Universities (4 columns) -->
-  <div class="analytics-row four-col">
+  <!-- 2. Topics + Trend (2 columns) -->
+  <div class="analytics-row">
 
-    <!-- Research Topics -->
     <div class="widget-card">
       <div class="widget-header">
         <div class="widget-title">🧠 研究方向 | Research Topics</div>
@@ -871,7 +870,6 @@
       </div>
     </div>
 
-    <!-- Research Trend -->
     <div class="widget-card">
       <div class="widget-header">
         <div class="widget-title">📅 发表趋势 | Publication Trend</div>
@@ -897,7 +895,11 @@
       </div>
     </div>
 
-    <!-- Top Authors by Publications -->
+  </div>
+
+  <!-- 3. Authors + Universities (3 columns) -->
+  <div class="analytics-row authors-row">
+
     <div class="widget-card">
       <div class="widget-header">
         <div class="widget-title">✍️ 高产作者 | By Publications</div>
@@ -952,8 +954,7 @@
       </div>
     </div>
 
-    <!-- Top Authors by Citations + Universities -->
-    <div class="widget-card compact-authors">
+    <div class="widget-card">
       <div class="widget-header">
         <div class="widget-title">📖 高引作者 | By Citations</div>
         <div class="widget-badge">Top 3</div>
@@ -1005,8 +1006,12 @@
       </div>
     </div>
       </div>
-      <div class="widget-header" style="margin-top:0.6rem;">
+    </div>
+
+    <div class="widget-card">
+      <div class="widget-header">
         <div class="widget-title">🏛️ 顶尖机构 | Top Universities</div>
+        <div class="widget-badge">Top 5</div>
       </div>
       <div class="uni-list" id="topUniversities">
 <span class="uni-chip">
@@ -1023,6 +1028,7 @@
   </div>
 
 </section>
+
 
 <div class="container">
 
