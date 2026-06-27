@@ -645,35 +645,79 @@
       color: var(--text-light);
     }
 
-    /* ---- Universities ---- */
+    /* ---- Universities (rank-list, vertically centered) ---- */
     .uni-list {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
+      flex-direction: column;
+      gap: 0.35rem;
+      flex: 1;
+      justify-content: center;
+      padding: 0.25rem 0;
     }
-    .uni-chip {
-      display: inline-flex;
+    .uni-rank-item {
+      display: flex;
       align-items: center;
-      gap: 0.3rem;
-      padding: 0.25rem 0.6rem;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
-      color: #fff;
-      border: 1px solid rgba(0,180,216,0.3);
-      transition: all 0.2s;
-    }
-    .uni-chip:hover {
-      background: linear-gradient(135deg, var(--accent) 0%, var(--primary-light) 100%);
-      transform: translateY(-1px);
-    }
-    .uni-chip .uni-rank {
-      font-size: 0.6rem;
-      background: rgba(255,255,255,0.2);
+      gap: 0.45rem;
+      padding: 0.4rem 0.55rem;
       border-radius: 8px;
-      padding: 0.05rem 0.35rem;
+      background: var(--bg);
+      transition: background 0.2s, transform 0.15s;
+    }
+    .uni-rank-item:hover { background: #e8f4f8; transform: translateX(2px); }
+    .uni-rank-item.rank-1 {
+      background: linear-gradient(135deg, #fffbf0 0%, #fff3d0 100%);
+      border: 1px solid #f0d060;
+      box-shadow: 0 1px 4px rgba(240, 208, 96, 0.18);
+    }
+    .uni-rank-item.rank-2 {
+      background: linear-gradient(135deg, #f8f9fa 0%, #eceff1 100%);
+      border: 1px solid #c8ced2;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+    .uni-medal {
+      font-size: 1.4rem;
+      line-height: 1;
+      flex-shrink: 0;
+      filter: drop-shadow(0 1px 1px rgba(0,0,0,0.08));
+    }
+    .uni-info { flex: 1; min-width: 0; }
+    .uni-name {
+      font-size: 0.88rem;
       font-weight: 700;
+      color: var(--primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.2;
+    }
+    .uni-meta {
+      font-size: 0.66rem;
+      color: var(--text-muted);
+      margin-top: 0.1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .uni-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+      padding-left: 0.4rem;
+      border-left: 1px dashed rgba(0,0,0,0.08);
+    }
+    .uni-stat .us-value {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .uni-stat .us-label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-light);
+      margin-top: 0.1rem;
     }
 
     /* ---- Trend Chart (Year Bars) ---- */
@@ -1013,17 +1057,31 @@
     <div class="widget-card">
       <div class="widget-header">
         <div class="widget-title">🏛️ 顶尖机构 | Top Universities</div>
-        <div class="widget-badge">Top 5</div>
+        <div class="widget-badge">Top 2</div>
       </div>
       <div class="uni-list" id="topUniversities">
-<span class="uni-chip">
-      <span class="uni-rank">#1</span>
-      MIT · 53篇
-    </span>
-<span class="uni-chip">
-      <span class="uni-rank">#2</span>
-      ETH Zurich · 27篇
-    </span>
+        <div class="uni-rank-item rank-1">
+          <div class="uni-medal">🥇</div>
+          <div class="uni-info">
+            <div class="uni-name">MIT</div>
+            <div class="uni-meta">Massachusetts Institute of Technology</div>
+          </div>
+          <div class="uni-stat">
+            <div class="us-value">53</div>
+            <div class="us-label">篇</div>
+          </div>
+        </div>
+        <div class="uni-rank-item rank-2">
+          <div class="uni-medal">🥈</div>
+          <div class="uni-info">
+            <div class="uni-name">ETH Zurich</div>
+            <div class="uni-meta">苏黎世联邦理工学院 · Swiss Federal Institute of Technology</div>
+          </div>
+          <div class="uni-stat">
+            <div class="us-value">27</div>
+            <div class="us-label">篇</div>
+          </div>
+        </div>
       </div>
     </div>
 
