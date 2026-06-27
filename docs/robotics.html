@@ -37,7 +37,7 @@
     .site-header {
       background: linear-gradient(135deg, #0d1b2a 0%, #1b3a5c 50%, #1e5090 100%);
       color: #fff;
-      padding: 1.5rem 1.5rem 1.25rem;
+      padding: 1rem 1.5rem 0.9rem;
       position: relative;
       overflow: hidden;
     }
@@ -56,23 +56,23 @@
       position: relative;
     }
     .eyebrow {
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--accent-soft);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.35rem;
       opacity: 0.9;
     }
     .site-header h1 {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.2rem;
       letter-spacing: -0.01em;
     }
     .subtitle {
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       color: rgba(255,255,255,0.65);
-      margin-bottom: 1rem;
+      margin-bottom: 0.7rem;
     }
     .stats-bar {
       display: flex;
@@ -405,10 +405,10 @@
     .analytics {
       max-width: 960px;
       margin: 0 auto;
-      padding: 0.75rem 1rem 0.75rem;
+      padding: 0.5rem 1rem 0.5rem;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 0.5rem;
     }
 
     /* ---- Section Title ---- */
@@ -427,18 +427,18 @@
     .analytics-overview {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0.5rem;
+      gap: 0.4rem;
     }
 
     .stat-card {
       background: var(--surface);
       border-radius: 12px;
       box-shadow: var(--shadow);
-      padding: 0.85rem 1.1rem;
+      padding: 0.6rem 0.9rem;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 0.2rem;
+      gap: 0.15rem;
       position: relative;
       overflow: hidden;
       transition: box-shadow 0.2s, transform 0.2s;
@@ -451,13 +451,13 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 3px;
+      height: 2px;
       background: linear-gradient(90deg, var(--accent), var(--accent-soft));
       border-radius: 12px 12px 0 0;
     }
     .stat-card .sc-icon {
-      font-size: 1rem;
-      margin-bottom: 0.1rem;
+      font-size: 0.95rem;
+      margin-bottom: 0.05rem;
       opacity: 0.7;
     }
     .stat-card .sc-value {
@@ -465,28 +465,28 @@
       color: var(--primary);
       line-height: 1;
     }
-    .stat-card.metric-primary .sc-value { font-size: 1.75rem; }
-    .stat-card.metric-secondary .sc-value { font-size: 1.35rem; color: var(--primary-light); }
-    .stat-card.metric-tertiary .sc-value { font-size: 1.1rem; color: var(--accent); }
-    .stat-card.metric-small .sc-value { font-size: 0.9rem; color: var(--text-muted); }
+    .stat-card.metric-primary .sc-value { font-size: 1.6rem; }
+    .stat-card.metric-secondary .sc-value { font-size: 1.25rem; color: var(--primary-light); }
+    .stat-card.metric-tertiary .sc-value { font-size: 1rem; color: var(--accent); }
+    .stat-card.metric-small .sc-value { font-size: 0.85rem; color: var(--text-muted); }
     .stat-card .sc-label {
-      font-size: 0.62rem;
+      font-size: 0.6rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--text-muted);
       font-weight: 500;
     }
     .stat-card .sc-sublabel {
-      font-size: 0.58rem;
+      font-size: 0.55rem;
       color: var(--text-light);
-      margin-top: -0.1rem;
+      margin-top: -0.05rem;
     }
 
     /* ---- Two-column layout for side-by-side widgets ---- */
     .analytics-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.6rem;
+      gap: 0.5rem;
     }
     .analytics-col-wide {
       grid-column: 1 / -1;
@@ -505,13 +505,13 @@
       background: var(--surface);
       border-radius: 12px;
       box-shadow: var(--shadow);
-      padding: 0.9rem 1.25rem;
+      padding: 0.7rem 1rem;
     }
     .widget-card .widget-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
     .widget-card .widget-title {
       font-size: 0.68rem;
@@ -551,15 +551,15 @@
     }
     .topic-bar-track {
       flex: 1;
-      height: 12px;
+      height: 8px;
       background: var(--bg);
-      border-radius: 6px;
+      border-radius: 4px;
       overflow: hidden;
       position: relative;
     }
     .topic-bar-fill {
       height: 100%;
-      border-radius: 6px;
+      border-radius: 4px;
       background: linear-gradient(90deg, var(--accent) 0%, var(--accent-soft) 100%);
       transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
@@ -586,14 +586,14 @@
     .author-rank-list {
       display: flex;
       flex-direction: column;
-      gap: 0.2rem;
+      gap: 0.15rem;
     }
     .author-rank-item {
       display: flex;
       align-items: center;
-      gap: 0.4rem;
-      padding: 0.2rem 0.4rem;
-      border-radius: 5px;
+      gap: 0.35rem;
+      padding: 0.15rem 0.35rem;
+      border-radius: 4px;
       background: var(--bg);
       transition: background 0.2s;
     }
@@ -677,10 +677,10 @@
     /* ---- Trend Chart (Year Bars) ---- */
     .trend-bars {
       display: flex;
-      align-items: flex-end;
+      justify-content: space-around;
       gap: 0.5rem;
       height: 56px;
-      padding-bottom: 0;
+      padding: 0;
     }
     .trend-bar-col {
       flex: 1;
@@ -772,11 +772,11 @@
 </header>
 
 <!-- =========================================================
-     ANALYTICS HTML STRUCTURE — COMPACT 2-ROW LAYOUT
+     ANALYTICS HTML STRUCTURE
      ========================================================= -->
 <section class="analytics" id="analyticsSection">
 
-  <!-- 1. Overview Stats (2x2 mini grid) -->
+  <!-- 1. Overview Stats (4 columns) -->
   <div class="analytics-overview" id="analyticsOverview">
 <div class="stat-card metric-primary">
       <div class="sc-icon">📄</div>
@@ -804,10 +804,9 @@
     </div>
   </div>
 
-  <!-- 2. Topics + Trend + Authors + Universities (4 columns) -->
-  <div class="analytics-row four-col">
+  <!-- 2. Topics + Trend (2 columns) -->
+  <div class="analytics-row">
 
-    <!-- Research Topics -->
     <div class="widget-card">
       <div class="widget-header">
         <div class="widget-title">🧠 研究方向 | Research Topics</div>
@@ -871,7 +870,6 @@
       </div>
     </div>
 
-    <!-- Research Trend -->
     <div class="widget-card">
       <div class="widget-header">
         <div class="widget-title">📅 发表趋势 | Publication Trend</div>
@@ -897,7 +895,11 @@
       </div>
     </div>
 
-    <!-- Top Authors by Publications -->
+  </div>
+
+  <!-- 3. Authors + Universities (3 columns) -->
+  <div class="analytics-row authors-row">
+
     <div class="widget-card">
       <div class="widget-header">
         <div class="widget-title">✍️ 高产作者 | By Publications</div>
@@ -908,7 +910,7 @@
       <div class="author-medal">🥇</div>
       <div class="author-rank-info">
         <div class="author-rank-name">Antonio Bicchi</div>
-        <div class="author-rank-meta">IEEE Transactions on Robotics, Robotics and Computer-Integrated Manufacturing</div>
+        <div class="author-rank-meta">Robotics and Computer-Integrated Manufacturing, IEEE Transactions on Robotics</div>
       </div>
       <div class="author-rank-stat">
         <div class="ars-value">13</div>
@@ -923,7 +925,7 @@
       <div class="author-medal">🥈</div>
       <div class="author-rank-info">
         <div class="author-rank-name">Aude Billard</div>
-        <div class="author-rank-meta">IEEE Transactions on Robotics, Robotics and Computer-Integrated Manufacturing</div>
+        <div class="author-rank-meta">Robotics and Computer-Integrated Manufacturing, IEEE Transactions on Robotics</div>
       </div>
       <div class="author-rank-stat">
         <div class="ars-value">11</div>
@@ -938,7 +940,7 @@
       <div class="author-medal">🥉</div>
       <div class="author-rank-info">
         <div class="author-rank-name">Giorgio Grioli</div>
-        <div class="author-rank-meta">IEEE Transactions on Robotics, Robotics and Computer-Integrated Manufacturing</div>
+        <div class="author-rank-meta">Robotics and Computer-Integrated Manufacturing, IEEE Transactions on Robotics</div>
       </div>
       <div class="author-rank-stat">
         <div class="ars-value">10</div>
@@ -952,8 +954,7 @@
       </div>
     </div>
 
-    <!-- Top Authors by Citations + Universities -->
-    <div class="widget-card compact-authors">
+    <div class="widget-card">
       <div class="widget-header">
         <div class="widget-title">📖 高引作者 | By Citations</div>
         <div class="widget-badge">Top 3</div>
@@ -963,7 +964,7 @@
       <div class="author-medal">🥇</div>
       <div class="author-rank-info">
         <div class="author-rank-name">Marco Hutter</div>
-        <div class="author-rank-meta">IEEE Transactions on Robotics, Robotics and Computer-Integrated Manufacturing</div>
+        <div class="author-rank-meta">Robotics and Computer-Integrated Manufacturing, IEEE Transactions on Robotics</div>
       </div>
       <div class="author-rank-stat">
         <div class="ars-value">7</div>
@@ -978,7 +979,7 @@
       <div class="author-medal">🥈</div>
       <div class="author-rank-info">
         <div class="author-rank-name">Siyuan Feng</div>
-        <div class="author-rank-meta">IEEE Transactions on Robotics, Robotics and Computer-Integrated Manufacturing</div>
+        <div class="author-rank-meta">Robotics and Computer-Integrated Manufacturing, IEEE Transactions on Robotics</div>
       </div>
       <div class="author-rank-stat">
         <div class="ars-value">3</div>
@@ -1005,8 +1006,12 @@
       </div>
     </div>
       </div>
-      <div class="widget-header" style="margin-top:0.6rem;">
+    </div>
+
+    <div class="widget-card">
+      <div class="widget-header">
         <div class="widget-title">🏛️ 顶尖机构 | Top Universities</div>
+        <div class="widget-badge">Top 5</div>
       </div>
       <div class="uni-list" id="topUniversities">
 <span class="uni-chip">
@@ -1023,6 +1028,7 @@
   </div>
 
 </section>
+
 
 <div class="container">
 
@@ -1060,42 +1066,6 @@
 <li class="paper-item">
     <div class="paper-num">1</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3688064" target="_blank" rel="noopener">Model-Free Magnetic Servoing for Pose Control of Capsule Robots</a></div>
-      <div class="paper-authors">Chang Liu, Xiaoyang Wu, Jiaole Wang, Shuang Song</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 42, pp. 2127-2145 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">2</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3675526" target="_blank" rel="noopener">Hierarchical Multimodal Motion Control of Magnetic Pivot-Walking Millirobotic-Grippers for Autonomous Target Acquisition in Complex Terrains</a></div>
-      <div class="paper-authors">Ruhao Nie, Shihao Zhong, Yaozhen Hou, Zhiqiang Zheng, Qing Shi, Qiang Huang et al.</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 42, pp. 1749-1768 (2026)</span>
-        <span>⬆️ Cited by: 2</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">3</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3663979" target="_blank" rel="noopener">Optimizing Human–Exoskeleton Physical Interaction Through Spatial Trajectory Adaptation</a></div>
-      <div class="paper-authors">Mohammad Shushtari, Livia Murray, Atusa Ghorbani Siavashani, Arash Arami</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 42, pp. 1485-1498 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">4</div>
-    <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3686277" target="_blank" rel="noopener">TensorTouch: Calibration of Tactile Sensors for High Resolution Stress Tensor and Deformation for Dexterous Manipulation</a></div>
       <div class="paper-authors">Won Kyung Do, Matthew Strong, Aiden Swann, Boshu Lei, Monroe Kennedy</div>
       <div class="paper-meta">
@@ -1106,43 +1076,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">5</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3658292" target="_blank" rel="noopener">FilMBot: A High-Speed Soft Parallel Robotic Micromanipulator</a></div>
-      <div class="paper-authors">Jiangkun Yu, Houari Bettahar, Hakan Kandemir, Quan Zhou</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 42, pp. 1145-1157 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">6</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2025.3631817" target="_blank" rel="noopener">A MagsL-HUD Endoscopic System for Magnetic Compression Anastomosis Surgery in Unstructured Endoluminal Environment</a></div>
-      <div class="paper-authors">Yichong Sun, Yitian Xian, Ruoyu Xu, Wai Shing Chan, Hon Chi Yip, Philip Wai Yan Chiu et al.</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 42, pp. 475-494 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">7</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2025.3645884" target="_blank" rel="noopener">Probabilistic Modeling and Control for Multi-UAV Search Over Uneven Terrain</a></div>
-      <div class="paper-authors">Luka Lanča, Karlo Jakac, Stefan Ivić</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 42, pp. 418-438 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">8</div>
+    <div class="paper-num">2</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3706557" target="_blank" rel="noopener">Bundle Adjustment in the Eager Mode</a></div>
       <div class="paper-authors">Zitong Zhan, Huan Xu, Zihang Fang, Xinpeng Wei, Yaoyu Hu, Chen Wang</div>
@@ -1154,12 +1088,84 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">9</div>
+    <div class="paper-num">3</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3658292" target="_blank" rel="noopener">FilMBot: A High-Speed Soft Parallel Robotic Micromanipulator</a></div>
+      <div class="paper-authors">Jiangkun Yu, Houari Bettahar, Hakan Kandemir, Quan Zhou</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 1145-1157 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">4</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2025.3645884" target="_blank" rel="noopener">Probabilistic Modeling and Control for Multi-UAV Search Over Uneven Terrain</a></div>
+      <div class="paper-authors">Luka Lanča, Karlo Jakac, Stefan Ivić</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 418-438 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">5</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2025.3631817" target="_blank" rel="noopener">A MagsL-HUD Endoscopic System for Magnetic Compression Anastomosis Surgery in Unstructured Endoluminal Environment</a></div>
+      <div class="paper-authors">Yichong Sun, Yitian Xian, Ruoyu Xu, Wai Shing Chan, Hon Chi Yip, Philip Wai Yan Chiu et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 475-494 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">6</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3663979" target="_blank" rel="noopener">Optimizing Human–Exoskeleton Physical Interaction Through Spatial Trajectory Adaptation</a></div>
+      <div class="paper-authors">Mohammad Shushtari, Livia Murray, Atusa Ghorbani Siavashani, Arash Arami</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 1485-1498 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">7</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3675526" target="_blank" rel="noopener">Hierarchical Multimodal Motion Control of Magnetic Pivot-Walking Millirobotic-Grippers for Autonomous Target Acquisition in Complex Terrains</a></div>
+      <div class="paper-authors">Ruhao Nie, Shihao Zhong, Yaozhen Hou, Zhiqiang Zheng, Qing Shi, Qiang Huang et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 1749-1768 (2026)</span>
+        <span>⬆️ Cited by: 2</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">8</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3686278" target="_blank" rel="noopener">Complete Autonomous Robotic Nasopharyngeal Swab System With Evaluation on a Stochastically Moving Phantom Head</a></div>
       <div class="paper-authors">Peter Q. Lee, John S. Zelek, Katja Mombaur</div>
       <div class="paper-meta">
         <span>📖 Vol. 42, pp. 2050-2067 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">9</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3688064" target="_blank" rel="noopener">Model-Free Magnetic Servoing for Pose Control of Capsule Robots</a></div>
+      <div class="paper-authors">Chang Liu, Xiaoyang Wu, Jiaole Wang, Shuang Song</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 2127-2145 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1180,11 +1186,11 @@
 <li class="paper-item">
     <div class="paper-num">11</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2025.3645962" target="_blank" rel="noopener">A Multifingered Robotic Hand With Fiber-Optic Force and Tactile Sensing for Remote Manipulation</a></div>
-      <div class="paper-authors">Jaehyun Yi, Wook Joon Chung, Jeongwon Lee, Hamza Muzammal, Jeonghun Park, Young Soo Park et al.</div>
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3653854" target="_blank" rel="noopener">A Rotation–Translation Decoupled Solution for Visual–Inertial Initialization and Online Spatial–Temporal Calibration</a></div>
+      <div class="paper-authors">Bo Xu, Zewen Xu, Yijia He, Zhanpeng Ouyang, Hao Wei, Yihong Wu et al.</div>
       <div class="paper-meta">
-        <span>📖 Vol. 42, pp. 509-524 (2026)</span>
-        <span>⬆️ Cited by: 1</span>
+        <span>📖 Vol. 42, pp. 854-873 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
       </div>
       
     </div>
@@ -1192,10 +1198,10 @@
 <li class="paper-item">
     <div class="paper-num">12</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3653854" target="_blank" rel="noopener">A Rotation–Translation Decoupled Solution for Visual–Inertial Initialization and Online Spatial–Temporal Calibration</a></div>
-      <div class="paper-authors">Bo Xu, Zewen Xu, Yijia He, Zhanpeng Ouyang, Hao Wei, Yihong Wu et al.</div>
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3701576" target="_blank" rel="noopener">Cross-Behavior Learning with Object Flow Prediction for Robotic Manipulation</a></div>
+      <div class="paper-authors">Longrui Chen, David Russell, Yulei Qiu, Mehmet Dogar</div>
       <div class="paper-meta">
-        <span>📖 Vol. 42, pp. 854-873 (2026)</span>
+        <span>📖 pp. 1-17 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1216,30 +1222,6 @@
 <li class="paper-item">
     <div class="paper-num">14</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3701576" target="_blank" rel="noopener">Cross-Behavior Learning with Object Flow Prediction for Robotic Manipulation</a></div>
-      <div class="paper-authors">Longrui Chen, David Russell, Yulei Qiu, Mehmet Dogar</div>
-      <div class="paper-meta">
-        <span>📖 pp. 1-17 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">15</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2025.3645885" target="_blank" rel="noopener">Traversability-Aware Legged Navigation by Learning From Real-World Visual Data</a></div>
-      <div class="paper-authors">Hongbo Zhang, Zhongyu Li, Xuanqi Zeng, Laura Smith, Kyle Stachowicz, Dhruv Shah et al.</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 42, pp. 400-417 (2026)</span>
-        <span>⬆️ Cited by: 1</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">16</div>
-    <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3688100" target="_blank" rel="noopener">PS
                     <sup>3</sup>
                     N: Probabilistic Spiking Structured State-Space Networks for Event-Based Visual-Tactile Slip Detection</a></div>
@@ -1252,13 +1234,37 @@
     </div>
   </li>
 <li class="paper-item">
+    <div class="paper-num">15</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2025.3645962" target="_blank" rel="noopener">A Multifingered Robotic Hand With Fiber-Optic Force and Tactile Sensing for Remote Manipulation</a></div>
+      <div class="paper-authors">Jaehyun Yi, Wook Joon Chung, Jeongwon Lee, Hamza Muzammal, Jeonghun Park, Young Soo Park et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 509-524 (2026)</span>
+        <span>⬆️ Cited by: 1</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">16</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2025.3645885" target="_blank" rel="noopener">Traversability-Aware Legged Navigation by Learning From Real-World Visual Data</a></div>
+      <div class="paper-authors">Hongbo Zhang, Zhongyu Li, Xuanqi Zeng, Laura Smith, Kyle Stachowicz, Dhruv Shah et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 400-417 (2026)</span>
+        <span>⬆️ Cited by: 1</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
     <div class="paper-num">17</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3677010" target="_blank" rel="noopener">Safe and Agile Transportation of Cable-Suspended Payload via Multiple Aerial Robots</a></div>
-      <div class="paper-authors">Yongchao Wang, Junjie Wang, Xiaobin Zhou, Tiankai Yang, Xin Zhou, Chao Xu et al.</div>
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3653884" target="_blank" rel="noopener">Hybrid Soft-Rigid Elbow Exosuit: Theory, Mechatronic Design, and Experimental Assessment</a></div>
+      <div class="paper-authors">Ali KhalilianMotamed Bonab, Cristian Camardella, Antonio Frisoli, Domenico Chiaradia</div>
       <div class="paper-meta">
-        <span>📖 Vol. 42, pp. 1804-1823 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
+        <span>📖 Vol. 42, pp. 912-930 (2026)</span>
+        <span>⬆️ Cited by: 1</span>
       </div>
       
     </div>
@@ -1278,11 +1284,11 @@
 <li class="paper-item">
     <div class="paper-num">19</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3653884" target="_blank" rel="noopener">Hybrid Soft-Rigid Elbow Exosuit: Theory, Mechatronic Design, and Experimental Assessment</a></div>
-      <div class="paper-authors">Ali KhalilianMotamed Bonab, Cristian Camardella, Antonio Frisoli, Domenico Chiaradia</div>
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3677010" target="_blank" rel="noopener">Safe and Agile Transportation of Cable-Suspended Payload via Multiple Aerial Robots</a></div>
+      <div class="paper-authors">Yongchao Wang, Junjie Wang, Xiaobin Zhou, Tiankai Yang, Xin Zhou, Chao Xu et al.</div>
       <div class="paper-meta">
-        <span>📖 Vol. 42, pp. 912-930 (2026)</span>
-        <span>⬆️ Cited by: 1</span>
+        <span>📖 Vol. 42, pp. 1804-1823 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
       </div>
       
     </div>
@@ -1302,18 +1308,6 @@
 <li class="paper-item">
     <div class="paper-num">21</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3697171" target="_blank" rel="noopener">Pushing Physical Limits and Uncovering Motion Templates of Spine-Based Quadruped Locomotion via Reinforcement Learning</a></div>
-      <div class="paper-authors">Zhenshan Bing, Yulong Xiao, Yuhong Huang, Qing Shi, Long Cheng, Biao Hu et al.</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 42, pp. 2305-2324 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">22</div>
-    <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3653859" target="_blank" rel="noopener">Strain-Based Shape and 3-D Force Estimation for Rod-Driven Continuum Robots With Stretch Sensors</a></div>
       <div class="paper-authors">Peiyi Wang, Daniel Feliu-Talegon, Yuchen Sun, Zhexin Xie, Wenci Xin, Muhammad Sunny Nazeer et al.</div>
       <div class="paper-meta">
@@ -1324,31 +1318,19 @@
     </div>
   </li>
 <li class="paper-item">
+    <div class="paper-num">22</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3697171" target="_blank" rel="noopener">Pushing Physical Limits and Uncovering Motion Templates of Spine-Based Quadruped Locomotion via Reinforcement Learning</a></div>
+      <div class="paper-authors">Zhenshan Bing, Yulong Xiao, Yuhong Huang, Qing Shi, Long Cheng, Biao Hu et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 2305-2324 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
     <div class="paper-num">23</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3706570" target="_blank" rel="noopener">Learning Robot Safety from Sparse Human Feedback using Conformal Prediction</a></div>
-      <div class="paper-authors">Aaron O. Feldman, Joseph A. Vincent, Maximilian Adang, JunEn Low, Mac Schwager</div>
-      <div class="paper-meta">
-        <span>📖 pp. 1-20 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">24</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2025.3636819" target="_blank" rel="noopener">Temporal Transfer Learning for Traffic Optimization with Coarse-Grained Advisory Autonomy</a></div>
-      <div class="paper-authors">Jung-Hoon Cho, Sirui Li, Jeongyun Kim, Cathy Wu</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 42, pp. 20-38 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">25</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3691220" target="_blank" rel="noopener">Analysis and Mitigation of Pose Estimation Uncertainty on SE(3) for Magnetic Localization</a></div>
       <div class="paper-authors">Pingyu Xiang, Hongye Zhang, Yue Wang, Rong Xiong, Haojian Lu</div>
@@ -1360,12 +1342,36 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">26</div>
+    <div class="paper-num">24</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3706570" target="_blank" rel="noopener">Learning Robot Safety from Sparse Human Feedback using Conformal Prediction</a></div>
+      <div class="paper-authors">Aaron O. Feldman, Joseph A. Vincent, Maximilian Adang, JunEn Low, Mac Schwager</div>
+      <div class="paper-meta">
+        <span>📖 pp. 1-20 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">25</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/tro.2025.3636344" target="_blank" rel="noopener">SDRS: Shape-Differentiable Robot Simulator</a></div>
       <div class="paper-authors">Xiaohan Ye, Xifeng Gao, Kui Wu, Zherong Pan, Taku Komura</div>
       <div class="paper-meta">
         <span>📖 Vol. 42, pp. 1309-1329 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">26</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2025.3636819" target="_blank" rel="noopener">Temporal Transfer Learning for Traffic Optimization with Coarse-Grained Advisory Autonomy</a></div>
+      <div class="paper-authors">Jung-Hoon Cho, Sirui Li, Jeongyun Kim, Cathy Wu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 42, pp. 20-38 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1386,18 +1392,6 @@
 <li class="paper-item">
     <div class="paper-num">28</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3701316" target="_blank" rel="noopener">Parallel-Elastic Actuation with Reactive Latch Elevates Robotic Hopping Performance: Jump Height and Continuity</a></div>
-      <div class="paper-authors">Songnan Bai, Runze Ding, Song Li, Ruihan Jia, Ruobing Wang, Zhiyuan Zhang et al.</div>
-      <div class="paper-meta">
-        <span>📖 pp. 1-20 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">29</div>
-    <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3699433" target="_blank" rel="noopener">LiDAR Teach, Radar Repeat: Robust Cross-Modal Navigation in Degenerate and Varying Environments</a></div>
       <div class="paper-authors">Renxiang Xiao, Yichen Chen, Yuanfan Zhang, Qianyi Shao, Yushuai Chen, Yuxuan Han et al.</div>
       <div class="paper-meta">
@@ -1408,10 +1402,22 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">30</div>
+    <div class="paper-num">29</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3706565" target="_blank" rel="noopener">Parallel, Asymptotically Optimal Algorithms for Moving Target Traveling Salesman Problems</a></div>
       <div class="paper-authors">Anoop Bhat, Geordan Gutow, Bhaskar Vundurthy, Zhongqiang Ren, Sivakumar Rathinam, Howie Choset</div>
+      <div class="paper-meta">
+        <span>📖 pp. 1-20 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">30</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tro.2026.3701316" target="_blank" rel="noopener">Parallel-Elastic Actuation with Reactive Latch Elevates Robotic Hopping Performance: Jump Height and Continuity</a></div>
+      <div class="paper-authors">Songnan Bai, Runze Ding, Song Li, Ruihan Jia, Ruobing Wang, Zhiyuan Zhang et al.</div>
       <div class="paper-meta">
         <span>📖 pp. 1-20 (2026)</span>
         <span>⬆️ Cited by: 0</span>
@@ -1477,6 +1483,32 @@
 <li class="paper-item">
     <div class="paper-num">2</div>
     <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261447308" target="_blank" rel="noopener">TPT-Bench: A large-scale, long-term and robot-egocentric dataset for benchmarking target person tracking</a></div>
+      <div class="paper-authors">Hanjing Ye, Yu Zhan, Weixi Situ, Guangcheng Chen, Jingwen Yu, Ziqi Zhao et al.</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">
+                    Tracking a target person from robot-egocentric views is crucial for developing autonomous robots that provide continuous personalized assistance or collaboration in human–robot interaction (HRI) and Embodied AI. However, most exi...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">3</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261455065" target="_blank" rel="noopener">EgoExo++: Integrating on-demand exocentric visuals with 2.5D ground surface estimation for interactive teleoperation of underwater ROVs</a></div>
+      <div class="paper-authors">Adnan Abdullah, Ruo Chen, Ioannis Rekleitis, Md Jahidul Islam</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">
+                    Underwater ROVs (Remotely Operated Vehicles) are indispensable for subsea exploration and task execution, yet typical teleoperation engines based on egocentric (first-person) video feeds restrict human operators’ field-of-view an...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">4</div>
+    <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1177/02783649261458409" target="_blank" rel="noopener">3D kinematic modeling of a self-reconfigurable wheeled mobile robot for enhancing multimode motion capability</a></div>
       <div class="paper-authors">Liang Ding, Huanan Qi, Xinyu Li, Shu Li, Qiannan Cheng, Huaiguang Yang et al.</div>
       <div class="paper-meta">
@@ -1484,32 +1516,6 @@
         <span>⬆️ Cited by: 0</span>
       </div>
       <div class="paper-abstract">Self-reconfigurable wheeled mobile robots (SRWMRs) are capable of achieving multiple motion modes and subsequent switching between them through the coordinated sequential movements of multiple rocker–bogie joints, leading to overcoming dynamic obstac...</div>
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">3</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261449269" target="_blank" rel="noopener">Efficiently closing loops in LiDAR-based SLAM using point cloud density maps</a></div>
-      <div class="paper-authors">Saurabh Gupta, Tiziano Guadagnino, Benedikt Mersch, Niklas Trekel, Meher V. R. Malladi, Cyrill Stachniss</div>
-      <div class="paper-meta">
-        <span>📖 2026</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      <div class="paper-abstract">
-                    Consistent maps are key for most autonomous mobile robots, and they often use SLAM approaches to build such maps. Loop closures via place recognition help to maintain accurate pose estimates by mitigating global drift, and are th...</div>
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">4</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261453998" target="_blank" rel="noopener">Energy-optimal linear quadratic tracking control for unmanned underwater vehicles in offshore aquaculture fish net-pen visual inspection</a></div>
-      <div class="paper-authors">Thein Than Tun, Loulin Huang, Mark Anthony Preece</div>
-      <div class="paper-meta">
-        <span>📖 2026</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      <div class="paper-abstract">
-                    Unmanned underwater vehicles (UUVs) have been deployed for fish net-pen visual inspection (FNVI) in offshore aquaculture. Limited energy capacity of onboard power supplies constrains the UUV’s working range and operating time. To...</div>
     </div>
   </li>
 <li class="paper-item">
@@ -1527,45 +1533,6 @@
 <li class="paper-item">
     <div class="paper-num">6</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261447308" target="_blank" rel="noopener">TPT-Bench: A large-scale, long-term and robot-egocentric dataset for benchmarking target person tracking</a></div>
-      <div class="paper-authors">Hanjing Ye, Yu Zhan, Weixi Situ, Guangcheng Chen, Jingwen Yu, Ziqi Zhao et al.</div>
-      <div class="paper-meta">
-        <span>📖 2026</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      <div class="paper-abstract">
-                    Tracking a target person from robot-egocentric views is crucial for developing autonomous robots that provide continuous personalized assistance or collaboration in human–robot interaction (HRI) and Embodied AI. However, most exi...</div>
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">7</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261457941" target="_blank" rel="noopener">GaRLILEO: Gravity-aligned radar-leg-inertial enhanced odometry</a></div>
-      <div class="paper-authors">Chiyun Noh, Sangwoo Jung, Hanjun Kim, Yafei Hu, Laura Herlant, Ayoung Kim</div>
-      <div class="paper-meta">
-        <span>📖 2026</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      <div class="paper-abstract">
-                    Deployment of legged robots for navigating challenging terrains (e.g., stairs, slopes, and unstructured environments) has gained increasing preference over wheel-based platforms. In such scenarios, accurate odometry estimation is...</div>
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">8</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261455065" target="_blank" rel="noopener">EgoExo++: Integrating on-demand exocentric visuals with 2.5D ground surface estimation for interactive teleoperation of underwater ROVs</a></div>
-      <div class="paper-authors">Adnan Abdullah, Ruo Chen, Ioannis Rekleitis, Md Jahidul Islam</div>
-      <div class="paper-meta">
-        <span>📖 2026</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      <div class="paper-abstract">
-                    Underwater ROVs (Remotely Operated Vehicles) are indispensable for subsea exploration and task execution, yet typical teleoperation engines based on egocentric (first-person) video feeds restrict human operators’ field-of-view an...</div>
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">9</div>
-    <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1177/02783649261451003" target="_blank" rel="noopener">2Fast-2Lamaa: Large-scale lidar-inertial localization and mapping with continuous distance fields</a></div>
       <div class="paper-authors">Cedric Le Gentil, Raphael Falque, Daniil Lisus, Timothy D. Barfoot</div>
       <div class="paper-meta">
@@ -1577,7 +1544,20 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">10</div>
+    <div class="paper-num">7</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261449269" target="_blank" rel="noopener">Efficiently closing loops in LiDAR-based SLAM using point cloud density maps</a></div>
+      <div class="paper-authors">Saurabh Gupta, Tiziano Guadagnino, Benedikt Mersch, Niklas Trekel, Meher V. R. Malladi, Cyrill Stachniss</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">
+                    Consistent maps are key for most autonomous mobile robots, and they often use SLAM approaches to build such maps. Loop closures via place recognition help to maintain accurate pose estimates by mitigating global drift, and are th...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">8</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1177/02783649261455368" target="_blank" rel="noopener">Particle importance analysis: A fast localization method under indeterminate magnetic sources</a></div>
       <div class="paper-authors">Ruoyu Xu, Yichong Sun, Yimou Wu, Yehui Li, Zheng Li</div>
@@ -1586,6 +1566,32 @@
         <span>⬆️ Cited by: 0</span>
       </div>
       <div class="paper-abstract">For magnetically actuated robots driven by external magnetic sources (EMSs), rapid and stable localization of the internal permanent magnet (IPM) is essential for closed-loop control. Existing sensor-array-based localization methods require a fixed m...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">9</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261453998" target="_blank" rel="noopener">Energy-optimal linear quadratic tracking control for unmanned underwater vehicles in offshore aquaculture fish net-pen visual inspection</a></div>
+      <div class="paper-authors">Thein Than Tun, Loulin Huang, Mark Anthony Preece</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">
+                    Unmanned underwater vehicles (UUVs) have been deployed for fish net-pen visual inspection (FNVI) in offshore aquaculture. Limited energy capacity of onboard power supplies constrains the UUV’s working range and operating time. To...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">10</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261457941" target="_blank" rel="noopener">GaRLILEO: Gravity-aligned radar-leg-inertial enhanced odometry</a></div>
+      <div class="paper-authors">Chiyun Noh, Sangwoo Jung, Hanjun Kim, Yafei Hu, Laura Herlant, Ayoung Kim</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">
+                    Deployment of legged robots for navigating challenging terrains (e.g., stairs, slopes, and unstructured environments) has gained increasing preference over wheel-based platforms. In such scenarios, accurate odometry estimation is...</div>
     </div>
   </li>
 <li class="paper-item">
@@ -1627,6 +1633,18 @@
 <li class="paper-item">
     <div class="paper-num">14</div>
     <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261455067" target="_blank" rel="noopener">Parkour in the wild: Learning a general and extensible agile locomotion policy using multi-expert distillation and RL fine-tuning</a></div>
+      <div class="paper-authors">Nikita Rudin, Junzhe He, Joshua Aurand, Marco Hutter</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 1</span>
+      </div>
+      <div class="paper-abstract">Legged robots are well-suited for navigating terrains inaccessible to wheeled robots, making them ideal for applications in search and rescue or space exploration. However, current control methods often struggle to generalize across diverse, unstruct...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">15</div>
+    <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1177/02783649261444417" target="_blank" rel="noopener">A ground robot dataset for multi-sensor navigation in diverse environments</a></div>
       <div class="paper-authors">Ban Li, Jianghui Geng, Pai Wang, Yuanxin Wu, Hui Cheng, Hang Shi</div>
       <div class="paper-meta">
@@ -1638,32 +1656,32 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">15</div>
+    <div class="paper-num">16</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261455067" target="_blank" rel="noopener">Parkour in the wild: Learning a general and extensible agile locomotion policy using multi-expert distillation and RL fine-tuning</a></div>
-      <div class="paper-authors">Nikita Rudin, Junzhe He, Joshua Aurand, Marco Hutter</div>
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261444046" target="_blank" rel="noopener">K2MUSE: A human lower-limb multimodal walking dataset spanning task and acquisition variability for rehabilitation robotics</a></div>
+      <div class="paper-authors">Jiwei Li, Bi Zhang, Xiaowei Tan, Wanxin Chen, Zhaoyuan Liu, Juanjuan Zhang et al.</div>
       <div class="paper-meta">
         <span>📖 2026</span>
         <span>⬆️ Cited by: 1</span>
       </div>
-      <div class="paper-abstract">Legged robots are well-suited for navigating terrains inaccessible to wheeled robots, making them ideal for applications in search and rescue or space exploration. However, current control methods often struggle to generalize across diverse, unstruct...</div>
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">16</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261436917" target="_blank" rel="noopener">Faster algorithms for growing collision-free convex polytopes in robot configuration space</a></div>
-      <div class="paper-authors">Peter Werner, Thomas Cohn, Rebecca H. Jiang, Tim Seyde, Max Simchowitz, Russ Tedrake et al.</div>
-      <div class="paper-meta">
-        <span>📖 2026</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
       <div class="paper-abstract">
-                    We propose two novel algorithms for constructing convex probabilistically collision-free polytopes in robot configuration space. Finding these polytopes enables the application of stronger motion-planning frameworks such as traje...</div>
+                    The natural interaction and control performance of lower limb rehabilitation robots are closely linked to biomechanical information from various human locomotion activities. Multidimensional human motion data significantly deepen...</div>
     </div>
   </li>
 <li class="paper-item">
     <div class="paper-num">17</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261451002" target="_blank" rel="noopener">Actuator fault recovery with deep reinforcement learning in a linear model-based control framework: Application to a physical AUV</a></div>
+      <div class="paper-authors">Katell Lagattu, Ramy Alham, Thomas Chaffre, Eva Artusi, Paulo E. Santos, Gilles Le Chenadec et al.</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Actuator faults in autonomous mobile robotic systems pose significant challenges, especially in unpredictable environments where system reliability is paramount. Fault tolerant control (FTC) strategies, particularly those leveraging actuator redundan...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">18</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1177/02783649261447305" target="_blank" rel="noopener">NavWareSet: A dataset of socially compliant and non-compliant robot navigation</a></div>
       <div class="paper-authors">Johnata Brayan, Sihao Deng, Armando Alves Neto, Iaroslav Okunevich, Tomas Krajnik, Francois Bremond et al.</div>
@@ -1678,20 +1696,20 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">18</div>
+    <div class="paper-num">19</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261444046" target="_blank" rel="noopener">K2MUSE: A human lower-limb multimodal walking dataset spanning task and acquisition variability for rehabilitation robotics</a></div>
-      <div class="paper-authors">Jiwei Li, Bi Zhang, Xiaowei Tan, Wanxin Chen, Zhaoyuan Liu, Juanjuan Zhang et al.</div>
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261436917" target="_blank" rel="noopener">Faster algorithms for growing collision-free convex polytopes in robot configuration space</a></div>
+      <div class="paper-authors">Peter Werner, Thomas Cohn, Rebecca H. Jiang, Tim Seyde, Max Simchowitz, Russ Tedrake et al.</div>
       <div class="paper-meta">
         <span>📖 2026</span>
-        <span>⬆️ Cited by: 1</span>
+        <span>⬆️ Cited by: 0</span>
       </div>
       <div class="paper-abstract">
-                    The natural interaction and control performance of lower limb rehabilitation robots are closely linked to biomechanical information from various human locomotion activities. Multidimensional human motion data significantly deepen...</div>
+                    We propose two novel algorithms for constructing convex probabilistically collision-free polytopes in robot configuration space. Finding these polytopes enables the application of stronger motion-planning frameworks such as traje...</div>
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">19</div>
+    <div class="paper-num">20</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1177/02783649261443651" target="_blank" rel="noopener">Bioinspired multisegment knee exoskeletons with variable stiffness and kinematic compatibility</a></div>
       <div class="paper-authors">Ming Xu, Zhihao Zhou, Wenjie Lou, Xiaolin Dai, Run Wang, Sunil K. Agrawal et al.</div>
@@ -1700,18 +1718,6 @@
         <span>⬆️ Cited by: 0</span>
       </div>
       <div class="paper-abstract">The knee joint plays a critical role in locomotion but is susceptible to overuse injuries, motivating the development of assistive exoskeletons. Current designs face a fundamental trade-off between achieving kinematic compatibility with the knee’s co...</div>
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">20</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261451002" target="_blank" rel="noopener">Actuator fault recovery with deep reinforcement learning in a linear model-based control framework: Application to a physical AUV</a></div>
-      <div class="paper-authors">Katell Lagattu, Ramy Alham, Thomas Chaffre, Eva Artusi, Paulo E. Santos, Gilles Le Chenadec et al.</div>
-      <div class="paper-meta">
-        <span>📖 2026</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      <div class="paper-abstract">Actuator faults in autonomous mobile robotic systems pose significant challenges, especially in unpredictable environments where system reliability is paramount. Fault tolerant control (FTC) strategies, particularly those leveraging actuator redundan...</div>
     </div>
   </li>
 <li class="paper-item">
@@ -1753,6 +1759,18 @@
 <li class="paper-item">
     <div class="paper-num">24</div>
     <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261441638" target="_blank" rel="noopener">Path planning and reinforcement learning-driven control of on-orbit free-flying multi-arm robots</a></div>
+      <div class="paper-authors">Álvaro Belmonte-Baeza, José Luis Ramón, Leonard Felicetti, Miguel Cazorla, Jorge Pomares</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">This paper presents a hybrid approach that integrates trajectory optimization (TO) and reinforcement learning (RL) for motion planning and control of free-flying multi-arm robots in on-orbit servicing scenarios. The proposed system integrates TO for ...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">25</div>
+    <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1177/02783649261441639" target="_blank" rel="noopener">Multiscale deformable objects manipulation via wavelet-decomposed boundary element method</a></div>
       <div class="paper-authors">Junlei Hu, Dominic Jones, Majed Melibary, Jiannan Liu, Pietro Valdastri</div>
       <div class="paper-meta">
@@ -1761,18 +1779,6 @@
       </div>
       <div class="paper-abstract">
                     Robotic deformable object manipulation (DOM) faces critical challenges in industrial and medical applications due to under-actuation, unpredictable deformation, and partial observability. Model-free methods often suffer from unst...</div>
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">25</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261441638" target="_blank" rel="noopener">Path planning and reinforcement learning-driven control of on-orbit free-flying multi-arm robots</a></div>
-      <div class="paper-authors">Álvaro Belmonte-Baeza, José Luis Ramón, Leonard Felicetti, Miguel Cazorla, Jorge Pomares</div>
-      <div class="paper-meta">
-        <span>📖 2026</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      <div class="paper-abstract">This paper presents a hybrid approach that integrates trajectory optimization (TO) and reinforcement learning (RL) for motion planning and control of free-flying multi-arm robots in on-orbit servicing scenarios. The proposed system integrates TO for ...</div>
     </div>
   </li>
 <li class="paper-item">
@@ -1803,6 +1809,19 @@
 <li class="paper-item">
     <div class="paper-num">28</div>
     <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261431863" target="_blank" rel="noopener">Situationally-aware dynamics learning</a></div>
+      <div class="paper-authors">Alejandro Murillo-González, Lantao Liu</div>
+      <div class="paper-meta">
+        <span>📖 2026</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">
+                    Autonomous robots operating in complex, unstructured environments face significant challenges due to latent, unobserved factors that obscure their understanding of both their internal state and the external world. Addressing this...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">29</div>
+    <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1177/02783649261432253" target="_blank" rel="noopener">Robotic perception and manipulation of deformable linear objects: A survey</a></div>
       <div class="paper-authors">Alessio Caporali, Ignacio Cuiral-Zueco, Gonzalo López-Nicolás, Gianluca Palli</div>
       <div class="paper-meta">
@@ -1814,7 +1833,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">29</div>
+    <div class="paper-num">30</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1177/02783649261433048" target="_blank" rel="noopener">A manifold model predictive controller for agile pose trajectory tracking of an orbital space robot</a></div>
       <div class="paper-authors">Shuai Wang, Haiyan Hu, Ju Chen, Xiaodong Song, Qiang Tian</div>
@@ -1823,19 +1842,6 @@
         <span>⬆️ Cited by: 0</span>
       </div>
       <div class="paper-abstract">The control of an orbital space robot is challenging due to the strong nonlinear dynamic coupling between the floating base spacecraft and the equipped manipulator. To address this problem effectively, this paper develops a geometric control framewor...</div>
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">30</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1177/02783649261431863" target="_blank" rel="noopener">Situationally-aware dynamics learning</a></div>
-      <div class="paper-authors">Alejandro Murillo-González, Lantao Liu</div>
-      <div class="paper-meta">
-        <span>📖 2026</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      <div class="paper-abstract">
-                    Autonomous robots operating in complex, unstructured environments face significant challenges due to latent, unobserved factors that obscure their understanding of both their internal state and the external world. Addressing this...</div>
     </div>
   </li>
 </ul>
