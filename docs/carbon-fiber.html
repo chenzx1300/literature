@@ -527,8 +527,8 @@
       .ir-flag { display: none; }
       .ir-meta { display: none; }
       .ir-count { min-width: 2.2rem; font-size: 0.72rem; }
-      /* 移动端机构名空间不够，恢复 ellipsis 兜底（短名完整、长名省略号） */
-      .ir-name { max-width: none !important; white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; }
+      /* 移动端机构名也允许换行，row 高度自适应（不截断） */
+      .ir-name { max-width: 100%; white-space: normal; overflow: visible; text-overflow: clip; word-break: break-word; }
       /* Tabs header — keep horizontal scroll */
       .tabs-header { padding: 0 0.5rem; }
       .tab-btn { padding: 0.7rem 0.7rem; font-size: 0.72rem; min-width: max-content; }
