@@ -689,7 +689,6 @@
       align-items: center;
       justify-content: flex-end;
       height: 100%;
-      position: relative;
     }
     .trend-bar-label {
       font-size: 0.68rem;
@@ -702,10 +701,8 @@
       max-width: 40px;
       border-radius: 4px 4px 0 0;
       background: linear-gradient(180deg, var(--accent) 0%, var(--accent-soft) 100%);
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
+      align-self: center;
+      margin-top: auto;
       transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .trend-bar-fill::after {
@@ -919,7 +916,7 @@
       <div class="author-medal">🥈</div>
       <div class="author-rank-info">
         <div class="author-rank-name">Yu Zhang</div>
-        <div class="author-rank-meta">Composites Science and Technology, Carbon</div>
+        <div class="author-rank-meta">Composites Science and Technology, Composites Part A: Applied Science and Manufacturing</div>
       </div>
       <div class="author-rank-stat">
         <div class="ars-value">19</div>
@@ -934,7 +931,7 @@
       <div class="author-medal">🥉</div>
       <div class="author-rank-info">
         <div class="author-rank-name">Yan Wang</div>
-        <div class="author-rank-meta">Composites Science and Technology, Carbon</div>
+        <div class="author-rank-meta">Composites Science and Technology, Composites Part A: Applied Science and Manufacturing</div>
       </div>
       <div class="author-rank-stat">
         <div class="ars-value">16</div>
@@ -973,7 +970,7 @@
       <div class="author-medal">🥈</div>
       <div class="author-rank-info">
         <div class="author-rank-name">Yu Zhang</div>
-        <div class="author-rank-meta">Composites Science and Technology, Carbon</div>
+        <div class="author-rank-meta">Composites Science and Technology, Composites Part A: Applied Science and Manufacturing</div>
       </div>
       <div class="author-rank-stat">
         <div class="ars-value">19</div>
@@ -988,7 +985,7 @@
       <div class="author-medal">🥉</div>
       <div class="author-rank-info">
         <div class="author-rank-name">Jun Wang</div>
-        <div class="author-rank-meta">Composites Science and Technology, Carbon</div>
+        <div class="author-rank-meta">Composites Science and Technology, Composites Part A: Applied Science and Manufacturing</div>
       </div>
       <div class="author-rank-stat">
         <div class="ars-value">9</div>
@@ -1818,30 +1815,6 @@
 <li class="paper-item">
     <div class="paper-num">1</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109980" target="_blank" rel="noopener">Synergistic enhancement of breakdown and dielectric properties in ceramic dielectrics via in-situ carbon nanoparticle incorporation</a></div>
-      <div class="paper-authors">Yuanyuan Zhao, Shuimiao Xia, Qingyang Tang, Peng Yin, Hongqiang Wang, Runhua Fan et al.</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 209, pp. 109980 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">2</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110041" target="_blank" rel="noopener">Application of energy-efficient electromagnetic Melt-Processing for the upcycling of recycled polyphenylene sulfide into multifunctional segregated nanocomposites</a></div>
-      <div class="paper-authors">Madara Mohoppu, Utsab Ayan, Bibek Kattel, Oussama Oulhakem, Olivia McNair, Ahmed Al-Ostaz et al.</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 210, pp. 110041 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">3</div>
-    <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110034" target="_blank" rel="noopener">Developing fully bio-based poly(lactic acid) composites with enhanced toughness, heat resistance and flame retardancy via solvent-free reactive blending</a></div>
       <div class="paper-authors">Guofeng Ye, Zimeng Zhang, Cheng Wang, Min Hong, Ting Sai, Zhenghong Guo et al.</div>
       <div class="paper-meta">
@@ -1852,19 +1825,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">4</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109953" target="_blank" rel="noopener">A multifunctional bamboo-reinforced ionogel with large format, high strength, transparency, adhesion, and sensing capability</a></div>
-      <div class="paper-authors">Kaili Wang, Chi Zhang, Yijia Zhang, Yuanci Cai, Fanxi Nie, Youming Dong et al.</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 209, pp. 109953 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">5</div>
+    <div class="paper-num">2</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110010" target="_blank" rel="noopener">Influence of pre-consolidation on interply friction and its impact on forming outcomes for advanced thermoset prepregs</a></div>
       <div class="paper-authors">A. Dutta, M. Onoufriou, M. Åkermo</div>
@@ -1876,12 +1837,48 @@
     </div>
   </li>
 <li class="paper-item">
+    <div class="paper-num">3</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109953" target="_blank" rel="noopener">A multifunctional bamboo-reinforced ionogel with large format, high strength, transparency, adhesion, and sensing capability</a></div>
+      <div class="paper-authors">Kaili Wang, Chi Zhang, Yijia Zhang, Yuanci Cai, Fanxi Nie, Youming Dong et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 209, pp. 109953 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">4</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110041" target="_blank" rel="noopener">Application of energy-efficient electromagnetic Melt-Processing for the upcycling of recycled polyphenylene sulfide into multifunctional segregated nanocomposites</a></div>
+      <div class="paper-authors">Madara Mohoppu, Utsab Ayan, Bibek Kattel, Oussama Oulhakem, Olivia McNair, Ahmed Al-Ostaz et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 210, pp. 110041 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">5</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110036" target="_blank" rel="noopener">A deep learning-based electrical sensing framework for Structural Health Monitoring of composite structures</a></div>
+      <div class="paper-authors">A. Gazzola, P.A. Carraro, M. Quaresimin, M. Zappalorto</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 210, pp. 110036 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
     <div class="paper-num">6</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110039" target="_blank" rel="noopener">Uncertainty-aware accelerated characterization of process-dependent composite properties using probabilistic machine learning</a></div>
-      <div class="paper-authors">Caleb Schoenholz, Roger Cheng, Huilong Fu, Navid Zobeiry</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109980" target="_blank" rel="noopener">Synergistic enhancement of breakdown and dielectric properties in ceramic dielectrics via in-situ carbon nanoparticle incorporation</a></div>
+      <div class="paper-authors">Yuanyuan Zhao, Shuimiao Xia, Qingyang Tang, Peng Yin, Hongqiang Wang, Runhua Fan et al.</div>
       <div class="paper-meta">
-        <span>📖 Vol. 210, pp. 110039 (2026)</span>
+        <span>📖 Vol. 209, pp. 109980 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1902,10 +1899,10 @@
 <li class="paper-item">
     <div class="paper-num">8</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110036" target="_blank" rel="noopener">A deep learning-based electrical sensing framework for Structural Health Monitoring of composite structures</a></div>
-      <div class="paper-authors">A. Gazzola, P.A. Carraro, M. Quaresimin, M. Zappalorto</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110039" target="_blank" rel="noopener">Uncertainty-aware accelerated characterization of process-dependent composite properties using probabilistic machine learning</a></div>
+      <div class="paper-authors">Caleb Schoenholz, Roger Cheng, Huilong Fu, Navid Zobeiry</div>
       <div class="paper-meta">
-        <span>📖 Vol. 210, pp. 110036 (2026)</span>
+        <span>📖 Vol. 210, pp. 110039 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1938,18 +1935,6 @@
 <li class="paper-item">
     <div class="paper-num">11</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110021" target="_blank" rel="noopener">Thermocapillary pumping in a hollow liquid crystal elastomer/carbon nanotube tube driven by photothermal effects under light irradiation</a></div>
-      <div class="paper-authors">Ji-Ye Kwon, Soo-Young Park</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 209, pp. 110021 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">12</div>
-    <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110008" target="_blank" rel="noopener">Advancing sustainable offshore structures through composites materials: structural and economic analysis</a></div>
       <div class="paper-authors">Francesco Ascione, Alessandro Leonardi, Gabriella Maselli, Antonio Nesticò</div>
       <div class="paper-meta">
@@ -1960,7 +1945,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">13</div>
+    <div class="paper-num">12</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109943" target="_blank" rel="noopener">Strong, thermally stable, and scalable alumina nanobelt aerogel composites enabled by fiber-directed interlocking</a></div>
       <div class="paper-authors">Hao Ling, Yalong Liao, Chaoshuai Lei, Hongyan Huang, Wenjing Li</div>
@@ -1972,12 +1957,24 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">14</div>
+    <div class="paper-num">13</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109932" target="_blank" rel="noopener">Multifunctional MXene/epoxy nanocomposites: a comprehensive review of properties, modifications, and applications</a></div>
       <div class="paper-authors">Na Chu, Se-Yeol Lee, Yong-Han Kim, Seul-Yi Lee, Fan-Long Jin, Soo-Jin Park</div>
       <div class="paper-meta">
         <span>📖 Vol. 209, pp. 109932 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">14</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110021" target="_blank" rel="noopener">Thermocapillary pumping in a hollow liquid crystal elastomer/carbon nanotube tube driven by photothermal effects under light irradiation</a></div>
+      <div class="paper-authors">Ji-Ye Kwon, Soo-Young Park</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 209, pp. 110021 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1998,10 +1995,10 @@
 <li class="paper-item">
     <div class="paper-num">16</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109996" target="_blank" rel="noopener">Thiol-modified derivatives of natural eugenol for simultaneously enhancing the thermal-oxidative and ozone aging resistance of rubber composites</a></div>
-      <div class="paper-authors">Yajie Luan, Ziyuan Zhang, Changfeng Han, Sizhu Wu, Youping Wu</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109969" target="_blank" rel="noopener">Durable flame-retardant wood-pulp paper via ammonium dihydrogen phosphate-regulated interfacial enrichment and in situ curing</a></div>
+      <div class="paper-authors">Haowen Sun, Yingbo Guan, Rui Han, Peng Chen, Yuan Liu</div>
       <div class="paper-meta">
-        <span>📖 Vol. 209, pp. 109996 (2026)</span>
+        <span>📖 Vol. 209, pp. 109969 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -2022,10 +2019,10 @@
 <li class="paper-item">
     <div class="paper-num">18</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109969" target="_blank" rel="noopener">Durable flame-retardant wood-pulp paper via ammonium dihydrogen phosphate-regulated interfacial enrichment and in situ curing</a></div>
-      <div class="paper-authors">Haowen Sun, Yingbo Guan, Rui Han, Peng Chen, Yuan Liu</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109996" target="_blank" rel="noopener">Thiol-modified derivatives of natural eugenol for simultaneously enhancing the thermal-oxidative and ozone aging resistance of rubber composites</a></div>
+      <div class="paper-authors">Yajie Luan, Ziyuan Zhang, Changfeng Han, Sizhu Wu, Youping Wu</div>
       <div class="paper-meta">
-        <span>📖 Vol. 209, pp. 109969 (2026)</span>
+        <span>📖 Vol. 209, pp. 109996 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -2033,18 +2030,6 @@
   </li>
 <li class="paper-item">
     <div class="paper-num">19</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110007" target="_blank" rel="noopener">Multi-impact diagnosis using electromechanical response of CFRPs and artificial neural network</a></div>
-      <div class="paper-authors">So Young Oh, Hyojin Lee, In Yong Lee, Hyung Doh Roh, Young-Bin Park</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 209, pp. 110007 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">20</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110005" target="_blank" rel="noopener">Robust and fire-safe thermoplastic polyurethanes via guest–host confinement in bio-derived metal–organic frameworks</a></div>
       <div class="paper-authors">Na He, Shaoming Zheng, Panpan Gong, Luyao Lei, Jinhan Lu, Kaiyuan Li et al.</div>
@@ -2056,12 +2041,24 @@
     </div>
   </li>
 <li class="paper-item">
+    <div class="paper-num">20</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110007" target="_blank" rel="noopener">Multi-impact diagnosis using electromechanical response of CFRPs and artificial neural network</a></div>
+      <div class="paper-authors">So Young Oh, Hyojin Lee, In Yong Lee, Hyung Doh Roh, Young-Bin Park</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 209, pp. 110007 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
     <div class="paper-num">21</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109975" target="_blank" rel="noopener">Impact response of neuro-helicoidal hybrid sandwich panels</a></div>
-      <div class="paper-authors">Ahmad Ghiaskar, Farid Taheri</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109934" target="_blank" rel="noopener">Hybrid fiber reinforced polymer composites: Recent advances in manufacturing methods, hybridization strategies and service performance</a></div>
+      <div class="paper-authors">Yuhang Ding, Siyu Chen, Fubao Xie, Chengyang Zhang, Wei Jiang, Xishuang Jing</div>
       <div class="paper-meta">
-        <span>📖 Vol. 209, pp. 109975 (2026)</span>
+        <span>📖 Vol. 209, pp. 109934 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -2082,10 +2079,10 @@
 <li class="paper-item">
     <div class="paper-num">23</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109934" target="_blank" rel="noopener">Hybrid fiber reinforced polymer composites: Recent advances in manufacturing methods, hybridization strategies and service performance</a></div>
-      <div class="paper-authors">Yuhang Ding, Siyu Chen, Fubao Xie, Chengyang Zhang, Wei Jiang, Xishuang Jing</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109975" target="_blank" rel="noopener">Impact response of neuro-helicoidal hybrid sandwich panels</a></div>
+      <div class="paper-authors">Ahmad Ghiaskar, Farid Taheri</div>
       <div class="paper-meta">
-        <span>📖 Vol. 209, pp. 109934 (2026)</span>
+        <span>📖 Vol. 209, pp. 109975 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -2093,18 +2090,6 @@
   </li>
 <li class="paper-item">
     <div class="paper-num">24</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110027" target="_blank" rel="noopener">Phase tailoring of (Zr,Ti)B2-(Zr,Ti)C-SiC ceramics toward microstructural optimization for simultaneous enhancement of strength and toughness</a></div>
-      <div class="paper-authors">Bingzhu Wang, Wenhao Dou, Huan Guo, Jianjun Sha</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 209, pp. 110027 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">25</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109966" target="_blank" rel="noopener">In-plane compression behavior of 3D braided honeycomb composites cores and their sandwich structures</a></div>
       <div class="paper-authors">Qianqian Li, Yasmine Mosleh, René Alderliesten, Yan Zhang, Yifan Zhi, Hui Zhang et al.</div>
@@ -2116,7 +2101,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">26</div>
+    <div class="paper-num">25</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109948" target="_blank" rel="noopener">Decoupling flame retardancy from mechanical embrittlement in polyacrylonitrile fibers via carbon black integration</a></div>
       <div class="paper-authors">Piotr K. Szewczyk, Michał Kopacz, Urszula Stachewicz</div>
@@ -2128,7 +2113,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">27</div>
+    <div class="paper-num">26</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110038" target="_blank" rel="noopener">Interfacial engineering of pearl millet/PLA biocomposites via sequential alkali–silane treatment: structure–property relationships and tribological performance</a></div>
       <div class="paper-authors">Wafa Khmira, Sameh Attia-Essaies, Najoua Barhoumi, Mehdi Ismail, Kaouther Khlifi</div>
@@ -2140,7 +2125,31 @@
     </div>
   </li>
 <li class="paper-item">
+    <div class="paper-num">27</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110027" target="_blank" rel="noopener">Phase tailoring of (Zr,Ti)B2-(Zr,Ti)C-SiC ceramics toward microstructural optimization for simultaneous enhancement of strength and toughness</a></div>
+      <div class="paper-authors">Bingzhu Wang, Wenhao Dou, Huan Guo, Jianjun Sha</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 209, pp. 110027 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
     <div class="paper-num">28</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110025" target="_blank" rel="noopener">Simultaneously enhanced thermally conductive and flame-retardant polyurethane structural adhesives with high bond strength</a></div>
+      <div class="paper-authors">Binglin Mai, Jianqiang Wang, Xiang Jiang, Xinya Zhang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 209, pp. 110025 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">29</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109947" target="_blank" rel="noopener">Additive manufactured sandwich structures for enhanced mechanical and thermal performance of PLA/carbon fiber composites</a></div>
       <div class="paper-authors">Yassmin Seid Ahmed, Nestor Ankah, Cagri Ayranci, Fahad Alam</div>
@@ -2152,24 +2161,12 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">29</div>
+    <div class="paper-num">30</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109981" target="_blank" rel="noopener">Inverse process-window identification of key parameters for burst-pressure consistency in type IV cylinders</a></div>
       <div class="paper-authors">Jiaqi Wang, Aixu Wang, Yuze Han, Chenxu Zhao, Mingfa Ren</div>
       <div class="paper-meta">
         <span>📖 Vol. 209, pp. 109981 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">30</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110025" target="_blank" rel="noopener">Simultaneously enhanced thermally conductive and flame-retardant polyurethane structural adhesives with high bond strength</a></div>
-      <div class="paper-authors">Binglin Mai, Jianqiang Wang, Xiang Jiang, Xinya Zhang</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 209, pp. 110025 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
