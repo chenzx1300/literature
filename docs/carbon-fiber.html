@@ -37,7 +37,7 @@
     .site-header {
       background: linear-gradient(135deg, #0d1b2a 0%, #1b3a5c 50%, #1e5090 100%);
       color: #fff;
-      padding: 1.5rem 1.5rem 1.25rem;
+      padding: 1rem 1.5rem 0.9rem;
       position: relative;
       overflow: hidden;
     }
@@ -56,23 +56,23 @@
       position: relative;
     }
     .eyebrow {
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--accent-soft);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.35rem;
       opacity: 0.9;
     }
     .site-header h1 {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.2rem;
       letter-spacing: -0.01em;
     }
     .subtitle {
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       color: rgba(255,255,255,0.65);
-      margin-bottom: 1rem;
+      margin-bottom: 0.7rem;
     }
     .stats-bar {
       display: flex;
@@ -405,10 +405,10 @@
     .analytics {
       max-width: 960px;
       margin: 0 auto;
-      padding: 0.75rem 1rem 0.75rem;
+      padding: 0.5rem 1rem 0.5rem;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 0.5rem;
     }
 
     /* ---- Section Title ---- */
@@ -427,18 +427,18 @@
     .analytics-overview {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0.5rem;
+      gap: 0.4rem;
     }
 
     .stat-card {
       background: var(--surface);
       border-radius: 12px;
       box-shadow: var(--shadow);
-      padding: 0.85rem 1.1rem;
+      padding: 0.6rem 0.9rem;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 0.2rem;
+      gap: 0.15rem;
       position: relative;
       overflow: hidden;
       transition: box-shadow 0.2s, transform 0.2s;
@@ -451,13 +451,13 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 3px;
+      height: 2px;
       background: linear-gradient(90deg, var(--accent), var(--accent-soft));
       border-radius: 12px 12px 0 0;
     }
     .stat-card .sc-icon {
-      font-size: 1rem;
-      margin-bottom: 0.1rem;
+      font-size: 0.95rem;
+      margin-bottom: 0.05rem;
       opacity: 0.7;
     }
     .stat-card .sc-value {
@@ -465,28 +465,28 @@
       color: var(--primary);
       line-height: 1;
     }
-    .stat-card.metric-primary .sc-value { font-size: 1.75rem; }
-    .stat-card.metric-secondary .sc-value { font-size: 1.35rem; color: var(--primary-light); }
-    .stat-card.metric-tertiary .sc-value { font-size: 1.1rem; color: var(--accent); }
-    .stat-card.metric-small .sc-value { font-size: 0.9rem; color: var(--text-muted); }
+    .stat-card.metric-primary .sc-value { font-size: 1.6rem; }
+    .stat-card.metric-secondary .sc-value { font-size: 1.25rem; color: var(--primary-light); }
+    .stat-card.metric-tertiary .sc-value { font-size: 1rem; color: var(--accent); }
+    .stat-card.metric-small .sc-value { font-size: 0.85rem; color: var(--text-muted); }
     .stat-card .sc-label {
-      font-size: 0.62rem;
+      font-size: 0.6rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--text-muted);
       font-weight: 500;
     }
     .stat-card .sc-sublabel {
-      font-size: 0.58rem;
+      font-size: 0.55rem;
       color: var(--text-light);
-      margin-top: -0.1rem;
+      margin-top: -0.05rem;
     }
 
     /* ---- Two-column layout for side-by-side widgets ---- */
     .analytics-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.6rem;
+      gap: 0.5rem;
     }
     .analytics-col-wide {
       grid-column: 1 / -1;
@@ -505,13 +505,13 @@
       background: var(--surface);
       border-radius: 12px;
       box-shadow: var(--shadow);
-      padding: 0.9rem 1.25rem;
+      padding: 0.7rem 1rem;
     }
     .widget-card .widget-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
     .widget-card .widget-title {
       font-size: 0.68rem;
@@ -551,15 +551,15 @@
     }
     .topic-bar-track {
       flex: 1;
-      height: 12px;
+      height: 8px;
       background: var(--bg);
-      border-radius: 6px;
+      border-radius: 4px;
       overflow: hidden;
       position: relative;
     }
     .topic-bar-fill {
       height: 100%;
-      border-radius: 6px;
+      border-radius: 4px;
       background: linear-gradient(90deg, var(--accent) 0%, var(--accent-soft) 100%);
       transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
@@ -586,14 +586,14 @@
     .author-rank-list {
       display: flex;
       flex-direction: column;
-      gap: 0.2rem;
+      gap: 0.15rem;
     }
     .author-rank-item {
       display: flex;
       align-items: center;
-      gap: 0.4rem;
-      padding: 0.2rem 0.4rem;
-      border-radius: 5px;
+      gap: 0.35rem;
+      padding: 0.15rem 0.35rem;
+      border-radius: 4px;
       background: var(--bg);
       transition: background 0.2s;
     }
@@ -677,10 +677,10 @@
     /* ---- Trend Chart (Year Bars) ---- */
     .trend-bars {
       display: flex;
-      align-items: flex-end;
+      justify-content: space-around;
       gap: 0.5rem;
       height: 56px;
-      padding-bottom: 0;
+      padding: 0;
     }
     .trend-bar-col {
       flex: 1;
@@ -772,11 +772,11 @@
 </header>
 
 <!-- =========================================================
-     ANALYTICS HTML STRUCTURE — COMPACT 2-ROW LAYOUT
+     ANALYTICS HTML STRUCTURE
      ========================================================= -->
 <section class="analytics" id="analyticsSection">
 
-  <!-- 1. Overview Stats (2x2 mini grid) -->
+  <!-- 1. Overview Stats (4 columns) -->
   <div class="analytics-overview" id="analyticsOverview">
 <div class="stat-card metric-primary">
       <div class="sc-icon">📄</div>
@@ -804,10 +804,9 @@
     </div>
   </div>
 
-  <!-- 2. Topics + Trend + Authors + Universities (4 columns) -->
-  <div class="analytics-row four-col">
+  <!-- 2. Topics + Trend (2 columns) -->
+  <div class="analytics-row">
 
-    <!-- Research Topics -->
     <div class="widget-card">
       <div class="widget-header">
         <div class="widget-title">🧠 研究方向 | Research Topics</div>
@@ -871,7 +870,6 @@
       </div>
     </div>
 
-    <!-- Research Trend -->
     <div class="widget-card">
       <div class="widget-header">
         <div class="widget-title">📅 发表趋势 | Publication Trend</div>
@@ -891,7 +889,11 @@
       </div>
     </div>
 
-    <!-- Top Authors by Publications -->
+  </div>
+
+  <!-- 3. Authors + Universities (3 columns) -->
+  <div class="analytics-row authors-row">
+
     <div class="widget-card">
       <div class="widget-header">
         <div class="widget-title">✍️ 高产作者 | By Publications</div>
@@ -902,7 +904,7 @@
       <div class="author-medal">🥇</div>
       <div class="author-rank-info">
         <div class="author-rank-name">Yan Li</div>
-        <div class="author-rank-meta">Composites Part A: Applied Science and Manufacturing, Composites Science and Technology</div>
+        <div class="author-rank-meta">Composites Science and Technology, Composites Part A: Applied Science and Manufacturing</div>
       </div>
       <div class="author-rank-stat">
         <div class="ars-value">21</div>
@@ -917,7 +919,7 @@
       <div class="author-medal">🥈</div>
       <div class="author-rank-info">
         <div class="author-rank-name">Yu Zhang</div>
-        <div class="author-rank-meta">Carbon, Composites Part A: Applied Science and Manufacturing</div>
+        <div class="author-rank-meta">Composites Science and Technology, Carbon</div>
       </div>
       <div class="author-rank-stat">
         <div class="ars-value">19</div>
@@ -932,7 +934,7 @@
       <div class="author-medal">🥉</div>
       <div class="author-rank-info">
         <div class="author-rank-name">Yan Wang</div>
-        <div class="author-rank-meta">Carbon, Composites Part A: Applied Science and Manufacturing</div>
+        <div class="author-rank-meta">Composites Science and Technology, Carbon</div>
       </div>
       <div class="author-rank-stat">
         <div class="ars-value">16</div>
@@ -946,8 +948,7 @@
       </div>
     </div>
 
-    <!-- Top Authors by Citations + Universities -->
-    <div class="widget-card compact-authors">
+    <div class="widget-card">
       <div class="widget-header">
         <div class="widget-title">📖 高引作者 | By Citations</div>
         <div class="widget-badge">Top 3</div>
@@ -972,7 +973,7 @@
       <div class="author-medal">🥈</div>
       <div class="author-rank-info">
         <div class="author-rank-name">Yu Zhang</div>
-        <div class="author-rank-meta">Carbon, Composites Part A: Applied Science and Manufacturing</div>
+        <div class="author-rank-meta">Composites Science and Technology, Carbon</div>
       </div>
       <div class="author-rank-stat">
         <div class="ars-value">19</div>
@@ -987,7 +988,7 @@
       <div class="author-medal">🥉</div>
       <div class="author-rank-info">
         <div class="author-rank-name">Jun Wang</div>
-        <div class="author-rank-meta">Carbon, Composites Part A: Applied Science and Manufacturing</div>
+        <div class="author-rank-meta">Composites Science and Technology, Carbon</div>
       </div>
       <div class="author-rank-stat">
         <div class="ars-value">9</div>
@@ -999,8 +1000,12 @@
       </div>
     </div>
       </div>
-      <div class="widget-header" style="margin-top:0.6rem;">
+    </div>
+
+    <div class="widget-card">
+      <div class="widget-header">
         <div class="widget-title">🏛️ 顶尖机构 | Top Universities</div>
+        <div class="widget-badge">Top 5</div>
       </div>
       <div class="uni-list" id="topUniversities">
 <span class="uni-chip">
@@ -1017,6 +1022,7 @@
   </div>
 
 </section>
+
 
 <div class="container">
 
@@ -1054,18 +1060,6 @@
 <li class="paper-item">
     <div class="paper-num">1</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/s0008-6223(26)00561-0" target="_blank" rel="noopener">Editorial Board</a></div>
-      <div class="paper-authors"></div>
-      <div class="paper-meta">
-        <span>📖 Vol. 257, pp. 121787 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">2</div>
-    <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121763" target="_blank" rel="noopener">Flexible and robust graphene/MXene@carbon fiber composite films with highly all-weather anti-icing/deicing efficiency</a></div>
       <div class="paper-authors">Zhengdong Zhang, Zhen Zhang, Xiangsheng Kong, Junfeng Tong, Dongli Yin, Zhipeng Li</div>
       <div class="paper-meta">
@@ -1076,7 +1070,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">3</div>
+    <div class="paper-num">2</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121729" target="_blank" rel="noopener">Gradient Ion-editing induced internal electric field in poly(heptazine imide) for efficient solar H2O2 production</a></div>
       <div class="paper-authors">Wenbin Wang, Kai Wang, Gui Yang, Zhu Shu</div>
@@ -1088,7 +1082,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">4</div>
+    <div class="paper-num">3</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121701" target="_blank" rel="noopener">Graphene transparent current-spreading layer on carbon-supported flexible substrates for high-performance GaN LEDs</a></div>
       <div class="paper-authors">Siva Pratap Reddy Mallem, Peddathimula Puneetha, Yeojin Choi, Seung Hwan Jang, Chan Yeon Park, Daekyu An et al.</div>
@@ -1100,7 +1094,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">5</div>
+    <div class="paper-num">4</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121689" target="_blank" rel="noopener">Temperature-driven pore size engineering in multilayer graphene/polyimide aerogels for ultra-broadband electromagnetic wave absorption</a></div>
       <div class="paper-authors">Kewei Su, Xin Wang, Ye Zhu, Huiyi Yan, Baichuan Wang, Yangyang Tian et al.</div>
@@ -1112,7 +1106,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">6</div>
+    <div class="paper-num">5</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121773" target="_blank" rel="noopener">3D porous magnetic MXene-based foam: A multifunctional electromagnetic material for electromagnetic wave absorption, wireless communication and energy storage</a></div>
       <div class="paper-authors">Peng He, Zhuo Chen, Si-Ya Yu, Yue-Yue Wang, Qing-Qing Zhou, Mao-Sheng Cao</div>
@@ -1124,7 +1118,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">7</div>
+    <div class="paper-num">6</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121772" target="_blank" rel="noopener">Regulation mechanism of synergistic strength-ductility enhancement of CNTs@Ti/Al composites via modifying the Ti–Al interface with CNTs</a></div>
       <div class="paper-authors">Yingying Zhang, Zunyan Xu, Jianhai Zhang, Guangchuan Wu, Li Fu, Liang Liu et al.</div>
@@ -1136,7 +1130,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">8</div>
+    <div class="paper-num">7</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121725" target="_blank" rel="noopener">Enhanced closed-pore utilization in hard carbon for high sodium storage capacity</a></div>
       <div class="paper-authors">Xin Yu, Yuelin Guo, Yifei Ren, Boyang Yu, Guangchao Li, Jiexi Wang et al.</div>
@@ -1148,7 +1142,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">9</div>
+    <div class="paper-num">8</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121796" target="_blank" rel="noopener">Synergistic dual-conduction networks enable superior ablation resistance and thermal management in C/C-(Zr0.25Hf0.25Ti0·25Ta0.25)C-SiC composites</a></div>
       <div class="paper-authors">Yixin Zhao, Xiaxiang Zhang, Lei Chen, Xiao Luo, Xin Yang, Qizhong Huang</div>
@@ -1160,7 +1154,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">10</div>
+    <div class="paper-num">9</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121716" target="_blank" rel="noopener">Ultra-fast joining of SiCf/SiC composites via joule-heated carbon fiber network with Ti–C–mediated Ni suppression</a></div>
       <div class="paper-authors">Yihong Liu, Mingjie Xu, Yaotian Yan, Liqing Liang, Peixin Li, Zhenyu Ye et al.</div>
@@ -1172,7 +1166,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">11</div>
+    <div class="paper-num">10</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121803" target="_blank" rel="noopener">Heat-resistant heterogeneous joints strengthened by cost-effective 3D network graphene</a></div>
       <div class="paper-authors">Boyu Zhang, Yanhua Ding, Shuzhen Zhao, Bo Zhang, Qing Chang, Zhan Sun et al.</div>
@@ -1184,7 +1178,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">12</div>
+    <div class="paper-num">11</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121681" target="_blank" rel="noopener">Ultra-soft metamaterial-based plant-wearable strain sensor</a></div>
       <div class="paper-authors">Shangbin Wang, Junxian Guo</div>
@@ -1196,7 +1190,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">13</div>
+    <div class="paper-num">12</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121730" target="_blank" rel="noopener">Nb2C MXene induces and promotes the separation of photogenerated charge carriers in modified g-C3N5 for efficient sacrificial-agent-free photocatalytic H2O2 synthesis</a></div>
       <div class="paper-authors">Xiaorui Huang, Zimo Wang, Wei Li, YongZhuo Yu, Shuanglong Li, Yongyi Li et al.</div>
@@ -1208,7 +1202,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">14</div>
+    <div class="paper-num">13</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121797" target="_blank" rel="noopener">Plasma-sputtered Pt@CoFe dual single-atom sites on 3D nitrogen-doped carbon nanotube networks enhance the bifunctional electrocatalytic performance of direct methanol fuel cells</a></div>
       <div class="paper-authors">Peng Su, Xiaorui Ren, Zejun Xu, Zhong-Jie Jiang, Zhongqing Jiang</div>
@@ -1220,7 +1214,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">15</div>
+    <div class="paper-num">14</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121721" target="_blank" rel="noopener">Atomically engineered covalent organic frameworks: Unlocking high-performance electrocatalysis for sustainable water splitting</a></div>
       <div class="paper-authors">Basit Ali Khan, Manzar Abbas, Tongsheng Zhang, Areeba Razzaq, Misbah Zulfiquar, Aaiza Ramzan et al.</div>
@@ -1232,7 +1226,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">16</div>
+    <div class="paper-num">15</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121783" target="_blank" rel="noopener">The synthesis of boron-, carbon-, and nitrogen-containing 2D materials on Ir(111): the role of boron carbide</a></div>
       <div class="paper-authors">Gyula Halasi, Nikolett Oláh, Krisztián Palotás, Csaba Vass, János Kiss, András Berkó et al.</div>
@@ -1244,7 +1238,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">17</div>
+    <div class="paper-num">16</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121774" target="_blank" rel="noopener">Three-dimensional interpenetrating carbon pillars via template-free HFCVD: Phase evolution-guided growth mechanism and electron transport performance</a></div>
       <div class="paper-authors">Yijia Wang, Junkui Zhu, Youneng Xie, Zejun Deng</div>
@@ -1256,7 +1250,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">18</div>
+    <div class="paper-num">17</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121696" target="_blank" rel="noopener">Molecular engineering to regulate pyrolysis behavior of precursor and microstructure in resin-based hard carbon for advanced sodium storage performance</a></div>
       <div class="paper-authors">Tao Wen, Yonghui Zhang, Huamin Hu, Zehao Zhang, Sujiu Huang, Guang Zeng et al.</div>
@@ -1268,7 +1262,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">19</div>
+    <div class="paper-num">18</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121744" target="_blank" rel="noopener">Nanostructural design of biomass-derived porous carbons for advanced supercapacitors</a></div>
       <div class="paper-authors">Lipeng Wang, Tianqi Xu, Leandro N. Bengoa, Rosa M. Gonzalez-Gil, Siyu Chen, Jianguo Yang et al.</div>
@@ -1280,7 +1274,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">20</div>
+    <div class="paper-num">19</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121717" target="_blank" rel="noopener">Electrofluorochromic information encryption hydrogels based on aggregation-tunable fluorescent carbon dots for efficient information security</a></div>
       <div class="paper-authors">Kun Huang, Yong Jin, Haonan Chen, Jiangyang Mei, Jia Wang, Weiming Gong et al.</div>
@@ -1292,7 +1286,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">21</div>
+    <div class="paper-num">20</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121693" target="_blank" rel="noopener">Bifunctional novel NS-CQDs/BiOCl Z-scheme heterojunction with single and synergistic N, S co-doping for superior tetracycline and multi-pollutant degradation with low-toxic intermediates and efficient nitroaromatic photoreduction</a></div>
       <div class="paper-authors">Hediye Ghasemi, Mojtaba Bagherzadeh, Danial Farahmand, Davood Taherinia</div>
@@ -1304,7 +1298,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">22</div>
+    <div class="paper-num">21</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121762" target="_blank" rel="noopener">Roll-to-roll fabrication of ultrathin graphite-like amorphous carbon film modified Al foil current collectors for high-voltage LiNi0.5Mn1.5O4 lithium-ion batteries</a></div>
       <div class="paper-authors">Qiang Wu, Tao Hu, Jin Zhu, Yi Li, Yutong Xu, Xiaofeng Li et al.</div>
@@ -1316,7 +1310,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">23</div>
+    <div class="paper-num">22</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121712" target="_blank" rel="noopener">Spatially modulated laser irradiation for enhanced electrochemical capacitance of laser-induced graphene</a></div>
       <div class="paper-authors">Changyoung Ryu, Dat Cong Minh Nguyen, Jong Hyuck Choi, Jung Bin In</div>
@@ -1328,7 +1322,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">24</div>
+    <div class="paper-num">23</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121753" target="_blank" rel="noopener">Temporally shaped femtosecond laser liquid-phase processing of PVDF-laser-induced graphene/graphene for flexible micro-supercapacitor sensors</a></div>
       <div class="paper-authors">Fuhui Cui, Xiaozhe Chen, Yuntao Lang, Manping Wang, Ben Liu, Feifei Wang et al.</div>
@@ -1340,7 +1334,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">25</div>
+    <div class="paper-num">24</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121741" target="_blank" rel="noopener">VICIOXITE: A CARBON MATERIAL CONTAINING ADJACENT OH GROUPS FOR CO2 AND H2O CAPTURE</a></div>
       <div class="paper-authors">Kota Kondo, Itsuki Takahashi, Kai Kan, Kazuma Gotoh, Tetsuro Soejima, Sota Nakamura et al.</div>
@@ -1352,7 +1346,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">26</div>
+    <div class="paper-num">25</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121740" target="_blank" rel="noopener">MEASUREMENT AND EVALUATION OF THE HIGH-TEMPERATURE PHYSICAL PROPERTIES OF CARBON AND GRAPHITE PRODUCTS (PART I): THERMAL EXPANSION</a></div>
       <div class="paper-authors">Norio Iwashita</div>
@@ -1364,7 +1358,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">27</div>
+    <div class="paper-num">26</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121704" target="_blank" rel="noopener">Interface-controlled carbothermal degradation in C/Y2SiO5 composites driven by interfacial amorphous silica enrichment</a></div>
       <div class="paper-authors">Kuanhong Zeng, Gengkai Zhu, Wei Zhang, Xing Wang, Lei Guo, Zheng Peng et al.</div>
@@ -1376,7 +1370,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">28</div>
+    <div class="paper-num">27</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121771" target="_blank" rel="noopener">Regulating microcrystalline and pore structures of hypercrosslinked polymer derived carbon via aromatic ring axial extension for potassium-ion storage</a></div>
       <div class="paper-authors">Zhengyang Liu, Tao Yang, Yan Song, Ning Zhao, Xiaodong Tian, Shijie Wu et al.</div>
@@ -1388,7 +1382,7 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">29</div>
+    <div class="paper-num">28</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121745" target="_blank" rel="noopener">Strategies for reducing the reflection coefficient of polymer-based electromagnetic shielding composites: A review</a></div>
       <div class="paper-authors">Guirong Hu, Bujin Liu, Aiyuan Ma, Jie Yuan, Yizhu Lei, Hongjing Wu</div>
@@ -1400,12 +1394,24 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">30</div>
+    <div class="paper-num">29</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121723" target="_blank" rel="noopener">Woolen-like Ti3C2Tx@ATP heterogeneous nanocomposite for strengthening the corrosion/wear resistance of epoxy resin coating</a></div>
       <div class="paper-authors">Meng Cai, Can He, Xiaoqiang Fan, Kaiyun Wang, Minhao Zhu</div>
       <div class="paper-meta">
         <span>📖 Vol. 257, pp. 121723 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">30</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.carbon.2026.121715" target="_blank" rel="noopener">High-efficiency full-space spin-decoupled dual-channel vortex beam generator based on graphene-assembled film</a></div>
+      <div class="paper-authors">Dandan Fu, Wei Zhu, Jiageng Bai, Zhen Liu, Guochao Wei, Kang Du et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 257, pp. 121715 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1428,94 +1434,10 @@
       <span class="sjif-label">SJR</span>
       <span class="sjif-value">8.6</span>
     </div>
-  </div><div class="journal-summary">【期刊定位】复合材料领域综合期刊，覆盖聚合物基、金属基复合材料的设计、制备与力学性能研究。【核心研究主题】研究核心集中于导热系数（约3%论文涉及），其次为碳纤维增强、热管理等方向，整体研究覆盖面较广。【近几年发表热点】近年新兴热点包括：导热系数（3%近期）、碳纤维增强（2%近期）、热管理（2%近期），这些方向增长显著，值得关注。【发表规模】近5年共1000篇，年均约333篇，2026年同比-26%。</div>
+  </div><div class="journal-summary">【期刊定位】复合材料领域综合期刊，覆盖聚合物基、金属基复合材料的设计、制备与力学性能研究。【核心研究主题】研究核心集中于导热系数（约6%论文涉及），其次为有限元方法等方向，整体研究覆盖面较广。【近几年发表热点】近年新兴热点包括：导热系数（6%近期）、有限元方法（6%近期）、碳纤维增强（2%近期），这些方向增长显著，值得关注。【发表规模】近5年共1000篇，年均约333篇，2026年同比-26%。</div>
   <ul class="paper-list">
 <li class="paper-item">
     <div class="paper-num">1</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111738" target="_blank" rel="noopener">An adaptive clustering FE2 multiscale framework for heterogeneous materials with localized damage</a></div>
-      <div class="paper-authors">Tianrui Li, Chunwang He, Xiaofei Cao, Daining Fang</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 284, pp. 111738 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">2</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111746" target="_blank" rel="noopener">Enhancing interfacial adhesion and mechanical properties in quartz fiber composites via sydnone-modified phthalonitrile resins</a></div>
-      <div class="paper-authors">Fengguang Jiang, Yanping Yang, Hanyu Zhang, Yongcheng Zhang, Hongwei Xia, Song Zhang et al.</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 284, pp. 111746 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">3</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111727" target="_blank" rel="noopener">Crystallization and permittivity engineering with polar electron-deficient molecules for enhanced energy storage in polypropylene capacitor films</a></div>
-      <div class="paper-authors">Meirong Zhang, Qiuwei Wang, Jingyang Wang, Dong Ma, Bincheng Ren, Honghong Gong et al.</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 284, pp. 111727 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">4</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111755" target="_blank" rel="noopener">Homologous interface constructed via covalent anchoring of P-CNPs onto C-Ti3C2Tx for enhanced EMI shielding and mechanical synergy in CFRPs</a></div>
-      <div class="paper-authors">Tiantian Li, Weipeng Huang, Yi Li, Lijuan Zhu, Ce Liang</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 284, pp. 111755 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">5</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111750" target="_blank" rel="noopener">Decoding the trap-regulated dielectric breakdown and energy storage of polymer nanocomposite films: A multiscale carrier dynamic analysis</a></div>
-      <div class="paper-authors">Qinyuan Yao, Xiaodong Xia, George J. Weng</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 284, pp. 111750 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">6</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111724" target="_blank" rel="noopener">Revealing penetration mechanism of cross-ply CFRP via experiment and high-fidelity simulation: From quasi-static to dynamic</a></div>
-      <div class="paper-authors">Jiafan Feng, Wenting Ouyang, Jiaqi Xue, Wulin Si, Bowen Gong, Huan Wang et al.</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 284, pp. 111724 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">7</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111744" target="_blank" rel="noopener">A highly sensitive wearable sensor from conductive core-spun yarn for monitoring body motion</a></div>
-      <div class="paper-authors">Weiyi Han, Jicheng Tang, Yingying Li, Liyang Song, Chaoxia Wang</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 284, pp. 111744 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">8</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111742" target="_blank" rel="noopener">Characterization of flexure-induced through-thickness fracture in tape laminate composites using ex-situ computed tomography</a></div>
       <div class="paper-authors">Garrett MacKay, Michael W. Czabaj</div>
@@ -1527,7 +1449,79 @@
     </div>
   </li>
 <li class="paper-item">
-    <div class="paper-num">9</div>
+    <div class="paper-num">2</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111744" target="_blank" rel="noopener">A highly sensitive wearable sensor from conductive core-spun yarn for monitoring body motion</a></div>
+      <div class="paper-authors">Weiyi Han, Jicheng Tang, Yingying Li, Liyang Song, Chaoxia Wang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 284, pp. 111744 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">3</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111729" target="_blank" rel="noopener">Inter- to intra-laminar crack bifurcation in aerospace-grade carbon fiber reinforced polymer composites due to aligned carbon nanotube reinforcement</a></div>
+      <div class="paper-authors">Christopher J. Kwon, Carina Xiaochen Li, Riza Kaan Gonuleri, Batuhan Alicioglu, Nielsen Euvrard, Talia Powell et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 284, pp. 111729 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">4</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111750" target="_blank" rel="noopener">Decoding the trap-regulated dielectric breakdown and energy storage of polymer nanocomposite films: A multiscale carrier dynamic analysis</a></div>
+      <div class="paper-authors">Qinyuan Yao, Xiaodong Xia, George J. Weng</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 284, pp. 111750 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">5</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111738" target="_blank" rel="noopener">An adaptive clustering FE2 multiscale framework for heterogeneous materials with localized damage</a></div>
+      <div class="paper-authors">Tianrui Li, Chunwang He, Xiaofei Cao, Daining Fang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 284, pp. 111738 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">6</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111727" target="_blank" rel="noopener">Crystallization and permittivity engineering with polar electron-deficient molecules for enhanced energy storage in polypropylene capacitor films</a></div>
+      <div class="paper-authors">Meirong Zhang, Qiuwei Wang, Jingyang Wang, Dong Ma, Bincheng Ren, Honghong Gong et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 284, pp. 111727 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">7</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111746" target="_blank" rel="noopener">Enhancing interfacial adhesion and mechanical properties in quartz fiber composites via sydnone-modified phthalonitrile resins</a></div>
+      <div class="paper-authors">Fengguang Jiang, Yanping Yang, Hanyu Zhang, Yongcheng Zhang, Hongwei Xia, Song Zhang et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 284, pp. 111746 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">8</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111730" target="_blank" rel="noopener">Porosity evolution and fractal–energy modeling of cutting-induced damage in CFRP</a></div>
       <div class="paper-authors">Enzhi Zhou, Kaining Shi, Yihui Song, Hong Tang</div>
@@ -1539,12 +1533,24 @@
     </div>
   </li>
 <li class="paper-item">
+    <div class="paper-num">9</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111755" target="_blank" rel="noopener">Homologous interface constructed via covalent anchoring of P-CNPs onto C-Ti3C2Tx for enhanced EMI shielding and mechanical synergy in CFRPs</a></div>
+      <div class="paper-authors">Tiantian Li, Weipeng Huang, Yi Li, Lijuan Zhu, Ce Liang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 284, pp. 111755 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
     <div class="paper-num">10</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111729" target="_blank" rel="noopener">Inter- to intra-laminar crack bifurcation in aerospace-grade carbon fiber reinforced polymer composites due to aligned carbon nanotube reinforcement</a></div>
-      <div class="paper-authors">Christopher J. Kwon, Carina Xiaochen Li, Riza Kaan Gonuleri, Batuhan Alicioglu, Nielsen Euvrard, Talia Powell et al.</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111724" target="_blank" rel="noopener">Revealing penetration mechanism of cross-ply CFRP via experiment and high-fidelity simulation: From quasi-static to dynamic</a></div>
+      <div class="paper-authors">Jiafan Feng, Wenting Ouyang, Jiaqi Xue, Wulin Si, Bowen Gong, Huan Wang et al.</div>
       <div class="paper-meta">
-        <span>📖 Vol. 284, pp. 111729 (2026)</span>
+        <span>📖 Vol. 284, pp. 111724 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1565,18 +1571,6 @@
 <li class="paper-item">
     <div class="paper-num">12</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111725" target="_blank" rel="noopener">Flexibility, thermal properties and tribological performance of epoxy resin-based phase change composites films regulating via polyethylene glycol mixture synergy with boron nitride nanosheets</a></div>
-      <div class="paper-authors">Rui Liu, Yiming Gou, Chunhua Ge, Kai Jia, Tingli Liu, Xiangdong Zhang</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 284, pp. 111725 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">13</div>
-    <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111749" target="_blank" rel="noopener">Accurately obtaining effective mechanical parameters of primary bearing layers for pressure vessels considering realistic defects</a></div>
       <div class="paper-authors">Jikang Zhao, Ning Liu, Peng Wang, Tianming Li, Lei Ge, Xiaolong Jia et al.</div>
       <div class="paper-meta">
@@ -1587,12 +1581,24 @@
     </div>
   </li>
 <li class="paper-item">
+    <div class="paper-num">13</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111725" target="_blank" rel="noopener">Flexibility, thermal properties and tribological performance of epoxy resin-based phase change composites films regulating via polyethylene glycol mixture synergy with boron nitride nanosheets</a></div>
+      <div class="paper-authors">Rui Liu, Yiming Gou, Chunhua Ge, Kai Jia, Tingli Liu, Xiangdong Zhang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 284, pp. 111725 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
     <div class="paper-num">14</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111740" target="_blank" rel="noopener">Ti3SiC2 modified carbon fiber/phenolic aerogel composite with low density, high strength and excellent thermal protection performance</a></div>
-      <div class="paper-authors">Zhixiong Huang, Hongwei Yang, Wanglin Ying, Zongyi Deng</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111741" target="_blank" rel="noopener">An ultra-broadband pyramid-grid composite absorber structure inspired by biomimetic moth-eye arrays</a></div>
+      <div class="paper-authors">Jing-Bin Zhang, Jin-Shui Yang, Shuo Teng, Zhe-Xiang Sun, Hui Zhang, Chao Sun et al.</div>
       <div class="paper-meta">
-        <span>📖 Vol. 284, pp. 111740 (2026)</span>
+        <span>📖 Vol. 284, pp. 111741 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1613,30 +1619,6 @@
 <li class="paper-item">
     <div class="paper-num">16</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111720" target="_blank" rel="noopener">Enhanced compatibilization of aramid fibers with thermoplastic polyolefin via concurrent mechanical interlocking and surface functionalization</a></div>
-      <div class="paper-authors">Adekunle L. Omoniyi, Kushal Panchal, Roozbeh Mafi, Li Xi</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 284, pp. 111720 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">17</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111741" target="_blank" rel="noopener">An ultra-broadband pyramid-grid composite absorber structure inspired by biomimetic moth-eye arrays</a></div>
-      <div class="paper-authors">Jing-Bin Zhang, Jin-Shui Yang, Shuo Teng, Zhe-Xiang Sun, Hui Zhang, Chao Sun et al.</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 284, pp. 111741 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">18</div>
-    <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111743" target="_blank" rel="noopener">Mechanical response of carbon fiber pyramid-honeycomb under combined shear-compression loads</a></div>
       <div class="paper-authors">Ruochen Wang, Guocai Yu, Shubin Tian, Longchao Li, Yang Jin, Lijia Feng et al.</div>
       <div class="paper-meta">
@@ -1647,12 +1629,36 @@
     </div>
   </li>
 <li class="paper-item">
+    <div class="paper-num">17</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111740" target="_blank" rel="noopener">Ti3SiC2 modified carbon fiber/phenolic aerogel composite with low density, high strength and excellent thermal protection performance</a></div>
+      <div class="paper-authors">Zhixiong Huang, Hongwei Yang, Wanglin Ying, Zongyi Deng</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 284, pp. 111740 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">18</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111720" target="_blank" rel="noopener">Enhanced compatibilization of aramid fibers with thermoplastic polyolefin via concurrent mechanical interlocking and surface functionalization</a></div>
+      <div class="paper-authors">Adekunle L. Omoniyi, Kushal Panchal, Roozbeh Mafi, Li Xi</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 284, pp. 111720 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
     <div class="paper-num">19</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111717" target="_blank" rel="noopener">Enhanced transverse and longitudinal compressive strength of micro-/nano- aramid pulp interleaved unidirectional CF/PEEK composite laminates</a></div>
-      <div class="paper-authors">Mingxin Ye, Yabin Deng, Yiwen Wang, Yunsen Hu, Xiaozhi Hu</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111739" target="_blank" rel="noopener">Rapid evaluation of electromagnetic damage tolerance for microwave-absorbing honeycomb sandwich structures</a></div>
+      <div class="paper-authors">Zhicheng Feng, Yifan Song, Yubo Zhao, Chenwei Guo, Shanyong Xuan, Jianbin Du et al.</div>
       <div class="paper-meta">
-        <span>📖 Vol. 284, pp. 111717 (2026)</span>
+        <span>📖 Vol. 284, pp. 111739 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1661,10 +1667,10 @@
 <li class="paper-item">
     <div class="paper-num">20</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111739" target="_blank" rel="noopener">Rapid evaluation of electromagnetic damage tolerance for microwave-absorbing honeycomb sandwich structures</a></div>
-      <div class="paper-authors">Zhicheng Feng, Yifan Song, Yubo Zhao, Chenwei Guo, Shanyong Xuan, Jianbin Du et al.</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111717" target="_blank" rel="noopener">Enhanced transverse and longitudinal compressive strength of micro-/nano- aramid pulp interleaved unidirectional CF/PEEK composite laminates</a></div>
+      <div class="paper-authors">Mingxin Ye, Yabin Deng, Yiwen Wang, Yunsen Hu, Xiaozhi Hu</div>
       <div class="paper-meta">
-        <span>📖 Vol. 284, pp. 111739 (2026)</span>
+        <span>📖 Vol. 284, pp. 111717 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1733,10 +1739,10 @@
 <li class="paper-item">
     <div class="paper-num">26</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111721" target="_blank" rel="noopener">Core-shell fillers with interacting cores in sandwiched composites for high-temperature energy storage</a></div>
-      <div class="paper-authors">Qixiong Zhang, Xiaopeng Li, Hai Liu, Jiujun Zhu, Renlu Han, Yafei Hou et al.</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111706" target="_blank" rel="noopener">CNT-BN hybrid reinforcement in silicone rubber nanocomposites for enhanced mechanical, electromechanical, and water-immersion stability</a></div>
+      <div class="paper-authors">Siraj Azam, Vineet Kumar, M. Mohamed Souby, Abdullah Almohammedi, Ameer Azam, Sang-Shin Park</div>
       <div class="paper-meta">
-        <span>📖 Vol. 283, pp. 111721 (2026)</span>
+        <span>📖 Vol. 283, pp. 111706 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1745,10 +1751,10 @@
 <li class="paper-item">
     <div class="paper-num">27</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111706" target="_blank" rel="noopener">CNT-BN hybrid reinforcement in silicone rubber nanocomposites for enhanced mechanical, electromechanical, and water-immersion stability</a></div>
-      <div class="paper-authors">Siraj Azam, Vineet Kumar, M. Mohamed Souby, Abdullah Almohammedi, Ameer Azam, Sang-Shin Park</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compscitech.2026.111721" target="_blank" rel="noopener">Core-shell fillers with interacting cores in sandwiched composites for high-temperature energy storage</a></div>
+      <div class="paper-authors">Qixiong Zhang, Xiaopeng Li, Hai Liu, Jiujun Zhu, Renlu Han, Yafei Hou et al.</div>
       <div class="paper-meta">
-        <span>📖 Vol. 283, pp. 111706 (2026)</span>
+        <span>📖 Vol. 283, pp. 111721 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1812,10 +1818,10 @@
 <li class="paper-item">
     <div class="paper-num">1</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110034" target="_blank" rel="noopener">Developing fully bio-based poly(lactic acid) composites with enhanced toughness, heat resistance and flame retardancy via solvent-free reactive blending</a></div>
-      <div class="paper-authors">Guofeng Ye, Zimeng Zhang, Cheng Wang, Min Hong, Ting Sai, Zhenghong Guo et al.</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109980" target="_blank" rel="noopener">Synergistic enhancement of breakdown and dielectric properties in ceramic dielectrics via in-situ carbon nanoparticle incorporation</a></div>
+      <div class="paper-authors">Yuanyuan Zhao, Shuimiao Xia, Qingyang Tang, Peng Yin, Hongqiang Wang, Runhua Fan et al.</div>
       <div class="paper-meta">
-        <span>📖 Vol. 209, pp. 110034 (2026)</span>
+        <span>📖 Vol. 209, pp. 109980 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1836,10 +1842,10 @@
 <li class="paper-item">
     <div class="paper-num">3</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109980" target="_blank" rel="noopener">Synergistic enhancement of breakdown and dielectric properties in ceramic dielectrics via in-situ carbon nanoparticle incorporation</a></div>
-      <div class="paper-authors">Yuanyuan Zhao, Shuimiao Xia, Qingyang Tang, Peng Yin, Hongqiang Wang, Runhua Fan et al.</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110034" target="_blank" rel="noopener">Developing fully bio-based poly(lactic acid) composites with enhanced toughness, heat resistance and flame retardancy via solvent-free reactive blending</a></div>
+      <div class="paper-authors">Guofeng Ye, Zimeng Zhang, Cheng Wang, Min Hong, Ting Sai, Zhenghong Guo et al.</div>
       <div class="paper-meta">
-        <span>📖 Vol. 209, pp. 109980 (2026)</span>
+        <span>📖 Vol. 209, pp. 110034 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1847,18 +1853,6 @@
   </li>
 <li class="paper-item">
     <div class="paper-num">4</div>
-    <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110039" target="_blank" rel="noopener">Uncertainty-aware accelerated characterization of process-dependent composite properties using probabilistic machine learning</a></div>
-      <div class="paper-authors">Caleb Schoenholz, Roger Cheng, Huilong Fu, Navid Zobeiry</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 210, pp. 110039 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">5</div>
     <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109953" target="_blank" rel="noopener">A multifunctional bamboo-reinforced ionogel with large format, high strength, transparency, adhesion, and sensing capability</a></div>
       <div class="paper-authors">Kaili Wang, Chi Zhang, Yijia Zhang, Yuanci Cai, Fanxi Nie, Youming Dong et al.</div>
@@ -1870,13 +1864,25 @@
     </div>
   </li>
 <li class="paper-item">
+    <div class="paper-num">5</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110010" target="_blank" rel="noopener">Influence of pre-consolidation on interply friction and its impact on forming outcomes for advanced thermoset prepregs</a></div>
+      <div class="paper-authors">A. Dutta, M. Onoufriou, M. Åkermo</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 209, pp. 110010 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
     <div class="paper-num">6</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110002" target="_blank" rel="noopener">Electromagnetic wave absorption and structural–functional integration of lightweight and high-efficiency multicomponent fiber composites</a></div>
-      <div class="paper-authors">Guosong Zhu, Xiaoyuan Li, Yue Hu, Wei Zhou, Heng Luo, Yang Li</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110039" target="_blank" rel="noopener">Uncertainty-aware accelerated characterization of process-dependent composite properties using probabilistic machine learning</a></div>
+      <div class="paper-authors">Caleb Schoenholz, Roger Cheng, Huilong Fu, Navid Zobeiry</div>
       <div class="paper-meta">
-        <span>📖 Vol. 209, pp. 110002 (2026)</span>
-        <span>⬆️ Cited by: 1</span>
+        <span>📖 Vol. 210, pp. 110039 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
       </div>
       
     </div>
@@ -1884,11 +1890,11 @@
 <li class="paper-item">
     <div class="paper-num">7</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110010" target="_blank" rel="noopener">Influence of pre-consolidation on interply friction and its impact on forming outcomes for advanced thermoset prepregs</a></div>
-      <div class="paper-authors">A. Dutta, M. Onoufriou, M. Åkermo</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110002" target="_blank" rel="noopener">Electromagnetic wave absorption and structural–functional integration of lightweight and high-efficiency multicomponent fiber composites</a></div>
+      <div class="paper-authors">Guosong Zhu, Xiaoyuan Li, Yue Hu, Wei Zhou, Heng Luo, Yang Li</div>
       <div class="paper-meta">
-        <span>📖 Vol. 209, pp. 110010 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
+        <span>📖 Vol. 209, pp. 110002 (2026)</span>
+        <span>⬆️ Cited by: 1</span>
       </div>
       
     </div>
@@ -1944,10 +1950,10 @@
 <li class="paper-item">
     <div class="paper-num">12</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109996" target="_blank" rel="noopener">Thiol-modified derivatives of natural eugenol for simultaneously enhancing the thermal-oxidative and ozone aging resistance of rubber composites</a></div>
-      <div class="paper-authors">Yajie Luan, Ziyuan Zhang, Changfeng Han, Sizhu Wu, Youping Wu</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110008" target="_blank" rel="noopener">Advancing sustainable offshore structures through composites materials: structural and economic analysis</a></div>
+      <div class="paper-authors">Francesco Ascione, Alessandro Leonardi, Gabriella Maselli, Antonio Nesticò</div>
       <div class="paper-meta">
-        <span>📖 Vol. 209, pp. 109996 (2026)</span>
+        <span>📖 Vol. 209, pp. 110008 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1968,10 +1974,10 @@
 <li class="paper-item">
     <div class="paper-num">14</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110008" target="_blank" rel="noopener">Advancing sustainable offshore structures through composites materials: structural and economic analysis</a></div>
-      <div class="paper-authors">Francesco Ascione, Alessandro Leonardi, Gabriella Maselli, Antonio Nesticò</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109932" target="_blank" rel="noopener">Multifunctional MXene/epoxy nanocomposites: a comprehensive review of properties, modifications, and applications</a></div>
+      <div class="paper-authors">Na Chu, Se-Yeol Lee, Yong-Han Kim, Seul-Yi Lee, Fan-Long Jin, Soo-Jin Park</div>
       <div class="paper-meta">
-        <span>📖 Vol. 209, pp. 110008 (2026)</span>
+        <span>📖 Vol. 209, pp. 109932 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -1992,10 +1998,10 @@
 <li class="paper-item">
     <div class="paper-num">16</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109932" target="_blank" rel="noopener">Multifunctional MXene/epoxy nanocomposites: a comprehensive review of properties, modifications, and applications</a></div>
-      <div class="paper-authors">Na Chu, Se-Yeol Lee, Yong-Han Kim, Seul-Yi Lee, Fan-Long Jin, Soo-Jin Park</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109996" target="_blank" rel="noopener">Thiol-modified derivatives of natural eugenol for simultaneously enhancing the thermal-oxidative and ozone aging resistance of rubber composites</a></div>
+      <div class="paper-authors">Yajie Luan, Ziyuan Zhang, Changfeng Han, Sizhu Wu, Youping Wu</div>
       <div class="paper-meta">
-        <span>📖 Vol. 209, pp. 109932 (2026)</span>
+        <span>📖 Vol. 209, pp. 109996 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -2064,18 +2070,6 @@
 <li class="paper-item">
     <div class="paper-num">22</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109934" target="_blank" rel="noopener">Hybrid fiber reinforced polymer composites: Recent advances in manufacturing methods, hybridization strategies and service performance</a></div>
-      <div class="paper-authors">Yuhang Ding, Siyu Chen, Fubao Xie, Chengyang Zhang, Wei Jiang, Xishuang Jing</div>
-      <div class="paper-meta">
-        <span>📖 Vol. 209, pp. 109934 (2026)</span>
-        <span>⬆️ Cited by: 0</span>
-      </div>
-      
-    </div>
-  </li>
-<li class="paper-item">
-    <div class="paper-num">23</div>
-    <div class="paper-body">
       <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109970" target="_blank" rel="noopener">Phenolic-modified bacterial nanocellulose composites with antimicrobial and antioxidant activity for implantable biomaterials</a></div>
       <div class="paper-authors">Liliana Melro, Cátia Alves, Marta Fernandes, Rui D.V. Fernandes, Adriana Pereira, Diego Moldes et al.</div>
       <div class="paper-meta">
@@ -2086,12 +2080,24 @@
     </div>
   </li>
 <li class="paper-item">
+    <div class="paper-num">23</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109934" target="_blank" rel="noopener">Hybrid fiber reinforced polymer composites: Recent advances in manufacturing methods, hybridization strategies and service performance</a></div>
+      <div class="paper-authors">Yuhang Ding, Siyu Chen, Fubao Xie, Chengyang Zhang, Wei Jiang, Xishuang Jing</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 209, pp. 109934 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
     <div class="paper-num">24</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109947" target="_blank" rel="noopener">Additive manufactured sandwich structures for enhanced mechanical and thermal performance of PLA/carbon fiber composites</a></div>
-      <div class="paper-authors">Yassmin Seid Ahmed, Nestor Ankah, Cagri Ayranci, Fahad Alam</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110027" target="_blank" rel="noopener">Phase tailoring of (Zr,Ti)B2-(Zr,Ti)C-SiC ceramics toward microstructural optimization for simultaneous enhancement of strength and toughness</a></div>
+      <div class="paper-authors">Bingzhu Wang, Wenhao Dou, Huan Guo, Jianjun Sha</div>
       <div class="paper-meta">
-        <span>📖 Vol. 209, pp. 109947 (2026)</span>
+        <span>📖 Vol. 209, pp. 110027 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -2100,10 +2106,10 @@
 <li class="paper-item">
     <div class="paper-num">25</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110038" target="_blank" rel="noopener">Interfacial engineering of pearl millet/PLA biocomposites via sequential alkali–silane treatment: structure–property relationships and tribological performance</a></div>
-      <div class="paper-authors">Wafa Khmira, Sameh Attia-Essaies, Najoua Barhoumi, Mehdi Ismail, Kaouther Khlifi</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109966" target="_blank" rel="noopener">In-plane compression behavior of 3D braided honeycomb composites cores and their sandwich structures</a></div>
+      <div class="paper-authors">Qianqian Li, Yasmine Mosleh, René Alderliesten, Yan Zhang, Yifan Zhi, Hui Zhang et al.</div>
       <div class="paper-meta">
-        <span>📖 Vol. 209, pp. 110038 (2026)</span>
+        <span>📖 Vol. 209, pp. 109966 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -2124,10 +2130,10 @@
 <li class="paper-item">
     <div class="paper-num">27</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110027" target="_blank" rel="noopener">Phase tailoring of (Zr,Ti)B2-(Zr,Ti)C-SiC ceramics toward microstructural optimization for simultaneous enhancement of strength and toughness</a></div>
-      <div class="paper-authors">Bingzhu Wang, Wenhao Dou, Huan Guo, Jianjun Sha</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.110038" target="_blank" rel="noopener">Interfacial engineering of pearl millet/PLA biocomposites via sequential alkali–silane treatment: structure–property relationships and tribological performance</a></div>
+      <div class="paper-authors">Wafa Khmira, Sameh Attia-Essaies, Najoua Barhoumi, Mehdi Ismail, Kaouther Khlifi</div>
       <div class="paper-meta">
-        <span>📖 Vol. 209, pp. 110027 (2026)</span>
+        <span>📖 Vol. 209, pp. 110038 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -2136,10 +2142,10 @@
 <li class="paper-item">
     <div class="paper-num">28</div>
     <div class="paper-body">
-      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109966" target="_blank" rel="noopener">In-plane compression behavior of 3D braided honeycomb composites cores and their sandwich structures</a></div>
-      <div class="paper-authors">Qianqian Li, Yasmine Mosleh, René Alderliesten, Yan Zhang, Yifan Zhi, Hui Zhang et al.</div>
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.compositesa.2026.109947" target="_blank" rel="noopener">Additive manufactured sandwich structures for enhanced mechanical and thermal performance of PLA/carbon fiber composites</a></div>
+      <div class="paper-authors">Yassmin Seid Ahmed, Nestor Ankah, Cagri Ayranci, Fahad Alam</div>
       <div class="paper-meta">
-        <span>📖 Vol. 209, pp. 109966 (2026)</span>
+        <span>📖 Vol. 209, pp. 109947 (2026)</span>
         <span>⬆️ Cited by: 0</span>
       </div>
       
@@ -2176,8 +2182,8 @@
 </div>
 
 <footer class="site-footer">
-  <p>数据来源 <a href="https://www.crossref.org" target="_blank">CrossRef API</a> · 生成时间 2026-06-27</p>
-  <p>Deployed on <a href="https://www.netlify.com" target="_blank">Netlify</a></p>
+  <p>数据来源 <a href="https://www.crossref.org" target="_blank">CrossRef</a> · 生成时间 2026-06-27</p>
+  <p>Deployed on <a href="https://pages.github.com" target="_blank">GitHub Pages</a></p>
 </footer>
 
 <script>
