@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>welding 最新论文 | Journal Tracker</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -33,11 +33,11 @@
       line-height: 1.6;
     }
 
-    /* ===== HEADER ===== */
+    /* ===== HEADER (magazine-style: title + featured cover) ===== */
     .site-header {
       background: linear-gradient(135deg, #0d1b2a 0%, #1b3a5c 50%, #1e5090 100%);
       color: #fff;
-      padding: 1rem 1.5rem 0.9rem;
+      padding: 1.5rem 1.5rem 1.4rem;
       position: relative;
       overflow: hidden;
     }
@@ -46,55 +46,149 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at 20% 50%, rgba(0,180,216,0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(0,180,216,0.1) 0%, transparent 40%);
+        radial-gradient(circle at 20% 50%, rgba(0,180,216,0.18) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(212,160,23,0.08) 0%, transparent 40%);
       pointer-events: none;
     }
     .site-header .inner {
-      max-width: 960px;
+      max-width: 1100px;
       margin: 0 auto;
       position: relative;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 2rem;
+      align-items: center;
     }
+    .header-text { display: flex; flex-direction: column; gap: 0.4rem; }
     .eyebrow {
       font-size: 0.65rem;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--accent-soft);
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.2rem;
       opacity: 0.9;
+      font-weight: 600;
     }
     .site-header h1 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 0.2rem;
-      letter-spacing: -0.01em;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.025em;
+      font-style: italic;
+    }
+    .site-header h1 em {
+      font-style: normal;
+      color: var(--accent);
+      font-weight: 900;
     }
     .subtitle {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.65);
-      margin-bottom: 0.7rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 0.9rem;
+      line-height: 1.5;
+      max-width: 28rem;
     }
     .stats-bar {
       display: flex;
-      gap: 2.5rem;
+      gap: 2rem;
       flex-wrap: wrap;
+      padding-top: 0.6rem;
+      border-top: 1px solid rgba(255,255,255,0.15);
     }
     .stat {
       display: flex;
       flex-direction: column;
-      gap: 0.1rem;
+      gap: 0.15rem;
     }
     .stat-value {
-      font-size: 1.6rem;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.7rem;
       font-weight: 700;
-      color: var(--accent);
+      color: var(--accent-soft);
       line-height: 1;
+      font-feature-settings: 'lnum';
     }
     .stat-label {
-      font-size: 0.68rem;
-      color: rgba(255,255,255,0.5);
+      font-size: 0.66rem;
+      color: rgba(255,255,255,0.55);
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+    }
+
+    /* Featured cover card on right side of header */
+    .featured-issue {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .issue-cover {
+      width: 200px;
+      aspect-ratio: 3 / 4;
+      background: linear-gradient(135deg, #fff 0%, #f0e6d2 100%);
+      color: var(--primary);
+      border-radius: 6px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 14px 36px rgba(0,0,0,0.25);
+      transform: rotate(-1.5deg);
+      transition: transform 0.5s cubic-bezier(0.32,0.72,0,1);
+      position: relative;
+      overflow: hidden;
+    }
+    .issue-cover:hover { transform: rotate(0deg) translateY(-3px); }
+    .issue-cover::before {
+      content: '';
+      position: absolute;
+      top: 0.4rem; right: 0.4rem;
+      width: 0.45rem; height: 0.45rem;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .issue-cover .ic-masthead {
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.4rem;
+    }
+    .issue-cover .ic-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 900;
+      line-height: 1.1;
+      font-style: italic;
+      color: var(--primary);
+      margin-top: 0.4rem;
+    }
+    .issue-cover .ic-emblem {
+      font-size: 2.8rem;
+      text-align: center;
+      filter: drop-shadow(0 1px 3px rgba(0,0,0,0.1));
+      margin: 0.4rem 0;
+    }
+    .issue-cover .ic-footer {
+      font-size: 0.55rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      border-top: 1px solid var(--border);
+      padding-top: 0.4rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    .issue-cover .ic-footer .vol {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 0.8rem;
+      text-transform: none;
+      letter-spacing: 0;
     }
 
     /* ===== CONTAINER ===== */
@@ -390,10 +484,16 @@
     .site-footer a:hover { text-decoration: underline; }
 
     /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .site-header .inner { grid-template-columns: 1fr; gap: 1.2rem; }
+      .featured-issue { justify-content: center; }
+      .issue-cover { width: 160px; }
+      .site-header h1 { font-size: 1.7rem; }
+    }
     @media (max-width: 600px) {
       .site-header h1 { font-size: 1.4rem; }
-      .site-header { padding: 2rem 1rem 1.5rem; }
-      .stats-bar { gap: 1.5rem; }
+      .site-header { padding: 1.2rem 1rem 1rem; }
+      .stats-bar { gap: 1.2rem; }
       .stat-value { font-size: 1.3rem; }
       .tab-btn { padding: 0.85rem 1rem; font-size: 0.78rem; }
       .paper-item { grid-template-columns: 2.5rem 1fr; }
@@ -495,9 +595,9 @@
     .analytics-row.four-col {
       grid-template-columns: 1fr 1fr 1fr 1fr;
     }
-    /* 3-column layout for authors + universities row */
+    /* 3-column layout for authors + institutions row */
     .analytics-row.authors-row {
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1.05fr;
     }
 
     /* ---- Widget Card ---- */
@@ -644,10 +744,6 @@
     }
 
     /* ---- Institutions (single-panel + tabs, minimalist) ---- */
-    /* Single-column full-width row for institutions panel */
-    .analytics-row.institutions-row {
-      grid-template-columns: 1fr;
-    }
     .inst-tabs {
       display: flex;
       gap: 0.4rem;
@@ -721,11 +817,19 @@
     }
 
     /* ---- Trend Chart (Year Bars) ---- */
+    .trend-chart {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      padding-top: 0.25rem;
+    }
     .trend-bars {
       display: flex;
       justify-content: space-around;
       gap: 0.5rem;
-      height: 56px;
+      align-items: flex-end;
+      width: 100%;
+      height: 130px;
       padding: 0;
     }
     .trend-bar-col {
@@ -733,39 +837,38 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
       height: 100%;
-    }
-    .trend-bar-label {
-      font-size: 0.68rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      white-space: nowrap;
+      position: relative;
     }
     .trend-bar-fill {
       width: 80%;
-      max-width: 40px;
+      max-width: 38px;
       border-radius: 4px 4px 0 0;
       background: linear-gradient(180deg, var(--accent) 0%, var(--accent-soft) 100%);
       align-self: center;
-      transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: height 0.7s cubic-bezier(0.32, 0.72, 0, 1);
+      position: relative;
     }
-    .trend-bar-fill::after {
+    .trend-bar-fill::before {
       content: attr(data-count);
-      font-size: 0.65rem;
+      position: absolute;
+      top: -1.15rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.62rem;
       font-weight: 700;
       color: var(--accent);
       white-space: nowrap;
-      margin-top: 0.2rem;
-      display: block;
-      text-align: center;
+      line-height: 1;
     }
     .trend-bar-label {
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       font-weight: 600;
       color: var(--text-muted);
       white-space: nowrap;
-      margin-top: 0.3rem;
+      margin-top: 0.35rem;
+      letter-spacing: 0.02em;
     }
 
     /* ---- Analytics Responsive ---- */
@@ -792,21 +895,34 @@
 
 <header class="site-header">
   <div class="inner">
-    <div class="eyebrow">🔬 Academic Journal Tracker</div>
-    <h1>welding 领域顶级期刊最新论文</h1>
-    <div class="subtitle">Top SCI Journals — Latest Issues · CrossRef Data</div>
-    <div class="stats-bar">
-      <div class="stat">
-        <div class="stat-value">3</div>
-        <div class="stat-label">期刊</div>
+    <div class="header-text">
+      <div class="eyebrow">🔬 Academic Journal Tracker · SJR Top</div>
+      <h1>welding · <em>学术前沿</em></h1>
+      <div class="subtitle">近5年 SJR Top 期刊全量论文 · 研究方向 / 趋势 / 顶尖作者 / 机构 多维分析</div>
+      <div class="stats-bar">
+        <div class="stat">
+          <div class="stat-value">3</div>
+          <div class="stat-label">追踪期刊</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">2330</div>
+          <div class="stat-label">论文总数</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">2026-06-27</div>
+          <div class="stat-label">最后更新</div>
+        </div>
       </div>
-      <div class="stat">
-        <div class="stat-value">2330</div>
-        <div class="stat-label">论文</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">2026-06-27</div>
-        <div class="stat-label">更新</div>
+    </div>
+    <div class="featured-issue">
+      <div class="issue-cover">
+        <div class="ic-masthead">welding · Issue 6</div>
+        <div class="ic-title">welding<br>Top Journals</div>
+        <div class="ic-emblem">🔥</div>
+        <div class="ic-footer">
+          <span>2026</span>
+          <span class="vol">Vol 12</span>
+        </div>
       </div>
     </div>
   </div>
@@ -938,7 +1054,7 @@
 
   </div>
 
-  <!-- 3. Authors (2 columns) -->
+  <!-- 3. Authors + Institutions (3 columns) -->
   <div class="analytics-row authors-row">
 
     <div class="widget-card">
@@ -1049,10 +1165,6 @@
       </div>
     </div>
 
-  </div>
-
-  <!-- 4. Top Institutions (single panel + tabs, full width) -->
-  <div class="analytics-row institutions-row">
 <div class="widget-card inst-card">
       <div class="widget-header">
         <div class="widget-title">🏛️ 顶尖机构 | Top Institutions</div>
@@ -1064,21 +1176,22 @@
         <button class="inst-tab" onclick="showInstTab(2)">🔬 研究所</button>
       </div>
       <div class="inst-pane active" data-pane="0">
-          <div class="inst-row"><span class="ir-rank">1</span><span class="ir-name">Beijing University of Technology</span><span class="ir-meta">CN</span><span class="ir-flag">🌐</span><span class="ir-count">18 篇</span></div>
-          <div class="inst-row"><span class="ir-rank">2</span><span class="ir-name">Southwest Jiaotong University</span><span class="ir-meta">CN</span><span class="ir-flag">🌐</span><span class="ir-count">16 篇</span></div>
-          <div class="inst-row"><span class="ir-rank">3</span><span class="ir-name">Lappeenranta-Lahti University of Technology</span><span class="ir-meta">FI</span><span class="ir-flag">🌐</span><span class="ir-count">14 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">1</span><span class="ir-name">Beijing University of Technology</span><span class="ir-meta">中国</span><span class="ir-flag">🇨🇳</span><span class="ir-count">18 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">2</span><span class="ir-name">Southwest Jiaotong University</span><span class="ir-meta">中国</span><span class="ir-flag">🇨🇳</span><span class="ir-count">16 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">3</span><span class="ir-name">Lappeenranta-Lahti University of Technology</span><span class="ir-meta">芬兰</span><span class="ir-flag">🇫🇮</span><span class="ir-count">14 篇</span></div>
         </div>
         <div class="inst-pane" data-pane="1">
-          <div class="inst-row"><span class="ir-rank">1</span><span class="ir-name">Plasma Technology (United States)</span><span class="ir-meta">US</span><span class="ir-flag">🌐</span><span class="ir-count">8 篇</span></div>
-          <div class="inst-row"><span class="ir-rank">2</span><span class="ir-name">China Energy Engineering Corporation (China)</span><span class="ir-meta">CN</span><span class="ir-flag">🌐</span><span class="ir-count">5 篇</span></div>
-          <div class="inst-row"><span class="ir-rank">3</span><span class="ir-name">General Motors (United States)</span><span class="ir-meta">US</span><span class="ir-flag">🌐</span><span class="ir-count">5 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">1</span><span class="ir-name">Plasma Technology (United States)</span><span class="ir-meta">美国</span><span class="ir-flag">🇺🇸</span><span class="ir-count">8 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">2</span><span class="ir-name">China Energy Engineering Corporation (China)</span><span class="ir-meta">中国</span><span class="ir-flag">🇨🇳</span><span class="ir-count">5 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">3</span><span class="ir-name">General Motors (United States)</span><span class="ir-meta">美国</span><span class="ir-flag">🇺🇸</span><span class="ir-count">5 篇</span></div>
         </div>
         <div class="inst-pane" data-pane="2">
-          <div class="inst-row"><span class="ir-rank">1</span><span class="ir-name">Federal Institute For Materials Research and Testing</span><span class="ir-meta">DE</span><span class="ir-flag">🌐</span><span class="ir-count">20 篇</span></div>
-          <div class="inst-row"><span class="ir-rank">2</span><span class="ir-name">Centre National de la Recherche Scientifique</span><span class="ir-meta">FR</span><span class="ir-flag">🌐</span><span class="ir-count">16 篇</span></div>
-          <div class="inst-row"><span class="ir-rank">3</span><span class="ir-name">Pacific Northwest National Laboratory</span><span class="ir-meta">US</span><span class="ir-flag">🌐</span><span class="ir-count">12 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">1</span><span class="ir-name">Federal Institute For Materials Research and Testing</span><span class="ir-meta">德国</span><span class="ir-flag">🇩🇪</span><span class="ir-count">20 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">2</span><span class="ir-name">Centre National de la Recherche Scientifique</span><span class="ir-meta">法国</span><span class="ir-flag">🇫🇷</span><span class="ir-count">16 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">3</span><span class="ir-name">Pacific Northwest National Laboratory</span><span class="ir-meta">美国</span><span class="ir-flag">🇺🇸</span><span class="ir-count">12 篇</span></div>
         </div>
     </div>
+
   </div>
 
 </section>
