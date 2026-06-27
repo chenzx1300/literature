@@ -499,9 +499,9 @@
     .analytics-row.authors-row {
       grid-template-columns: 1fr 1fr;
     }
-    /* 3-column layout for institutions (universities/companies/institutes) */
+    /* Single-column full-width row for institutions panel */
     .analytics-row.institutions-row {
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr;
     }
 
     /* ---- Widget Card ---- */
@@ -649,56 +649,78 @@
       color: var(--text-light);
     }
 
-    /* ---- Universities (rank-list, vertically centered) ---- */
-    .uni-list {
+    /* ---- Universities (single-panel + tabs, minimalist) ---- */
+    .inst-card .widget-badge { display: none; } /* hide badge in inst panel */
+    .inst-tabs {
       display: flex;
-      flex-direction: column;
       gap: 0.4rem;
-      flex: 1;
-      justify-content: center;
-      padding: 0.25rem 0;
+      margin-bottom: 0.55rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.45rem;
     }
-    .uni-rank-item {
-      display: flex;
+    .inst-tab {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.18rem 0.7rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+    .inst-tab:hover { background: var(--bg); color: var(--text); }
+    .inst-tab.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+    .inst-pane { display: none; }
+    .inst-pane.active { display: block; }
+    .inst-row {
+      display: grid;
+      grid-template-columns: 1.4rem 1fr auto auto auto;
       align-items: center;
-      gap: 0.4rem;
-      padding: 0.3rem 0.5rem;
-      border-radius: 8px;
-      background: var(--bg);
-      transition: background 0.2s, transform 0.15s;
+      gap: 0.6rem;
+      padding: 0.32rem 0;
+      border-bottom: 1px dashed var(--border);
+      transition: background 0.15s;
     }
-    .uni-rank-item:hover { background: #e8f4f8; transform: translateX(2px); }
-    .uni-rank-item.rank-1 {
-      background: linear-gradient(135deg, #fffbf0 0%, #fff3d0 100%);
-      border: 1px solid #f0d060;
-      box-shadow: 0 1px 4px rgba(240, 208, 96, 0.18);
-    }
-    .uni-rank-item.rank-2 {
-      background: linear-gradient(135deg, #f8f9fa 0%, #eceff1 100%);
-      border: 1px solid #c8ced2;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
-    .uni-rank-item.rank-3 {
-      background: linear-gradient(135deg, #fff8f0 0%, #fdf1e0 100%);
-      border: 1px solid #e8c890;
-      box-shadow: 0 1px 3px rgba(232, 200, 144, 0.15);
-    }
-    .uni-rank-item.rank-other {
-      background: var(--bg);
-      border: 1px solid transparent;
-    }
-    .uni-medal-small {
-      width: 1.5rem;
-      height: 1.5rem;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+    .inst-row:last-child { border-bottom: none; }
+    .inst-row:hover { background: var(--bg); }
+    .ir-rank {
       font-size: 0.78rem;
       font-weight: 700;
+      color: var(--accent);
+      text-align: center;
+    }
+    .ir-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ir-meta {
+      font-size: 0.7rem;
       color: var(--text-muted);
-      background: rgba(0,0,0,0.04);
-      border-radius: 50%;
-      flex-shrink: 0;
+      max-width: 11rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ir-flag { font-size: 0.85rem; }
+    .ir-count {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      min-width: 3.2rem;
+      text-align: right;
+    }
+    @media (max-width: 600px) {
+      .inst-row { grid-template-columns: 1.2rem 1fr auto auto; }
+      .ir-meta { display: none; }
     }
     .uni-medal {
       font-size: 1.4rem;
@@ -1082,135 +1104,34 @@
 
   </div>
 
-  <!-- 4. Top Institutions (3 categories, full width) -->
+  <!-- 4. Top Institutions (single panel + tabs) -->
   <div class="analytics-row institutions-row">
-
-    <div class="widget-card">
+    <div class="widget-card inst-card">
       <div class="widget-header">
-        <div class="widget-title">🎓 顶尖大学 | Top Universities</div>
+        <div class="widget-title">🏛️ 顶尖机构 | Top Institutions</div>
         <div class="widget-badge">Top 3</div>
       </div>
-      <div class="uni-list">
-        <div class="uni-rank-item rank-1">
-          <div class="uni-medal">🥇</div>
-          <div class="uni-info">
-            <div class="uni-name">Beijing University of Technology</div>
-            <div class="uni-meta">北京工业大学 · 🇨🇳 CN</div>
-          </div>
-          <div class="uni-stat">
-            <div class="us-value">18</div>
-            <div class="us-label">篇</div>
-          </div>
-        </div>
-        <div class="uni-rank-item rank-2">
-          <div class="uni-medal">🥈</div>
-          <div class="uni-info">
-            <div class="uni-name">Southwest Jiaotong University</div>
-            <div class="uni-meta">西南交通大学 · 🇨🇳 CN</div>
-          </div>
-          <div class="uni-stat">
-            <div class="us-value">16</div>
-            <div class="us-label">篇</div>
-          </div>
-        </div>
-        <div class="uni-rank-item rank-3">
-          <div class="uni-medal">🥉</div>
-          <div class="uni-info">
-            <div class="uni-name">Lappeenranta-Lahti University of Technology</div>
-            <div class="uni-meta">LUT University · 🇫🇮 FI</div>
-          </div>
-          <div class="uni-stat">
-            <div class="us-value">14</div>
-            <div class="us-label">篇</div>
-          </div>
-        </div>
+      <div class="inst-tabs">
+        <button class="inst-tab active" onclick="showInstTab(0)">🎓 大学</button>
+        <button class="inst-tab" onclick="showInstTab(1)">🏢 企业</button>
+        <button class="inst-tab" onclick="showInstTab(2)">🔬 研究所</button>
+      </div>
+      <div class="inst-pane active" data-pane="0">
+        <div class="inst-row"><span class="ir-rank">1</span><span class="ir-name">Beijing University of Technology</span><span class="ir-meta">北京工业大学</span><span class="ir-flag">🇨🇳</span><span class="ir-count">18 篇</span></div>
+        <div class="inst-row"><span class="ir-rank">2</span><span class="ir-name">Southwest Jiaotong University</span><span class="ir-meta">西南交通大学</span><span class="ir-flag">🇨🇳</span><span class="ir-count">16 篇</span></div>
+        <div class="inst-row"><span class="ir-rank">3</span><span class="ir-name">LUT University</span><span class="ir-meta">Lappeenranta-Lahti U. of Tech.</span><span class="ir-flag">🇫🇮</span><span class="ir-count">14 篇</span></div>
+      </div>
+      <div class="inst-pane" data-pane="1">
+        <div class="inst-row"><span class="ir-rank">1</span><span class="ir-name">Plasma Technology</span><span class="ir-meta">Thermal spraying</span><span class="ir-flag">🇺🇸</span><span class="ir-count">8 篇</span></div>
+        <div class="inst-row"><span class="ir-rank">2</span><span class="ir-name">China Energy Engineering Corp.</span><span class="ir-meta">中国能建</span><span class="ir-flag">🇨🇳</span><span class="ir-count">5 篇</span></div>
+        <div class="inst-row"><span class="ir-rank">3</span><span class="ir-name">General Motors</span><span class="ir-meta">Automotive OEM</span><span class="ir-flag">🇺🇸</span><span class="ir-count">5 篇</span></div>
+      </div>
+      <div class="inst-pane" data-pane="2">
+        <div class="inst-row"><span class="ir-rank">1</span><span class="ir-name">BAM</span><span class="ir-meta">Federal Institute for Materials Research</span><span class="ir-flag">🇩🇪</span><span class="ir-count">20 篇</span></div>
+        <div class="inst-row"><span class="ir-rank">2</span><span class="ir-name">CNRS</span><span class="ir-meta">Centre National de la Recherche</span><span class="ir-flag">🇫🇷</span><span class="ir-count">16 篇</span></div>
+        <div class="inst-row"><span class="ir-rank">3</span><span class="ir-name">PNNL</span><span class="ir-meta">Pacific Northwest National Lab</span><span class="ir-flag">🇺🇸</span><span class="ir-count">12 篇</span></div>
       </div>
     </div>
-
-    <div class="widget-card">
-      <div class="widget-header">
-        <div class="widget-title">🏢 顶尖企业 | Top Companies</div>
-        <div class="widget-badge">Top 3</div>
-      </div>
-      <div class="uni-list">
-        <div class="uni-rank-item rank-1">
-          <div class="uni-medal">🥇</div>
-          <div class="uni-info">
-            <div class="uni-name">Plasma Technology</div>
-            <div class="uni-meta">Thermal spraying & surface eng. · 🇺🇸 US</div>
-          </div>
-          <div class="uni-stat">
-            <div class="us-value">8</div>
-            <div class="us-label">篇</div>
-          </div>
-        </div>
-        <div class="uni-rank-item rank-2">
-          <div class="uni-medal">🥈</div>
-          <div class="uni-info">
-            <div class="uni-name">China Energy Engineering Corp.</div>
-            <div class="uni-meta">中国能建 · 能源工程建设 · 🇨🇳 CN</div>
-          </div>
-          <div class="uni-stat">
-            <div class="us-value">5</div>
-            <div class="us-label">篇</div>
-          </div>
-        </div>
-        <div class="uni-rank-item rank-3">
-          <div class="uni-medal">🥉</div>
-          <div class="uni-info">
-            <div class="uni-name">General Motors</div>
-            <div class="uni-meta">Automotive OEM · 🇺🇸 US</div>
-          </div>
-          <div class="uni-stat">
-            <div class="us-value">5</div>
-            <div class="us-label">篇</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="widget-card">
-      <div class="widget-header">
-        <div class="widget-title">🔬 顶尖研究所 | Top Research Institutes</div>
-        <div class="widget-badge">Top 3</div>
-      </div>
-      <div class="uni-list">
-        <div class="uni-rank-item rank-1">
-          <div class="uni-medal">🥇</div>
-          <div class="uni-info">
-            <div class="uni-name">Federal Institute for Materials Research</div>
-            <div class="uni-meta">BAM · 材料研究联邦院 · 🇩🇪 DE</div>
-          </div>
-          <div class="uni-stat">
-            <div class="us-value">20</div>
-            <div class="us-label">篇</div>
-          </div>
-        </div>
-        <div class="uni-rank-item rank-2">
-          <div class="uni-medal">🥈</div>
-          <div class="uni-info">
-            <div class="uni-name">CNRS</div>
-            <div class="uni-meta">Centre National de la Recherche · 🇫🇷 FR</div>
-          </div>
-          <div class="uni-stat">
-            <div class="us-value">16</div>
-            <div class="us-label">篇</div>
-          </div>
-        </div>
-        <div class="uni-rank-item rank-3">
-          <div class="uni-medal">🥉</div>
-          <div class="uni-info">
-            <div class="uni-name">Pacific Northwest National Lab</div>
-            <div class="uni-meta">PNNL · DOE 国家实验室 · 🇺🇸 US</div>
-          </div>
-          <div class="uni-stat">
-            <div class="us-value">12</div>
-            <div class="us-label">篇</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 
 </section>
@@ -2401,6 +2322,14 @@
       b.classList.toggle('active', i === idx);
     });
     document.querySelectorAll('.tab-panel').forEach((p, i) => {
+      p.classList.toggle('active', i === idx);
+    });
+  }
+  function showInstTab(idx) {
+    document.querySelectorAll('.inst-tab').forEach((b, i) => {
+      b.classList.toggle('active', i === idx);
+    });
+    document.querySelectorAll('.inst-pane').forEach((p, i) => {
       p.classList.toggle('active', i === idx);
     });
   }
