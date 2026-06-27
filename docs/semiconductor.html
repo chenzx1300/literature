@@ -31,6 +31,7 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     /* ===== HEADER (magazine-style: title + featured cover) ===== */
@@ -484,8 +485,11 @@
     .site-footer a:hover { text-decoration: underline; }
 
     /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .site-header .inner { grid-template-columns: 1.4fr 1fr; gap: 1.5rem; }
+    }
     @media (max-width: 768px) {
-      .site-header .inner { grid-template-columns: 1fr; gap: 1.2rem; }
+      .site-header .inner { grid-template-columns: 1fr !important; gap: 1.2rem; }
       .featured-issue { justify-content: center; }
       .issue-cover { width: 160px; }
       .site-header h1 { font-size: 1.7rem; }
@@ -493,12 +497,57 @@
     @media (max-width: 600px) {
       .site-header h1 { font-size: 1.4rem; }
       .site-header { padding: 1.2rem 1rem 1rem; }
-      .stats-bar { gap: 1.2rem; }
+      .stats-bar { gap: 1rem; flex-wrap: wrap; }
+      .stats-bar .stat { flex: 1 1 30%; min-width: 0; }
       .stat-value { font-size: 1.3rem; }
-      .tab-btn { padding: 0.85rem 1rem; font-size: 0.78rem; }
+      .tab-btn { padding: 0.85rem 0.9rem; font-size: 0.75rem; }
+      .tab-btn .tab-meta { display: none; }
       .paper-item { grid-template-columns: 2.5rem 1fr; }
       .paper-num { padding: 1.2rem 0.3rem 1.2rem 1rem; }
       .paper-body { padding: 1rem 1rem 1rem 0.3rem; }
+    }
+    @media (max-width: 480px) {
+      /* Hero stats: drop to 3-col equal */
+      .stats-bar { flex-wrap: wrap; gap: 0.8rem; }
+      .stat { flex: 1 1 30%; min-width: 0; }
+      .stat-value { font-size: 1.15rem; }
+      .stat-label { font-size: 0.6rem; }
+      /* Cover card scales down */
+      .issue-cover { width: 130px; padding: 0.7rem; }
+      .issue-cover .ic-title { font-size: 0.9rem; }
+      .issue-cover .ic-emblem { font-size: 2rem; margin: 0.2rem 0; }
+      /* Authors row: stack to 1-col (3-col too narrow for name+stat) */
+      .analytics-row.authors-row { grid-template-columns: 1fr !important; }
+      .author-rank-item { padding: 0.4rem 0.5rem; }
+      .author-medal { font-size: 1.1rem; }
+      .author-rank-name { font-size: 0.78rem; }
+      .author-rank-stat .ars-value { font-size: 0.9rem; }
+      /* Institutions panel */
+      .inst-row { grid-template-columns: 1.2rem 1fr auto; gap: 0.4rem; padding: 0.4rem 0; }
+      .ir-flag { display: none; }
+      .ir-meta { display: none; }
+      .ir-count { min-width: 2.2rem; font-size: 0.72rem; }
+      /* Tabs header — keep horizontal scroll */
+      .tabs-header { padding: 0 0.5rem; }
+      .tab-btn { padding: 0.7rem 0.7rem; font-size: 0.72rem; min-width: max-content; }
+      /* Analytics 4 stat cards: still 2x2 but smaller */
+      .analytics-overview { grid-template-columns: repeat(2, 1fr); gap: 0.35rem; }
+      .stat-card { padding: 0.5rem 0.6rem; }
+      .stat-card .sc-value { font-size: 1rem; }
+      .stat-card.metric-primary .sc-value { font-size: 1.3rem; }
+      .stat-card .sc-label { font-size: 0.55rem; }
+      /* Trend bars: smaller, but still visible */
+      .trend-bars { height: 100px; }
+      /* Container: less padding */
+      .container, .analytics { padding: 0.5rem 0.75rem; }
+    }
+    @media (max-width: 420px) {
+      /* Ultra-narrow (true 360-420px): tighter icons, smaller values */
+      .stat-card .sc-icon { font-size: 0.85rem; }
+      .stat-card .sc-value { font-size: 0.95rem; }
+      .stat-card.metric-primary .sc-value { font-size: 1.2rem; }
+      .stats-bar .stat { flex: 1 1 28%; }
+      .stat-value { font-size: 1rem; }
     }
 
     /* ===== ANALYTICS SECTION ===== */
@@ -871,23 +920,9 @@
       letter-spacing: 0.02em;
     }
 
-    /* ---- Analytics Responsive ---- */
-    @media (max-width: 768px) {
-      .analytics-overview {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .analytics-row {
-        grid-template-columns: 1fr;
-      }
-    }
+    /* ---- Analytics Responsive (legacy — most overrides now in main RESPONSIVE block) ---- */
     @media (max-width: 480px) {
-      .analytics-overview {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .stat-card { padding: 1rem 1rem; }
-      .stat-card .sc-value { font-size: 1.5rem; }
-      .topic-bar-name { min-width: 70px; max-width: 120px; font-size: 0.72rem; white-space: normal; }
-      .analytics { padding: 1rem 0.75rem 0; }
+      .topic-bar-name { min-width: 60px; max-width: 90px; font-size: 0.68rem; white-space: normal; }
     }
   </style>
 </head>
