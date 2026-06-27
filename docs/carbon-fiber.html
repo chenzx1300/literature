@@ -527,6 +527,8 @@
       .ir-flag { display: none; }
       .ir-meta { display: none; }
       .ir-count { min-width: 2.2rem; font-size: 0.72rem; }
+      /* 移动端机构名空间不够，恢复 ellipsis 兜底（短名完整、长名省略号） */
+      .ir-name { max-width: none !important; white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; }
       /* Tabs header — keep horizontal scroll */
       .tabs-header { padding: 0 0.5rem; }
       .tab-btn { padding: 0.7rem 0.7rem; font-size: 0.72rem; min-width: max-content; }
@@ -655,6 +657,8 @@
       border-radius: 12px;
       box-shadow: var(--shadow);
       padding: 0.7rem 1rem;
+      display: flex;
+      flex-direction: column;
     }
     .widget-card .widget-header {
       display: flex;
@@ -840,9 +844,12 @@
       font-size: 0.82rem;
       font-weight: 600;
       color: var(--primary);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      white-space: normal;
+      overflow: visible;
+      text-overflow: clip;
+      word-break: break-word;
+      line-height: 1.3;
+      max-width: 14rem;
     }
     .ir-meta {
       font-size: 0.7rem;
@@ -871,6 +878,7 @@
       display: flex;
       align-items: flex-end;
       padding-top: 0.25rem;
+      min-height: 130px;
     }
     .trend-bars {
       display: flex;
