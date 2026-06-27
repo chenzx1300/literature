@@ -3,324 +3,925 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Journal Tracker - 学术期刊追踪</title>
+  <title>Journal Tracker · 学术期刊追踪 | 4 个领域 · 12 本 SJR Top 期刊</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --primary: #1e3a5f;
-      --primary-light: #2d5a87;
-      --accent: #00b4d8;
-      --accent-soft: #90e0ef;
-      --bg: #f0f4f8;
+      --primary: #0d1b2a;
+      --primary-light: #1b3a5c;
+      --accent: #c0392b;
+      --accent-2: #d4a017;
+      --accent-soft: #f0e6d2;
+      --bg: #fafaf7;
       --surface: #ffffff;
       --text: #1a2332;
       --text-muted: #5c6f7e;
+      --text-light: #8fa4b8;
+      --border: #e6e3dc;
+      --serif: 'Playfair Display', 'Source Serif 4', Georgia, serif;
+      --sans: 'Inter', -apple-system, 'Helvetica Neue', sans-serif;
     }
 
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
-      font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+      font-family: var(--serif);
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Header */
-    .site-header {
-      background: linear-gradient(135deg, #0d1b2a 0%, #1b3a5c 50%, #1e5090 100%);
+    /* ============ MASTHEAD ============ */
+    .masthead {
+      background: #0d1b2a;
       color: #fff;
-      padding: 3rem 1.5rem 2.5rem;
-      text-align: center;
+      padding: 0.85rem 1.5rem;
+      border-bottom: 3px solid var(--accent);
+    }
+    .masthead-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .masthead-logo {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      font-family: var(--serif);
+    }
+    .masthead-logo .mark {
+      font-size: 1.6rem;
+      font-weight: 900;
+      font-style: italic;
+      letter-spacing: -0.02em;
+    }
+    .masthead-logo .mark .red { color: var(--accent); }
+    .masthead-logo .tagline {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-weight: 500;
+    }
+    .masthead-nav {
+      display: flex;
+      gap: 1.6rem;
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+    .masthead-nav a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+    .masthead-nav a:hover { color: var(--accent-2); }
+
+    /* ============ HERO ============ */
+    .hero {
+      background:
+        radial-gradient(ellipse at 30% 0%, rgba(192,57,43,0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 100%, rgba(212,160,23,0.06) 0%, transparent 50%),
+        linear-gradient(180deg, #fafaf7 0%, #f4f1e8 100%);
+      padding: 4rem 1.5rem 3rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.3;
+    }
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .hero-left { position: relative; }
+    .hero-issue-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 1.2rem;
+    }
+    .hero-issue-line::before {
+      content: '';
+      width: 2rem;
+      height: 1px;
+      background: var(--accent);
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      color: var(--primary);
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-deck {
+      font-family: var(--sans);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      max-width: 32rem;
+      margin-bottom: 1.8rem;
+    }
+    .hero-byline {
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      color: var(--text-light);
+      letter-spacing: 0.05em;
+    }
+    .hero-byline strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Hero Featured Cover */
+    .hero-right { display: flex; justify-content: center; }
+    .featured-cover {
+      width: 280px;
+      aspect-ratio: 3 / 4;
+      background: linear-gradient(135deg, #0d1b2a 0%, #1b3a5c 60%, #c0392b 100%);
+      border-radius: 6px;
+      padding: 1.6rem;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow:
+        0 2px 4px rgba(0,0,0,0.1),
+        0 12px 32px rgba(0,0,0,0.18),
+        inset 0 1px 0 rgba(255,255,255,0.1);
       position: relative;
       overflow: hidden;
+      transform: rotate(-1.5deg);
+      transition: transform 0.5s cubic-bezier(0.32,0.72,0,1);
     }
-    .site-header::before {
+    .featured-cover:hover { transform: rotate(0deg) translateY(-4px); }
+    .featured-cover::before {
       content: '';
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at 20% 50%, rgba(0,180,216,0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(0,180,216,0.1) 0%, transparent 40%);
+        radial-gradient(circle at 20% 80%, rgba(212,160,23,0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 60%);
       pointer-events: none;
     }
-    .site-header .inner { position: relative; max-width: 720px; margin: 0 auto; }
-    .eyebrow {
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
+    .featured-cover .cover-masthead {
+      font-family: var(--sans);
+      font-size: 0.6rem;
       text-transform: uppercase;
-      color: var(--accent-soft);
-      margin-bottom: 0.8rem;
-      opacity: 0.9;
-    }
-    .site-header h1 {
-      font-size: 2.2rem;
-      font-weight: 700;
-      margin-bottom: 0.6rem;
-      letter-spacing: -0.01em;
-    }
-    .site-header p {
-      font-size: 1rem;
+      letter-spacing: 0.25em;
       color: rgba(255,255,255,0.65);
-      line-height: 1.6;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      padding-bottom: 0.5rem;
     }
-
-    /* Main */
-    main {
-      flex: 1;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 3rem 1.5rem;
-      width: 100%;
+    .featured-cover .cover-title {
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      font-style: italic;
+      margin-top: 0.5rem;
     }
-
-    .section-title {
+    .featured-cover .cover-subtitle {
+      font-family: var(--sans);
       font-size: 0.72rem;
-      font-weight: 700;
+      color: var(--accent-2);
+      letter-spacing: 0.1em;
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+    .featured-cover .cover-emblem {
+      font-size: 4rem;
+      line-height: 1;
+      text-align: center;
+      margin: 1rem 0;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+    }
+    .featured-cover .cover-footer {
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--text-muted);
-      padding-bottom: 0.6rem;
-      border-bottom: 2px solid #e2e8f0;
-      margin-bottom: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 0.6rem;
     }
 
-    /* Domain Grid */
+    /* ============ STATS BAR ============ */
+    .stats-bar {
+      max-width: 1200px;
+      margin: -2rem auto 0;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .stats-inner {
+      background: var(--surface);
+      border-radius: 8px;
+      padding: 1.5rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04), 0 12px 28px rgba(0,0,0,0.06);
+      border-top: 3px solid var(--accent);
+    }
+    .stat-cell {
+      text-align: center;
+      border-right: 1px solid var(--border);
+      padding: 0 1rem;
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-cell .stat-num {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--primary);
+      font-feature-settings: 'lnum';
+    }
+    .stat-cell .stat-num em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .stat-cell .stat-cap {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 0.4rem;
+      font-weight: 500;
+    }
+
+    /* ============ MAIN ============ */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 3rem;
+    }
+
+    /* Section heading */
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 0.6rem;
+      margin-bottom: 2rem;
+    }
+    .section-head h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--primary);
+    }
+    .section-head h2 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .section-head .section-sub {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ============ DOMAIN GRID (MAGAZINE-STYLE COVERS) ============ */
     .domain-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 3rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
     }
 
     .domain-card {
       background: var(--surface);
-      border-radius: 16px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
-      padding: 1.75rem;
+      border-radius: 6px;
+      overflow: hidden;
       text-decoration: none;
       color: inherit;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.5s cubic-bezier(0.32,0.72,0,1);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 6px 20px rgba(0,0,0,0.04);
       display: flex;
       flex-direction: column;
-      gap: 0.8rem;
-      border: 1px solid transparent;
+      position: relative;
     }
     .domain-card:hover {
-      box-shadow: 0 4px 24px rgba(0,0,0,0.1);
-      transform: translateY(-3px);
-      border-color: var(--accent-soft);
+      transform: translateY(-6px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 20px 40px rgba(0,0,0,0.12);
     }
 
-    .card-icon {
-      font-size: 2rem;
-      line-height: 1;
-    }
-
-    .card-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--primary);
-    }
-
-    .card-desc {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    .card-meta {
-      margin-top: auto;
+    /* Magazine cover — each domain has a distinct theme */
+    .domain-cover {
+      aspect-ratio: 3 / 4;
+      padding: 1.4rem 1.2rem;
       display: flex;
-      gap: 1rem;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .domain-cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 80%, rgba(255,255,255,0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .domain-cover::after {
+      content: '';
+      position: absolute;
+      top: 0.6rem; right: 0.6rem;
+      width: 0.55rem; height: 0.55rem;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+    }
+
+    /* Domain cover variants */
+    .cover-robotics {
+      background: linear-gradient(135deg, #0d1b2a 0%, #1b3a5c 50%, #2d5a87 100%);
+    }
+    .cover-carbon {
+      background: linear-gradient(135deg, #2d1b1b 0%, #5c2d2d 50%, #8a3a3a 100%);
+    }
+    .cover-semi {
+      background: linear-gradient(135deg, #1b2d3a 0%, #2d4d6b 50%, #5a8aaa 100%);
+    }
+    .cover-welding {
+      background: linear-gradient(135deg, #3a2d0d 0%, #6b4d1b 50%, #c0852d 100%);
+    }
+
+    .cover-masthead {
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: rgba(255,255,255,0.7);
+      border-bottom: 1px solid rgba(255,255,255,0.18);
+      padding-bottom: 0.5rem;
+      position: relative;
+    }
+    .cover-title {
+      font-family: var(--serif);
+      font-size: 1.85rem;
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      font-style: italic;
+      margin: 0.6rem 0 0.4rem;
+      position: relative;
+    }
+    .cover-subtitle {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.05em;
+      position: relative;
+      line-height: 1.4;
+    }
+    .cover-emblem {
+      font-size: 3.2rem;
+      text-align: center;
+      margin: 0.8rem 0;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+      position: relative;
+    }
+    .cover-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: var(--sans);
+      font-size: 0.62rem;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border-top: 1px solid rgba(255,255,255,0.18);
+      padding-top: 0.5rem;
+      position: relative;
+    }
+    .cover-footer .vol {
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      font-weight: 700;
+      font-style: italic;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    /* Card meta below cover */
+    .domain-card-body {
+      padding: 1rem 1.2rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      flex: 1;
+    }
+    .domain-journals {
+      font-family: var(--sans);
       font-size: 0.72rem;
       color: var(--text-muted);
+      line-height: 1.5;
+      border-left: 2px solid var(--accent);
+      padding-left: 0.6rem;
     }
-    .card-meta span {
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
+    .domain-journals .jl { display: block; }
+    .domain-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.4rem;
+      margin-top: auto;
+      padding-top: 0.6rem;
+      border-top: 1px dashed var(--border);
     }
-
-    /* Stats strip */
-    .stats-strip {
-      background: var(--surface);
-      border-radius: 12px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-      padding: 1.25rem 1.5rem;
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 3rem;
-    }
-    .stat-item {
+    .domain-stat {
       text-align: center;
     }
-    .stat-value {
+    .domain-stat .v {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1;
+      font-feature-settings: 'lnum';
+    }
+    .domain-stat .v .accent { color: var(--accent); }
+    .domain-stat .l {
+      font-family: var(--sans);
+      font-size: 0.58rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.25rem;
+    }
+
+    /* CTA strip on card */
+    .domain-cta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 0.4rem;
+    }
+    .domain-cta .arrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.6rem; height: 1.6rem;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.85rem;
+      transition: transform 0.3s cubic-bezier(0.32,0.72,0,1);
+    }
+    .domain-card:hover .domain-cta .arrow { transform: translateX(4px); }
+
+    /* ============ ABOUT STRIP ============ */
+    .about-strip {
+      background:
+        linear-gradient(135deg, #fafaf7 0%, #f4f1e8 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 1.5rem;
+      margin-top: 2rem;
+    }
+    .about-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .about-head h3 {
       font-size: 1.6rem;
       font-weight: 700;
-      color: var(--accent);
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: 0.68rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-top: 0.3rem;
-    }
-
-    /* Info section */
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    .info-card {
-      background: var(--surface);
-      border-radius: 12px;
-      padding: 1.25rem;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-    }
-    .info-card h3 {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-muted);
+      letter-spacing: -0.01em;
+      color: var(--primary);
       margin-bottom: 0.5rem;
     }
-    .info-card p {
-      font-size: 0.82rem;
-      color: var(--text);
-      line-height: 1.5;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 1.5rem;
+    .about-head h3 em { color: var(--accent); font-style: italic; }
+    .about-head p {
+      font-family: var(--sans);
+      font-size: 0.85rem;
       color: var(--text-muted);
-      font-size: 0.75rem;
-      border-top: 1px solid #e2e8f0;
+      line-height: 1.6;
     }
-    footer a {
-      color: var(--accent);
-      text-decoration: none;
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .about-item {
+      border-left: 3px solid var(--accent);
+      padding-left: 1rem;
+    }
+    .about-item h4 {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.4rem;
+    }
+    .about-item p {
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.55;
     }
 
+    /* ============ FOOTER ============ */
+    footer {
+      background: var(--primary);
+      color: rgba(255,255,255,0.7);
+      padding: 2.5rem 1.5rem 2rem;
+      text-align: center;
+      font-family: var(--sans);
+    }
+    footer .footer-logo {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 900;
+      font-style: italic;
+      color: #fff;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+    }
+    footer .footer-logo .red { color: var(--accent); }
+    footer p { font-size: 0.78rem; line-height: 1.7; }
+    footer a { color: var(--accent-2); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: #fff; }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .featured-cover { width: 220px; margin: 0 auto; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); padding: 1.25rem 1rem; gap: 0.6rem; }
+      .stat-cell { border-right: none; border-bottom: 1px solid var(--border); padding: 0.5rem 0.25rem; }
+      .stat-cell:nth-last-child(-n+2) { border-bottom: none; }
+      .about-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+      .masthead-nav { display: none; }
+    }
     @media (max-width: 600px) {
-      .site-header h1 { font-size: 1.6rem; }
-      .domain-grid { grid-template-columns: 1fr; }
+      .hero { padding: 3rem 1rem 2rem; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero-deck { font-size: 0.95rem; }
+      main { padding: 2.5rem 1rem; }
+      .domain-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      /* Stats grid: tighter cells, smaller numbers to prevent overflow */
+      .stats-bar { padding: 0 0.75rem; margin-top: -1.5rem; }
+      .stats-inner { padding: 1rem 0.6rem; gap: 0.4rem; }
+      .stat-cell { padding: 0.4rem 0.15rem; }
+      .stat-cell .stat-num { font-size: 1.5rem; }
+      .stat-cell .stat-cap { font-size: 0.6rem; letter-spacing: 0.08em; }
+      /* Hero scales down */
+      .hero { padding: 2.5rem 0.75rem 1.5rem; }
+      .hero h1 { font-size: 1.85rem; }
+      .hero-deck { font-size: 0.88rem; line-height: 1.5; }
+      .hero-issue-line { font-size: 0.62rem; margin-bottom: 0.9rem; }
+      .hero-issue-line::before { width: 1.2rem; }
+      /* Featured cover smaller */
+      .featured-cover { width: 170px; padding: 1rem; }
+      .featured-cover .cover-title { font-size: 1.5rem; }
+      .featured-cover .cover-emblem { font-size: 3rem; margin: 0.6rem 0; }
+      /* Section heads */
+      .section-head { margin-bottom: 1.4rem; }
+      .section-head h2 { font-size: 1.2rem; }
+      /* Domain cards */
+      .domain-card-body { padding: 0.85rem 0.9rem 1rem; }
+      .domain-stats { gap: 0.3rem; }
+      .domain-stat .v { font-size: 0.95rem; }
+      .domain-stat .l { font-size: 0.55rem; }
+      /* Masthead */
+      .masthead-logo .mark { font-size: 1.3rem; }
+      .masthead-logo .tagline { font-size: 0.62rem; }
+      .masthead { padding: 0.7rem 1rem; }
+      /* About strip */
+      .about-strip { padding: 2rem 1rem; }
+      .about-head h3 { font-size: 1.3rem; }
+      .about-grid { gap: 1rem; }
+    }
+    @media (max-width: 420px) {
+      /* Ultra-narrow (true 360-420px): stats 1-col */
+      .stats-inner { grid-template-columns: 1fr !important; padding: 0.75rem 0.5rem; gap: 0; }
+      .stat-cell { border-bottom: 1px solid var(--border) !important; padding: 0.4rem 0; }
+      .stat-cell:last-child { border-bottom: none !important; }
+      .stat-cell .stat-num { font-size: 1.4rem; }
+      .featured-cover { width: 140px; }
+      .hero h1 { font-size: 1.6rem; }
     }
   </style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="inner">
-    <div class="eyebrow">SJR Top 期刊 · 近5年数据 · 2026-06-27 更新</div>
-    <h1>Journal Tracker</h1>
-    <p>选择研究领域，浏览 SJR Top 3 期刊的最新论文、引用趋势、研究方向与顶尖机构分析</p>
+<!-- ============ MASTHEAD ============ -->
+<div class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-logo">
+      <span class="mark">Journal<span class="red">.</span>Tracker</span>
+      <span class="tagline">Vol. 4 · Issue 6 · 2026</span>
+    </div>
+    <nav class="masthead-nav">
+      <a href="#featured">Featured</a>
+      <a href="#domains">Domains</a>
+      <a href="#about">About</a>
+      <a href="https://openalex.org" target="_blank">OpenAlex ↗</a>
+    </nav>
   </div>
-</header>
+</div>
 
-<main>
-  <!-- Quick stats -->
-  <div class="stats-strip">
-    <div class="stat-item">
-      <div class="stat-value">4</div>
-      <div class="stat-label">研究领域</div>
+<!-- ============ HERO ============ -->
+<section class="hero" id="featured">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-issue-line">本期专题 · SJR Top 期刊追踪</div>
+      <h1>追踪 4 个领域<br><em>12 本顶级期刊</em><br>近5年学术前沿</h1>
+      <p class="hero-deck">从 CrossRef + OpenAlex 抓取的近5年全量元数据，按研究方向、发表趋势、顶尖作者与机构分析，让学术热点一目了然。</p>
+      <p class="hero-byline">最后更新 <strong>2026-06-27</strong> · 由 GitHub Pages 自动部署</p>
     </div>
-    <div class="stat-item">
-      <div class="stat-value">12</div>
-      <div class="stat-label">追踪期刊</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-value">9,626</div>
-      <div class="stat-label">论文总数（近5年）</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-value">49,614</div>
-      <div class="stat-label">总引用数</div>
+    <div class="hero-right">
+      <div class="featured-cover">
+        <div class="cover-masthead">Journal Tracker · Vol. 4</div>
+        <div>
+          <div class="cover-title">学术<br>前沿<br>追踪</div>
+          <div class="cover-subtitle">4 Fields · 12 Journals · 9,626 Papers</div>
+        </div>
+        <div class="cover-emblem">📚</div>
+        <div class="cover-footer">
+          <span>Issue 6 / 2026</span>
+          <span class="vol">¥ 0</span>
+        </div>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- Domain selector -->
-  <div class="section-title">选择研究领域</div>
+<!-- ============ STATS BAR ============ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-cell">
+      <div class="stat-num">4</div>
+      <div class="stat-cap">研究领域</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">12</div>
+      <div class="stat-cap">追踪期刊</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">9<em>,</em>626</div>
+      <div class="stat-cap">论文总数（近5年）</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">49<em>,</em>614</div>
+      <div class="stat-cap">总引用数</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DOMAIN GRID ============ -->
+<main id="domains">
+  <div class="section-head">
+    <h2>选择研究<em>领域</em></h2>
+    <span class="section-sub">4 Domains · Updated Daily</span>
+  </div>
+
   <div class="domain-grid">
 
+    <!-- ROBOTICS -->
     <a class="domain-card" href="robotics.html">
-      <div class="card-icon">🤖</div>
-      <div class="card-title">机器人学</div>
-      <div class="card-desc">IEEE T. Robotics、Autonomous Robots、Robotics and Computer-Integrated Manufacturing</div>
-      <div class="card-meta">
-        <span>📄 1,433 论文</span>
-        <span>⬆️ 19,195 引用</span>
-        <span>🏛️ 顶尖机构</span>
+      <div class="domain-cover cover-robotics">
+        <div class="cover-masthead">Field 01 · Robotics</div>
+        <div>
+          <div class="cover-title">机器<br>人学</div>
+          <div class="cover-subtitle">Robotics · Automation · CIM</div>
+        </div>
+        <div class="cover-emblem">🤖</div>
+        <div class="cover-footer">
+          <span>Top 3 Journals</span>
+          <span class="vol">Vol 12</span>
+        </div>
+      </div>
+      <div class="domain-card-body">
+        <div class="domain-journals">
+          <span class="jl">IEEE Transactions on Robotics</span>
+          <span class="jl">Robotics and Autonomous Systems</span>
+          <span class="jl">Robotics and Computer-Integrated Mfg.</span>
+        </div>
+        <div class="domain-stats">
+          <div class="domain-stat">
+            <div class="v">1,433</div>
+            <div class="l">Papers</div>
+          </div>
+          <div class="domain-stat">
+            <div class="v">19,195</div>
+            <div class="l">Citations</div>
+          </div>
+          <div class="domain-stat">
+            <div class="v"><span class="accent">🏛️</span></div>
+            <div class="l">Top Inst.</div>
+          </div>
+        </div>
+        <div class="domain-cta">
+          <span>进入专题</span>
+          <span class="arrow">→</span>
+        </div>
       </div>
     </a>
 
+    <!-- CARBON FIBER -->
     <a class="domain-card" href="carbon-fiber.html">
-      <div class="card-icon">🧬</div>
-      <div class="card-title">碳纤维复合材料</div>
-      <div class="card-desc">Carbon、Composites Part A、Composites Science and Technology</div>
-      <div class="card-meta">
-        <span>📄 3,000 论文</span>
-        <span>⬆️ 14,554 引用</span>
-        <span>🏛️ 顶尖机构</span>
+      <div class="domain-cover cover-carbon">
+        <div class="cover-masthead">Field 02 · Composites</div>
+        <div>
+          <div class="cover-title">碳纤维<br>复合<br>材料</div>
+          <div class="cover-subtitle">Carbon · Composites · Polymers</div>
+        </div>
+        <div class="cover-emblem">🧬</div>
+        <div class="cover-footer">
+          <span>Top 3 Journals</span>
+          <span class="vol">Vol 18</span>
+        </div>
+      </div>
+      <div class="domain-card-body">
+        <div class="domain-journals">
+          <span class="jl">Carbon</span>
+          <span class="jl">Composites Part A</span>
+          <span class="jl">Composites Science and Technology</span>
+        </div>
+        <div class="domain-stats">
+          <div class="domain-stat">
+            <div class="v">3,000</div>
+            <div class="l">Papers</div>
+          </div>
+          <div class="domain-stat">
+            <div class="v">14,554</div>
+            <div class="l">Citations</div>
+          </div>
+          <div class="domain-stat">
+            <div class="v"><span class="accent">🏛️</span></div>
+            <div class="l">Top Inst.</div>
+          </div>
+        </div>
+        <div class="domain-cta">
+          <span>进入专题</span>
+          <span class="arrow">→</span>
+        </div>
       </div>
     </a>
 
+    <!-- SEMICONDUCTOR -->
     <a class="domain-card" href="semiconductor.html">
-      <div class="card-icon">💡</div>
-      <div class="card-title">半导体制造</div>
-      <div class="card-desc">IEEE T. Electron Devices、IEEE Electron Device Letters、Solid-State Electronics</div>
-      <div class="card-meta">
-        <span>📄 2,863 论文</span>
-        <span>⬆️ 4,579 引用</span>
-        <span>🏛️ 顶尖机构</span>
+      <div class="domain-cover cover-semi">
+        <div class="cover-masthead">Field 03 · Devices</div>
+        <div>
+          <div class="cover-title">半导体<br>制造</div>
+          <div class="cover-subtitle">Electron Devices · Solid-State</div>
+        </div>
+        <div class="cover-emblem">💡</div>
+        <div class="cover-footer">
+          <span>Top 3 Journals</span>
+          <span class="vol">Vol 07</span>
+        </div>
+      </div>
+      <div class="domain-card-body">
+        <div class="domain-journals">
+          <span class="jl">IEEE T. Electron Devices</span>
+          <span class="jl">IEEE Electron Device Letters</span>
+          <span class="jl">Solid-State Electronics</span>
+        </div>
+        <div class="domain-stats">
+          <div class="domain-stat">
+            <div class="v">2,863</div>
+            <div class="l">Papers</div>
+          </div>
+          <div class="domain-stat">
+            <div class="v">4,579</div>
+            <div class="l">Citations</div>
+          </div>
+          <div class="domain-stat">
+            <div class="v"><span class="accent">🏛️</span></div>
+            <div class="l">Top Inst.</div>
+          </div>
+        </div>
+        <div class="domain-cta">
+          <span>进入专题</span>
+          <span class="arrow">→</span>
+        </div>
       </div>
     </a>
 
+    <!-- WELDING -->
     <a class="domain-card" href="welding.html">
-      <div class="card-icon">🔥</div>
-      <div class="card-title">焊接与连接</div>
-      <div class="card-desc">Welding in the World、Int. J. Adhesion and Adhesives、Int. J. of Fracture</div>
-      <div class="card-meta">
-        <span>📄 2,330 论文</span>
-        <span>⬆️ 11,286 引用</span>
-        <span>🏛️ 顶尖机构</span>
+      <div class="domain-cover cover-welding">
+        <div class="cover-masthead">Field 04 · Joining</div>
+        <div>
+          <div class="cover-title">焊接<br>与<br>连接</div>
+          <div class="cover-subtitle">Welding · Adhesion · Fracture</div>
+        </div>
+        <div class="cover-emblem">🔥</div>
+        <div class="cover-footer">
+          <span>Top 3 Journals</span>
+          <span class="vol">Vol 21</span>
+        </div>
+      </div>
+      <div class="domain-card-body">
+        <div class="domain-journals">
+          <span class="jl">Welding in the World</span>
+          <span class="jl">Int. J. Adhesion and Adhesives</span>
+          <span class="jl">Int. J. of Fracture</span>
+        </div>
+        <div class="domain-stats">
+          <div class="domain-stat">
+            <div class="v">2,330</div>
+            <div class="l">Papers</div>
+          </div>
+          <div class="domain-stat">
+            <div class="v">11,286</div>
+            <div class="l">Citations</div>
+          </div>
+          <div class="domain-stat">
+            <div class="v"><span class="accent">🏛️</span></div>
+            <div class="l">Top Inst.</div>
+          </div>
+        </div>
+        <div class="domain-cta">
+          <span>进入专题</span>
+          <span class="arrow">→</span>
+        </div>
       </div>
     </a>
 
-  </div>
-
-  <!-- About -->
-  <div class="section-title">关于 Journal Tracker</div>
-  <div class="info-grid">
-    <div class="info-card">
-      <h3>数据来源</h3>
-      <p>CrossRef 抓取近5年 SJR Top 3 期刊论文元数据 + OpenAlex 提取作者机构（大学/企业/研究所）</p>
-    </div>
-    <div class="info-card">
-      <h3>分析维度</h3>
-      <p>研究方向分布 · 年度趋势 · 高产/高引作者 · 顶尖机构（🎓大学 / 🏢企业 / 🔬研究所）</p>
-    </div>
-    <div class="info-card">
-      <h3>更新频率</h3>
-      <p>每次运行 pipeline.py 自动抓取最新论文并重新部署</p>
-    </div>
   </div>
 </main>
 
+<!-- ============ ABOUT ============ -->
+<section class="about-strip" id="about">
+  <div class="about-inner">
+    <div class="about-head">
+      <h3>关于 <em>Journal Tracker</em></h3>
+      <p>自动化追踪 SJR Top 期刊的近5年学术动态，提供研究方向、作者网络、机构分布与引用趋势的多维分析视图。</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-item">
+        <h4>📚 数据来源</h4>
+        <p>CrossRef 抓取近5年全量论文元数据 + OpenAlex 提取作者机构（大学/企业/研究所）</p>
+      </div>
+      <div class="about-item">
+        <h4>📊 分析维度</h4>
+        <p>研究方向分布 · 年度趋势 · 高产/高引作者 · 顶尖机构（🎓大学 / 🏢企业 / 🔬研究所）</p>
+      </div>
+      <div class="about-item">
+        <h4>🔄 更新机制</h4>
+        <p>每次运行 pipeline.py 自动抓取最新论文并重新部署到 GitHub Pages</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
 <footer>
-  <p>数据来源 <a href="https://www.crossref.org" target="_blank">CrossRef</a> + <a href="https://openalex.org" target="_blank">OpenAlex</a> · 部署于 GitHub Pages · 最后更新 2026-06-27</p>
+  <div class="footer-logo">Journal<span class="red">.</span>Tracker</div>
+  <p>数据来源 <a href="https://www.crossref.org" target="_blank">CrossRef</a> + <a href="https://openalex.org" target="_blank">OpenAlex</a></p>
+  <p>部署于 <a href="https://pages.github.com" target="_blank">GitHub Pages</a> · 最后更新 2026-06-27</p>
 </footer>
 
 </body>
