@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journal Tracker - 学术期刊追踪</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #1e3a5f;
+      --primary-light: #2d5a87;
+      --accent: #00b4d8;
+      --accent-soft: #90e0ef;
+      --bg: #f0f4f8;
+      --surface: #ffffff;
+      --text: #1a2332;
+      --text-muted: #5c6f7e;
+    }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .site-header {
+      background: linear-gradient(135deg, #0d1b2a 0%, #1b3a5c 50%, #1e5090 100%);
+      color: #fff;
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .site-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(0,180,216,0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0,180,216,0.1) 0%, transparent 40%);
+      pointer-events: none;
+    }
+    .site-header .inner { position: relative; max-width: 720px; margin: 0 auto; }
+    .eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-soft);
+      margin-bottom: 0.8rem;
+      opacity: 0.9;
+    }
+    .site-header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+    .site-header p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.6;
+    }
+
+    /* Main */
+    main {
+      flex: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+      width: 100%;
+    }
+
+    .section-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Domain Grid */
+    .domain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .domain-card {
+      background: var(--surface);
+      border-radius: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+      padding: 1.75rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      border: 1px solid transparent;
+    }
+    .domain-card:hover {
+      box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+      transform: translateY(-3px);
+      border-color: var(--accent-soft);
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .card-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .card-meta {
+      margin-top: auto;
+      display: flex;
+      gap: 1rem;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+    .card-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* Stats strip */
+    .stats-strip {
+      background: var(--surface);
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.3rem;
+    }
+
+    /* Info section */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .info-card {
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 1.25rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .info-card h3 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .info-card p {
+      font-size: 0.82rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      border-top: 1px solid #e2e8f0;
+    }
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .site-header h1 { font-size: 1.6rem; }
+      .domain-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <div class="eyebrow">SJR Top 期刊 · 近5年数据</div>
+    <h1>Journal Tracker</h1>
+    <p>选择研究领域，浏览 SJR Top 3 期刊的最新论文、引用趋势和研究方向分析</p>
+  </div>
+</header>
+
+<main>
+  <!-- Quick stats -->
+  <div class="stats-strip">
+    <div class="stat-item">
+      <div class="stat-value">4</div>
+      <div class="stat-label">研究领域</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">12</div>
+      <div class="stat-label">追踪期刊</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">~9,600</div>
+      <div class="stat-label">论文总数</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">CrossRef</div>
+      <div class="stat-label">数据来源</div>
+    </div>
+  </div>
+
+  <!-- Domain selector -->
+  <div class="section-title">选择研究领域</div>
+  <div class="domain-grid">
+
+    <a class="domain-card" href="robotics.html">
+      <div class="card-icon">🤖</div>
+      <div class="card-title">机器人学</div>
+      <div class="card-desc">IEEE T. Robotics、Autonomous Robots、Robotics and Computer-Integrated Manufacturing</div>
+      <div class="card-meta">
+        <span>📄 ~1,400 论文</span>
+        <span>📊 趋势分析</span>
+      </div>
+    </a>
+
+    <a class="domain-card" href="carbon-fiber.html">
+      <div class="card-icon">🧬</div>
+      <div class="card-title">碳纤维复合材料</div>
+      <div class="card-desc">Carbon、Composites Part A、Composites Science and Technology</div>
+      <div class="card-meta">
+        <span>📄 ~3,000 论文</span>
+        <span>📊 趋势分析</span>
+      </div>
+    </a>
+
+    <a class="domain-card" href="semiconductor.html">
+      <div class="card-icon">💡</div>
+      <div class="card-title">半导体制造</div>
+      <div class="card-desc">IEEE T. Electron Devices、J. Appl. Phys.、Semiconductor Science and Technology</div>
+      <div class="card-meta">
+        <span>📄 ~2,800 论文</span>
+        <span>📊 趋势分析</span>
+      </div>
+    </a>
+
+    <a class="domain-card" href="welding.html">
+      <div class="card-icon">🔥</div>
+      <div class="card-title">焊接与连接</div>
+      <div class="card-desc">Welding in the World、Int. J. Adhesion and Adhesives、Int. J. of Fracture</div>
+      <div class="card-meta">
+        <span>📄 ~2,300 论文</span>
+        <span>📊 趋势分析</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- About -->
+  <div class="section-title">关于 Journal Tracker</div>
+  <div class="info-grid">
+    <div class="info-card">
+      <h3>数据来源</h3>
+      <p>CrossRef API 抓取近5年 SJR Top 3 期刊的论文元数据，包括标题、作者、引用数、摘要等</p>
+    </div>
+    <div class="info-card">
+      <h3>分析维度</h3>
+      <p>每领域包括：研究方向分布、年度发表趋势、高引作者排名、机构分布等</p>
+    </div>
+    <div class="info-card">
+      <h3>更新频率</h3>
+      <p>每次运行 pipeline.py 自动抓取最新论文并重新部署</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>数据来源 <a href="https://www.crossref.org" target="_blank">CrossRef</a> · 部署于 GitHub Pages</p>
+</footer>
+
+</body>
+</html>
