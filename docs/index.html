@@ -25,13 +25,14 @@
       --sans: 'Inter', -apple-system, 'Helvetica Neue', sans-serif;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       font-family: var(--serif);
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
       line-height: 1.6;
+      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -592,8 +593,8 @@
     @media (max-width: 900px) {
       .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
       .featured-cover { width: 220px; margin: 0 auto; }
-      .stats-inner { grid-template-columns: repeat(2, 1fr); padding: 1.25rem; }
-      .stat-cell { border-right: none; border-bottom: 1px solid var(--border); padding: 0.5rem 0; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); padding: 1.25rem 1rem; gap: 0.6rem; }
+      .stat-cell { border-right: none; border-bottom: 1px solid var(--border); padding: 0.5rem 0.25rem; }
       .stat-cell:nth-last-child(-n+2) { border-bottom: none; }
       .about-inner { grid-template-columns: 1fr; gap: 1.5rem; }
       .masthead-nav { display: none; }
@@ -601,8 +602,52 @@
     @media (max-width: 600px) {
       .hero { padding: 3rem 1rem 2rem; }
       .hero h1 { font-size: 2.2rem; }
+      .hero-deck { font-size: 0.95rem; }
       main { padding: 2.5rem 1rem; }
       .domain-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      /* Stats grid: tighter cells, smaller numbers to prevent overflow */
+      .stats-bar { padding: 0 0.75rem; margin-top: -1.5rem; }
+      .stats-inner { padding: 1rem 0.6rem; gap: 0.4rem; }
+      .stat-cell { padding: 0.4rem 0.15rem; }
+      .stat-cell .stat-num { font-size: 1.5rem; }
+      .stat-cell .stat-cap { font-size: 0.6rem; letter-spacing: 0.08em; }
+      /* Hero scales down */
+      .hero { padding: 2.5rem 0.75rem 1.5rem; }
+      .hero h1 { font-size: 1.85rem; }
+      .hero-deck { font-size: 0.88rem; line-height: 1.5; }
+      .hero-issue-line { font-size: 0.62rem; margin-bottom: 0.9rem; }
+      .hero-issue-line::before { width: 1.2rem; }
+      /* Featured cover smaller */
+      .featured-cover { width: 170px; padding: 1rem; }
+      .featured-cover .cover-title { font-size: 1.5rem; }
+      .featured-cover .cover-emblem { font-size: 3rem; margin: 0.6rem 0; }
+      /* Section heads */
+      .section-head { margin-bottom: 1.4rem; }
+      .section-head h2 { font-size: 1.2rem; }
+      /* Domain cards */
+      .domain-card-body { padding: 0.85rem 0.9rem 1rem; }
+      .domain-stats { gap: 0.3rem; }
+      .domain-stat .v { font-size: 0.95rem; }
+      .domain-stat .l { font-size: 0.55rem; }
+      /* Masthead */
+      .masthead-logo .mark { font-size: 1.3rem; }
+      .masthead-logo .tagline { font-size: 0.62rem; }
+      .masthead { padding: 0.7rem 1rem; }
+      /* About strip */
+      .about-strip { padding: 2rem 1rem; }
+      .about-head h3 { font-size: 1.3rem; }
+      .about-grid { gap: 1rem; }
+    }
+    @media (max-width: 420px) {
+      /* Ultra-narrow (true 360-420px): stats 1-col */
+      .stats-inner { grid-template-columns: 1fr !important; padding: 0.75rem 0.5rem; gap: 0; }
+      .stat-cell { border-bottom: 1px solid var(--border) !important; padding: 0.4rem 0; }
+      .stat-cell:last-child { border-bottom: none !important; }
+      .stat-cell .stat-num { font-size: 1.4rem; }
+      .featured-cover { width: 140px; }
+      .hero h1 { font-size: 1.6rem; }
     }
   </style>
 </head>
