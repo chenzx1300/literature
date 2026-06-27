@@ -643,35 +643,81 @@
       color: var(--text-light);
     }
 
-    /* ---- Universities ---- */
-    .uni-list {
+    /* ---- Institutions (single-panel + tabs, minimalist) ---- */
+    /* Single-column full-width row for institutions panel */
+    .analytics-row.institutions-row {
+      grid-template-columns: 1fr;
+    }
+    .inst-tabs {
       display: flex;
-      flex-wrap: wrap;
       gap: 0.4rem;
+      margin-bottom: 0.55rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.45rem;
     }
-    .uni-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      padding: 0.25rem 0.6rem;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+    .inst-tab {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.18rem 0.7rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+    .inst-tab:hover { background: var(--bg); color: var(--text); }
+    .inst-tab.active {
+      background: var(--primary);
       color: #fff;
-      border: 1px solid rgba(0,180,216,0.3);
-      transition: all 0.2s;
+      border-color: var(--primary);
     }
-    .uni-chip:hover {
-      background: linear-gradient(135deg, var(--accent) 0%, var(--primary-light) 100%);
-      transform: translateY(-1px);
+    .inst-pane { display: none; }
+    .inst-pane.active { display: block; }
+    .inst-row {
+      display: grid;
+      grid-template-columns: 1.4rem 1fr auto auto auto;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.32rem 0;
+      border-bottom: 1px dashed var(--border);
+      transition: background 0.15s;
     }
-    .uni-chip .uni-rank {
-      font-size: 0.6rem;
-      background: rgba(255,255,255,0.2);
-      border-radius: 8px;
-      padding: 0.05rem 0.35rem;
+    .inst-row:last-child { border-bottom: none; }
+    .inst-row:hover { background: var(--bg); }
+    .ir-rank {
+      font-size: 0.78rem;
       font-weight: 700;
+      color: var(--accent);
+      text-align: center;
+    }
+    .ir-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ir-meta {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      max-width: 11rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ir-flag { font-size: 0.85rem; }
+    .ir-count {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      min-width: 3.2rem;
+      text-align: right;
+    }
+    @media (max-width: 600px) {
+      .inst-row { grid-template-columns: 1.2rem 1fr auto auto; }
+      .ir-meta { display: none; }
     }
 
     /* ---- Trend Chart (Year Bars) ---- */
@@ -687,7 +733,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: center;
       height: 100%;
     }
     .trend-bar-label {
@@ -702,19 +748,17 @@
       border-radius: 4px 4px 0 0;
       background: linear-gradient(180deg, var(--accent) 0%, var(--accent-soft) 100%);
       align-self: center;
-      margin-top: auto;
       transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .trend-bar-fill::after {
       content: attr(data-count);
-      position: absolute;
-      top: -1.4rem;
-      left: 50%;
-      transform: translateX(-50%);
       font-size: 0.65rem;
       font-weight: 700;
       color: var(--accent);
       white-space: nowrap;
+      margin-top: 0.2rem;
+      display: block;
+      text-align: center;
     }
     .trend-bar-label {
       font-size: 0.68rem;
@@ -888,7 +932,7 @@
 
   </div>
 
-  <!-- 3. Authors + Universities (3 columns) -->
+  <!-- 3. Authors (2 columns) -->
   <div class="analytics-row authors-row">
 
     <div class="widget-card">
@@ -916,7 +960,7 @@
       <div class="author-medal">🥈</div>
       <div class="author-rank-info">
         <div class="author-rank-name">Yu Zhang</div>
-        <div class="author-rank-meta">Composites Science and Technology, Composites Part A: Applied Science and Manufacturing</div>
+        <div class="author-rank-meta">Composites Science and Technology, Carbon</div>
       </div>
       <div class="author-rank-stat">
         <div class="ars-value">19</div>
@@ -931,7 +975,7 @@
       <div class="author-medal">🥉</div>
       <div class="author-rank-info">
         <div class="author-rank-name">Yan Wang</div>
-        <div class="author-rank-meta">Composites Science and Technology, Composites Part A: Applied Science and Manufacturing</div>
+        <div class="author-rank-meta">Composites Science and Technology, Carbon</div>
       </div>
       <div class="author-rank-stat">
         <div class="ars-value">16</div>
@@ -970,7 +1014,7 @@
       <div class="author-medal">🥈</div>
       <div class="author-rank-info">
         <div class="author-rank-name">Yu Zhang</div>
-        <div class="author-rank-meta">Composites Science and Technology, Composites Part A: Applied Science and Manufacturing</div>
+        <div class="author-rank-meta">Composites Science and Technology, Carbon</div>
       </div>
       <div class="author-rank-stat">
         <div class="ars-value">19</div>
@@ -985,7 +1029,7 @@
       <div class="author-medal">🥉</div>
       <div class="author-rank-info">
         <div class="author-rank-name">Jun Wang</div>
-        <div class="author-rank-meta">Composites Science and Technology, Composites Part A: Applied Science and Manufacturing</div>
+        <div class="author-rank-meta">Composites Science and Technology, Carbon</div>
       </div>
       <div class="author-rank-stat">
         <div class="ars-value">9</div>
@@ -999,23 +1043,36 @@
       </div>
     </div>
 
-    <div class="widget-card">
-      <div class="widget-header">
-        <div class="widget-title">🏛️ 顶尖机构 | Top Universities</div>
-        <div class="widget-badge">Top 5</div>
-      </div>
-      <div class="uni-list" id="topUniversities">
-<span class="uni-chip">
-      <span class="uni-rank">#1</span>
-      MIT · 34篇
-    </span>
-<span class="uni-chip">
-      <span class="uni-rank">#2</span>
-      ETH Zurich · 5篇
-    </span>
-      </div>
-    </div>
+  </div>
 
+  <!-- 4. Top Institutions (single panel + tabs, full width) -->
+  <div class="analytics-row institutions-row">
+<div class="widget-card inst-card">
+      <div class="widget-header">
+        <div class="widget-title">🏛️ 顶尖机构 | Top Institutions</div>
+        <div class="widget-badge">Top 3</div>
+      </div>
+      <div class="inst-tabs">
+        <button class="inst-tab active" onclick="showInstTab(0)">🎓 大学</button>
+        <button class="inst-tab" onclick="showInstTab(1)">🏢 企业</button>
+        <button class="inst-tab" onclick="showInstTab(2)">🔬 研究所</button>
+      </div>
+      <div class="inst-pane active" data-pane="0">
+          <div class="inst-row"><span class="ir-rank">1</span><span class="ir-name">Northwestern Polytechnical University</span><span class="ir-meta">中国</span><span class="ir-flag">🇨🇳</span><span class="ir-count">103 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">2</span><span class="ir-name">Harbin Institute of Technology</span><span class="ir-meta">中国</span><span class="ir-flag">🇨🇳</span><span class="ir-count">67 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">3</span><span class="ir-name">Dalian University of Technology</span><span class="ir-meta">中国</span><span class="ir-flag">🇨🇳</span><span class="ir-count">46 篇</span></div>
+        </div>
+        <div class="inst-pane" data-pane="1">
+          <div class="inst-row"><span class="ir-rank">1</span><span class="ir-name">Advanced Laser Technology (United Kingdom)</span><span class="ir-meta">英国</span><span class="ir-flag">🇬🇧</span><span class="ir-count">9 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">2</span><span class="ir-name">Sinopec (China)</span><span class="ir-meta">中国</span><span class="ir-flag">🇨🇳</span><span class="ir-count">6 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">3</span><span class="ir-name">Yunnan Metallurgical Group (China)</span><span class="ir-meta">中国</span><span class="ir-flag">🇨🇳</span><span class="ir-count">5 篇</span></div>
+        </div>
+        <div class="inst-pane" data-pane="2">
+          <div class="inst-row"><span class="ir-rank">1</span><span class="ir-name">Chinese Academy of Sciences</span><span class="ir-meta">中国</span><span class="ir-flag">🇨🇳</span><span class="ir-count">47 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">2</span><span class="ir-name">Ingenierie des Materiaux polymeres</span><span class="ir-meta">法国</span><span class="ir-flag">🇫🇷</span><span class="ir-count">30 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">3</span><span class="ir-name">Ministry of Transport</span><span class="ir-meta">中国</span><span class="ir-flag">🇨🇳</span><span class="ir-count">9 篇</span></div>
+        </div>
+    </div>
   </div>
 
 </section>
@@ -2189,6 +2246,14 @@
       b.classList.toggle('active', i === idx);
     });
     document.querySelectorAll('.tab-panel').forEach((p, i) => {
+      p.classList.toggle('active', i === idx);
+    });
+  }
+  function showInstTab(idx) {
+    document.querySelectorAll('.inst-tab').forEach((b, i) => {
+      b.classList.toggle('active', i === idx);
+    });
+    document.querySelectorAll('.inst-pane').forEach((p, i) => {
       p.classList.toggle('active', i === idx);
     });
   }
