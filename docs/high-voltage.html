@@ -1,0 +1,2418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>高电压 最新论文 | Journal Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #1e3a5f;
+      --primary-light: #2d5a87;
+      --accent: #00b4d8;
+      --accent-soft: #90e0ef;
+      --bg: #f0f4f8;
+      --surface: #ffffff;
+      --text: #1a2332;
+      --text-muted: #5c6f7e;
+      --text-light: #8fa4b8;
+      --border: #e2e8f0;
+      --tag-bg: #e8f4f8;
+      --tag-text: #0077b6;
+      --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+      --shadow-lg: 0 4px 24px rgba(0,0,0,0.08);
+    }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ===== HEADER (magazine-style: title + featured cover) ===== */
+    .site-header {
+      background: linear-gradient(135deg, #0d1b2a 0%, #1b3a5c 50%, #1e5090 100%);
+      color: #fff;
+      padding: 1.5rem 1.5rem 1.4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .site-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(0,180,216,0.18) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(212,160,23,0.08) 0%, transparent 40%);
+      pointer-events: none;
+    }
+    .site-header .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    .header-text { display: flex; flex-direction: column; gap: 0.4rem; }
+    .eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent-soft);
+      margin-bottom: 0.2rem;
+      opacity: 0.9;
+      font-weight: 600;
+    }
+    .site-header h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.025em;
+      font-style: italic;
+    }
+    .site-header h1 em {
+      font-style: normal;
+      color: var(--accent);
+      font-weight: 900;
+    }
+    .subtitle {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 0.9rem;
+      line-height: 1.5;
+      max-width: 28rem;
+    }
+    .stats-bar {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      padding-top: 0.6rem;
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+    .stat-value {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--accent-soft);
+      line-height: 1;
+      font-feature-settings: 'lnum';
+    }
+    .stat-label {
+      font-size: 0.66rem;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+    }
+
+    /* Featured cover card on right side of header */
+    .featured-issue {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .issue-cover {
+      width: 200px;
+      aspect-ratio: 3 / 4;
+      background: linear-gradient(135deg, #fff 0%, #f0e6d2 100%);
+      color: var(--primary);
+      border-radius: 6px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 14px 36px rgba(0,0,0,0.25);
+      transform: rotate(-1.5deg);
+      transition: transform 0.5s cubic-bezier(0.32,0.72,0,1);
+      position: relative;
+      overflow: hidden;
+    }
+    .issue-cover:hover { transform: rotate(0deg) translateY(-3px); }
+    .issue-cover::before {
+      content: '';
+      position: absolute;
+      top: 0.4rem; right: 0.4rem;
+      width: 0.45rem; height: 0.45rem;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .issue-cover .ic-masthead {
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.4rem;
+    }
+    .issue-cover .ic-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 900;
+      line-height: 1.1;
+      font-style: italic;
+      color: var(--primary);
+      margin-top: 0.4rem;
+    }
+    .issue-cover .ic-emblem {
+      font-size: 2.8rem;
+      text-align: center;
+      filter: drop-shadow(0 1px 3px rgba(0,0,0,0.1));
+      margin: 0.4rem 0;
+    }
+    .issue-cover .ic-footer {
+      font-size: 0.55rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      border-top: 1px solid var(--border);
+      padding-top: 0.4rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    .issue-cover .ic-footer .vol {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 0.8rem;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1rem 1rem 3rem;
+    }
+
+    /* ===== TOPIC SUMMARY BAR ===== */
+    .topic-bar {
+      background: var(--surface);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      padding: 0.9rem 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .topic-bar-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 0.85rem;
+    }
+    .topic-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .topic-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      border: 1px solid rgba(0,119,182,0.15);
+      transition: all 0.2s;
+    }
+    .topic-chip:hover {
+      background: var(--accent-soft);
+      color: var(--primary);
+    }
+    .topic-chip .count {
+      background: rgba(0,119,182,0.12);
+      border-radius: 10px;
+      padding: 0 0.35rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--primary-light);
+    }
+
+    /* ===== TABS ===== */
+    .tabs-wrapper {
+      background: var(--surface);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .tabs-header {
+      display: flex;
+      overflow-x: auto;
+      border-bottom: 2px solid var(--border);
+      background: #fafcfd;
+      scrollbar-width: none;
+    }
+    .tabs-header::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      flex: 0 0 auto;
+      padding: 1rem 1.4rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .tab-btn:hover { color: var(--primary); }
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      background: #fff;
+    }
+    .tab-btn .tab-name { font-size: 0.82rem; }
+    .tab-btn .tab-meta {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--text-light);
+    }
+    .tab-btn.active .tab-meta { color: var(--accent-soft); }
+
+    .tab-panel {
+      display: none;
+      padding: 0;
+    }
+    .tab-panel.active { display: block; }
+
+    /* ===== JOURNAL INFO BAR ===== */
+    .journal-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      background: linear-gradient(135deg, #f8fbff 0%, #f0f7ff 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .journal-info-left .journal-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+    .journal-info-left .journal-name a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .journal-info-left .journal-name a:hover { text-decoration: underline; }
+    .journal-meta {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .meta-tag {
+      font-size: 0.7rem;
+      background: #e0eef7;
+      color: #3a7ca5;
+      padding: 0.15rem 0.55rem;
+      border-radius: 12px;
+      font-weight: 500;
+    }
+    .journal-sjif {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+      color: #fff;
+      border-radius: 12px;
+      padding: 0.5rem 1rem;
+      min-width: 4.5rem;
+    }
+    .sjif-label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.6);
+    }
+    .sjif-value {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.1;
+    }
+    .journal-keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      padding: 0.6rem 1.5rem;
+      background: #f8fafd;
+      border-top: 1px solid var(--border);
+    }
+    .journal-summary {
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, #f0f7ff 0%, #e8f4f8 100%);
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--text);
+      line-height: 1.6;
+      border-left: 4px solid var(--accent);
+    }
+    .kw-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 14px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      background: linear-gradient(135deg, #e8f4f8 0%, #ddeeff 100%);
+      color: var(--primary);
+      border: 1px solid rgba(0,119,182,0.15);
+    }
+    .kw-chip .kw-count {
+      background: var(--accent);
+      color: #fff;
+      border-radius: 8px;
+      padding: 0 0.3rem;
+      font-size: 0.62rem;
+      font-weight: 700;
+    }
+
+    /* ===== PAPER LIST ===== */
+    .paper-list { list-style: none; }
+    .paper-item {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .paper-item:last-child { border-bottom: none; }
+    .paper-item:hover { background: #fafcff; }
+    .paper-num {
+      padding: 1.4rem 0.5rem 1.4rem 1.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-align: center;
+      opacity: 0.7;
+    }
+    .paper-body {
+      padding: 1.25rem 1.5rem 1.25rem 0.5rem;
+    }
+    .paper-title {
+      font-size: 0.93rem;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 0.35rem;
+    }
+    .paper-title a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .paper-title a:hover { color: var(--accent); text-decoration: underline; }
+    .paper-authors {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+    .paper-meta {
+      font-size: 0.72rem;
+      color: var(--text-light);
+      margin-bottom: 0.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1rem;
+    }
+    .paper-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+    .paper-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-bottom: 0.4rem;
+    }
+    .paper-tag {
+      font-size: 0.68rem;
+      background: #eef2f7;
+      color: #5a6c7d;
+      padding: 0.1rem 0.5rem;
+      border-radius: 8px;
+    }
+    /* 真实 author keywords — 蓝色系区分 */
+    .paper-tag.paper-kw {
+      background: #e3f0ff;
+      color: #1a5a8a;
+      border: 1px solid #a8d4f0;
+    }
+    .paper-abstract {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      background: #f8fafd;
+      border-radius: 8px;
+      padding: 0.6rem 0.85rem;
+      margin-top: 0.5rem;
+      line-height: 1.6;
+      border-left: 3px solid var(--accent-soft);
+    }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: var(--text-light);
+      font-size: 0.75rem;
+    }
+    .site-footer a { color: var(--accent); text-decoration: none; }
+    .site-footer a:hover { text-decoration: underline; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .site-header .inner { grid-template-columns: 1.4fr 1fr; gap: 1.5rem; }
+    }
+    @media (max-width: 768px) {
+      .site-header .inner { grid-template-columns: 1fr !important; gap: 1.2rem; }
+      .featured-issue { justify-content: center; }
+      .issue-cover { width: 160px; }
+      .site-header h1 { font-size: 1.7rem; }
+    }
+    @media (max-width: 600px) {
+      .site-header h1 { font-size: 1.4rem; }
+      .site-header { padding: 1.2rem 1rem 1rem; }
+      .stats-bar { gap: 1rem; flex-wrap: wrap; }
+      .stats-bar .stat { flex: 1 1 30%; min-width: 0; }
+      .stat-value { font-size: 1.3rem; }
+      .tab-btn { padding: 0.85rem 0.9rem; font-size: 0.75rem; }
+      .tab-btn .tab-meta { display: none; }
+      .paper-item { grid-template-columns: 2.5rem 1fr; }
+      .paper-num { padding: 1.2rem 0.3rem 1.2rem 1rem; }
+      .paper-body { padding: 1rem 1rem 1rem 0.3rem; }
+    }
+    @media (max-width: 480px) {
+      /* Hero stats: drop to 3-col equal */
+      .stats-bar { flex-wrap: wrap; gap: 0.8rem; }
+      .stat { flex: 1 1 30%; min-width: 0; }
+      .stat-value { font-size: 1.15rem; }
+      .stat-label { font-size: 0.6rem; }
+      /* Cover card scales down */
+      .issue-cover { width: 130px; padding: 0.7rem; }
+      .issue-cover .ic-title { font-size: 0.9rem; }
+      .issue-cover .ic-emblem { font-size: 2rem; margin: 0.2rem 0; }
+      /* Authors row: stack to 1-col (3-col too narrow for name+stat) */
+      .analytics-row.authors-row { grid-template-columns: 1fr !important; }
+      .author-rank-item { padding: 0.4rem 0.5rem; }
+      .author-medal { font-size: 1.1rem; }
+      .author-rank-name { font-size: 0.78rem; }
+      .author-rank-stat .ars-value { font-size: 0.9rem; }
+      /* Institutions panel */
+      .inst-row { grid-template-columns: 1.2rem 1fr auto; gap: 0.4rem; padding: 0.4rem 0; }
+      .ir-flag { display: none; }
+      .ir-meta { display: none; }
+      .ir-count { min-width: 2.2rem; font-size: 0.72rem; }
+      /* 移动端机构名也允许换行，row 高度自适应（不截断） */
+      .ir-name { max-width: 100%; white-space: normal; overflow: visible; text-overflow: clip; word-break: break-word; }
+      /* Tabs header — keep horizontal scroll */
+      .tabs-header { padding: 0 0.5rem; }
+      .tab-btn { padding: 0.7rem 0.7rem; font-size: 0.72rem; min-width: max-content; }
+      /* Analytics 4 stat cards: still 2x2 but smaller */
+      .analytics-overview { grid-template-columns: repeat(2, 1fr); gap: 0.35rem; }
+      .stat-card { padding: 0.5rem 0.6rem; }
+      .stat-card .sc-value { font-size: 1rem; }
+      .stat-card.metric-primary .sc-value { font-size: 1.3rem; }
+      .stat-card .sc-label { font-size: 0.55rem; }
+      /* Trend bars: smaller, but still visible */
+      .trend-bars { height: 100px; }
+      /* Container: less padding */
+      .container, .analytics { padding: 0.5rem 0.75rem; }
+    }
+    @media (max-width: 420px) {
+      /* Ultra-narrow (true 360-420px): tighter icons, smaller values */
+      .stat-card .sc-icon { font-size: 0.85rem; }
+      .stat-card .sc-value { font-size: 0.95rem; }
+      .stat-card.metric-primary .sc-value { font-size: 1.2rem; }
+      .stats-bar .stat { flex: 1 1 28%; }
+      .stat-value { font-size: 1rem; }
+    }
+
+    /* ===== ANALYTICS SECTION ===== */
+    .analytics {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0.5rem 1rem 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    /* ---- Section Title ---- */
+    .analytics-section-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      padding-bottom: 0.35rem;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 0;
+    }
+
+    /* ---- Overview Stats Bar ---- */
+    .analytics-overview {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.4rem;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 0.6rem 0.9rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.15rem;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .stat-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-1px);
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+      border-radius: 12px 12px 0 0;
+    }
+    .stat-card .sc-icon {
+      font-size: 0.95rem;
+      margin-bottom: 0.05rem;
+      opacity: 0.7;
+    }
+    .stat-card .sc-value {
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1;
+    }
+    .stat-card.metric-primary .sc-value { font-size: 1.6rem; }
+    .stat-card.metric-secondary .sc-value { font-size: 1.25rem; color: var(--primary-light); }
+    .stat-card.metric-tertiary .sc-value { font-size: 1rem; color: var(--accent); }
+    .stat-card.metric-small .sc-value { font-size: 0.85rem; color: var(--text-muted); }
+    .stat-card .sc-label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .stat-card .sc-sublabel {
+      font-size: 0.55rem;
+      color: var(--text-light);
+      margin-top: -0.05rem;
+    }
+
+    /* ---- Two-column layout for side-by-side widgets ---- */
+    .analytics-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+    .analytics-col-wide {
+      grid-column: 1 / -1;
+    }
+    /* 4-column layout for topics+trend+authors+uni */
+    .analytics-row.four-col {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    /* 3-column layout for authors + institutions row */
+    .analytics-row.authors-row {
+      grid-template-columns: 1fr 1fr 1.05fr;
+    }
+
+    /* ---- Widget Card ---- */
+    .widget-card {
+      background: var(--surface);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 0.7rem 1rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .widget-card .widget-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.4rem;
+    }
+    .widget-card .widget-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+    }
+    .widget-card .widget-badge {
+      font-size: 0.58rem;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      padding: 0.1rem 0.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    /* ---- Research Topics Horizontal Bars ---- */
+    .topic-bar-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.2rem;
+    }
+    .topic-bar-item:last-child { margin-bottom: 0; }
+    .topic-bar-name {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text);
+      min-width: 70px;
+      max-width: 100px;
+      white-space: normal;
+      overflow: visible;
+      text-overflow: clip;
+      line-height: 1.3;
+      word-break: break-word;
+    }
+    .topic-bar-track {
+      flex: 1;
+      height: 8px;
+      background: var(--bg);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+    .topic-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent-soft) 100%);
+      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 0.3rem;
+      min-width: 1.5rem;
+    }
+    .topic-bar-fill span {
+      font-size: 0.58rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+    .topic-bar-pct {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      min-width: 2.5rem;
+      text-align: right;
+    }
+
+    /* ---- Author Rank Cards ---- */
+    .author-rank-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+    .author-rank-item {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.15rem 0.35rem;
+      border-radius: 4px;
+      background: var(--bg);
+      transition: background 0.2s;
+    }
+    .author-rank-item:hover { background: #e8f4f8; }
+    .author-rank-item.rank-1 { background: #fffbf0; border: 1px solid #f0d060; }
+    .author-rank-item.rank-2 { background: #f8f8f8; border: 1px solid #d0d0d0; }
+    .author-rank-item.rank-3 { background: #fff8f0; border: 1px solid #e0c080; }
+
+    .author-medal {
+      font-size: 1.25rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .author-rank-info { flex: 1; min-width: 0; }
+    .author-rank-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .author-rank-meta {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.1rem;
+    }
+    .author-rank-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .author-rank-stat .ars-value {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .author-rank-stat .ars-label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-light);
+    }
+
+    /* ---- Institutions (single-panel + tabs, minimalist) ---- */
+    .inst-tabs {
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 0.55rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.45rem;
+    }
+    .inst-tab {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.18rem 0.7rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+    .inst-tab:hover { background: var(--bg); color: var(--text); }
+    .inst-tab.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+    .inst-pane { display: none; }
+    .inst-pane.active { display: block; }
+    .inst-row {
+      display: grid;
+      grid-template-columns: 1.4rem 1fr auto auto auto;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.32rem 0;
+      border-bottom: 1px dashed var(--border);
+      transition: background 0.15s;
+    }
+    .inst-row:last-child { border-bottom: none; }
+    .inst-row:hover { background: var(--bg); }
+    .ir-rank {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-align: center;
+    }
+    .ir-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--primary);
+      white-space: normal;
+      overflow: visible;
+      text-overflow: clip;
+      word-break: break-word;
+      line-height: 1.3;
+      max-width: 14rem;
+    }
+    .ir-meta {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      max-width: 11rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ir-flag { font-size: 0.85rem; }
+    .ir-count {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      min-width: 3.2rem;
+      text-align: right;
+    }
+    @media (max-width: 600px) {
+      .inst-row { grid-template-columns: 1.2rem 1fr auto auto; }
+      .ir-meta { display: none; }
+    }
+
+    /* ---- Trend Chart (Year Bars) ---- */
+    .trend-chart {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      padding-top: 0.25rem;
+      min-height: 130px;
+    }
+    .trend-bars {
+      display: flex;
+      justify-content: space-around;
+      gap: 0.5rem;
+      align-items: flex-end;
+      width: 100%;
+      height: 130px;
+      padding: 0;
+    }
+    .trend-bar-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      height: 100%;
+      position: relative;
+    }
+    .trend-bar-fill {
+      width: 80%;
+      max-width: 38px;
+      border-radius: 4px 4px 0 0;
+      background: linear-gradient(180deg, var(--accent) 0%, var(--accent-soft) 100%);
+      align-self: center;
+      transition: height 0.7s cubic-bezier(0.32, 0.72, 0, 1);
+      position: relative;
+    }
+    .trend-bar-fill::before {
+      content: attr(data-count);
+      position: absolute;
+      top: -1.15rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: var(--accent);
+      white-space: nowrap;
+      line-height: 1;
+    }
+    .trend-bar-label {
+      font-size: 0.66rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+      margin-top: 0.35rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* ---- Analytics Responsive (legacy — most overrides now in main RESPONSIVE block) ---- */
+    @media (max-width: 480px) {
+      .topic-bar-name { min-width: 60px; max-width: 90px; font-size: 0.68rem; white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <div class="header-text">
+      <div class="eyebrow">🔬 Academic Journal Tracker · SJR Top</div>
+      <h1>高电压 · <em>学术前沿</em></h1>
+      <div class="subtitle">近5年 SJR Top 期刊全量论文 · 研究方向 / 趋势 / 顶尖作者 / 机构 多维分析</div>
+      <div class="stats-bar">
+        <div class="stat">
+          <div class="stat-value">3</div>
+          <div class="stat-label">追踪期刊</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">3000</div>
+          <div class="stat-label">论文总数</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">2026-06-27</div>
+          <div class="stat-label">最后更新</div>
+        </div>
+      </div>
+    </div>
+    <div class="featured-issue">
+      <div class="issue-cover">
+        <div class="ic-masthead">高电压 · Issue 6</div>
+        <div class="ic-title">高电压<br>Top Journals</div>
+        <div class="ic-emblem">⚡</div>
+        <div class="ic-footer">
+          <span>2026</span>
+          <span class="vol">Vol 12</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- =========================================================
+     ANALYTICS HTML STRUCTURE
+     ========================================================= -->
+<section class="analytics" id="analyticsSection">
+
+  <!-- 1. Overview Stats (4 columns) -->
+  <div class="analytics-overview" id="analyticsOverview">
+<div class="stat-card metric-primary">
+      <div class="sc-icon">📄</div>
+      <div class="sc-value">3000</div>
+      <div class="sc-label">论文总数（近5年）</div>
+      <div class="sc-sublabel">Total Papers</div>
+    </div>
+<div class="stat-card metric-secondary">
+      <div class="sc-icon">⬆️</div>
+      <div class="sc-value">6820</div>
+      <div class="sc-label">引用总数</div>
+      <div class="sc-sublabel">Total Citations</div>
+    </div>
+<div class="stat-card metric-tertiary">
+      <div class="sc-icon">📊</div>
+      <div class="sc-value">2.3</div>
+      <div class="sc-label">篇均引用</div>
+      <div class="sc-sublabel">Avg Citations</div>
+    </div>
+<div class="stat-card metric-small">
+      <div class="sc-icon">📚</div>
+      <div class="sc-value">3</div>
+      <div class="sc-label">期刊数</div>
+      <div class="sc-sublabel">Journals</div>
+    </div>
+  </div>
+
+  <!-- 2. Topics + Trend (2 columns) -->
+  <div class="analytics-row">
+
+    <div class="widget-card">
+      <div class="widget-header">
+        <div class="widget-title">🧠 研究方向 | Research Topics</div>
+        <div class="widget-badge">Top 6</div>
+      </div>
+      <div class="topic-bars" id="topicBars">
+<div class="topic-bar-item">
+      <span class="topic-bar-name">Structural Analysis & FEM</span>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width: 100.0%">
+          <span>241</span>
+        </div>
+      </div>
+      <span class="topic-bar-pct">100%</span>
+    </div>
+<div class="topic-bar-item">
+      <span class="topic-bar-name">Sensors & Smart Structures</span>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width: 96.3%">
+          <span>232</span>
+        </div>
+      </div>
+      <span class="topic-bar-pct">96%</span>
+    </div>
+<div class="topic-bar-item">
+      <span class="topic-bar-name">Composites & Hybrid Materials</span>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width: 69.3%">
+          <span>167</span>
+        </div>
+      </div>
+      <span class="topic-bar-pct">69%</span>
+    </div>
+<div class="topic-bar-item">
+      <span class="topic-bar-name">AI & Data-Driven Methods</span>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width: 60.2%">
+          <span>145</span>
+        </div>
+      </div>
+      <span class="topic-bar-pct">60%</span>
+    </div>
+<div class="topic-bar-item">
+      <span class="topic-bar-name">Energy Storage & Battery</span>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width: 48.5%">
+          <span>117</span>
+        </div>
+      </div>
+      <span class="topic-bar-pct">49%</span>
+    </div>
+<div class="topic-bar-item">
+      <span class="topic-bar-name">Aerospace & Lightweight Design</span>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width: 36.9%">
+          <span>89</span>
+        </div>
+      </div>
+      <span class="topic-bar-pct">37%</span>
+    </div>
+      </div>
+    </div>
+
+    <div class="widget-card">
+      <div class="widget-header">
+        <div class="widget-title">📅 发表趋势 | Publication Trend</div>
+        <div class="widget-badge">Last 5 Yr</div>
+      </div>
+      <div class="trend-chart" id="trendChart">
+<div class="trend-bars"><div class="trend-bar-col">
+      <div class="trend-bar-fill" style="height: 1px" data-count="25"></div>
+      <div class="trend-bar-label">2023</div>
+    </div><div class="trend-bar-col">
+      <div class="trend-bar-fill" style="height: 17px" data-count="357"></div>
+      <div class="trend-bar-label">2024</div>
+    </div><div class="trend-bar-col">
+      <div class="trend-bar-fill" style="height: 39px" data-count="804"></div>
+      <div class="trend-bar-label">2025</div>
+    </div><div class="trend-bar-col">
+      <div class="trend-bar-fill" style="height: 90px" data-count="1814"></div>
+      <div class="trend-bar-label">2026</div>
+    </div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 3. Authors + Institutions (3 columns) -->
+  <div class="analytics-row authors-row">
+
+    <div class="widget-card">
+      <div class="widget-header">
+        <div class="widget-title">✍️ 高产作者 | By Publications</div>
+        <div class="widget-badge">Top 3</div>
+      </div>
+      <div class="author-rank-list" id="topAuthorsPub">
+<div class="author-rank-item rank-1">
+      <div class="author-medal">🥇</div>
+      <div class="author-rank-info">
+        <div class="author-rank-name">Dusit Niyato</div>
+        <div class="author-rank-meta">IEEE Transactions on Power Electronics</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">17</div>
+        <div class="ars-label">篇</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">45</div>
+        <div class="ars-label">引</div>
+      </div>
+    </div>
+<div class="author-rank-item rank-2">
+      <div class="author-medal">🥈</div>
+      <div class="author-rank-info">
+        <div class="author-rank-name">Guangjie Han</div>
+        <div class="author-rank-meta">IEEE Transactions on Power Electronics</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">17</div>
+        <div class="ars-label">篇</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">8</div>
+        <div class="ars-label">引</div>
+      </div>
+    </div>
+<div class="author-rank-item rank-3">
+      <div class="author-medal">🥉</div>
+      <div class="author-rank-info">
+        <div class="author-rank-name">Zhe Chen</div>
+        <div class="author-rank-meta">IEEE Transactions on Power Electronics, International Journal of Electrical Power & Energy Systems</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">17</div>
+        <div class="ars-label">篇</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">49</div>
+        <div class="ars-label">引</div>
+      </div>
+    </div>
+      </div>
+    </div>
+
+    <div class="widget-card">
+      <div class="widget-header">
+        <div class="widget-title">📖 高引作者 | By Citations</div>
+        <div class="widget-badge">Top 3</div>
+      </div>
+      <div class="author-rank-list" id="topAuthorsCited">
+<div class="author-rank-item rank-1">
+      <div class="author-medal">🥇</div>
+      <div class="author-rank-info">
+        <div class="author-rank-name">Xiaobo Meng</div>
+        <div class="author-rank-meta">IEEE Transactions on Power Delivery</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">5</div>
+        <div class="ars-label">篇</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">123</div>
+        <div class="ars-label">引</div>
+      </div>
+    </div>
+<div class="author-rank-item rank-2">
+      <div class="author-medal">🥈</div>
+      <div class="author-rank-info">
+        <div class="author-rank-name">Min He</div>
+        <div class="author-rank-meta">IEEE Transactions on Power Delivery</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">2</div>
+        <div class="ars-label">篇</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">116</div>
+        <div class="ars-label">引</div>
+      </div>
+    </div>
+<div class="author-rank-item rank-3">
+      <div class="author-medal">🥉</div>
+      <div class="author-rank-info">
+        <div class="author-rank-name">Liang Qin</div>
+        <div class="author-rank-meta">IEEE Transactions on Power Delivery</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">2</div>
+        <div class="ars-label">篇</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">116</div>
+        <div class="ars-label">引</div>
+      </div>
+    </div>
+      </div>
+    </div>
+
+<div class="widget-card inst-card">
+      <div class="widget-header">
+        <div class="widget-title">🏛️ 顶尖机构 | Top Institutions</div>
+        <div class="widget-badge">Top 3</div>
+      </div>
+      <div class="inst-tabs">
+        <button class="inst-tab active" onclick="showInstTab(0)">🎓 大学</button>
+        <button class="inst-tab" onclick="showInstTab(1)">🏢 企业</button>
+        <button class="inst-tab" onclick="showInstTab(2)">🔬 研究所</button>
+      </div>
+      <div class="inst-pane active" data-pane="0">
+          <div class="inst-row" style="grid-template-columns: 1fr; justify-content:center; color: var(--text-muted);">暂无数据</div>
+        </div>
+        <div class="inst-pane" data-pane="1">
+          <div class="inst-row" style="grid-template-columns: 1fr; justify-content:center; color: var(--text-muted);">暂无数据</div>
+        </div>
+        <div class="inst-pane" data-pane="2">
+          <div class="inst-row" style="grid-template-columns: 1fr; justify-content:center; color: var(--text-muted);">暂无数据</div>
+        </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<div class="container">
+
+  <!-- Journal Tabs -->
+  <div class="tabs-wrapper">
+    <div class="tabs-header" id="tabsHeader"><button class="tab-btn active" onclick="showTab(0)">
+  <span class="tab-name">IEEE Transactions on Pow…</span>
+  <span class="tab-meta">IEEE · 最新30篇（近5年1000篇）</span>
+</button>
+    <button class="tab-btn" onclick="showTab(1)">
+  <span class="tab-name">International Journal of…</span>
+  <span class="tab-meta">Elsevier · 最新30篇（近5年1000篇）</span>
+</button>
+    <button class="tab-btn" onclick="showTab(2)">
+  <span class="tab-name">IEEE Transactions on Pow…</span>
+  <span class="tab-meta">IEEE · 最新30篇（近5年1000篇）</span>
+</button></div>
+    <div id="tabPanels"><div class="tab-panel active" id="panel-0">
+  <div class="journal-info">
+    <div class="journal-info-left">
+      <div class="journal-name">IEEE Transactions on Power Electronics</div>
+      <div class="journal-meta">
+        <span class="meta-tag">ISSN: 1558-0660</span>
+        <span class="meta-tag">Publisher: IEEE</span>
+        <span class="meta-tag">SJR: 6.5</span>
+        <span class="meta-tag">展示最新 30 篇（近5年共 1000 篇）</span>
+      </div>
+    </div>
+    <div class="journal-sjif">
+      <span class="sjif-label">SJR</span>
+      <span class="sjif-value">6.5</span>
+    </div>
+  </div><div class="journal-summary">【期刊定位】综合技术期刊。【核心研究主题】研究核心集中于强化学习（约7%论文涉及），其次为深度强化学习、数字孪生等方向，整体研究覆盖面较广。【近几年发表热点】近年新兴热点包括：强化学习（7%近期）、深度强化学习（2%近期）、数字孪生（2%近期），这些方向增长显著，值得关注。【发表规模】近5年共1000篇，年均约1000篇，2026年发表1000篇。</div>
+  <ul class="paper-list">
+<li class="paper-item">
+    <div class="paper-num">1</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3664386" target="_blank" rel="noopener">GOTA-NU: Global Task Allocation With Non-Deterministic Tasks and Unknown Users to Enhance Freeway Traffic Accident Detection</a></div>
+      <div class="paper-authors">Qian Cao, Zhihui Li, Haitao Li, Shirui Zhou, Yali Zhao, Jinghao Xie</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 10302-10316 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">2</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3665613" target="_blank" rel="noopener">Enabling “See-and-Point” Communication Between Robots</a></div>
+      <div class="paper-authors">Huangwei Wu, Weiguo Wang, Meng Jin, Zhuxuan He, Qi Cao, Xinbing Wang et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 10670-10687 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">3</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3664010" target="_blank" rel="noopener">ICN-Enabled Internet of Robotic Things Data Routing and Access for Post-Disaster Areas</a></div>
+      <div class="paper-authors">Xiaonan Wang, Xinru You</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 10200-10210 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">4</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3666098" target="_blank" rel="noopener">Handover Optimization Using a Dynamic $\epsilon$-Greedy Based Q-Learning and a Hybrid MCDM Approach in Heterogeneous Networks</a></div>
+      <div class="paper-authors">Pratyashi Satapathy, Judhistir Mahapatro, Maheswar Rajagopal</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 11244-11257 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">5</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3665440" target="_blank" rel="noopener">O-RAN Xapps Conflict Prediction Using Graph Convolutional Networks</a></div>
+      <div class="paper-authors">Maryam Al Shami, Jun Yan, Emmanuel Thepie Fapi</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 10876-10892 (2026)</span>
+        <span>⬆️ Cited by: 1</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">6</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3667390" target="_blank" rel="noopener">ConvertNet: Training-Time Model Scaling for In-Vehicle Continuous Learning</a></div>
+      <div class="paper-authors">Qinglong Zhang, Rui Han, Chi Harold Liu, Guoren Wang, Lydia Y. Chen</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 10438-10454 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">7</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3654964" target="_blank" rel="noopener">ESGA: Efficient and Secure Geo-Aware Certificate Revocation for Blockchain-Based Multi-Domain VANETs</a></div>
+      <div class="paper-authors">Yingjie Xia, Tiancong Cao, Xuejiao Liu, Yun Wang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 9847-9862 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">8</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3664424" target="_blank" rel="noopener">Sensor-Prompt Tuning: Aligning Time Series Foundational Models With Motion Sensors for Few-Shot Activity Recognition</a></div>
+      <div class="paper-authors">Xin Liu, Dongzhou Cheng, Zenan Fu, Lei Zhang, Hao Wu, Aiguo Song</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 11227-11243 (2026)</span>
+        <span>⬆️ Cited by: 3</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">9</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3665505" target="_blank" rel="noopener">C-PRISM: A Comprehensive Privacy-Preserving and Behavioral-Incentive Mechanism for Sustainable Mobile Crowdsensing</a></div>
+      <div class="paper-authors">Jing Bai, Mande Xie, Houbing Song, Mianxiong Dong, Tian Wang, Anfeng Liu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 10619-10635 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">10</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3654940" target="_blank" rel="noopener">Invisible, Yet Trusted: Blockchain-Empowered Privacy-Preserving Spatio-Temporal Task Matching in Crowdsourcing With Efficient Public Verification</a></div>
+      <div class="paper-authors">Xu Yang, Saiyu Qi, Jiayu Zhou, Zheng He, Yong Qi</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 9660-9675 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">11</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3656779" target="_blank" rel="noopener">Scalable Deployment of Aerial Networks via Radio Tomographic Attenuation Mapping</a></div>
+      <div class="paper-authors">Ayon Chakraborty, Subrata Das, Pranav Ramesh</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 9707-9720 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">12</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3655733" target="_blank" rel="noopener">Space-Time Block Codec Based Cooperative Integrated Sensing and Communication System</a></div>
+      <div class="paper-authors">Lin Wang, Zhiyong Feng, Zhiqing Wei, Xinyi Wang, Dingyou Ma, Zesong Fei</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 9366-9381 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">13</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3655119" target="_blank" rel="noopener">Breaking Cloud Dependencies: A Distributed Ledger Approach to IoT Device Usufruct Management</a></div>
+      <div class="paper-authors">Chen Zeng, Xiaohui Peng, Fan Liang, Yifan Wang, Deke Guo</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 9737-9753 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">14</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3664622" target="_blank" rel="noopener">Few-Shot Network Thinning: A Unified Dense Compression Framework for CNNs and ViTs</a></div>
+      <div class="paper-authors">Xin Huang, Longhua Li, Lei Qi, Xin Geng</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 10864-10875 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">15</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3665225" target="_blank" rel="noopener">ReparoV2: QoE-Aware Live Video Streaming Under Low-Bandwidth Networks</a></div>
+      <div class="paper-authors">Fulin Wang, Qing Li, Wanxin Shi, Qian Yu, Gareth Tyson, Yong Jiang et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 10182-10199 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">16</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3664674" target="_blank" rel="noopener">FedHRA: A Joint Optimization Framework for Fast Convergent Decentralized Federated Learning in LEO Satellite Networks</a></div>
+      <div class="paper-authors">Xiaomin Chen, Tao Meng, Zejun Li, Qiang Sun, Dong Li, Chunxiao Jiang et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 11130-11143 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">17</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3664259" target="_blank" rel="noopener">Cost-Effective Parallel Cooperative Charging Scheduling for UAVs</a></div>
+      <div class="paper-authors">Sixu Wu, Yun Yang, Haipeng Dai, Linfeng Liu, Fu Xiao, Jia Xu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 11101-11115 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">18</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3656056" target="_blank" rel="noopener">AutoRAN: Automated and Zero-Touch Open RAN Systems</a></div>
+      <div class="paper-authors">Stefano Maxenti, Ravis Shirkhani, Maxime Elkael, Leonardo Bonati, Salvatore D’Oro, Tommaso Melodia et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 10112-10129 (2026)</span>
+        <span>⬆️ Cited by: 4</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">19</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3666311" target="_blank" rel="noopener">An Efficient Edge-Cloud Collaboration System With Foundational Models for Open-Set IoT Applications</a></div>
+      <div class="paper-authors">Bufang Yang, Wenrui Lu, Lixing He, Neiwen Ling, Zhenyu Yan, Guoliang Xing et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 10740-10756 (2026)</span>
+        <span>⬆️ Cited by: 1</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">20</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3654236" target="_blank" rel="noopener">Hybrid Orchestration of AI Services and Microservices in Cloud-Edge Collaboration</a></div>
+      <div class="paper-authors">Kai Peng, Xudong Liu, Di Han, Yi Hu, Menglan Hu, Chao Cai et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 9382-9400 (2026)</span>
+        <span>⬆️ Cited by: 6</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">21</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3655740" target="_blank" rel="noopener">KDB-Gaze: Keypoint-Guided Dual-Branch Learning for Gaze Estimation</a></div>
+      <div class="paper-authors">Xiaodong Wang, Xiaowei Bai, Liang Xie, Qining Wang, Hao Su, Erwei Yin</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 10030-10044 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">22</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3655770" target="_blank" rel="noopener">GroupNL: Low-Resource and Robust CNN Design Over Cloud and Device</a></div>
+      <div class="paper-authors">Chuntao Ding, Jianhang Xie, Junna Zhang, Salman Raza, Shangguang Wang, Jiannong Cao</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 9534-9548 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">23</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3655784" target="_blank" rel="noopener">SG-MAPG: A Three-Layer Hierarchical Model for Service Fairness and Cost Optimization in UAV-Assisted MEC Systems</a></div>
+      <div class="paper-authors">Zhihui Bi, Fan Yang, Zhenyu Li, Guanqi Liu, Zhufang Kuang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 10015-10029 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">24</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3655156" target="_blank" rel="noopener">Low-Altitude Satellite-AAV Collaborative Joint Mobile Edge Computing and Data Collection via Diffusion-Based Deep Reinforcement Learning</a></div>
+      <div class="paper-authors">Boxiong Wang, Hui Kang, Jiahui Li, Geng Sun, Zemin Sun, Jiacheng Wang et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 9401-9418 (2026)</span>
+        <span>⬆️ Cited by: 4</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">25</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3656307" target="_blank" rel="noopener">PEFL: A Privacy-Enhanced Federated Learning Framework for Mobile Edge CrowdSensing in the Presence of Collusion and Backdoor Attacks</a></div>
+      <div class="paper-authors">Mengyao Chen, Xiaowu Liu, Wenshuo Ma, Kan Yu, Jiguo Yu, Jian Xie et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 9784-9800 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">26</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3665241" target="_blank" rel="noopener">Large Language Model-Enhanced Deep Reinforcement Learning for Secure Data Collection in Low-Altitude Economy Networking</a></div>
+      <div class="paper-authors">Lingyi Cai, Ruichen Zhang, Jiacheng Wang, Yu Zhang, Miaoran Peng, Tao Jiang et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 10636-10650 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">27</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3665690" target="_blank" rel="noopener">Distributed and Autonomous Group Management Supporting Group Fusion for UAVs</a></div>
+      <div class="paper-authors">Fengqun Wang, Manting Gan, Hong Zhong, Qingyang Zhang, Jie Cui, Debiao He</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 11047-11062 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">28</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3657303" target="_blank" rel="noopener">Open RAN-Based Mixed-Timescale and Robust Task Offloading in Vehicular Edge Computing</a></div>
+      <div class="paper-authors">Mohsen Tajallifar, Nizar Zorba, Nader Mokari, Hamid Saeedi</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 10148-10165 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">29</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3665282" target="_blank" rel="noopener">Speak and Be Known: Authenticating Users via Ear Canal Deformation on Earbuds</a></div>
+      <div class="paper-authors">Luo Zhou, Shan Chang, Jiusong Luo, Huixiang Wen, Hongzi Zhu, Li Lu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 11207-11226 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">30</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tmc.2026.3656507" target="_blank" rel="noopener">Traffic-Aware Asynchronous Trajectory Planning and Scheduling in UAV-Assisted Wireless Networks With Heterogeneous Traffic Demands</a></div>
+      <div class="paper-authors">Che Chen, Bo Gu, Bin Lyu, Shimin Gong, Zhi Liu, Yuming Fang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 25, No. 7, pp. 9816-9832 (2026)</span>
+        <span>⬆️ Cited by: 1</span>
+      </div>
+      
+    </div>
+  </li>
+</ul>
+</div>
+<div class="tab-panel" id="panel-1">
+  <div class="journal-info">
+    <div class="journal-info-left">
+      <div class="journal-name">International Journal of Electrical Power & Energy Systems</div>
+      <div class="journal-meta">
+        <span class="meta-tag">ISSN: 0142-0615</span>
+        <span class="meta-tag">Publisher: Elsevier</span>
+        <span class="meta-tag">SJR: 5.5</span>
+        <span class="meta-tag">展示最新 30 篇（近5年共 1000 篇）</span>
+      </div>
+    </div>
+    <div class="journal-sjif">
+      <span class="sjif-label">SJR</span>
+      <span class="sjif-value">5.5</span>
+    </div>
+  </div><div class="journal-summary">【期刊定位】综合技术期刊。【核心研究主题】研究核心集中于强化学习（约4%论文涉及），整体研究覆盖面较广。【近几年发表热点】近年新兴热点包括：强化学习（4%近期）、深度强化学习（2%近期）、故障检测（1%近期），这些方向增长显著，值得关注。【发表规模】近5年共1000篇，年均约500篇，2026年同比+24%。</div>
+  <ul class="paper-list">
+<li class="paper-item">
+    <div class="paper-num">1</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.112027" target="_blank" rel="noopener">Distributed deep reinforcement learning for large-scale hybrid hydrogen/electricity refueling optimization with a data-driven electrolyzer model</a></div>
+      <div class="paper-authors">Dongdong Li, Liang Liu, Fan Yang, Jiangjiao Xu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 112027 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">2</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.111985" target="_blank" rel="noopener">Equilibrium modeling and data-driven decentralized clearing for local coordinated electricity–hydrogen markets with bilateral coupling under renewables uncertainty</a></div>
+      <div class="paper-authors">Xu Zhou, Vassilis M. Charitopoulos</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 111985 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">3</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.112005" target="_blank" rel="noopener">Sub-synchronous control interaction suppression method for grid-forming doubly-fed wind turbines based on inverse system internal model control</a></div>
+      <div class="paper-authors">Yanling Lv, Xiangnan Zhang, Hang Liu, Yuchen Zhang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 112005 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">4</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.112003" target="_blank" rel="noopener">Decentralized Sensitivity-Based Optimal Power Allocation in Wind Farms for Demand Response and Loss Minimization</a></div>
+      <div class="paper-authors">Wenbo Tang, Yu Yang, Sheng Huang, Juan Wei, Hanzhi Peng, Qiuwei Wu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 112003 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">5</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.112012" target="_blank" rel="noopener">Transient Stability Analysis of Grid-Forming Inverters Incorporating Detection Delays in Active-Power Reference Reduction Strategies</a></div>
+      <div class="paper-authors">Yahui Shen, Shangzhi Liu, Peng Chen, Shuohe Wang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 112012 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">6</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.111997" target="_blank" rel="noopener">A harmonic source location strategy for distribution networks using group-sparse Bayesian learning under an edge-computing architecture</a></div>
+      <div class="paper-authors">Lipeng Zhou, Zhenguo Shao, Yan Zhang, Changming Chen, Feixiong Chen, Guoyang Cheng</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 111997 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">7</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.112011" target="_blank" rel="noopener">VT-free directional element for high-IBR distribution networks using current waveform time differences</a></div>
+      <div class="paper-authors">Xiaotong Du, Jinghan He, Meng Li, Yuxiang Zhang, Jiabao Zhang, Haoyue Wang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 112011 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">8</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.112026" target="_blank" rel="noopener">Submodule capacitor voltage balancing control of hybrid MMC under over-modulation based on dynamic arm reference voltage allocation</a></div>
+      <div class="paper-authors">Dong Li, Quanrui Hao, Meng Guo, Lei Ding</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 112026 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">9</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.112000" target="_blank" rel="noopener">A successive linear/convex programming framework under a voltage–current representation for loss-minimizing optimal power flow</a></div>
+      <div class="paper-authors">Seungchan Jo, Jae-Young Oh, Gyu-Sub Lee</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 112000 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">10</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.112019" target="_blank" rel="noopener">Adaptive and coordinated damping control of multiple converters for renewable energy transmission system via VSC-HVDC</a></div>
+      <div class="paper-authors">Xiangyu Wu, Zixuan Shang, Shuaijie Wang, Zhao Liu, Yin Xu, Zhi An</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 112019 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">11</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.112010" target="_blank" rel="noopener">A two-stage low-carbon operation framework for prosumer-aggregated integrated energy system with dynamic carbon-energy pricing</a></div>
+      <div class="paper-authors">Shihao Liu, Yuping Huang, Guotian Cai, Ying Huang, Weijia Yang, Tian Mao</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 112010 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">12</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.111964" target="_blank" rel="noopener">Two-layer optimal scheduling of integrated energy systems for ultra-fast EV charging under multiple uncertainties</a></div>
+      <div class="paper-authors">Yingqi Yi, Zhipeng Xu, Yongjun Zhang, Siming Li, Hongxin Lu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 111964 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">13</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.112017" target="_blank" rel="noopener">Pluvial flood risk management for urban distribution systems: Avoidance, reduction, transfer, and retention</a></div>
+      <div class="paper-authors">Siyuan Sun, Gengfeng Li, Wei Xiong, Shaibu Ibrahim, Polat Goktas, Zhaohong Bie</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 112017 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">14</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.112022" target="_blank" rel="noopener">Improved predictive energy management system for microgrid using agent-based deep deterministic policy gradient integrated with adaptive multi-LSTM model assisted by empirical mode decomposition, Hilbert-Huang Transform and Logistic Map</a></div>
+      <div class="paper-authors">Niphon Kaewdornhan, Sarunyoo Boriratrit, Rongrit Chatthaworn</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 112022 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">15</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.112013" target="_blank" rel="noopener">Cooperative control of multiple virtual parallel converter-based resources adapting to varying grid strength for guaranteed small-signal stability</a></div>
+      <div class="paper-authors">Jiaqi Kang, Yun Liu, Hanlu Yang, Jizhong Zhu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 112013 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">16</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.112023" target="_blank" rel="noopener">Quantitative stability analysis of Grid-Following inverter with Grid-Supporting control and stability enhancement method based on Multi-Voltage feedforward</a></div>
+      <div class="paper-authors">Song Zhang, Zhiwei Xie, Yandong Chen, Zili Wang, Wenhua Wu, Qianyuan Li</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 112023 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">17</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.112029" target="_blank" rel="noopener">Model predictive coordination of sources and loads for smoothing tie-line power fluctuations in a wind-integrated industrial aluminum microgrid</a></div>
+      <div class="paper-authors">Xin Ding, Xiaofeng Wang, Yang Liu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 112029 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">18</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.112006" target="_blank" rel="noopener">Privacy-preserving federated ADMM for distributed OPF meets communication failures</a></div>
+      <div class="paper-authors">Jiangjiao Xu, Zhiyuan Liu, Fan Yang, Yao Zhao, Dongdong Li</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 112006 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">19</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.111996" target="_blank" rel="noopener">Damping of local and inter-area oscillations via fuzzy-PID controller based on fractional-order sliding mode for multi-generator power systems</a></div>
+      <div class="paper-authors">Romain Kengne Signe, Christiano Hypolithe Ngi Tonye, Frederic Biya Motto</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 111996 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">20</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.112020" target="_blank" rel="noopener">Energy-efficient quantum-spiking multi-agent reinforcement learning for adaptive energy management in microgrid networks</a></div>
+      <div class="paper-authors">Lilia Tightiz, Hong Nhung Nguyen, L. Minh Dang, Sanjeevikumar Padmanaban, Hyosik Yang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 112020 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">21</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.111992" target="_blank" rel="noopener">Assessing transient stability and security of renewable power systems via critical quasi-steady states and generalized equal area criterion</a></div>
+      <div class="paper-authors">Shuanbao Niu, Yifei Cao, Jiaze Wu, Cong Li, Zhiguo Hao, Chao Duan</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 111992 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">22</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.112025" target="_blank" rel="noopener">A sequential power flow algorithm for multi-frequency HVac systems and VSC-HVdc systems</a></div>
+      <div class="paper-authors">Woosung Kim, Quan Nguyen, Surya Santoso</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 112025 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">23</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.112021" target="_blank" rel="noopener">Towards low-inertia power systems: An overview of monitoring technology, challenges and emerging solutions</a></div>
+      <div class="paper-authors">Felix Rafael Segundo Sevilla, Yanli Liu, Emilio Barocio, Petr Korba, Federica Bellizio, Christoph Brosinsky et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 112021 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">24</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.112018" target="_blank" rel="noopener">Energy community-based provision of reactive power flexibility for enhanced operation of medium voltage networks</a></div>
+      <div class="paper-authors">Fabio Tossani, Tohid Harighi, Alberto Borghetti</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 112018 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">25</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.111995" target="_blank" rel="noopener">Corrigendum to “Blackstart strategies with grid forming offshore Type-IV wind turbines and BESS for effective system restoration” [Int. J. Electr. Power Energy Syst. 177 (2026) 1–18]</a></div>
+      <div class="paper-authors">Mohamed Galeela, Muhammad Fawad, Diptargha Chakravorty, Zahid Javid, Chuanyue Li, Jun Liang</div>
+      <div class="paper-meta">
+        <span>📖 pp. 111995 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">26</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.111981" target="_blank" rel="noopener">A novel double dynamic voltage feedforward control strategy for improved current limiting in droop controlled grid-connected inverters during LVRT</a></div>
+      <div class="paper-authors">Raul De La Fuente Pinto, Miguel Robayo, Philipp R. Thies, Anup Shukla, Mohammad Abusara</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 111981 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">27</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.111999" target="_blank" rel="noopener">A novel control–protection coordinated distance protection method for transmission lines connected to flexible direct current converter stations</a></div>
+      <div class="paper-authors">Kun Qian, Minghao Wen, Xianggen Yin, Kaize Zhang, Hongjie Han, Chenghao Zhu et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 111999 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">28</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.112009" target="_blank" rel="noopener">Optimization of Wind Farm Layout Using Flow-Sensing Genetic Algorithm Considering Wake Detection and Local Adjustments</a></div>
+      <div class="paper-authors">Jian Zhou, Wenjie Yang, Lei Zhu, Yingzhu Li</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 112009 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">29</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.112001" target="_blank" rel="noopener">Impacts of variable power generation on balancing power resource dispatch: case study of the Nordic and Baltic countries in 2030</a></div>
+      <div class="paper-authors">Simeon Seppälä, Sanna Syri</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 112001 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">30</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijepes.2026.112028" target="_blank" rel="noopener">Optimal configuration of user-side shared energy storage considering demand declaration and variable lifetime</a></div>
+      <div class="paper-authors">Yixing Ding, Jilin Cai, Liangliang Hu, Peimin Mao, Jun Chen, Jun Liu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 179, pp. 112028 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+</ul>
+</div>
+<div class="tab-panel" id="panel-2">
+  <div class="journal-info">
+    <div class="journal-info-left">
+      <div class="journal-name">IEEE Transactions on Power Delivery</div>
+      <div class="journal-meta">
+        <span class="meta-tag">ISSN: 0885-8977</span>
+        <span class="meta-tag">Publisher: IEEE</span>
+        <span class="meta-tag">SJR: 4.5</span>
+        <span class="meta-tag">展示最新 30 篇（近5年共 1000 篇）</span>
+      </div>
+    </div>
+    <div class="journal-sjif">
+      <span class="sjif-label">SJR</span>
+      <span class="sjif-value">4.5</span>
+    </div>
+  </div><div class="journal-summary">【期刊定位】综合技术期刊。【核心研究主题】研究核心集中于故障检测（约2%论文涉及），整体研究覆盖面较广。【近几年发表热点】近年新兴热点包括：故障检测（2%近期）、故障诊断（1%近期）、目标检测（0%近期），这些方向增长显著，值得关注。【发表规模】近5年共1000篇，年均约250篇，2026年同比-27%。</div>
+  <ul class="paper-list">
+<li class="paper-item">
+    <div class="paper-num">1</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3657563" target="_blank" rel="noopener">Graph Theory-Based Topology Derivation for Multifunctional DC Choppers of a DFIG</a></div>
+      <div class="paper-authors">Chenguang Yan, Zhangheng Liu, Weixiang Wang, Ying Liu, Hongxi Yang, Baohui Zhang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1032-1044 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">2</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3657602" target="_blank" rel="noopener">Asynchronous Grid Connections Providing Fast-Frequency Response: System Integration Study</a></div>
+      <div class="paper-authors">Felix Wald, Amir Sajadi, Barry Mather, Giovanni De Carne</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1131-1142 (2026)</span>
+        <span>⬆️ Cited by: 1</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">3</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3656982" target="_blank" rel="noopener">High Robustness Partial Discharge Detection Technology Using Fiber F-P Interferometer Based on Differential Phase Demodulation</a></div>
+      <div class="paper-authors">Qun Yu, Wei-Chao Zhang, Kualong Zhang, Qichao Chen, Hong Zhao</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1120-1130 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">4</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3658946" target="_blank" rel="noopener">Optimal Placement of Dynamic Thermal Rating Considering Transient Temperature of Overhead Lines with Two-Stage Robust Guarantee against N-1 Contingency</a></div>
+      <div class="paper-authors">Yingjie Zhao, Yao Zhang, Yongfei Li, Wei Huo, Hanting Zhao, Jianxue Wang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1260-1273 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">5</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3664002" target="_blank" rel="noopener">Adaptive Hybrid Prediction-Correction With Trust-Region and Dynamic Line Search for AC/DC Load Flow</a></div>
+      <div class="paper-authors">Deepi Singh, Hongbo Sun, Shunsuke Kawano, Arvind Raghunathan, Yusuke Takaguchi, Fang Luo</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1192-1203 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">6</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3665538" target="_blank" rel="noopener">A Damage Prevention Device for Suspension Towers Subjected to Conductor Breakage</a></div>
+      <div class="paper-authors">Hironmoy Kakoty, Chinmoy Kolay</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1482-1492 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">7</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3665489" target="_blank" rel="noopener">Galloping Detection for AC Overhead Transmission Line Based on Induced Signals in Ground Wires</a></div>
+      <div class="paper-authors">Zherui Cui, Xiankang Wang, Yao Yao, Xueming Zhou, Bo Zhang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1471-1481 (2026)</span>
+        <span>⬆️ Cited by: 1</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">8</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3661763" target="_blank" rel="noopener">Time-Resolved Travelling-Wave Protection Scheme for Monopolar DC Submarine Observatory Networks With Fault-Induced Communication Loss</a></div>
+      <div class="paper-authors">Ziqing Guo, Wentao Huang, Yan Xu, Yu Liu, Moduo Yu, Nengling Tai</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1312-1324 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">9</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3657673" target="_blank" rel="noopener">Calculation of Positive-Sequence and Zero-Sequence Impedances of Three-Phase Submarine Cables</a></div>
+      <div class="paper-authors">Kevin F. Goddard, Joanna Rzempołuch, Sunny Chaudhary, George Callender, Paul Lewin</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1045-1056 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">10</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3660199" target="_blank" rel="noopener">Final Jump Impulses in Negative Stepped Leader Cloud to Ground Lightning</a></div>
+      <div class="paper-authors">Farouk A.M. Rizk</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1253-1259 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">11</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3663457" target="_blank" rel="noopener">Fatigue Fragility Curves for Overhead Conductors Subjected to Varying Amplitude at Suspension Clamps</a></div>
+      <div class="paper-authors">Oluwafemi O. Thomas, Luc Chouinard, Sebastien Langlois, Shaoqi Yang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1350-1356 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">12</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3658967" target="_blank" rel="noopener">Dynamic Thermal Network Model Based Temperature Rise Characteristics Analysis for OPGW Ice-Melting Process</a></div>
+      <div class="paper-authors">Tong Luo, Sheng Lin, Xiaojun Sun</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1215-1228 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">13</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3688357" target="_blank" rel="noopener">IEEE Power &amp; Energy Society Information</a></div>
+      <div class="paper-authors"></div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. C2-C2 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">14</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3684771" target="_blank" rel="noopener">The Vibration Sideband Phenomenon of Transformer</a></div>
+      <div class="paper-authors">Yunfei Jia, Yao Yuan, Kejie Huang, Song Wang, Wei Zhang, Zaixing Peng</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1512-1515 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">15</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3658012" target="_blank" rel="noopener">Practical Solutions to Volt-Var Optimization Under Uncertainty via Blackbox Optimization</a></div>
+      <div class="paper-authors">Feng Li, Ilhan Kocar, Antoine Lesage-Landry</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1180-1191 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">16</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3659091" target="_blank" rel="noopener">Resonance Mitigation Effectiveness Evaluation and Damping Parameters Design Method for Parallel Resonance in Power System</a></div>
+      <div class="paper-authors">Bingwen Guo, Yonghai Xu, Chang Yuan, Shun Tao</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1155-1168 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">17</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3663753" target="_blank" rel="noopener">High-Frequency Resonance Suppression of MMC-HVDC Based on the Coordination of Voltage Feedforward Filtering and Passive Damping</a></div>
+      <div class="paper-authors">Yunfeng Li, Tao Wen, Yijia Cao, Jiebei Zhu, Ming Kong, Yuhang Zhang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1459-1470 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">18</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3665801" target="_blank" rel="noopener">Resilience-Oriented Allocation of FI and RCS Considering Multi-Stage Collaborative Restoration With Improved Integer L-Shaped Method</a></div>
+      <div class="paper-authors">Dingyuan Luo, Yiheng Bian, Zheng Zhou, Qiming Yang, Gengfeng Li</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1425-1437 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">19</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3663862" target="_blank" rel="noopener">Functional Requirements for Ultrafast Thomson Coil Actuator in Arc Commutation Hybrid DC Circuit Breaker</a></div>
+      <div class="paper-authors">Philipp Wienkamp, Willem Leterme</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1377-1387 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">20</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3659859" target="_blank" rel="noopener">An Optimization-Guided Prediction-Free Two-Stage Real-Time Energy Management Strategy for Novel Co-Phase Traction Power Supply System With PV and Energy Storage</a></div>
+      <div class="paper-authors">Yuqiang Xu, Shaofeng Xie</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1274-1285 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">21</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3659095" target="_blank" rel="noopener">Effects of Meteorological Parameters on Radio Interference of EHV AC Transmission Lines at High Altitudes</a></div>
+      <div class="paper-authors">Yemao Zhang, Yao Lu, Jilai Xu, Zhenghai Liao, Ni Li, Bing Zhou et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1204-1214 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">22</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3662804" target="_blank" rel="noopener">Novel Bushing With Adaptively Field Grading Structure: Experiment and Validation</a></div>
+      <div class="paper-authors">Zhiwen Huang, Gang Sun, Yifan Zhou, Ya Sun, Zhikang Yuan, Jun Hu et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1011-1019 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">23</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3678793" target="_blank" rel="noopener">A Multimodal and Fine-Tuned Large-Language Model for XPLE Cable Health Assessment</a></div>
+      <div class="paper-authors">Rudai Yan, Changyou Suo, Yan Xu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1508-1511 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">24</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3664017" target="_blank" rel="noopener">Research on Infeeder Line Protection Scheme for Traction Substation Under Bilateral Power Supply Mode</a></div>
+      <div class="paper-authors">Jingrui Li, Zhengqing Han, Shuping Liu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1366-1376 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">25</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3660737" target="_blank" rel="noopener">Non-Unit Protection Based on Transient Voltage Time-Frequency Characteristics for Offshore Flexible Low-Frequency Transmission Lines</a></div>
+      <div class="paper-authors">Jinghan He, Xiaotong Du, Meng Li, Yuxiang Zhang, Jiabao Zhang, Haoyue Wang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1325-1336 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">26</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3662444" target="_blank" rel="noopener">An Analytic Method for Frequency Nadir Estimation in Fast Frequency Response Resource (FFRR) Dominant Power Systems</a></div>
+      <div class="paper-authors">Jaeyeop Jung, Jeonghoo Park, Jin-Ho Choi, Gyu-Sub Lee</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1337-1349 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">27</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3657164" target="_blank" rel="noopener">Dynamic Electromagnetic-Thermo-Mechanical Coupling Analysis and Temperature Field Optimization in Duct-Bank Cable Clusters: A Multi-Physics Framework</a></div>
+      <div class="paper-authors">He Zhu, Xun Wang, Sicheng Cheng, Jixin Guo, Sichuang Liu, Haoxian Wang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1169-1179 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">28</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3658578" target="_blank" rel="noopener">A Hybrid Multi-Criteria Decision-Making Based Fuzzy System for Comprehensive Health Assessment of Power Transformers</a></div>
+      <div class="paper-authors">Teruvai Manoj, Chilaka Ranga, Shrikrishna V. Kulkarni</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1020-1031 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">29</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3659148" target="_blank" rel="noopener">High-Impedance Grounding Fault Detection and Location for Resonant Grounding System Based on Lissajous Curve Analysis</a></div>
+      <div class="paper-authors">Zhaoru Han, Fang Shi, Zongshuai Jin, Mingjie Wei, Md. Mehedi Hasan, Vladimir Terzija</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1106-1119 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">30</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tpwrd.2026.3663656" target="_blank" rel="noopener">Spring Operating Mechanism Condition Monitoring Based on MEMS Pressure Sensors</a></div>
+      <div class="paper-authors">Xiaobo Meng, Kailin Li, Ziyang Wang, Dongxiao Zhao, Yafei Wang, Xiaoming Zhu et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 41, No. 3, pp. 1415-1424 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+</ul>
+</div></div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <p>数据来源 <a href="https://www.crossref.org" target="_blank">CrossRef</a> · 生成时间 2026-06-27</p>
+  <p>Deployed on <a href="https://pages.github.com" target="_blank">GitHub Pages</a></p>
+</footer>
+
+<script>
+  function showTab(idx) {
+    document.querySelectorAll('.tab-btn').forEach((b, i) => {
+      b.classList.toggle('active', i === idx);
+    });
+    document.querySelectorAll('.tab-panel').forEach((p, i) => {
+      p.classList.toggle('active', i === idx);
+    });
+  }
+  function showInstTab(idx) {
+    document.querySelectorAll('.inst-tab').forEach((b, i) => {
+      b.classList.toggle('active', i === idx);
+    });
+    document.querySelectorAll('.inst-pane').forEach((p, i) => {
+      p.classList.toggle('active', i === idx);
+    });
+  }
+  // auto-open first tab
+  showTab(0);
+</script>
+
+</body>
+</html>
