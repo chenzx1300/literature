@@ -182,14 +182,8 @@
       display: flex;
       justify-content: space-between;
     }
-    .issue-cover .ic-footer .vol {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-style: italic;
-      font-weight: 700;
-      color: var(--accent);
-      font-size: 0.8rem;
-      text-transform: none;
-      letter-spacing: 0;
+    .issue-cover .ic-footer {
+      justify-content: center;
     }
 
     /* ===== CONTAINER ===== */
@@ -354,6 +348,36 @@
       font-weight: 700;
       color: var(--accent);
       line-height: 1.1;
+    }
+    .journal-meta-badges {
+      display: flex;
+      gap: 0.5rem;
+      align-items: stretch;
+    }
+    .journal-vol {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: linear-gradient(135deg, #4a3520 0%, #7a5a3a 100%);
+      color: #fff;
+      border-radius: 12px;
+      padding: 0.5rem 1rem;
+      min-width: 4.5rem;
+      justify-content: center;
+    }
+    .journal-vol-label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.65);
+    }
+    .journal-vol-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #f0d9a8;
+      line-height: 1.1;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
     }
     .journal-keywords {
       display: flex;
@@ -963,8 +987,7 @@
         <div class="ic-title">semiconductor<br>Top Journals</div>
         <div class="ic-emblem">💡</div>
         <div class="ic-footer">
-          <span>2026</span>
-          <span class="vol">Vol 73</span>
+          <span>2026 · semiconductor Top Journals</span>
         </div>
       </div>
     </div>
@@ -1267,9 +1290,15 @@
         <span class="meta-tag">展示最新 30 篇（近5年共 999 篇）</span>
       </div>
     </div>
-    <div class="journal-sjif">
-      <span class="sjif-label">SJR</span>
-      <span class="sjif-value">4.6</span>
+    <div class="journal-meta-badges">
+      <div class="journal-sjif">
+        <span class="sjif-label">SJR</span>
+        <span class="sjif-value">4.6</span>
+      </div>
+      <div class="journal-vol">
+      <span class="journal-vol-label">Vol</span>
+      <span class="journal-vol-value">73</span>
+    </div>
     </div>
   </div><div class="journal-summary">【期刊定位】电子器件领域，聚焦半导体器件设计与工艺技术。【核心研究主题】研究主题较为分散，暂无明显主导方向。【近几年发表热点】近年新兴热点包括：等离子处理（1%近期）、迁移学习（0%近期）、栅极驱动器（0%近期），这些方向增长显著，值得关注。【发表规模】近5年共999篇，年均约500篇，2026年同比+143%。</div>
   <ul class="paper-list">
@@ -1671,9 +1700,15 @@
         <span class="meta-tag">展示最新 30 篇（近5年共 1000 篇）</span>
       </div>
     </div>
-    <div class="journal-sjif">
-      <span class="sjif-label">SJR</span>
-      <span class="sjif-value">4.3</span>
+    <div class="journal-meta-badges">
+      <div class="journal-sjif">
+        <span class="sjif-label">SJR</span>
+        <span class="sjif-value">4.3</span>
+      </div>
+      <div class="journal-vol">
+      <span class="journal-vol-label">Vol</span>
+      <span class="journal-vol-value">47</span>
+    </div>
     </div>
   </div><div class="journal-summary">【期刊定位】电子器件领域，聚焦半导体器件设计与工艺技术。【核心研究主题】研究主题较为分散，暂无明显主导方向。【近几年发表热点】近年新兴热点包括：等离子处理（0%近期），这些方向增长显著，值得关注。【发表规模】近5年共1000篇，年均约500篇，2026年同比-23%。</div>
   <ul class="paper-list">
@@ -2065,9 +2100,15 @@
         <span class="meta-tag">展示最新 30 篇（近5年共 863 篇）</span>
       </div>
     </div>
-    <div class="journal-sjif">
-      <span class="sjif-label">SJR</span>
-      <span class="sjif-value">3.3</span>
+    <div class="journal-meta-badges">
+      <div class="journal-sjif">
+        <span class="sjif-label">SJR</span>
+        <span class="sjif-value">3.3</span>
+      </div>
+      <div class="journal-vol">
+      <span class="journal-vol-label">Vol</span>
+      <span class="journal-vol-value">236</span>
+    </div>
     </div>
   </div><div class="journal-summary">【期刊定位】固态电子与半导体物理期刊，覆盖材料缺陷、器件物理与集成电路。【核心研究主题】研究主题较为分散，暂无明显主导方向。【近几年发表热点】近期未发现显著新兴热点，研究趋势较为稳定。【发表规模】近5年共863篇，年均约173篇，2026年同比-58%。</div>
   <ul class="paper-list">
