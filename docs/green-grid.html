@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>green-grid 最新论文 | Journal Tracker</title>
+  <title>绿色电网 最新论文 | Journal Tracker</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
   <style>
@@ -182,14 +182,8 @@
       display: flex;
       justify-content: space-between;
     }
-    .issue-cover .ic-footer .vol {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-style: italic;
-      font-weight: 700;
-      color: var(--accent);
-      font-size: 0.8rem;
-      text-transform: none;
-      letter-spacing: 0;
+    .issue-cover .ic-footer {
+      justify-content: center;
     }
 
     /* ===== CONTAINER ===== */
@@ -354,6 +348,36 @@
       font-weight: 700;
       color: var(--accent);
       line-height: 1.1;
+    }
+    .journal-meta-badges {
+      display: flex;
+      gap: 0.5rem;
+      align-items: stretch;
+    }
+    .journal-vol {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: linear-gradient(135deg, #4a3520 0%, #7a5a3a 100%);
+      color: #fff;
+      border-radius: 12px;
+      padding: 0.5rem 1rem;
+      min-width: 4.5rem;
+      justify-content: center;
+    }
+    .journal-vol-label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.65);
+    }
+    .journal-vol-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #f0d9a8;
+      line-height: 1.1;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
     }
     .journal-keywords {
       display: flex;
@@ -940,7 +964,7 @@
   <div class="inner">
     <div class="header-text">
       <div class="eyebrow">🔬 Academic Journal Tracker · SJR Top</div>
-      <h1>green-grid · <em>学术前沿</em></h1>
+      <h1>绿色电网 · <em>学术前沿</em></h1>
       <div class="subtitle">近5年 SJR Top 期刊全量论文 · 研究方向 / 趋势 / 顶尖作者 / 机构 多维分析</div>
       <div class="stats-bar">
         <div class="stat">
@@ -948,23 +972,22 @@
           <div class="stat-label">追踪期刊</div>
         </div>
         <div class="stat">
-          <div class="stat-value">3000</div>
+          <div class="stat-value">0</div>
           <div class="stat-label">论文总数</div>
         </div>
         <div class="stat">
-          <div class="stat-value">2026-06-27</div>
+          <div class="stat-value">2026-06-28</div>
           <div class="stat-label">最后更新</div>
         </div>
       </div>
     </div>
     <div class="featured-issue">
       <div class="issue-cover">
-        <div class="ic-masthead">green-grid · Issue 4</div>
-        <div class="ic-title">green-grid<br>Top Journals</div>
+        <div class="ic-masthead">绿色电网 · Issue 4</div>
+        <div class="ic-title">绿色电网<br>Top Journals</div>
         <div class="ic-emblem">🌿</div>
         <div class="ic-footer">
-          <span>2026</span>
-          <span class="vol">Vol 226</span>
+          <span>2026 · 绿色电网 Top Journals</span>
         </div>
       </div>
     </div>
@@ -980,25 +1003,25 @@
   <div class="analytics-overview" id="analyticsOverview">
 <div class="stat-card metric-primary">
       <div class="sc-icon">📄</div>
-      <div class="sc-value">3000</div>
+      <div class="sc-value">0</div>
       <div class="sc-label">论文总数（近5年）</div>
       <div class="sc-sublabel">Total Papers</div>
     </div>
 <div class="stat-card metric-secondary">
       <div class="sc-icon">⬆️</div>
-      <div class="sc-value">11072</div>
+      <div class="sc-value">0</div>
       <div class="sc-label">引用总数</div>
       <div class="sc-sublabel">Total Citations</div>
     </div>
 <div class="stat-card metric-tertiary">
       <div class="sc-icon">📊</div>
-      <div class="sc-value">3.7</div>
+      <div class="sc-value">0</div>
       <div class="sc-label">篇均引用</div>
       <div class="sc-sublabel">Avg Citations</div>
     </div>
 <div class="stat-card metric-small">
       <div class="sc-icon">📚</div>
-      <div class="sc-value">3</div>
+      <div class="sc-value">0</div>
       <div class="sc-label">期刊数</div>
       <div class="sc-sublabel">Journals</div>
     </div>
@@ -1013,60 +1036,7 @@
         <div class="widget-badge">Top 6</div>
       </div>
       <div class="topic-bars" id="topicBars">
-<div class="topic-bar-item">
-      <span class="topic-bar-name">Energy Storage & Battery</span>
-      <div class="topic-bar-track">
-        <div class="topic-bar-fill" style="width: 100.0%">
-          <span>466</span>
-        </div>
-      </div>
-      <span class="topic-bar-pct">100%</span>
-    </div>
-<div class="topic-bar-item">
-      <span class="topic-bar-name">Structural Analysis & FEM</span>
-      <div class="topic-bar-track">
-        <div class="topic-bar-fill" style="width: 61.4%">
-          <span>286</span>
-        </div>
-      </div>
-      <span class="topic-bar-pct">61%</span>
-    </div>
-<div class="topic-bar-item">
-      <span class="topic-bar-name">Thermal Properties & Fire Safety</span>
-      <div class="topic-bar-track">
-        <div class="topic-bar-fill" style="width: 57.3%">
-          <span>267</span>
-        </div>
-      </div>
-      <span class="topic-bar-pct">57%</span>
-    </div>
-<div class="topic-bar-item">
-      <span class="topic-bar-name">Sensors & Smart Structures</span>
-      <div class="topic-bar-track">
-        <div class="topic-bar-fill" style="width: 53.4%">
-          <span>249</span>
-        </div>
-      </div>
-      <span class="topic-bar-pct">53%</span>
-    </div>
-<div class="topic-bar-item">
-      <span class="topic-bar-name">Carbon Materials & Nanomaterials</span>
-      <div class="topic-bar-track">
-        <div class="topic-bar-fill" style="width: 45.7%">
-          <span>213</span>
-        </div>
-      </div>
-      <span class="topic-bar-pct">46%</span>
-    </div>
-<div class="topic-bar-item">
-      <span class="topic-bar-name">AI & Data-Driven Methods</span>
-      <div class="topic-bar-track">
-        <div class="topic-bar-fill" style="width: 39.3%">
-          <span>183</span>
-        </div>
-      </div>
-      <span class="topic-bar-pct">39%</span>
-    </div>
+<div class="topic-bar-item"><span class="topic-bar-name">N/A</span></div>
       </div>
     </div>
 
@@ -1076,16 +1046,7 @@
         <div class="widget-badge">Last 5 Yr</div>
       </div>
       <div class="trend-chart" id="trendChart">
-<div class="trend-bars"><div class="trend-bar-col">
-      <div class="trend-bar-fill" style="height: 3px" data-count="81"></div>
-      <div class="trend-bar-label">2024</div>
-    </div><div class="trend-bar-col">
-      <div class="trend-bar-fill" style="height: 19px" data-count="518"></div>
-      <div class="trend-bar-label">2025</div>
-    </div><div class="trend-bar-col">
-      <div class="trend-bar-fill" style="height: 90px" data-count="2401"></div>
-      <div class="trend-bar-label">2026</div>
-    </div></div>
+<div class="trend-bars"><span>暂无数据</span></div>
       </div>
     </div>
 
@@ -1100,51 +1061,7 @@
         <div class="widget-badge">Top 3</div>
       </div>
       <div class="author-rank-list" id="topAuthorsPub">
-<div class="author-rank-item rank-1">
-      <div class="author-medal">🥇</div>
-      <div class="author-rank-info">
-        <div class="author-rank-name">Yan Xu</div>
-        <div class="author-rank-meta">Renewable and Sustainable Energy Reviews, Applied Energy</div>
-      </div>
-      <div class="author-rank-stat">
-        <div class="ars-value">19</div>
-        <div class="ars-label">篇</div>
-      </div>
-      <div class="author-rank-stat">
-        <div class="ars-value">44</div>
-        <div class="ars-label">引</div>
-      </div>
-    </div>
-<div class="author-rank-item rank-2">
-      <div class="author-medal">🥈</div>
-      <div class="author-rank-info">
-        <div class="author-rank-name">Mohammad Shahidehpour</div>
-        <div class="author-rank-meta">Applied Energy, IEEE Transactions on Smart Grid</div>
-      </div>
-      <div class="author-rank-stat">
-        <div class="ars-value">19</div>
-        <div class="ars-label">篇</div>
-      </div>
-      <div class="author-rank-stat">
-        <div class="ars-value">43</div>
-        <div class="ars-label">引</div>
-      </div>
-    </div>
-<div class="author-rank-item rank-3">
-      <div class="author-medal">🥉</div>
-      <div class="author-rank-info">
-        <div class="author-rank-name">Yi Wang</div>
-        <div class="author-rank-meta">IEEE Transactions on Smart Grid</div>
-      </div>
-      <div class="author-rank-stat">
-        <div class="ars-value">19</div>
-        <div class="ars-label">篇</div>
-      </div>
-      <div class="author-rank-stat">
-        <div class="ars-value">78</div>
-        <div class="ars-label">引</div>
-      </div>
-    </div>
+
       </div>
     </div>
 
@@ -1154,51 +1071,7 @@
         <div class="widget-badge">Top 3</div>
       </div>
       <div class="author-rank-list" id="topAuthorsCited">
-<div class="author-rank-item rank-1">
-      <div class="author-medal">🥇</div>
-      <div class="author-rank-info">
-        <div class="author-rank-name">Zhengmao Li</div>
-        <div class="author-rank-meta">Applied Energy, IEEE Transactions on Smart Grid</div>
-      </div>
-      <div class="author-rank-stat">
-        <div class="ars-value">11</div>
-        <div class="ars-label">篇</div>
-      </div>
-      <div class="author-rank-stat">
-        <div class="ars-value">306</div>
-        <div class="ars-label">引</div>
-      </div>
-    </div>
-<div class="author-rank-item rank-2">
-      <div class="author-medal">🥈</div>
-      <div class="author-rank-info">
-        <div class="author-rank-name">Mengxiang Liu</div>
-        <div class="author-rank-meta">IEEE Transactions on Smart Grid</div>
-      </div>
-      <div class="author-rank-stat">
-        <div class="ars-value">6</div>
-        <div class="ars-label">篇</div>
-      </div>
-      <div class="author-rank-stat">
-        <div class="ars-value">227</div>
-        <div class="ars-label">引</div>
-      </div>
-    </div>
-<div class="author-rank-item rank-3">
-      <div class="author-medal">🥉</div>
-      <div class="author-rank-info">
-        <div class="author-rank-name">Zhenyong Zhang</div>
-        <div class="author-rank-meta">IEEE Transactions on Smart Grid</div>
-      </div>
-      <div class="author-rank-stat">
-        <div class="ars-value">3</div>
-        <div class="ars-label">篇</div>
-      </div>
-      <div class="author-rank-stat">
-        <div class="ars-value">195</div>
-        <div class="ars-label">引</div>
-      </div>
-    </div>
+
       </div>
     </div>
 
@@ -1255,11 +1128,17 @@
         <span class="meta-tag">展示最新 30 篇（近5年共 1000 篇）</span>
       </div>
     </div>
-    <div class="journal-sjif">
-      <span class="sjif-label">SJR</span>
-      <span class="sjif-value">13.0</span>
+    <div class="journal-meta-badges">
+      <div class="journal-sjif">
+        <span class="sjif-label">SJR</span>
+        <span class="sjif-value">13.0</span>
+      </div>
+      <div class="journal-vol">
+      <span class="journal-vol-label">Vol</span>
+      <span class="journal-vol-value">239</span>
     </div>
-  </div><div class="journal-summary">【期刊定位】综合技术期刊。【核心研究主题】研究核心集中于热管理（约2%论文涉及），整体研究覆盖面较广。【近几年发表热点】近年新兴热点包括：热管理（2%近期）、数字孪生（1%近期）、强化学习（1%近期），这些方向增长显著，值得关注。【发表规模】近5年共1000篇，年均约500篇，2026年同比+1618%。</div>
+    </div>
+  </div>
   <ul class="paper-list">
 <li class="paper-item">
     <div class="paper-num">1</div>
@@ -1634,11 +1513,17 @@
         <span class="meta-tag">展示最新 30 篇（近5年共 1000 篇）</span>
       </div>
     </div>
-    <div class="journal-sjif">
-      <span class="sjif-label">SJR</span>
-      <span class="sjif-value">11.0</span>
+    <div class="journal-meta-badges">
+      <div class="journal-sjif">
+        <span class="sjif-label">SJR</span>
+        <span class="sjif-value">11.0</span>
+      </div>
+      <div class="journal-vol">
+      <span class="journal-vol-label">Vol</span>
+      <span class="journal-vol-value">422</span>
     </div>
-  </div><div class="journal-summary">【期刊定位】综合技术期刊。【核心研究主题】研究核心集中于强化学习（约5%论文涉及），其次为深度强化学习等方向，整体研究覆盖面较广。【近几年发表热点】近年新兴热点包括：强化学习（5%近期）、深度强化学习（2%近期）、模型预测控制（1%近期），这些方向增长显著，值得关注。【发表规模】近5年共1000篇，年均约1000篇，2026年发表1000篇。</div>
+    </div>
+  </div>
   <ul class="paper-list">
 <li class="paper-item">
     <div class="paper-num">1</div>
@@ -2013,11 +1898,17 @@
         <span class="meta-tag">展示最新 30 篇（近5年共 1000 篇）</span>
       </div>
     </div>
-    <div class="journal-sjif">
-      <span class="sjif-label">SJR</span>
-      <span class="sjif-value">8.0</span>
+    <div class="journal-meta-badges">
+      <div class="journal-sjif">
+        <span class="sjif-label">SJR</span>
+        <span class="sjif-value">8.0</span>
+      </div>
+      <div class="journal-vol">
+      <span class="journal-vol-label">Vol</span>
+      <span class="journal-vol-value">17</span>
     </div>
-  </div><div class="journal-summary">【期刊定位】综合技术期刊。【核心研究主题】研究核心集中于强化学习（约6%论文涉及），其次为深度强化学习等方向，整体研究覆盖面较广。【近几年发表热点】近年新兴热点包括：强化学习（6%近期）、深度强化学习（2%近期）、状态估计（2%近期），这些方向增长显著，值得关注。【发表规模】近5年共1000篇，年均约333篇，2026年同比-2%。</div>
+    </div>
+  </div>
   <ul class="paper-list">
 <li class="paper-item">
     <div class="paper-num">1</div>
@@ -2386,7 +2277,7 @@
 </div>
 
 <footer class="site-footer">
-  <p>数据来源 <a href="https://www.crossref.org" target="_blank">CrossRef</a> · 生成时间 2026-06-27</p>
+  <p>数据来源 <a href="https://www.crossref.org" target="_blank">CrossRef</a> · 生成时间 2026-06-28</p>
   <p>Deployed on <a href="https://pages.github.com" target="_blank">GitHub Pages</a></p>
 </footer>
 
