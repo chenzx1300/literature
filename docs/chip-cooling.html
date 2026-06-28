@@ -1,0 +1,3281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>芯片散热 最新论文 | Journal Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #1e3a5f;
+      --primary-light: #2d5a87;
+      --accent: #00b4d8;
+      --accent-soft: #90e0ef;
+      --bg: #f0f4f8;
+      --surface: #ffffff;
+      --text: #1a2332;
+      --text-muted: #5c6f7e;
+      --text-light: #8fa4b8;
+      --border: #e2e8f0;
+      --tag-bg: #e8f4f8;
+      --tag-text: #0077b6;
+      --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+      --shadow-lg: 0 4px 24px rgba(0,0,0,0.08);
+    }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ===== HEADER (magazine-style: title + featured cover) ===== */
+    .site-header {
+      background: linear-gradient(135deg, #0d1b2a 0%, #1b3a5c 50%, #1e5090 100%);
+      color: #fff;
+      padding: 1.5rem 1.5rem 1.4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .site-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(0,180,216,0.18) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(212,160,23,0.08) 0%, transparent 40%);
+      pointer-events: none;
+    }
+    .site-header .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    .header-text { display: flex; flex-direction: column; gap: 0.4rem; }
+    .eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent-soft);
+      margin-bottom: 0.2rem;
+      opacity: 0.9;
+      font-weight: 600;
+    }
+    .site-header h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.025em;
+      font-style: italic;
+    }
+    .site-header h1 em {
+      font-style: normal;
+      color: var(--accent);
+      font-weight: 900;
+    }
+    .subtitle {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 0.9rem;
+      line-height: 1.5;
+      max-width: 28rem;
+    }
+    .stats-bar {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      padding-top: 0.6rem;
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+    .stat-value {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--accent-soft);
+      line-height: 1;
+      font-feature-settings: 'lnum';
+    }
+    .stat-label {
+      font-size: 0.66rem;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+    }
+
+    /* Featured cover card on right side of header */
+    .featured-issue {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .issue-cover {
+      width: 200px;
+      aspect-ratio: 3 / 4;
+      background: linear-gradient(135deg, #fff 0%, #f0e6d2 100%);
+      color: var(--primary);
+      border-radius: 6px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 14px 36px rgba(0,0,0,0.25);
+      transform: rotate(-1.5deg);
+      transition: transform 0.5s cubic-bezier(0.32,0.72,0,1);
+      position: relative;
+      overflow: hidden;
+    }
+    .issue-cover:hover { transform: rotate(0deg) translateY(-3px); }
+    .issue-cover::before {
+      content: '';
+      position: absolute;
+      top: 0.4rem; right: 0.4rem;
+      width: 0.45rem; height: 0.45rem;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .issue-cover .ic-masthead {
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.4rem;
+    }
+    .issue-cover .ic-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 900;
+      line-height: 1.1;
+      font-style: italic;
+      color: var(--primary);
+      margin-top: 0.4rem;
+    }
+    .issue-cover .ic-emblem {
+      font-size: 2.8rem;
+      text-align: center;
+      filter: drop-shadow(0 1px 3px rgba(0,0,0,0.1));
+      margin: 0.4rem 0;
+    }
+    .issue-cover .ic-footer {
+      font-size: 0.55rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      border-top: 1px solid var(--border);
+      padding-top: 0.4rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    .issue-cover .ic-footer {
+      justify-content: center;
+    }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1rem 1rem 3rem;
+    }
+
+    /* ===== TOPIC SUMMARY BAR ===== */
+    .topic-bar {
+      background: var(--surface);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      padding: 0.9rem 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .topic-bar-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 0.85rem;
+    }
+    .topic-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .topic-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      border: 1px solid rgba(0,119,182,0.15);
+      transition: all 0.2s;
+    }
+    .topic-chip:hover {
+      background: var(--accent-soft);
+      color: var(--primary);
+    }
+    .topic-chip .count {
+      background: rgba(0,119,182,0.12);
+      border-radius: 10px;
+      padding: 0 0.35rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--primary-light);
+    }
+
+    /* ===== TABS ===== */
+    .tabs-wrapper {
+      background: var(--surface);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .tabs-header {
+      display: flex;
+      overflow-x: auto;
+      border-bottom: 2px solid var(--border);
+      background: #fafcfd;
+      scrollbar-width: none;
+    }
+    .tabs-header::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      flex: 0 0 auto;
+      padding: 1rem 1.4rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .tab-btn:hover { color: var(--primary); }
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      background: #fff;
+    }
+    .tab-btn .tab-name { font-size: 0.82rem; }
+    .tab-btn .tab-meta {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--text-light);
+    }
+    .tab-btn.active .tab-meta { color: var(--accent-soft); }
+
+    .tab-panel {
+      display: none;
+      padding: 0;
+    }
+    .tab-panel.active { display: block; }
+
+    /* ===== JOURNAL INFO BAR ===== */
+    .journal-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      background: linear-gradient(135deg, #f8fbff 0%, #f0f7ff 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .journal-info-left .journal-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+    .journal-info-left .journal-name a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .journal-info-left .journal-name a:hover { text-decoration: underline; }
+    .journal-meta {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .meta-tag {
+      font-size: 0.7rem;
+      background: #e0eef7;
+      color: #3a7ca5;
+      padding: 0.15rem 0.55rem;
+      border-radius: 12px;
+      font-weight: 500;
+    }
+    .journal-sjif {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+      color: #fff;
+      border-radius: 12px;
+      padding: 0.5rem 1rem;
+      min-width: 4.5rem;
+    }
+    .sjif-label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.6);
+    }
+    .sjif-value {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.1;
+    }
+    .journal-meta-badges {
+      display: flex;
+      gap: 0.5rem;
+      align-items: stretch;
+    }
+    .journal-vol {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: linear-gradient(135deg, #4a3520 0%, #7a5a3a 100%);
+      color: #fff;
+      border-radius: 12px;
+      padding: 0.5rem 1rem;
+      min-width: 4.5rem;
+      justify-content: center;
+    }
+    .journal-vol-label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.65);
+    }
+    .journal-vol-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #f0d9a8;
+      line-height: 1.1;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+    }
+    .journal-keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      padding: 0.6rem 1.5rem;
+      background: #f8fafd;
+      border-top: 1px solid var(--border);
+    }
+    .journal-summary {
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, #f0f7ff 0%, #e8f4f8 100%);
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--text);
+      line-height: 1.6;
+      border-left: 4px solid var(--accent);
+    }
+    .kw-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 14px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      background: linear-gradient(135deg, #e8f4f8 0%, #ddeeff 100%);
+      color: var(--primary);
+      border: 1px solid rgba(0,119,182,0.15);
+    }
+    .kw-chip .kw-count {
+      background: var(--accent);
+      color: #fff;
+      border-radius: 8px;
+      padding: 0 0.3rem;
+      font-size: 0.62rem;
+      font-weight: 700;
+    }
+
+    /* ===== PAPER LIST ===== */
+    .paper-list { list-style: none; }
+    .paper-item {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .paper-item:last-child { border-bottom: none; }
+    .paper-item:hover { background: #fafcff; }
+    .paper-num {
+      padding: 1.4rem 0.5rem 1.4rem 1.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-align: center;
+      opacity: 0.7;
+    }
+    .paper-body {
+      padding: 1.25rem 1.5rem 1.25rem 0.5rem;
+    }
+    .paper-title {
+      font-size: 0.93rem;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 0.35rem;
+    }
+    .paper-title a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .paper-title a:hover { color: var(--accent); text-decoration: underline; }
+    .paper-authors {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+    .paper-meta {
+      font-size: 0.72rem;
+      color: var(--text-light);
+      margin-bottom: 0.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1rem;
+    }
+    .paper-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+    .paper-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-bottom: 0.4rem;
+    }
+    .paper-tag {
+      font-size: 0.68rem;
+      background: #eef2f7;
+      color: #5a6c7d;
+      padding: 0.1rem 0.5rem;
+      border-radius: 8px;
+    }
+    /* 真实 author keywords — 蓝色系区分 */
+    .paper-tag.paper-kw {
+      background: #e3f0ff;
+      color: #1a5a8a;
+      border: 1px solid #a8d4f0;
+    }
+    .paper-abstract {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      background: #f8fafd;
+      border-radius: 8px;
+      padding: 0.6rem 0.85rem;
+      margin-top: 0.5rem;
+      line-height: 1.6;
+      border-left: 3px solid var(--accent-soft);
+    }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: var(--text-light);
+      font-size: 0.75rem;
+    }
+    .site-footer a { color: var(--accent); text-decoration: none; }
+    .site-footer a:hover { text-decoration: underline; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .site-header .inner { grid-template-columns: 1.4fr 1fr; gap: 1.5rem; }
+    }
+    @media (max-width: 768px) {
+      .site-header .inner { grid-template-columns: 1fr !important; gap: 1.2rem; }
+      .featured-issue { justify-content: center; }
+      .issue-cover { width: 160px; }
+      .site-header h1 { font-size: 1.7rem; }
+    }
+    @media (max-width: 600px) {
+      .site-header h1 { font-size: 1.4rem; }
+      .site-header { padding: 1.2rem 1rem 1rem; }
+      .stats-bar { gap: 1rem; flex-wrap: wrap; }
+      .stats-bar .stat { flex: 1 1 30%; min-width: 0; }
+      .stat-value { font-size: 1.3rem; }
+      .tab-btn { padding: 0.85rem 0.9rem; font-size: 0.75rem; }
+      .tab-btn .tab-meta { display: none; }
+      .paper-item { grid-template-columns: 2.5rem 1fr; }
+      .paper-num { padding: 1.2rem 0.3rem 1.2rem 1rem; }
+      .paper-body { padding: 1rem 1rem 1rem 0.3rem; }
+    }
+    @media (max-width: 480px) {
+      /* Hero stats: drop to 3-col equal */
+      .stats-bar { flex-wrap: wrap; gap: 0.8rem; }
+      .stat { flex: 1 1 30%; min-width: 0; }
+      .stat-value { font-size: 1.15rem; }
+      .stat-label { font-size: 0.6rem; }
+      /* Cover card scales down */
+      .issue-cover { width: 130px; padding: 0.7rem; }
+      .issue-cover .ic-title { font-size: 0.9rem; }
+      .issue-cover .ic-emblem { font-size: 2rem; margin: 0.2rem 0; }
+      /* Authors row: stack to 1-col (3-col too narrow for name+stat) */
+      .analytics-row.authors-row { grid-template-columns: 1fr !important; }
+      .author-rank-item { padding: 0.4rem 0.5rem; }
+      .author-medal { font-size: 1.1rem; }
+      .author-rank-name { font-size: 0.78rem; }
+      .author-rank-stat .ars-value { font-size: 0.9rem; }
+      /* Institutions panel */
+      .inst-row { grid-template-columns: 1.2rem 1fr auto; gap: 0.4rem; padding: 0.4rem 0; }
+      .ir-flag { display: none; }
+      .ir-meta { display: none; }
+      .ir-count { min-width: 2.2rem; font-size: 0.72rem; }
+      /* 移动端机构名也允许换行，row 高度自适应（不截断） */
+      .ir-name { max-width: 100%; white-space: normal; overflow: visible; text-overflow: clip; word-break: break-word; }
+      /* Tabs header — keep horizontal scroll */
+      .tabs-header { padding: 0 0.5rem; }
+      .tab-btn { padding: 0.7rem 0.7rem; font-size: 0.72rem; min-width: max-content; }
+      /* Analytics 4 stat cards: still 2x2 but smaller */
+      .analytics-overview { grid-template-columns: repeat(2, 1fr); gap: 0.35rem; }
+      .stat-card { padding: 0.5rem 0.6rem; }
+      .stat-card .sc-value { font-size: 1rem; }
+      .stat-card.metric-primary .sc-value { font-size: 1.3rem; }
+      .stat-card .sc-label { font-size: 0.55rem; }
+      /* Trend bars: smaller, but still visible */
+      .trend-bars { height: 100px; }
+      /* Container: less padding */
+      .container, .analytics { padding: 0.5rem 0.75rem; }
+    }
+    @media (max-width: 420px) {
+      /* Ultra-narrow (true 360-420px): tighter icons, smaller values */
+      .stat-card .sc-icon { font-size: 0.85rem; }
+      .stat-card .sc-value { font-size: 0.95rem; }
+      .stat-card.metric-primary .sc-value { font-size: 1.2rem; }
+      .stats-bar .stat { flex: 1 1 28%; }
+      .stat-value { font-size: 1rem; }
+    }
+
+    /* ===== ANALYTICS SECTION ===== */
+    .analytics {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0.5rem 1rem 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    /* ---- Section Title ---- */
+    .analytics-section-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      padding-bottom: 0.35rem;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 0;
+    }
+
+    /* ---- Overview Stats Bar ---- */
+    .analytics-overview {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.4rem;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 0.6rem 0.9rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.15rem;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .stat-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-1px);
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+      border-radius: 12px 12px 0 0;
+    }
+    .stat-card .sc-icon {
+      font-size: 0.95rem;
+      margin-bottom: 0.05rem;
+      opacity: 0.7;
+    }
+    .stat-card .sc-value {
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1;
+    }
+    .stat-card.metric-primary .sc-value { font-size: 1.6rem; }
+    .stat-card.metric-secondary .sc-value { font-size: 1.25rem; color: var(--primary-light); }
+    .stat-card.metric-tertiary .sc-value { font-size: 1rem; color: var(--accent); }
+    .stat-card.metric-small .sc-value { font-size: 0.85rem; color: var(--text-muted); }
+    .stat-card .sc-label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .stat-card .sc-sublabel {
+      font-size: 0.55rem;
+      color: var(--text-light);
+      margin-top: -0.05rem;
+    }
+
+    /* ---- Two-column layout for side-by-side widgets ---- */
+    .analytics-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+    .analytics-col-wide {
+      grid-column: 1 / -1;
+    }
+    /* 4-column layout for topics+trend+authors+uni */
+    .analytics-row.four-col {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    /* 3-column layout for authors + institutions row */
+    .analytics-row.authors-row {
+      grid-template-columns: 1fr 1fr 1.05fr;
+    }
+
+    /* ---- Widget Card ---- */
+    .widget-card {
+      background: var(--surface);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 0.7rem 1rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .widget-card .widget-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.4rem;
+    }
+    .widget-card .widget-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+    }
+    .widget-card .widget-badge {
+      font-size: 0.58rem;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      padding: 0.1rem 0.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    /* ---- Research Topics Horizontal Bars ---- */
+    .topic-bar-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.2rem;
+    }
+    .topic-bar-item:last-child { margin-bottom: 0; }
+    .topic-bar-name {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text);
+      min-width: 70px;
+      max-width: 100px;
+      white-space: normal;
+      overflow: visible;
+      text-overflow: clip;
+      line-height: 1.3;
+      word-break: break-word;
+    }
+    .topic-bar-track {
+      flex: 1;
+      height: 8px;
+      background: var(--bg);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+    .topic-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent-soft) 100%);
+      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 0.3rem;
+      min-width: 1.5rem;
+    }
+    .topic-bar-fill span {
+      font-size: 0.58rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+    .topic-bar-pct {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      min-width: 2.5rem;
+      text-align: right;
+    }
+
+    /* ---- Author Rank Cards ---- */
+    .author-rank-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+    .author-rank-item {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.15rem 0.35rem;
+      border-radius: 4px;
+      background: var(--bg);
+      transition: background 0.2s;
+    }
+    .author-rank-item:hover { background: #e8f4f8; }
+    .author-rank-item.rank-1 { background: #fffbf0; border: 1px solid #f0d060; }
+    .author-rank-item.rank-2 { background: #f8f8f8; border: 1px solid #d0d0d0; }
+    .author-rank-item.rank-3 { background: #fff8f0; border: 1px solid #e0c080; }
+
+    .author-medal {
+      font-size: 1.25rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .author-rank-info { flex: 1; min-width: 0; }
+    .author-rank-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .author-rank-meta {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.1rem;
+    }
+    .author-rank-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .author-rank-stat .ars-value {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .author-rank-stat .ars-label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-light);
+    }
+
+    /* ---- Institutions (single-panel + tabs, minimalist) ---- */
+    .inst-tabs {
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 0.55rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.45rem;
+    }
+    .inst-tab {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.18rem 0.7rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+    .inst-tab:hover { background: var(--bg); color: var(--text); }
+    .inst-tab.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+    .inst-pane { display: none; }
+    .inst-pane.active { display: block; }
+    .inst-row {
+      display: grid;
+      grid-template-columns: 1.4rem 1fr auto auto auto;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.32rem 0;
+      border-bottom: 1px dashed var(--border);
+      transition: background 0.15s;
+    }
+    .inst-row:last-child { border-bottom: none; }
+    .inst-row:hover { background: var(--bg); }
+    .ir-rank {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-align: center;
+    }
+    .ir-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--primary);
+      white-space: normal;
+      overflow: visible;
+      text-overflow: clip;
+      word-break: break-word;
+      line-height: 1.3;
+      max-width: 14rem;
+    }
+    .ir-meta {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      max-width: 11rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ir-flag { font-size: 0.85rem; }
+    .ir-count {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      min-width: 3.2rem;
+      text-align: right;
+    }
+    @media (max-width: 600px) {
+      .inst-row { grid-template-columns: 1.2rem 1fr auto auto; }
+      .ir-meta { display: none; }
+    }
+
+    /* ---- Trend Chart (Year Bars) ---- */
+    .trend-chart {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      padding-top: 0.25rem;
+      min-height: 130px;
+    }
+    .trend-bars {
+      display: flex;
+      justify-content: space-around;
+      gap: 0.5rem;
+      align-items: flex-end;
+      width: 100%;
+      height: 130px;
+      padding: 0;
+    }
+    .trend-bar-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      height: 100%;
+      position: relative;
+    }
+    .trend-bar-fill {
+      width: 80%;
+      max-width: 38px;
+      border-radius: 4px 4px 0 0;
+      background: linear-gradient(180deg, var(--accent) 0%, var(--accent-soft) 100%);
+      align-self: center;
+      transition: height 0.7s cubic-bezier(0.32, 0.72, 0, 1);
+      position: relative;
+    }
+    .trend-bar-fill::before {
+      content: attr(data-count);
+      position: absolute;
+      top: -1.15rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: var(--accent);
+      white-space: nowrap;
+      line-height: 1;
+    }
+    .trend-bar-label {
+      font-size: 0.66rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+      margin-top: 0.35rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* ---- Analytics Responsive (legacy — most overrides now in main RESPONSIVE block) ---- */
+    @media (max-width: 480px) {
+      .topic-bar-name { min-width: 60px; max-width: 90px; font-size: 0.68rem; white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <div class="header-text">
+      <div class="eyebrow">🔬 Academic Journal Tracker · SJR Top</div>
+      <h1>芯片散热 · <em>学术前沿</em></h1>
+      <div class="subtitle">近5年 SJR Top 期刊全量论文 · 研究方向 / 趋势 / 顶尖作者 / 机构 多维分析</div>
+      <div class="stats-bar">
+        <div class="stat">
+          <div class="stat-value">5</div>
+          <div class="stat-label">追踪期刊</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">4246</div>
+          <div class="stat-label">论文总数</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">2026-06-28</div>
+          <div class="stat-label">最后更新</div>
+        </div>
+      </div>
+    </div>
+    <div class="featured-issue">
+      <div class="issue-cover">
+        <div class="ic-masthead">芯片散热 · Issue 1</div>
+        <div class="ic-title">芯片散热<br>Top Journals</div>
+        <div class="ic-emblem">📚</div>
+        <div class="ic-footer">
+          <span>2026 · 芯片散热 Top Journals</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- =========================================================
+     ANALYTICS HTML STRUCTURE
+     ========================================================= -->
+<section class="analytics" id="analyticsSection">
+
+  <!-- 1. Overview Stats (4 columns) -->
+  <div class="analytics-overview" id="analyticsOverview">
+<div class="stat-card metric-primary">
+      <div class="sc-icon">📄</div>
+      <div class="sc-value">4246</div>
+      <div class="sc-label">论文总数（近5年）</div>
+      <div class="sc-sublabel">Total Papers</div>
+    </div>
+<div class="stat-card metric-secondary">
+      <div class="sc-icon">⬆️</div>
+      <div class="sc-value">5938</div>
+      <div class="sc-label">引用总数</div>
+      <div class="sc-sublabel">Total Citations</div>
+    </div>
+<div class="stat-card metric-tertiary">
+      <div class="sc-icon">📊</div>
+      <div class="sc-value">1.4</div>
+      <div class="sc-label">篇均引用</div>
+      <div class="sc-sublabel">Avg Citations</div>
+    </div>
+<div class="stat-card metric-small">
+      <div class="sc-icon">📚</div>
+      <div class="sc-value">5</div>
+      <div class="sc-label">期刊数</div>
+      <div class="sc-sublabel">Journals</div>
+    </div>
+  </div>
+
+  <!-- 2. Topics + Trend (2 columns) -->
+  <div class="analytics-row">
+
+    <div class="widget-card">
+      <div class="widget-header">
+        <div class="widget-title">🧠 研究方向 | Research Topics</div>
+        <div class="widget-badge">Top 6</div>
+      </div>
+      <div class="topic-bars" id="topicBars">
+<div class="topic-bar-item">
+      <span class="topic-bar-name">Thermal Properties & Fire Safety</span>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width: 100.0%">
+          <span>2065</span>
+        </div>
+      </div>
+      <span class="topic-bar-pct">100%</span>
+    </div>
+<div class="topic-bar-item">
+      <span class="topic-bar-name">Chip Thermal Management</span>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width: 46.3%">
+          <span>957</span>
+        </div>
+      </div>
+      <span class="topic-bar-pct">46%</span>
+    </div>
+<div class="topic-bar-item">
+      <span class="topic-bar-name">Structural Analysis & FEM</span>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width: 44.0%">
+          <span>908</span>
+        </div>
+      </div>
+      <span class="topic-bar-pct">44%</span>
+    </div>
+<div class="topic-bar-item">
+      <span class="topic-bar-name">Cooling Technologies</span>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width: 22.4%">
+          <span>463</span>
+        </div>
+      </div>
+      <span class="topic-bar-pct">22%</span>
+    </div>
+<div class="topic-bar-item">
+      <span class="topic-bar-name">Energy Storage & Battery</span>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width: 19.4%">
+          <span>400</span>
+        </div>
+      </div>
+      <span class="topic-bar-pct">19%</span>
+    </div>
+<div class="topic-bar-item">
+      <span class="topic-bar-name">Manufacturing & Processing</span>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width: 16.1%">
+          <span>332</span>
+        </div>
+      </div>
+      <span class="topic-bar-pct">16%</span>
+    </div>
+      </div>
+    </div>
+
+    <div class="widget-card">
+      <div class="widget-header">
+        <div class="widget-title">📅 发表趋势 | Publication Trend</div>
+        <div class="widget-badge">Last 5 Yr</div>
+      </div>
+      <div class="trend-chart" id="trendChart">
+<div class="trend-bars"><div class="trend-bar-col">
+      <div class="trend-bar-fill" style="height: 0px" data-count="27"></div>
+      <div class="trend-bar-label">2022</div>
+    </div><div class="trend-bar-col">
+      <div class="trend-bar-fill" style="height: 2px" data-count="80"></div>
+      <div class="trend-bar-label">2023</div>
+    </div><div class="trend-bar-col">
+      <div class="trend-bar-fill" style="height: 11px" data-count="400"></div>
+      <div class="trend-bar-label">2024</div>
+    </div><div class="trend-bar-col">
+      <div class="trend-bar-fill" style="height: 16px" data-count="567"></div>
+      <div class="trend-bar-label">2025</div>
+    </div><div class="trend-bar-col">
+      <div class="trend-bar-fill" style="height: 90px" data-count="3172"></div>
+      <div class="trend-bar-label">2026</div>
+    </div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 3. Authors + Institutions (3 columns) -->
+  <div class="analytics-row authors-row">
+
+    <div class="widget-card">
+      <div class="widget-header">
+        <div class="widget-title">✍️ 高产作者 | By Publications</div>
+        <div class="widget-badge">Top 3</div>
+      </div>
+      <div class="author-rank-list" id="topAuthorsPub">
+<div class="author-rank-item rank-1">
+      <div class="author-medal">🥇</div>
+      <div class="author-rank-info">
+        <div class="author-rank-name">Pradeep Lall</div>
+        <div class="author-rank-meta">Journal of Electronic Packaging</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">22</div>
+        <div class="ars-label">篇</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">37</div>
+        <div class="ars-label">引</div>
+      </div>
+    </div>
+<div class="author-rank-item rank-2">
+      <div class="author-medal">🥈</div>
+      <div class="author-rank-info">
+        <div class="author-rank-name">Lei Wang</div>
+        <div class="author-rank-meta">IEEE Transactions on Components, Packaging and Manufacturing Technology, Applied Thermal Engineering</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">15</div>
+        <div class="ars-label">篇</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">52</div>
+        <div class="ars-label">引</div>
+      </div>
+    </div>
+<div class="author-rank-item rank-3">
+      <div class="author-medal">🥉</div>
+      <div class="author-rank-info">
+        <div class="author-rank-name">David Huitink</div>
+        <div class="author-rank-meta">IEEE Transactions on Components, Packaging and Manufacturing Technology, Journal of Electronic Packaging</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">14</div>
+        <div class="ars-label">篇</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">44</div>
+        <div class="ars-label">引</div>
+      </div>
+    </div>
+      </div>
+    </div>
+
+    <div class="widget-card">
+      <div class="widget-header">
+        <div class="widget-title">📖 高引作者 | By Citations</div>
+        <div class="widget-badge">Top 3</div>
+      </div>
+      <div class="author-rank-list" id="topAuthorsCited">
+<div class="author-rank-item rank-1">
+      <div class="author-medal">🥇</div>
+      <div class="author-rank-info">
+        <div class="author-rank-name">John H. Lau</div>
+        <div class="author-rank-meta">IEEE Transactions on Components, Packaging and Manufacturing Technology, Journal of Electronic Packaging</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">6</div>
+        <div class="ars-label">篇</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">194</div>
+        <div class="ars-label">引</div>
+      </div>
+    </div>
+<div class="author-rank-item rank-2">
+      <div class="author-medal">🥈</div>
+      <div class="author-rank-info">
+        <div class="author-rank-name">Xiangkun Yin</div>
+        <div class="author-rank-meta">IEEE Transactions on Components, Packaging and Manufacturing Technology</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">5</div>
+        <div class="ars-label">篇</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">95</div>
+        <div class="ars-label">引</div>
+      </div>
+    </div>
+<div class="author-rank-item rank-3">
+      <div class="author-medal">🥉</div>
+      <div class="author-rank-info">
+        <div class="author-rank-name">Ali Alahmer</div>
+        <div class="author-rank-meta">IEEE Transactions on Components, Packaging and Manufacturing Technology, Journal of Electronic Packaging</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">7</div>
+        <div class="ars-label">篇</div>
+      </div>
+      <div class="author-rank-stat">
+        <div class="ars-value">88</div>
+        <div class="ars-label">引</div>
+      </div>
+    </div>
+      </div>
+    </div>
+
+<div class="widget-card inst-card">
+      <div class="widget-header">
+        <div class="widget-title">🏛️ 顶尖机构 | Top Institutions</div>
+        <div class="widget-badge">Top 3</div>
+      </div>
+      <div class="inst-tabs">
+        <button class="inst-tab active" onclick="showInstTab(0)">🎓 大学</button>
+        <button class="inst-tab" onclick="showInstTab(1)">🏢 企业</button>
+        <button class="inst-tab" onclick="showInstTab(2)">🔬 研究所</button>
+      </div>
+      <div class="inst-pane active" data-pane="0">
+          <div class="inst-row"><span class="ir-rank">1</span><span class="ir-name">Department of Mechanical Engineering, Stanford University , Stanford, CA 94305</span><span class="ir-meta">—</span><span class="ir-flag">🌐</span><span class="ir-count">3 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">2</span><span class="ir-name">Department of Industrial and Systems Engineering, Auburn University , Auburn, AL 36849</span><span class="ir-meta">—</span><span class="ir-flag">🌐</span><span class="ir-count">3 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">3</span><span class="ir-name">Key Laboratory of Analog Integrated Circuits and Systems, Ministry of Education, School of Integrated Circuits, Xidian University, Xi&#x2019;an, China</span><span class="ir-meta">中国</span><span class="ir-flag">🇨🇳</span><span class="ir-count">2 篇</span></div>
+        </div>
+        <div class="inst-pane" data-pane="1">
+          <div class="inst-row"><span class="ir-rank">1</span><span class="ir-name">Unimicron Technology Corporation, Taoyuan, Taiwan</span><span class="ir-meta">中国台湾</span><span class="ir-flag">🇹🇼</span><span class="ir-count">2 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">2</span><span class="ir-name">Unimicron Technology Corporation , Taoyuan 33341, Taiwan</span><span class="ir-meta">中国台湾</span><span class="ir-flag">🇹🇼</span><span class="ir-count">2 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">3</span><span class="ir-name">Jiangsu GTIC Microelectronics Company Ltd., Wuxi, China</span><span class="ir-meta">中国</span><span class="ir-flag">🇨🇳</span><span class="ir-count">1 篇</span></div>
+        </div>
+        <div class="inst-pane" data-pane="2">
+          <div class="inst-row"><span class="ir-rank">1</span><span class="ir-name">National Natural Science Foundation of China</span><span class="ir-meta">中国</span><span class="ir-flag">🇨🇳</span><span class="ir-count">30 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">2</span><span class="ir-name">China Postdoctoral Science Foundation</span><span class="ir-meta">中国</span><span class="ir-flag">🇨🇳</span><span class="ir-count">5 篇</span></div>
+          <div class="inst-row"><span class="ir-rank">3</span><span class="ir-name">Fundamental Research Funds for the Central Universities</span><span class="ir-meta">—</span><span class="ir-flag">🌐</span><span class="ir-count">4 篇</span></div>
+        </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<div class="container">
+
+  <!-- Journal Tabs -->
+  <div class="tabs-wrapper">
+    <div class="tabs-header" id="tabsHeader"><button class="tab-btn active" onclick="showTab(0)">
+  <span class="tab-name">International Journal of…</span>
+  <span class="tab-meta">Elsevier · 最新30篇（近5年999篇）</span>
+</button>
+    <button class="tab-btn" onclick="showTab(1)">
+  <span class="tab-name">Applied Thermal Engineer…</span>
+  <span class="tab-meta">Elsevier · 最新30篇（近5年1000篇）</span>
+</button>
+    <button class="tab-btn" onclick="showTab(2)">
+  <span class="tab-name">IEEE Transactions on Com…</span>
+  <span class="tab-meta">IEEE · 最新30篇（近5年1000篇）</span>
+</button>
+    <button class="tab-btn" onclick="showTab(3)">
+  <span class="tab-name">International Journal of…</span>
+  <span class="tab-meta">Elsevier · 最新30篇（近5年999篇）</span>
+</button>
+    <button class="tab-btn" onclick="showTab(4)">
+  <span class="tab-name">Journal of Electronic Pa…</span>
+  <span class="tab-meta">ASME · 最新30篇（近5年248篇）</span>
+</button></div>
+    <div id="tabPanels"><div class="tab-panel active" id="panel-0">
+  <div class="journal-info">
+    <div class="journal-info-left">
+      <div class="journal-name">International Journal of Heat and Mass Transfer</div>
+      <div class="journal-meta">
+        <span class="meta-tag">ISSN: 0017-9310</span>
+        <span class="meta-tag">Publisher: Elsevier</span>
+        <span class="meta-tag">SJR: 3.5</span>
+        <span class="meta-tag">展示最新 30 篇（近5年共 999 篇）</span>
+      </div>
+    </div>
+    <div class="journal-meta-badges">
+      <div class="journal-sjif">
+        <span class="sjif-label">SJR</span>
+        <span class="sjif-value">3.5</span>
+      </div>
+      <div class="journal-vol">
+      <span class="journal-vol-label">Vol</span>
+      <span class="journal-vol-value">270</span>
+    </div>
+    </div>
+  </div><div class="journal-summary">【期刊定位】综合技术期刊。【核心研究主题】研究核心集中于传热（约18%论文涉及），其次为热管理、热导率、拓扑优化等方向，整体研究覆盖面较广。【近几年发表热点】近年新兴热点包括：传热（18%近期）、热管理（3%近期）、热导率（2%近期），这些方向增长显著，值得关注。【发表规模】近5年共999篇，年均约999篇，2026年发表999篇。</div>
+  <ul class="paper-list">
+<li class="paper-item">
+    <div class="paper-num">1</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129202" target="_blank" rel="noopener">Rational thermal design of 2.5D heterogeneously integrated systems via topology optimization coupled with micro-rib texturing</a></div>
+      <div class="paper-authors">Wei Du, Yanhui Feng, Haimo Li, Lin Qiu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129202 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">2</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129207" target="_blank" rel="noopener">Ultrafast thermal sintering controls thermal transport in high-entropy alloy nanoparticle junctions</a></div>
+      <div class="paper-authors">Geraudys Mora-Barzaga, Patricio Inostroza, Felipe Valencia, Eduardo Bringa</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129207 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">3</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129213" target="_blank" rel="noopener">Evolution of CO2 saturation patterns and mixing-limited reactive transport under variable cycling rates for underground gas storage with CO2 cushion gas</a></div>
+      <div class="paper-authors">Kai Zhang, Shuai Zheng, Yingxue Hu, Zijing Li, Tetsuya Suekane, Chunwei Zhang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129213 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">4</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129193" target="_blank" rel="noopener">Effects of louvered-fin wick structure on the thermal performance of a 3D vapor chamber heat sink</a></div>
+      <div class="paper-authors">Yuepeng Liao, Yunhua Gan, Yong Li, Fengming Liu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129193 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">5</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129196" target="_blank" rel="noopener">Prediction and uncertainty quantification of saturated flow boiling heat transfer coefficients in mini/micro-channels using Gaussian Process Regression</a></div>
+      <div class="paper-authors">Jihun Jung, Arshad Afzal, Seunghyun Lee, Sung-Min Kim, Issam Mudawar</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129196 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">6</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129199" target="_blank" rel="noopener">Numerical analysis of photothermal therapy response considering angiogenesis-inspired intratumoral vascular configurations and blood flow direction</a></div>
+      <div class="paper-authors">Myeongsu Kim, Hyewon Kang, Donghyuk Kim, Seunghyun Yu, Hyunjung Kim</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129199 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">7</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129181" target="_blank" rel="noopener">Real-time estimation of transient heat flux and full-field temperature for transpiration cooling</a></div>
+      <div class="paper-authors">Yanqi Diao, Mingjian He, Yatao Ren, Hong Qi</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129181 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">8</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129157" target="_blank" rel="noopener">Parametric estimation of heat transfer coefficient: Incorporating boundary losses for enhanced accuracy</a></div>
+      <div class="paper-authors">Sandeep R. Kumar, Kalyana B. Nakshatrala, Jason F. Patrick</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129157 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">9</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129176" target="_blank" rel="noopener">A physics-informed quasi-steady frosting model with coupled heat–mass transfer for predicting frost layer growth</a></div>
+      <div class="paper-authors">Zhi-Min Lin, Yu-Fei Hou, Lin-Kai Wu, Liang-Bi Wang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129176 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">10</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129215" target="_blank" rel="noopener">Recalescence characteristics of supercooled sessile water droplets under shear airflow</a></div>
+      <div class="paper-authors">Yiqing Guo, Xuan Zhang, Xin Liu, Xiaomin Wu, Jingchun Min</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129215 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">11</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129068" target="_blank" rel="noopener">Experimental study of local heat transfer with oil jet on rib-roughened surfaces</a></div>
+      <div class="paper-authors">Antoine Martiré, Matthieu Fénot, Manuel Girault, Stéphane Guilain</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129068 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">12</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129205" target="_blank" rel="noopener">Decoupled and coupled aerodynamic–thermal mechanisms of plasma actuation for aircraft anti-icing</a></div>
+      <div class="paper-authors">Chongyang Li, Zhuoling Ran, Lin Tang, Dongyu Zhu, Xuanshi Meng</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129205 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">13</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129204" target="_blank" rel="noopener">Numerical investigation and response-surface optimization of supercritical CO₂ cooling in a helical-ribbed double-pipe heat exchanger equipped with a twisted tape</a></div>
+      <div class="paper-authors">Ziheng Li, Zuoqin Qian, Weilong Huang, Qiang Wang, Yicong Li, Mei Zhou et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129204 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">14</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129190" target="_blank" rel="noopener">A particle-scale thermal resistance model coupling fluid and solid conduction for densely packed pebble beds</a></div>
+      <div class="paper-authors">Yiyang Luo, Nan Gui, Tiezhong Lu, Jiyuan Tu, Shengyao Jiang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129190 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">15</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129167" target="_blank" rel="noopener">Predicting transient quenching curves in narrow rectangular channels via machine learning framework</a></div>
+      <div class="paper-authors">Haidong Liu, Hongfu Jiang, Qianlong Zuo, Hong Gao, Yingtao Sun, Deqi Chen</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129167 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">16</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129187" target="_blank" rel="noopener">Marine engine modeling and performance optimization technologies for low-carbon shipping development</a></div>
+      <div class="paper-authors">Hongzhi Liang, Kai Wang, Junhao Zhao, Yi Wei, Hui Xing, Diankang Zhang et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129187 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">17</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129185" target="_blank" rel="noopener">A coupled thermo–hydraulic model with phase change and local thermal nonequilibrium for simulating freeze–thaw dynamics in fractured porous media</a></div>
+      <div class="paper-authors">Jia-Jing Lin, Chuanyin Jiang, Chin-Fu Tsang, Auli Niemi, Patrik Vidstrand, Qinghua Lei</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129185 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">18</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129198" target="_blank" rel="noopener">Mechanism and multiphysics simulation of edge hot-spot formation in GaN HEMTs: Coupled thermo–electro–mechanical and trap-state effects</a></div>
+      <div class="paper-authors">Xu Hou, Fengyi Li, Aoran Fan, Juan Xue, Fanyuan Zhang, Yufeng Zhang et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129198 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">19</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129195" target="_blank" rel="noopener">Interaction dynamics of an off-center cavitation bubble in a millimeter-scale oil-surrounded water droplet</a></div>
+      <div class="paper-authors">Xiaolong He, Qian Yang, Jianmin Zhang, Zhong Tian, Weilin Xu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129195 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">20</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129104" target="_blank" rel="noopener">Improved weighted residual equations for modeling heat transfer enhancement in thin film flows</a></div>
+      <div class="paper-authors">Igin Benny Ignatius, Florine Giraud, Marguerite Gisclon, Christian Ruyer-Quil</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129104 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">21</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129200" target="_blank" rel="noopener">Numerical simulation on the flow and heat transfer of liquid metals flowing through rough parallel plates</a></div>
+      <div class="paper-authors">Yao Xiong, Hong Wang, Haohua Song, Xiao Yan, Xun Zhu, Qiang Liao</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129200 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">22</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129192" target="_blank" rel="noopener">Study on the optimization of the oscillating tube jet structure and performance for the axial gas wave refrigerator</a></div>
+      <div class="paper-authors">Wanjia Li, Yiming Zhao, Dapeng Hu, Xihao Liu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129192 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">23</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129166" target="_blank" rel="noopener">The mechanisms of flow evolution and thermal redistribution of inert binary gas mixtures in wire-wrapped rod bundles</a></div>
+      <div class="paper-authors">Xingchen Yan, Kai Liu, Xitong Liu, Mingjun Wang, Hanrui Qiu, Mengjiao Feng et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129166 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">24</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129194" target="_blank" rel="noopener">Modelling the role of surface roughness in pool boiling</a></div>
+      <div class="paper-authors">Zhuo Li, Vladan Prodanovic, Matthias Militzer</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129194 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">25</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129170" target="_blank" rel="noopener">Engineering thermal safety in solid-state lithium batteries: Mechanisms, transport limitations, and mitigation strategies</a></div>
+      <div class="paper-authors">Yongbiao Mu, Huicun Gu, Hanshun Lai, Ziyun Zhang, Lin Zeng</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129170 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">26</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129191" target="_blank" rel="noopener">Parameter sensitivity analysis and rapid prediction of thermal response in charring ablative materials</a></div>
+      <div class="paper-authors">Tao-Jie Qin, Dong Li, Ya-Ling He</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129191 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">27</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129162" target="_blank" rel="noopener">Experimental investigation on cutback film cooling with latticework ducts under different crossing angles</a></div>
+      <div class="paper-authors">Qiankun Jia, Wei Du, Lei Luo, Qi Lin, Han Yan, Yinghou Jiao</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129162 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">28</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129216" target="_blank" rel="noopener">Investigation effects of medium thermophysical properties on dynamic Leidenfrost for superheated surface</a></div>
+      <div class="paper-authors">Lu Zhai, Yanmei Liu, Kongyuan Yang, Feng Guan, Weijian Liu, Chunbao Liu et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129216 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">29</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129186" target="_blank" rel="noopener">Effects of structural parameters on ejection performance of a novel radial gas wave ejector with Bezier-curved channels</a></div>
+      <div class="paper-authors">Dapeng Hu, Zongrui Wang, Yiming Zhao, Haoran Li</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129186 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">30</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijheatmasstransfer.2026.129197" target="_blank" rel="noopener">Pressure evolution in spherical LH2 tanks considering ortho-para hydrogen conversion coupled with thermal stratification</a></div>
+      <div class="paper-authors">Xiang Fan, Bofeng Bai</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 270, pp. 129197 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+</ul>
+</div>
+<div class="tab-panel" id="panel-1">
+  <div class="journal-info">
+    <div class="journal-info-left">
+      <div class="journal-name">Applied Thermal Engineering</div>
+      <div class="journal-meta">
+        <span class="meta-tag">ISSN: 1359-4311</span>
+        <span class="meta-tag">Publisher: Elsevier</span>
+        <span class="meta-tag">SJR: 2.8</span>
+        <span class="meta-tag">展示最新 30 篇（近5年共 1000 篇）</span>
+      </div>
+    </div>
+    <div class="journal-meta-badges">
+      <div class="journal-sjif">
+        <span class="sjif-label">SJR</span>
+        <span class="sjif-value">2.8</span>
+      </div>
+      <div class="journal-vol">
+      <span class="journal-vol-label">Vol</span>
+      <span class="journal-vol-value">302</span>
+    </div>
+    </div>
+  </div><div class="journal-summary">【期刊定位】综合技术期刊。【核心研究主题】研究核心集中于传热（约9%论文涉及），其次为热管理、散热器等方向，整体研究覆盖面较广。【近几年发表热点】近年新兴热点包括：传热（9%近期）、热管理（6%近期）、散热器（2%近期），这些方向增长显著，值得关注。【发表规模】近5年共1000篇，年均约1000篇，2026年发表1000篇。</div>
+  <ul class="paper-list">
+<li class="paper-item">
+    <div class="paper-num">1</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.131915" target="_blank" rel="noopener">Significantly optimized two-phase immersion cooling performance of microporous surfaces enabled by tailoring WEDM pulse parameters</a></div>
+      <div class="paper-authors">Hualin Ma, Yumeng Shi, Wenbin Zhou, Guodong Xia</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 131915 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">2</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.131847" target="_blank" rel="noopener">Heat extraction performance of nanofluid gravity heat pipes in lignite</a></div>
+      <div class="paper-authors">Yanan Hou, Jiaojiao Wu, Zhiyuan Xu, Baisheng Nie</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 131847 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">3</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.131819" target="_blank" rel="noopener">Thermo-aerodynamic regulation of cylindrical and conical solar evaporators via bio-inspired helical structures for mass transfer enhancement</a></div>
+      <div class="paper-authors">Hanting Mao, Jiyue Wang, Bo Li</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 131819 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">4</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.131947" target="_blank" rel="noopener">Thickness-dependent transport limitation and perforation-enabled recovery in carbonized wood/CaCl2 composites for thermochemical energy storage</a></div>
+      <div class="paper-authors">Qiuyi Zhang, Xucan Chen, Jiankun Zhuo, Erchao Li, Haiyan Liao, Qiang Yao</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 131947 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">5</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.131988" target="_blank" rel="noopener">Numerical investigation of the effect of microscale gas bubbles injection on developed cavitation using a hybrid cavitation model</a></div>
+      <div class="paper-authors">Jianbo Zang, Linmin Li, Xiufei Yang, Qi Chen, Desheng Zhang, Mingxia Wang et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 131988 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">6</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.132014" target="_blank" rel="noopener">Experimental study on transcritical CO2 heat pump space heating system with economizing heat exchanger</a></div>
+      <div class="paper-authors">Shoubing Zhang, Zunlong Jin, Junfen Li, Yang Liu, Yanjie Wang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 132014 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">7</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.131959" target="_blank" rel="noopener">A self-evolving modeling framework for long-term performance tracking of thermal systems</a></div>
+      <div class="paper-authors">Yongfeng Shen, Zihan Jia, Xiaolong Gou</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 131959 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">8</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.131743" target="_blank" rel="noopener">Machine learning-integrated performance and emission analysis of hydrogen-enriched biogas dual-fuel CI engine operated with 100% Pongamia methyl ester</a></div>
+      <div class="paper-authors">A. Kumaraswamy</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 131743 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">9</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.131938" target="_blank" rel="noopener">Effect of low pressure on the thermal runaway characteristics and gas diffusion behavior of prismatic lithium-ion batteries</a></div>
+      <div class="paper-authors">Zhuangzhuang Jia, Qingsong Wang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 131938 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">10</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.131957" target="_blank" rel="noopener">Construction of an experiment-based artificial neural network model for predicting vortex tube performance and analysis of synergistic relationship of influencing parameters</a></div>
+      <div class="paper-authors">Weibin Wang, Jianyong Wang, Yang Yu, Yuanxi Wu, Xiaoqin Liu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 131957 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">11</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.132026" target="_blank" rel="noopener">Sorption thermal energy storage: Advances and prospects from key materials towards system integration</a></div>
+      <div class="paper-authors">Ruolin Zhang, Yanjun Du, Xiaoqiong Li, Tingting Zhu, Biao Lei, Yuting Wu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 132026 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">12</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.131724" target="_blank" rel="noopener">Coupled effects of outdoor air temperature and relative humidity on the cooling performance of spraying system</a></div>
+      <div class="paper-authors">Liming Ge, Meng Wei, Chenxi Hu, Xi Meng</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 131724 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">13</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.132092" target="_blank" rel="noopener">Multi-parameter thermal runaway and staged gas explosion characteristics of a 228 ah mining lithium-ion battery</a></div>
+      <div class="paper-authors">Yong Shen, Xiangfeng Zhang, Keyi Zou, Chenglong Wang, Weiyu Cai, Fengjin Cao et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 132092 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">14</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.132040" target="_blank" rel="noopener">Two-phase flow regimes for adiabatic and condensation flow of HF-52 fluid in rigid and elastic microchannels</a></div>
+      <div class="paper-authors">Ziqi Liu, Ji Wang, Chun Yang, Yiru Chen, Yuning Zhang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 132040 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">15</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.132059" target="_blank" rel="noopener">Numerical investigation of the influence of the degree of unsaturation on ignition behavior, emissions, and dilution tolerance in a light-duty diesel engine</a></div>
+      <div class="paper-authors">Zhefeng Guo, Yang Han, Huangchang Ji, Timothy H. Lee</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 132059 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">16</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.132089" target="_blank" rel="noopener">Experimental investigation on ash deposition and heat transfer characteristics of in-line tube bundles: Effects of flue gas velocity, ash concentration, and tube pitch</a></div>
+      <div class="paper-authors">Songzhen Tang, Xiangwei Chen, Feiyang Zhang, Lei Zhu, Zhe Chang, Junjie Zhou et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 132089 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">17</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.131921" target="_blank" rel="noopener">Physics-guided stage-wise combustion digital twin and reliability-enhanced MORE for safe boiler combustion optimization</a></div>
+      <div class="paper-authors">Yong-Feng Ren, Hua-Jian Zhou, Ming-Yu Chen, Jing-Bo Zhou, Shun Wang, Dong-Fang Yang et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 131921 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">18</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.132112" target="_blank" rel="noopener">A new control strategy for charge air pressure in a heavy-duty cyclops RCCI test engine</a></div>
+      <div class="paper-authors">Seyfi Polat, Xiaoguo Storm, Martin Axelsson, Jari Hyvönen, Maciej Mikulski</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 132112 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">19</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.132135" target="_blank" rel="noopener">Thermal management of thermoelectric generators: A thermal-resistance-chain perspective</a></div>
+      <div class="paper-authors">Wenlong Yang, Wenchao Zhu, Bingxin Guo, Haokang Zhang, Xinan Zhang, Changjun Xie</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 132135 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">20</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.132051" target="_blank" rel="noopener">Coupled fire spread behavior of green walls under different Ignition Heights based on experimental and numerical investigation</a></div>
+      <div class="paper-authors">Zhen Ni, Denvid Lau, Cheuk Lun Chow</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 132051 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">21</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.131887" target="_blank" rel="noopener">Environment-interactive energy management for fuel cell vehicles: From system structures to intelligent optimization</a></div>
+      <div class="paper-authors">Lei Yao, Xiaoyue Li, Caiping Zhang, Yanqiu Xiao, Zhigen Fei, Huizi Chen</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 131887 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">22</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.131828" target="_blank" rel="noopener">A hybrid machine learning-mechanistic modeling framework for zeotropic ORC systems: Unraveling composition-property-heat transfer-performance pathways</a></div>
+      <div class="paper-authors">Bo Liu, Pei Lu, Xianglong Luo, Yingzong Liang, Zhi Yang, Jianyong Chen et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 131828 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">23</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.131740" target="_blank" rel="noopener">Experimental and numerical study on shock-induced enhanced supersonic combustion in a scramjet combustor</a></div>
+      <div class="paper-authors">Guoxiong Liu, Ye Tian, Fan Wu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 131740 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">24</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.131728" target="_blank" rel="noopener">Advancing simultaneous component and cycle optimization: A holistic cycle-optimized collaborative design concept for Brayton cycle heat pumps</a></div>
+      <div class="paper-authors">Jens Gollasch, Michael Lockan</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 131728 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">25</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.131650" target="_blank" rel="noopener">Melting performance analysis of heat transfer in metal foam-fin enhanced phase change cold storage</a></div>
+      <div class="paper-authors">Chuanqi Chen, Lang Liu, Yanhua Diao, Chao Huan, Yidan Chang, Jing Zhou et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 131650 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">26</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.131931" target="_blank" rel="noopener">Modeling and design of a weight-based fuzzy logic decoupling controller for direct cooling thermal management systems in electric vehicles</a></div>
+      <div class="paper-authors">Chouxu Chen, Chongyang Ye, Yifan Zheng, Yudong Xia, Xiangguo Xu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 131931 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">27</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.131820" target="_blank" rel="noopener">Thermoelastic analysis of a compact strain relief device with helical microtubes for a sCO₂ power installation</a></div>
+      <div class="paper-authors">Mingyu Zheng, Zhigang Li, Haisong Zhang, Chaohong Guo, Shiqiang Liang, Yong Tian et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 131820 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">28</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.131867" target="_blank" rel="noopener">An intelligent short-term load forecasting method for virtual power plants incorporating demand response and multi-strategy optimization</a></div>
+      <div class="paper-authors">Jingzheng Li, Zhiwen Zhao, Tao Jin, Mohamed A. Mohamed</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 131867 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">29</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.131709" target="_blank" rel="noopener">Review on the thermal management and thermal suppression of high-energy-density lithium-ion batteries based on energy-efficient liquid cooling techniques</a></div>
+      <div class="paper-authors">Hengyun Zhang, Can Zhao, Zhengzhe Zhang, Jiaming Liu, Satyam Panchal, Xu Xiaobin et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 131709 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">30</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.applthermaleng.2026.131325" target="_blank" rel="noopener">A technology assessment of heat exchangers and compressors to enable high efficiency Brayton cycle designs for nuclear power plants</a></div>
+      <div class="paper-authors">Aidan Rigby, Logan Williams, Václav Novotný, Tyler Westover, Rami Saeed, Junyung Kim</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 302, pp. 131325 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+</ul>
+</div>
+<div class="tab-panel" id="panel-2">
+  <div class="journal-info">
+    <div class="journal-info-left">
+      <div class="journal-name">IEEE Transactions on Components, Packaging and Manufacturing Technology</div>
+      <div class="journal-meta">
+        <span class="meta-tag">ISSN: 2156-3950</span>
+        <span class="meta-tag">Publisher: IEEE</span>
+        <span class="meta-tag">SJR: 2.1</span>
+        <span class="meta-tag">展示最新 30 篇（近5年共 1000 篇）</span>
+      </div>
+    </div>
+    <div class="journal-meta-badges">
+      <div class="journal-sjif">
+        <span class="sjif-label">SJR</span>
+        <span class="sjif-value">2.1</span>
+      </div>
+      <div class="journal-vol">
+      <span class="journal-vol-label">Vol</span>
+      <span class="journal-vol-value">16</span>
+    </div>
+    </div>
+  </div><div class="journal-summary">【期刊定位】综合技术期刊。【核心研究主题】研究主题较为分散，暂无明显主导方向。【近几年发表热点】近年新兴热点包括：倒装芯片（1%近期）、电力电子（1%近期）、疲劳寿命（1%近期），这些方向增长显著，值得关注。【发表规模】近5年共1000篇，年均约250篇，2026年同比-25%。</div>
+  <ul class="paper-list">
+<li class="paper-item">
+    <div class="paper-num">1</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3682865" target="_blank" rel="noopener">Spray Deposition for Board-Level Shielding Assessed Through MSRC Measurements</a></div>
+      <div class="paper-authors">Victor Mahaut, Tristan Dubois, Alexandrine Gracia, Wilson Maia</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1440-1449 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">2</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3697955" target="_blank" rel="noopener">Table of Contents</a></div>
+      <div class="paper-authors"></div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. C1-C4 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">3</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3694182" target="_blank" rel="noopener">Overcoming BEOL Thermal Constraints in Heterogeneous Integration of $α$-Ga$_{2}$O$_{3}$ UV-C Photodetectors Using Low-Temperature Thermal Compression Bonding</a></div>
+      <div class="paper-authors">Ji Yun Lee, Dong Yun Sung, Sun Jae Kim, Jong Kyung Park, Sarah Eunkyung Kim, Dae-Woo Jeon et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1415-1422 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">4</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3687162" target="_blank" rel="noopener">Electroless-Plated Gold Nanolayer for Low-Temperature Copper Hybrid Bonding</a></div>
+      <div class="paper-authors">Byeongchan Go, Hoogwan Lee, Keiyu Komamura, Takanori Kishida, Sarah Eunkyung Kim</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1450-1455 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">5</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2025.3635181" target="_blank" rel="noopener">Bus-Aware Simultaneous Escape Routing With Through-Bus Net Avoidance</a></div>
+      <div class="paper-authors">Jin-Tai Yan</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1401-1414 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">6</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3657752" target="_blank" rel="noopener">Transient-Simulation-Driven Model Order Reduction for Efficient Periodic Steady-State Analysis via Shooting Method</a></div>
+      <div class="paper-authors">Germin Ghaly, Emad Gad, Michel S. Nakhla</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1380-1392 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">7</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3672652" target="_blank" rel="noopener">Application of Nonlinear Fracture Mechanics Parameter Δ
+                    <i>T</i>
+                    <sup>*</sup>
+                    to Estimating Wire-Liftoff Lifetime: Effect of Creep Constitutive Equations</a></div>
+      <div class="paper-authors">Nobuyuki Shishido, Yutaka Hayama, Saya Okamoto, Yusuke Shigyo, Shinya Taketomi, Masaaki Koganemaru et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1332-1340 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">8</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2025.3641249" target="_blank" rel="noopener">Balanced Vertical Structures for Thermal Expansion Matching and Reduced Thermomechanical Stress in Silicon Carbide Double-Sided Cooling Power Modules</a></div>
+      <div class="paper-authors">Seung Hyun Won, Kyoung Kook Hong, Sang Won Yoon</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1303-1311 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">9</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2025.3622034" target="_blank" rel="noopener">Novel Electrical Analytical Model of Serpentine Stretchable Interconnect Under Mechanical Effects</a></div>
+      <div class="paper-authors">Gulafsha Bhatti, Yash Agrawal, Vinay Palaparthy, Mekala Girish Kumar, Rohit Sharma</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1290-1302 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">10</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3692519" target="_blank" rel="noopener">A High-Isolation Self-Packaged Filter Array Using a 3-D Hybrid Integrated Shielding Cavity</a></div>
+      <div class="paper-authors">Shaohui Liu, Xiaozhi Liu, Yongping Xiao, Yaya Liang, Pingan Du</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1220-1227 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">11</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3687148" target="_blank" rel="noopener">Schematic-Aware PCB Inspection Using Computer Vision and Deep Learning for Trace, Solder, and Net-Level Fault Detection</a></div>
+      <div class="paper-authors">Praveen Kumar Pal, Bhavesh Kataria, Jagdish Jangid</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1423-1439 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">12</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2025.3634597" target="_blank" rel="noopener">Virtual Dissection of Void in Solder Joints and the Impact of
+                    <i>R</i>
+                    <sub>DS(on)</sub>
+                    on the Reliability Performance of SiC Power MOSFETs</a></div>
+      <div class="paper-authors">Nur Syamimi Noorasid, A. A. Kamarolzaman, Muhammad Zaimi Bin Zainal Abidin, Nadlene Razali, Muhamad Shafiq Sukiman, Shutesh Krishnan et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1341-1348 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">13</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3659137" target="_blank" rel="noopener">Systematic Design of Low-Pass Filtering Power Divider</a></div>
+      <div class="paper-authors">Kuo-Lun Sun, Pu-Hua Deng</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1371-1379 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">14</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3681670" target="_blank" rel="noopener">Electrical Life Assessment of Hybrid Circuit Breakers Based on Segmented Electrical Wear Model</a></div>
+      <div class="paper-authors">Yunhong Zhou, Lei Xu, Kaiyi Wang, Chenbin Wang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1312-1320 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">15</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3687804" target="_blank" rel="noopener">A Broadband In-Line Transition From Microstrip Line to Groove Gap Waveguide With a Tunable In-Band Notch</a></div>
+      <div class="paper-authors">Shuning Wei, Haohan Xie, Jun Dong, Yi Yang, Wanyun Zhang, Jinlin Li et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1470-1473 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">16</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2025.3635767" target="_blank" rel="noopener">A Novel Annular-Dielectric-Layer-Structured TSV in Silicon Interposer for 2.5-D/3-D Integration</a></div>
+      <div class="paper-authors">Hongyang Wang, Tianchi Chen, Jinsong Peng, Lianchao Sheng, Guo Ye, Zhenzhi He et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1321-1331 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">17</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3689410" target="_blank" rel="noopener">Integrated Self-Diplexing Filtering Antenna Module for n78/n79 5G Front Ends</a></div>
+      <div class="paper-authors">Brij Kumar Bharti, Suyash Kumar Singh, Amar Nath Yadav, Ajay Kumar Dwivedi</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1393-1400 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">18</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3697959" target="_blank" rel="noopener">IEEE Transactions on Components, Packaging and Manufacturing Technology Information for Authors</a></div>
+      <div class="paper-authors"></div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1474-1474 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">19</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3681016" target="_blank" rel="noopener">A General Design Methodology for Multichannel SIW Filtering Crossovers With Flexible Frequency Responses</a></div>
+      <div class="paper-authors">Zhenghai Luo, Kang Zhou, Fang Zhu, Gang Zhang, Ke Wu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1359-1370 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">20</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3663717" target="_blank" rel="noopener">Transient Modeling of Nonlinear Components Using Global Gated Deep Recurrent Neural Network Masked With Dropout</a></div>
+      <div class="paper-authors">Zohreh Naghibi, Sayed Alireza Sadrossadat, Manuel Günther, Akash Kumar</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1349-1358 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">21</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3697961" target="_blank" rel="noopener">IEEE Transactions on Components, Packaging and Manufacturing Technology Society Information</a></div>
+      <div class="paper-authors"></div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. C3-C3 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">22</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3693558" target="_blank" rel="noopener">In Situ Health Monitoring for 3-D Heterogeneous Integrated Systems: Embedded Current Sensing and Adaptive Self-Diagnosis Approach</a></div>
+      <div class="paper-authors">Zhenzhong Yang, Kun Liu, Ning An, Pan Xu, Shuairong Deng, Penglong Lian et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1239-1249 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">23</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3686378" target="_blank" rel="noopener">A Chip-on-Board Packaging Scheme for Amorphous-Wire GMI Magnetic Sensors</a></div>
+      <div class="paper-authors">Qianzhen Su, Zepeng Wang, Bo Zhang, Xiaolong Wen, Jianhua Li</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1250-1256 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">24</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3683865" target="_blank" rel="noopener">Structural Reliability Design Implications of Low-Au Versus Au-Free Ag Bonding Wires Under Accelerated Moisture Stress</a></div>
+      <div class="paper-authors">You-Cheol Jang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1282-1289 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">25</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3697957" target="_blank" rel="noopener">IEEE Transactions on Components, Packaging and Manufacturing Technology Publication Information</a></div>
+      <div class="paper-authors"></div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. C2-C2 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">26</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3692591" target="_blank" rel="noopener">Transfer Learning and Super Resolution Assisted Few-Shot and Small Defect Detection in Printed Circuit Boards</a></div>
+      <div class="paper-authors">Yong Hu, Qun Chao, Benran Zhu, Chengliang Liu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1209-1219 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">27</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3682778" target="_blank" rel="noopener">Accelerated Multiphysics Uncertainty Quantification of RF Components for Heterogeneous Integration Using the Preconditioner-Reuse-Based FEM Solver</a></div>
+      <div class="paper-authors">Shi-Wei Guo, Hao-Xuan Zhang, Yi-Yao Wang, Kaiyuan Jin, Zhe Chen, Letian Guo et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1257-1268 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">28</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3690735" target="_blank" rel="noopener">Equivalent Circuit Model of Discrete Package for RF GaN Power Amplifiers</a></div>
+      <div class="paper-authors">Simone Spataro, Martina Ruvolo, Giacomo Migliore, Giuseppina Sapone, Marcello Giuffrida, Andrea Foti</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1466-1469 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">29</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3666744" target="_blank" rel="noopener">Automotive Reliability Benchmarks for High-Lead Pb–Sn–Ag Die Attach in PQFN Power Packages: Implications for Pb-Free Transition</a></div>
+      <div class="paper-authors">YongWon Lee</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1456-1465 (2026)</span>
+        <span>⬆️ Cited by: 1</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">30</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1109/tcpmt.2026.3691875" target="_blank" rel="noopener">Arc Restrike in DC Contactor During Arc Splitting Process Under Inhomogeneous Magnetic Field and Its Evaluation Methodology</a></div>
+      <div class="paper-authors">Shidong Peng, Jing Li, Yifan Zhao, Zhengbo Li, Shuxin Liu, Si Fu et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 16, No. 6, pp. 1269-1281 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+</ul>
+</div>
+<div class="tab-panel" id="panel-3">
+  <div class="journal-info">
+    <div class="journal-info-left">
+      <div class="journal-name">International Journal of Thermal Sciences</div>
+      <div class="journal-meta">
+        <span class="meta-tag">ISSN: 1290-0729</span>
+        <span class="meta-tag">Publisher: Elsevier</span>
+        <span class="meta-tag">SJR: 2.4</span>
+        <span class="meta-tag">展示最新 30 篇（近5年共 999 篇）</span>
+      </div>
+    </div>
+    <div class="journal-meta-badges">
+      <div class="journal-sjif">
+        <span class="sjif-label">SJR</span>
+        <span class="sjif-value">2.4</span>
+      </div>
+      <div class="journal-vol">
+      <span class="journal-vol-label">Vol</span>
+      <span class="journal-vol-value">229</span>
+    </div>
+    </div>
+  </div><div class="journal-summary">【期刊定位】综合技术期刊。【核心研究主题】研究核心集中于传热（约22%论文涉及），其次为热管理、散热器、热导率等方向，整体研究覆盖面较广。【近几年发表热点】近年新兴热点包括：传热（22%近期）、热管理（5%近期）、散热器（3%近期），这些方向增长显著，值得关注。【发表规模】近5年共999篇，年均约500篇，2026年同比+409%。</div>
+  <ul class="paper-list">
+<li class="paper-item">
+    <div class="paper-num">1</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111014" target="_blank" rel="noopener">Hierarchically arranged U-shaped cooling channels in turbine blades: flow and heat transfer characteristics</a></div>
+      <div class="paper-authors">Li-Qian Wang, Ben-Xi Zhang, Jia-Yu Chen, Yan-Ru Yang, Xiao-Dong Wang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111014 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">2</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111073" target="_blank" rel="noopener">Thermal conductivity of aluminum sulfate-treated sewage sludge ash cement composites</a></div>
+      <div class="paper-authors">Ahmad AbuSeif, Chunli Zheng</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111073 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">3</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111120" target="_blank" rel="noopener">Performance of immersion liquid-cooled battery thermal management system for cylindrical lithium-ion battery module</a></div>
+      <div class="paper-authors">Haobing Zhou, Dayu Gong, Weifeng Li, Kelong Zhang, Xiaofeng Guo, Hongwei Yang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111120 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">4</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111079" target="_blank" rel="noopener">Lithium-plating-free fast charging of lithium-ion batteries via electrochemical-thermal-aging coupled modeling</a></div>
+      <div class="paper-authors">Chengming Li, Yanan Wang, Lujiang Wang, Zhihua Li, Zhijie Cheng, Xin Sun</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111079 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">5</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111109" target="_blank" rel="noopener">Thermohydraulic characteristics of circular tube-and-fin heat exchangers with different fin configurations</a></div>
+      <div class="paper-authors">QiuXia Yang, XuanXing Wan, QunYu Zhang, Lin Chen, QingZhi Hou, KeWei Song</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111109 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">6</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111060" target="_blank" rel="noopener">VO2 metamaterial phase-change engineering: symmetric metasurfaces for thermally reconfigurable terahertz ultra-wideband absorption</a></div>
+      <div class="paper-authors">Jinhe Wang, Chunlan Wang, Ming Zhao, Lichao Yang, Yuchen Xu, Zhiyang Jin et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111060 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">7</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111055" target="_blank" rel="noopener">A multistage data-driven method for deriving a compact heat-generation correlation from high-precision calorimetry data of lithium-ion batteries: A case study for 18650 NMC cell</a></div>
+      <div class="paper-authors">Vijay Kumar Chauhan, Jishnu Bhattacharya</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111055 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">8</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111103" target="_blank" rel="noopener">Machine learning regression analysis of impinging slot jet with various aspect ratios to heated rough surface</a></div>
+      <div class="paper-authors">Nevin Celik, Celal Kistak, Ali Taskiran, Beyda Tasar</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111103 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">9</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111085" target="_blank" rel="noopener">Investigation of the thermal enhancement performance of circular and square mini-channel heat sinks with perforated and non-perforated twisted tape inserts</a></div>
+      <div class="paper-authors">Tanimu Jatau, Tunde Bello-Ochende, Arnaud G. Malan</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111085 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">10</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111112" target="_blank" rel="noopener">Optimization design of Y-fractal channels in cooling plates for electric vehicle battery thermal management</a></div>
+      <div class="paper-authors">Haorui Liao, Boyang Fan, Mengwen Huang, Yidong Lu, Kaixuan Gu, Huikun Cai</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111112 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">11</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111059" target="_blank" rel="noopener">On fluid flow and conjugated heat transfer for blade tip in a 180-deg sharp-turn passage with combined film and impingement cooling</a></div>
+      <div class="paper-authors">Zhiqi Zhao, Yuanjie Zhang, Dandan Qiu, Hongyu Zhang, Guangchao Li, Hao Fu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111059 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">12</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111092" target="_blank" rel="noopener">Multi-objective optimization of an immersion cooled LIB module for battery thermal management</a></div>
+      <div class="paper-authors">K.V. Jithin, P.K. Rajesh</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111092 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">13</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111084" target="_blank" rel="noopener">Pore-wall specularity suppresses thermal rectification in asymmetric nanoporous silicon: A nonlinear gray phonon-BTE study</a></div>
+      <div class="paper-authors">Othman Soubai, Younes Abouelhanoune, Mohammed Taibi</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111084 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">14</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111051" target="_blank" rel="noopener">Buoyant viscoelastic flow instability in a vertical anisotropic porous slab</a></div>
+      <div class="paper-authors">B.M. Shankar, I.S. Shivakumara, D.A.S. Rees, A. Barletta</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111051 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">15</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111117" target="_blank" rel="noopener">Laboratory study of flow and heat transfer in an underground coal gasification cavity with ash layer</a></div>
+      <div class="paper-authors">Jianwei Zhou, Shanshan Chen, Yanpeng Chen, Xun Zhang, Bingchuan Nie, Feng Xu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111117 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">16</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111087" target="_blank" rel="noopener">Experimental investigation of effects of system operating parameters on liquid nitrogen chilldown of a 2-meter-long metal tube</a></div>
+      <div class="paper-authors">Bohan Huang, Hao Wang, J.N. Chung, J.W. Hartwig</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111087 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">17</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111078" target="_blank" rel="noopener">Simultaneously enhancing heat transfer and reducing friction loss in turbine blade internal cooling using hierarchically arranged cylindrical grooves</a></div>
+      <div class="paper-authors">Lin Lin, Hao Fan, Kai-Qi Zhu, Yi-Feng Wang, Shu-Rong Gao, Shao-Fei Zheng et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111078 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">18</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111129" target="_blank" rel="noopener">Selection of the mini- and micro-channels geometry for improved heat recuperation in specific industrial conditions</a></div>
+      <div class="paper-authors">Petro Kapustenko, Leonid Tovazhnyanskyy, Olga Arsenyeva, Julia Riese, Petar Sabev Varbanov</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111129 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">19</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111046" target="_blank" rel="noopener">Axial conduction effects in the extended Graetz problem for slip-flow microchannels with piecewise constant wall temperature</a></div>
+      <div class="paper-authors">Julio C. Vega Ott, Youssef Haddout</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111046 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">20</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111047" target="_blank" rel="noopener">Thermo-hydraulic performance evaluation and multi-objective optimization of a rectangular channel with inline-arranged BCCZ lattice structures</a></div>
+      <div class="paper-authors">Ali Eray Torun, Sertac Cadirci</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111047 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">21</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111065" target="_blank" rel="noopener">Numerical study of heat transfer characteristics of lattice structures considering the coupling effects of combustion and regenerative cooling</a></div>
+      <div class="paper-authors">Ruiqi Wang, Weiliang Zhuang, Hang Pu, Jinzhao Wang, Tongyu Zhou, Lin Mu et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111065 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">22</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111100" target="_blank" rel="noopener">Thermal performance analysis and parameter optimization of spiral-wound heat exchangers by using local thermal-resistance ratio</a></div>
+      <div class="paper-authors">Xiaolong Bi, Bo Zhang, Qiang Guo, Tianhao Wang, Wenyuan Guo, Wenxiao Chu et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111100 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">23</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111082" target="_blank" rel="noopener">Microwave shallow soil surface sterilization using a compact slow-wave patch antenna</a></div>
+      <div class="paper-authors">Kiran Kumari, Mayank Agarwal, Rajesh Khanna, Hari Shankar Singh</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111082 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">24</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111135" target="_blank" rel="noopener">Experimental and numerical investigation of air flat-plate film cooling with mist injections for different film hole shapes</a></div>
+      <div class="paper-authors">Dehai Kong, Weiyue Chen, Wen Guo, Song Liu, Qinqin Wang, Cheng Sun et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111135 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">25</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111048" target="_blank" rel="noopener">Reconstruction of temperature and heat flux from Thermal Large Eddy Simulations using Deep Learning</a></div>
+      <div class="paper-authors">Yanis Zatout, Onofrio Semeraro, Lionel Mathelin, Françoise Bataille, Adrien Toutant</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111048 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">26</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111080" target="_blank" rel="noopener">The effects of longitudinal and transverse tube pitches on the air side thermal characteristics of the L-footed spiral finned tube heat exchanger</a></div>
+      <div class="paper-authors">Ramazan Yılmaz, Necdet Özbalta</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111080 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">27</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111083" target="_blank" rel="noopener">Extended physics-informed neural networks with dynamic heat partition for heat transfer modeling in wet friction components of transmission systems</a></div>
+      <div class="paper-authors">Peng Zhang, Changsong Zheng, Cenbo Xiong, Satoshi Momozono, Lianxu Zu, Guoqiang Dang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111083 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">28</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111113" target="_blank" rel="noopener">Compensation of micro-scale thermo–hydrodynamic coupling effects for ultra-precision surface plasmon resonance biosensing</a></div>
+      <div class="paper-authors">Jian-Hong Yang, Chia-Ling Chiang, Hong-Xiang Jiang, Pien-Pien Lin, Ming-Hsien Lee, Ying-Ju Chen et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111113 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">29</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111127" target="_blank" rel="noopener">A comparative study of tightly/loosely coupled approaches for the fire-induced thermal response and thermal feedback effects of polymer matrix composites</a></div>
+      <div class="paper-authors">Haotian Feng, Beihua Cong, Xuanyi Zhou</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111127 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">30</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1016/j.ijthermalsci.2026.111099" target="_blank" rel="noopener">Study on convective heat transfer characteristics of supercritical carbon dioxide in tubes under non-uniform heat flux</a></div>
+      <div class="paper-authors">Jian Dai, Haocheng Dai</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 229, pp. 111099 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+</ul>
+</div>
+<div class="tab-panel" id="panel-4">
+  <div class="journal-info">
+    <div class="journal-info-left">
+      <div class="journal-name">Journal of Electronic Packaging</div>
+      <div class="journal-meta">
+        <span class="meta-tag">ISSN: 1043-7398</span>
+        <span class="meta-tag">Publisher: ASME</span>
+        <span class="meta-tag">SJR: 2.5</span>
+        <span class="meta-tag">展示最新 30 篇（近5年共 248 篇）</span>
+      </div>
+    </div>
+    <div class="journal-meta-badges">
+      <div class="journal-sjif">
+        <span class="sjif-label">SJR</span>
+        <span class="sjif-value">2.5</span>
+      </div>
+      <div class="journal-vol">
+      <span class="journal-vol-label">Vol</span>
+      <span class="journal-vol-value">148</span>
+    </div>
+    </div>
+  </div><div class="journal-summary">【期刊定位】综合技术期刊。【核心研究主题】研究核心集中于热管理（约18%论文涉及），其次为传热、热阻、电力电子等方向，整体研究覆盖面较广。【近几年发表热点】近年新兴热点包括：热管理（18%近期）、传热（11%近期）、热阻（11%近期），这些方向增长显著，值得关注。【发表规模】近5年共248篇，年均约50篇，2026年同比+55%。</div>
+  <ul class="paper-list">
+<li class="paper-item">
+    <div class="paper-num">1</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4071751" target="_blank" rel="noopener">Application of Laser Assisted Soldering for Replacing Massive Reflow in Solder Ball Mounting Process</a></div>
+      <div class="paper-authors">Jong-Chan Park, Chung-Lyul Ahn, Tae-Keun Lee</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 148, No. 4 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  This study analyzes the feasibility of introducing laser assisted soldering (LAS) into solder ball mounting (SBM) process. The vertical cavity surface emitting laser (VcSEL) adopted in this LAS system radiates an infrared (...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">2</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4072231" target="_blank" rel="noopener">Server-Level Demonstration of Package-Integrated, Two-Phase Jet Impingement Cooling on AI Chipsets</a></div>
+      <div class="paper-authors">Sidharth Rajeev, Ketan Yogi, Venkata Achyuth Kunchapu, Yunchun Yang, Harish Kumar Lattupalli, Scott Schiffres et al.</div>
+      <div class="paper-meta">
+        <span>📖 pp. 1-13 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  The rapid growth of digitalization and data-driven technologies is driving large-scale deployment of data centers worldwide. As societies become increasingly data-hungry, the energy consumption of data centers continues to ...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">3</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4072077" target="_blank" rel="noopener">Development Toward Low Temperature Co-Fired Ceramic (LTCC) Electric Propulsion (EP) System with Demonstration of Plasma Generation</a></div>
+      <div class="paper-authors">Morgan Roddy, Samuel Cano, Po-Hao Adam Huang</div>
+      <div class="paper-meta">
+        <span>📖 pp. 1-37 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  This paper reports to the authors' knowledge, the first use of low-temperature co-fired ceramics (LTCC) to construct a monolithic device with all the architectural elements of a gridded RF ion thruster and its complex inter...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">4</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4071873" target="_blank" rel="noopener">Assessment of Thermal Fatigue Reliability in 3D Integrated Through-Silicon Via and Solder Joint Structures Under Oil-Immersion Cooling</a></div>
+      <div class="paper-authors">Unique Rahangdale, Sonkolon Barua, Rohit Kumar Suthar, Megha Tangri, Dikshya Bhattarai, Meysam Emami et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 148, No. 4 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  The growing demand for higher computational efficiency in data centers and AI hardware is accelerating the adoption of three dimensional (3D) heterogeneous integration and immersion-cooling technologies. Oil immersion offer...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">5</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4072236" target="_blank" rel="noopener">Novel Method For Power Consumption-Based Temperature Sensing In Soc Device.</a></div>
+      <div class="paper-authors">Piyush Kulkarni, Zechen Zhang, Bahgat Sammakia, Scott Schiffres</div>
+      <div class="paper-meta">
+        <span>📖 pp. 1-21 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  A novel in-situ method to indirectly sense changing thermal properties of the TIM (thermal interface material) without using any onboard temperature sensors is demonstrated. The technique can detect the average junction tem...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">6</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4072185" target="_blank" rel="noopener">Challenges and Best Practices in Deploying Liquid-to-Air Sidecar CDUs for AI Data Centers</a></div>
+      <div class="paper-authors">Vahideh Radmard, Farzaneh Hosseini, Ali Heydari, Mohammad Tradat, Saket Karajgikar, Dwayne Kalma et al.</div>
+      <div class="paper-meta">
+        <span>📖 pp. 1-17 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  The rapid growth of AI workloads has pushed rack power densities to unprecedented levels, testing the limits of legacy air-cooled data centers. Liquid-to-air (L2A) sidecar coolant distribution units (CDUs) have emerged as a...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">7</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4071962" target="_blank" rel="noopener">Multiphysics-Constrained Optimization of an Axial-Flux Consequent-Pole Motor for Electronics Cooling Systems</a></div>
+      <div class="paper-authors">Hyeon-Jun Kim, Wan-Chin Kim, Sangwook Lee, Soo-Whang Baek</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 148, No. 4 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  Electronics cooling systems depend on compact motor-driven pumps to maintain thermal stability in high-power electronic applications. In such systems, improving motor torque density alone is insufficient, as electromagnetic...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">8</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4071982" target="_blank" rel="noopener">Using Data Center Waste Heat for Hydrogen Production</a></div>
+      <div class="paper-authors">Sam Kane, Maria Norman, Aaron P. Wemhoff</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 148, No. 4 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  Data centers are anticipated to consume up to 9% of global electricity by 2030 and have a corresponding large carbon and water footprint. This study provides the first known comparison of systems that reuse waste heat from ...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">9</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4072184" target="_blank" rel="noopener">Analysis of Multi-Finger GaN HEMTs Using Gate Resistance Thermometry, Raman Thermometry, and Infrared Thermal Microscopy</a></div>
+      <div class="paper-authors">Seokjun Kim, Daniel Shoemaker, Husam Walwil, Isaac Wildeson, Puneet Srivastava, Bill Zivasatienraj et al.</div>
+      <div class="paper-meta">
+        <span>📖 pp. 1-20 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  Gallium nitride (GaN) high electron mobility transistors (HEMTs) are key components in high-power, high-frequency applications. Unfortunately, their performance is limited by self-heating effects, particularly in multifinge...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">10</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4072065" target="_blank" rel="noopener">System-Level Thermal Analysis of Two-Phase Direct-to-Chip Cooling for Data Centers With Chilled Facility Water</a></div>
+      <div class="paper-authors">Qingyang Wang, Serdar Ozguc, Richard W. Bonner</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 148, No. 4 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  The increasing power densities of processors and server racks necessitate advanced thermal management solutions for data centers. Pumped two-phase (2P) direct-to-chip (DTC) cooling leverages boiling of a dielectric refriger...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">11</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4071372" target="_blank" rel="noopener">Propensity for Pad Cratering Evaluation in Board Resin and Board-Resin/Glass Interface Under Assembly and Rework</a></div>
+      <div class="paper-authors">Pradeep Lall, Padmanava Choudhury, Aathi RajaRam Pandurangan</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 148, No. 2 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  Pad cratering is a major concern in high I/O ball grid array packaging architectures. Assessment of propensity for pad cratering is presently beyond the state of art. Failure in pad cratering is manifested through the fract...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">12</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4071198" target="_blank" rel="noopener">Thermomechanical Finite Element Analysis of Cu–SiCN Hybrid Bonding With Protruding and Recessed Cu Pad in Three-Dimensional Integrated Circuits</a></div>
+      <div class="paper-authors">Tao He, Chang Wang, Bin Xie, ZhouLong Xu, ZhouPing Yin, Hao Wu</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 148, No. 2 (2026)</span>
+        <span>⬆️ Cited by: 1</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  Hybrid bonding is recognized as one of the most promising technologies to meet the demand of miniaturization in future three-dimensional integrated circuits. However, the ever-shrinking of Cu pad size poses new challenges t...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">13</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4071646" target="_blank" rel="noopener">Influence of Boundary Conditions and Component Placement on Lifetime of Printed Circuit Board Assemblies Under Vibration Loading: XGBoost and Stochastic Gradient Boosting Analysis With SHAP Interpretation</a></div>
+      <div class="paper-authors">Akashjyoti Barman, Jai Mantri, S. P. Ganesh, Yash Kantamneni, G. R. Sabareesh, Sudha Radhika</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 148, No. 2 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  Ensuring the vibration reliability of electronic packages is crucial for their long-term operation, especially in high-reliability environments. The research investigates the effects of boundary conditions, component placem...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">14</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4071140" target="_blank" rel="noopener">Study On the Reliability of Lead-Free Solder Joint Assemblies Under Combined Effects of Vibrations and Extended High-Temperature Exposure</a></div>
+      <div class="paper-authors">Pradeep Lall, Vishal Mehta, Jeff Suhling, Ken Blecker</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 148, No. 2 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  The solder joint represents one of the weakest links within electronic assemblies, especially for automotive systems such as engine control units, variable valve sensors, and crankshaft-camshaft sensors. These base componen...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">15</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4071141" target="_blank" rel="noopener">Epoxy Molding Compound for Electronic Packaging: Impact of Inorganic Filler Type and Geometry</a></div>
+      <div class="paper-authors">Eyann Lee, Muhamed Abdul Fatah Muhamed Mukhtar, Abdullah Aziz Saad, Mariatti Jaafar</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 148, No. 2 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  Rapid technological advancements have increased the performance demands on electronic packaging materials, making epoxy molding compounds (EMCs) increasingly critical for electronic equipment. EMCs play a key role in protec...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">16</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4071139" target="_blank" rel="noopener">Feasibility Study of Implementing a Hybrid Single- and Two-Phase Cooler for High Power Density Power Electronics</a></div>
+      <div class="paper-authors">Yujui Lin, Heungdong Kwon, Yini He, Kewei Xiao, Man Prakash Gupta, Michael Degner et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 148, No. 2 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  Thermal management is crucial in power module design nowadays, significantly influencing the cost, performance, and reliability of the traction inverters. As we strive for greater power density and smaller form factors, inn...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">17</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4071961" target="_blank" rel="noopener">Multi-Objective Optimization of an Embedded Jet Microchannel Heat Sink for Thermal Management of High-Heat-Flux Artificial Intelligence Chips With Multiple Hotspots</a></div>
+      <div class="paper-authors">Enhui Feng, Zan Wu, Sihui Hong</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 148, No. 2 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  The rapid development of artificial intelligence (AI) technology has placed higher demands on AI computing power, and the power of GPUs is increasing rapidly, which in turn imposes greater requirements on thermal management...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">18</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4072064" target="_blank" rel="noopener">Prediction and Optimization of Copper Inverse Opal Wick for Enhanced Capillary-Fed Evaporative Cooling</a></div>
+      <div class="paper-authors">Shangyang Shi, Jianyu Du, Wei Wang, Chi Zhang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 148, No. 2 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  Capillary-fed thin-film evaporation is a promising route for passive thermal management, enabling high-performance cooling devices like heat pipes and vapor chambers. The wick design is crucial, and high performance is defi...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">19</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4071581" target="_blank" rel="noopener">Experimental Characterization of Geysering Instabilities in a Small-Scale Closed Loop Thermosyphon</a></div>
+      <div class="paper-authors">Debraliz Isaac Aragones, David M. Warsinger, Justin A. Weibel</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 148, No. 2 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  Closed loop thermosyphons (CLTs) are passive heat transfer devices, that when operating in a buoyancy-driven two-phase regime, can transfer heat nearly isothermally and thereby achieve excellent thermal performance. However...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">20</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4072063" target="_blank" rel="noopener">Thermal Management in Electronics: From Conventional Cooling to Hybrid Innovations</a></div>
+      <div class="paper-authors">Bijaya Raj Karki, Aayush Luitel</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 148, No. 2 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  The relentless miniaturization of electronic devices and escalating heat fluxes in data centers, electric vehicles, and aerospace platforms, projected to exceed 1000 W/cm2 in next-generation chips, have intensified the dema...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">21</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4071752" target="_blank" rel="noopener">Thermal Design and Performance Modeling of a High Compute Density Liquid Cooled Chiller Less Modular Edge Data Center</a></div>
+      <div class="paper-authors">Ines-Noelly Tano, Erfan Rasouli, Vinod Narayanan</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 148, No. 2 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  Holistic design of a modular energy-efficient edge datacenter with a compute density of 20 kW/m3 is presented. The datacenter uses a single chiller-less liquid loop to extract heat from server components and reject it to th...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">22</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4071357" target="_blank" rel="noopener">Special Section on Silicon-Package-Rack-Data Center Thermal Management: Challenges, Opportunities, and Solutions</a></div>
+      <div class="paper-authors">Tiwei Wei, Han Hu, Srikanth Rangarajan, Manohar Bongarala, Chirag R. Kharangate</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 148, No. 2 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">23</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4071960" target="_blank" rel="noopener">Challenges In Co-Packaging Of SI-III/V Components In Silicon Photonics</a></div>
+      <div class="paper-authors">Krishna Bhavana Sivaraju, Sai Abhideep Pundla, Akhil Kalapala, Pratik Bansode, Gautam Gupta, Dereje Agonafer</div>
+      <div class="paper-meta">
+        <span>📖 pp. 1-7 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  In the modern semiconductor industry, Silicon photonics stands at the forefront as an emerging interdisciplinary department that seeks to combine photonics and electronics on a singular silicon substrate. This combination o...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">24</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4071318" target="_blank" rel="noopener">Experimental Investigation of In-Plane Thermal Isolation Strategies for 2.5D Silicon-Based Integration Systems</a></div>
+      <div class="paper-authors">Zhengwei Chen, Yingru Song, Ye Yang, Ian Xin Quan, Amy M. Marconnet, Tiwei Wei</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 148, No. 2 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  In-plane thermal crosstalk is a crucial thermal management challenge, especially in silicon-based 2.5D heterogeneous integration systems, where the relatively high thermal conductivity of silicon interposers (∼150 W/m K) cr...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">25</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4071771" target="_blank" rel="noopener">Multiphase Modeling and Machine Learning Analysis of Void Formation in Chip-to-Wafer Underfill Encapsulation</a></div>
+      <div class="paper-authors">Rilwan Kayode Apalowo, Mohamad Aizat Abas, Muhammad Naqib Nashrudin, Taufik Azahari, Mohd  Z. Abdullah, Mohd Sharizal Abdul Aziz</div>
+      <div class="paper-meta">
+        <span>📖 pp. 1-33 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  This study investigated void formation during capillary underfill (CUF) encapsulation in chip-to-wafer (C2W) assemblies using multiphase finite volume method (FVM) simulations and machine learning (ML) analysis. A three-dim...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">26</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4071330" target="_blank" rel="noopener">Two-Phase Jet Impingement Cooling With Copper Inverse Opal Coated Microfins Using Novec 649</a></div>
+      <div class="paper-authors">Shangyang Shi, Shangjin Ning, Wei Wang, Chi Zhang</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 148, No. 2 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  Two-phase jet impingement cooling is a promising technique for heat dissipation of high-power electronics, offering high heat transfer coefficients by directly targeting coolant onto hot surfaces. In this study, we propose ...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">27</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4071262" target="_blank" rel="noopener">Experimental Characterization and Server-Level Demonstration of Confined, Direct-on-Silicon Two-Phase Jet-Impingement Cooling With Additively Manufactured Porous-Wick-Assisted Phase Separation</a></div>
+      <div class="paper-authors">Ketan Yogi, Gopinath Sahu, Sidharth Rajeev, Harish Kumar Lattupalli, Keyu Wang, Zhengwei Chen et al.</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 148, No. 2 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  Two-phase jet impingement cooling is a promising solution for high-heat-flux semiconductor thermal management, as it combines strong convective heat transfer with boiling to remove large heat loads at relatively low flow ra...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">28</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4071261" target="_blank" rel="noopener">Impact of Dielectrophoretic Vapor Extraction Force on Electronics Performance</a></div>
+      <div class="paper-authors">Lindsey H. Podlaski, Jamal S. Yagoobi</div>
+      <div class="paper-meta">
+        <span>📖 Vol. 148, No. 2 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  Modern electronic systems are advancing rapidly, driving devices to operate at higher power levels within increasingly compact and challenging environments. This trend elevates the need for more capable thermal management s...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">29</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4071548" target="_blank" rel="noopener">Topology Optimization of Backside Films to Mitigate Semiconductor Wafer Warpage</a></div>
+      <div class="paper-authors">Won Hong Choi, Gil-Eon Jeong</div>
+      <div class="paper-meta">
+        <span>📖 pp. 1-20 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  Wafer warpage is a critical challenge in semiconductor fabrication that adversely affects manufacturing yield and device reliability. This challenge is intensifying due to increased device integration and significant therma...</div>
+    </div>
+  </li>
+<li class="paper-item">
+    <div class="paper-num">30</div>
+    <div class="paper-body">
+      <div class="paper-title"><a href="https://doi.org/10.1115/1.4071814" target="_blank" rel="noopener">Multi-Illumination Feature Enhancement for Robust BGA Defect Detection and Explainable Attention Alignment</a></div>
+      <div class="paper-authors">Nestor A. Zermeño Campos, Julio C. Rodriguez-Quiñonez, Adolfo Heriberto Ruelas, Carlos Aguilar-Avelar</div>
+      <div class="paper-meta">
+        <span>📖 pp. 1-11 (2026)</span>
+        <span>⬆️ Cited by: 0</span>
+      </div>
+      <div class="paper-abstract">Abstract
+                  Ball Grid Array (BGA) inspection is critical for ensuring the reliability of semiconductor assemblies. Conventional RGB imaging under a single illumination often yields high classification metrics with pretrained CNNs, yet ...</div>
+    </div>
+  </li>
+</ul>
+</div></div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <p>数据来源 <a href="https://www.crossref.org" target="_blank">CrossRef</a> · 生成时间 2026-06-28</p>
+  <p>Deployed on <a href="https://pages.github.com" target="_blank">GitHub Pages</a></p>
+</footer>
+
+<script>
+  function showTab(idx) {
+    document.querySelectorAll('.tab-btn').forEach((b, i) => {
+      b.classList.toggle('active', i === idx);
+    });
+    document.querySelectorAll('.tab-panel').forEach((p, i) => {
+      p.classList.toggle('active', i === idx);
+    });
+  }
+  function showInstTab(idx) {
+    document.querySelectorAll('.inst-tab').forEach((b, i) => {
+      b.classList.toggle('active', i === idx);
+    });
+    document.querySelectorAll('.inst-pane').forEach((p, i) => {
+      p.classList.toggle('active', i === idx);
+    });
+  }
+  // auto-open first tab
+  showTab(0);
+</script>
+
+</body>
+</html>
