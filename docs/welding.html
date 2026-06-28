@@ -182,14 +182,8 @@
       display: flex;
       justify-content: space-between;
     }
-    .issue-cover .ic-footer .vol {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-style: italic;
-      font-weight: 700;
-      color: var(--accent);
-      font-size: 0.8rem;
-      text-transform: none;
-      letter-spacing: 0;
+    .issue-cover .ic-footer {
+      justify-content: center;
     }
 
     /* ===== CONTAINER ===== */
@@ -354,6 +348,36 @@
       font-weight: 700;
       color: var(--accent);
       line-height: 1.1;
+    }
+    .journal-meta-badges {
+      display: flex;
+      gap: 0.5rem;
+      align-items: stretch;
+    }
+    .journal-vol {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: linear-gradient(135deg, #4a3520 0%, #7a5a3a 100%);
+      color: #fff;
+      border-radius: 12px;
+      padding: 0.5rem 1rem;
+      min-width: 4.5rem;
+      justify-content: center;
+    }
+    .journal-vol-label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.65);
+    }
+    .journal-vol-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #f0d9a8;
+      line-height: 1.1;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
     }
     .journal-keywords {
       display: flex;
@@ -963,8 +987,7 @@
         <div class="ic-title">welding<br>Top Journals</div>
         <div class="ic-emblem">🔥</div>
         <div class="ic-footer">
-          <span>2026</span>
-          <span class="vol">Vol 70</span>
+          <span>2026 · welding Top Journals</span>
         </div>
       </div>
     </div>
@@ -1261,9 +1284,12 @@
         <span class="meta-tag">展示最新 30 篇（近5年共 1001 篇）</span>
       </div>
     </div>
-    <div class="journal-sjif">
-      <span class="sjif-label">SJR</span>
-      <span class="sjif-value">2.9</span>
+    <div class="journal-meta-badges">
+      <div class="journal-sjif">
+        <span class="sjif-label">SJR</span>
+        <span class="sjif-value">2.9</span>
+      </div>
+      
     </div>
   </div><div class="journal-summary">【期刊定位】焊接与连接技术领域期刊，覆盖焊接冶金、接头质量评估与连接工艺。【核心研究主题】研究核心集中于增材制造（约8%论文涉及），其次为电弧焊、疲劳寿命、激光焊接等方向，整体研究覆盖面较广。【近几年发表热点】近年新兴热点包括：增材制造（8%近期）、电弧焊（8%近期）、疲劳寿命（5%近期），这些方向增长显著，值得关注。【发表规模】近5年共1001篇，年均约250篇，2026年同比+20%。</div>
   <ul class="paper-list">
@@ -1652,9 +1678,15 @@
         <span class="meta-tag">展示最新 30 篇（近5年共 1000 篇）</span>
       </div>
     </div>
-    <div class="journal-sjif">
-      <span class="sjif-label">SJR</span>
-      <span class="sjif-value">2.6</span>
+    <div class="journal-meta-badges">
+      <div class="journal-sjif">
+        <span class="sjif-label">SJR</span>
+        <span class="sjif-value">2.6</span>
+      </div>
+      <div class="journal-vol">
+      <span class="journal-vol-label">Vol</span>
+      <span class="journal-vol-value">150</span>
+    </div>
     </div>
   </div><div class="journal-summary">【期刊定位】粘接科学与技术期刊，专注胶粘剂界面设计与耐久性研究。【核心研究主题】研究核心集中于粘接连接（约2%论文涉及），整体研究覆盖面较广。【近几年发表热点】近年新兴热点包括：粘接连接（2%近期）、表面处理（1%近期）、碳纤维增强（1%近期），这些方向增长显著，值得关注。【发表规模】近5年共1000篇，年均约200篇，2026年同比-34%。</div>
   <ul class="paper-list">
@@ -2031,9 +2063,15 @@
         <span class="meta-tag">展示最新 30 篇（近5年共 330 篇）</span>
       </div>
     </div>
-    <div class="journal-sjif">
-      <span class="sjif-label">SJR</span>
-      <span class="sjif-value">2.5</span>
+    <div class="journal-meta-badges">
+      <div class="journal-sjif">
+        <span class="sjif-label">SJR</span>
+        <span class="sjif-value">2.5</span>
+      </div>
+      <div class="journal-vol">
+      <span class="journal-vol-label">Vol</span>
+      <span class="journal-vol-value">250</span>
+    </div>
     </div>
   </div><div class="journal-summary">【期刊定位】断裂力学与疲劳领域，侧重材料裂纹扩展与结构完整性评估。【核心研究主题】研究核心集中于断裂韧性（约9%论文涉及），整体研究覆盖面较广。【近几年发表热点】近年新兴热点包括：断裂韧性（9%近期）、有限元方法（3%近期）、疲劳寿命（2%近期），这些方向增长显著，值得关注。【发表规模】近5年共330篇，年均约66篇，2026年同比-54%。</div>
   <ul class="paper-list">
